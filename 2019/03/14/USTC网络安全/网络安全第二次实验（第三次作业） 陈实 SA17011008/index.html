@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1SA17011008 陈实 2017年10月10日  实验 2 [TOC] #一、实验要求1修改例程cryptoDemo.cpp为encfile.cpp，从命令行接受参数3个字符串类型的参数：参数1，参数2，参数3。参数1=enc表示加密，参数1=dec表示解密；参数2为待加密、解密的文件；参数3为密码。 #二、实验准备123VirtualBoxUbuntu16.04gcc 安装openssl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络安全第二次实验（第三次作业） 陈实 SA17011008">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/USTC网络安全/网络安全第二次实验（第三次作业） 陈实 SA17011008/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="1SA17011008 陈实 2017年10月10日  实验 2 [TOC] #一、实验要求1修改例程cryptoDemo.cpp为encfile.cpp，从命令行接受参数3个字符串类型的参数：参数1，参数2，参数3。参数1=enc表示加密，参数1=dec表示解密；参数2为待加密、解密的文件；参数3为密码。 #二、实验准备123VirtualBoxUbuntu16.04gcc 安装openssl">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i.helloworldroom.com/uploads/noi/wl/03-01.png">
+<meta property="og:image" content="http://i.helloworldroom.com/uploads/noi/wl/03-02.png">
+<meta property="og:image" content="http://i.helloworldroom.com/uploads/noi/wl/03-03.png">
+<meta property="og:image" content="http://i.helloworldroom.com/uploads/noi/wl/03-04.png">
+<meta property="og:image" content="http://i.helloworldroom.com/uploads/noi/wl/03-05.png">
+<meta property="og:image" content="http://i.helloworldroom.com/uploads/noi/wl/03-06.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.593Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络安全第二次实验（第三次作业） 陈实 SA17011008">
+<meta name="twitter:description" content="1SA17011008 陈实 2017年10月10日  实验 2 [TOC] #一、实验要求1修改例程cryptoDemo.cpp为encfile.cpp，从命令行接受参数3个字符串类型的参数：参数1，参数2，参数3。参数1=enc表示加密，参数1=dec表示解密；参数2为待加密、解密的文件；参数3为密码。 #二、实验准备123VirtualBoxUbuntu16.04gcc 安装openssl">
+<meta name="twitter:image" content="http://i.helloworldroom.com/uploads/noi/wl/03-01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/USTC网络安全/网络安全第二次实验（第三次作业） 陈实 SA17011008/">
+
+
+
+
+
+  <title>网络安全第二次实验（第三次作业） 陈实 SA17011008 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/USTC网络安全/网络安全第二次实验（第三次作业） 陈实 SA17011008/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网络安全第二次实验（第三次作业） 陈实 SA17011008</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/USTC网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">USTC网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SA17011008 陈实 2017年10月10日  实验 2</span><br></pre></td></tr></table></figure>
+<p>[TOC]</p>
+<p>#一、实验要求<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">修改例程cryptoDemo.cpp为encfile.cpp，从命令行接受参数3个字符串类型的参数：参数1，参数2，参数3。参数1=enc表示加密，参数1=dec表示解密；参数2为待加密、解密的文件；参数3为密码。</span><br></pre></td></tr></table></figure></p>
+<p>#二、实验准备<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">VirtualBox</span><br><span class="line">Ubuntu16.04</span><br><span class="line">gcc</span><br></pre></td></tr></table></figure></p>
+<p>安装openssl库，使用命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libssl-dev</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://i.helloworldroom.com/uploads/noi/wl/03-01.png" alt="此处输入图片的描述"></p>
+<p>#三、实验过程</p>
+<p>##3.1 试验cryptoDemo.cpp效果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">//程序源码</span><br><span class="line">// cryptoDemo.cpp : Defines the entry point for the console application.</span><br><span class="line">// Windows: cl cryptoDemo.cpp</span><br><span class="line">// Linux: gcc -o cryptoDemo cryptoDemo.cpp -lcrypto</span><br><span class="line"></span><br><span class="line">#include &lt;memory.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">#include &quot;openssl/aes.h&quot;</span><br><span class="line"></span><br><span class="line">#pragma comment(lib,&quot;libeay32.lib&quot;)</span><br><span class="line"></span><br><span class="line">void testAes(char inString[], int inLen, char passwd[], int pwdLen)</span><br><span class="line">&#123;</span><br><span class="line">	int i,j, len, nLoop, nRes;</span><br><span class="line">	char enString[1024];</span><br><span class="line">	char deString[1024];</span><br><span class="line"></span><br><span class="line">	unsigned char buf[16];</span><br><span class="line">	unsigned char buf2[16];</span><br><span class="line">	unsigned char aes_keybuf[32];</span><br><span class="line">	AES_KEY aeskey;</span><br><span class="line"></span><br><span class="line">	// 准备32字节(256位)的AES密码字节</span><br><span class="line">	memset(aes_keybuf,0x90,32);</span><br><span class="line">	if(pwdLen&lt;32)&#123; len=pwdLen; &#125; else &#123; len=32;&#125;</span><br><span class="line">	for(i=0;i&lt;len;i++) aes_keybuf[i]=passwd[i];</span><br><span class="line">	// 输入字节串分组成16字节的块</span><br><span class="line">	nLoop=inLen/16; nRes = inLen%16;</span><br><span class="line">	// 加密输入的字节串</span><br><span class="line">	AES_set_encrypt_key(aes_keybuf,256,&amp;aeskey);</span><br><span class="line">	for(i=0;i&lt;nLoop;i++)&#123;</span><br><span class="line">		memset(buf,0,16);</span><br><span class="line">		for(j=0;j&lt;16;j++) buf[j]=inString[i*16+j];</span><br><span class="line">		AES_encrypt(buf,buf2,&amp;aeskey);</span><br><span class="line">		for(j=0;j&lt;16;j++) enString[i*16+j]=buf2[j];</span><br><span class="line">	&#125;</span><br><span class="line">	if(nRes&gt;0)&#123;</span><br><span class="line">		memset(buf,0,16);</span><br><span class="line">		for(j=0;j&lt;nRes;j++) buf[j]=inString[i*16+j];</span><br><span class="line">		AES_encrypt(buf,buf2,&amp;aeskey);</span><br><span class="line">		for(j=0;j&lt;16;j++) enString[i*16+j]=buf2[j];</span><br><span class="line">		//puts(&quot;encrypt&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	enString[i*16+j]=0;</span><br><span class="line">	// 密文串的解密</span><br><span class="line">	AES_set_decrypt_key(aes_keybuf,256,&amp;aeskey);</span><br><span class="line">	for(i=0;i&lt;nLoop;i++)&#123;</span><br><span class="line">		memset(buf,0,16);</span><br><span class="line">		for(j=0;j&lt;16;j++) buf[j]=enString[i*16+j];</span><br><span class="line">		AES_decrypt(buf,buf2,&amp;aeskey);</span><br><span class="line">		for(j=0;j&lt;16;j++) deString[i*16+j]=buf2[j];</span><br><span class="line">	&#125;</span><br><span class="line">	if(nRes&gt;0)&#123;</span><br><span class="line">		memset(buf,0,16);</span><br><span class="line">		for(j=0;j&lt;16;j++) buf[j]=enString[i*16+j];</span><br><span class="line">		AES_decrypt(buf,buf2,&amp;aeskey);</span><br><span class="line">		for(j=0;j&lt;16;j++) deString[i*16+j]=buf2[j];</span><br><span class="line">		//puts(&quot;decrypt&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	deString[i*16+nRes]=0;</span><br><span class="line">	//比较解密后的串是否与输入的原始串相同</span><br><span class="line">	if(memcmp(inString,deString,strlen(inString))==0)</span><br><span class="line">	&#123; printf(&quot;test success\r\n&quot;);&#125; else &#123; printf(&quot;test fail\r\n&quot;);&#125;</span><br><span class="line">   	printf(&quot;The original string is:\n  %s &quot;, inString);</span><br><span class="line">   	printf(&quot;The encrypted string is:\n  %s &quot;, enString);</span><br><span class="line">   	printf(&quot;The decrypted string is:\n  %s &quot;, deString);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char* argv[])</span><br><span class="line">&#123;</span><br><span class="line">	char inString[] = &quot;This is a sample. I am a programer.\n&quot;;</span><br><span class="line">	char passwd[] = &quot;0123456789ABCDEFGHIJK&quot;;</span><br><span class="line"></span><br><span class="line">	testAes(inString, strlen(inString), passwd, strlen(passwd));</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>利用gcc编译，并执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -o cryp cryptoDemo.cpp -lcrypto</span><br><span class="line">./cryp</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://i.helloworldroom.com/uploads/noi/wl/03-02.png" alt="此处输入图片的描述"></p>
+<p>##3.2 改写原demo</p>
+<ul>
+<li>修改例程cryptoDemo.cpp为encfile.cpp， </li>
+<li>从命令行接受参数3个字符串类型的参数：参数1，参数2，参数3。</li>
+<li>参数1=enc表示加密，参数1=dec表示解密；参数2为待加密、解密的文件；参数3为密码。</li>
+</ul>
+<p>修改部分：拆解原demo，加上文件读写即可,代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br></pre></td><td class="code"><pre><span class="line">// cryptoDemo.cpp : Defines the entry point for the console application.</span><br><span class="line">// Windows: cl cryptoDemo.cpp</span><br><span class="line">// Linux: gcc -o cryptoDemo cryptoDemo.cpp -lcrypto</span><br><span class="line">// Linux: gcc -o encfile encfile.cpp -lcrypto</span><br><span class="line">// chen SA17011008</span><br><span class="line"></span><br><span class="line">#include &lt;memory.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;openssl/aes.h&gt;</span><br><span class="line"></span><br><span class="line">#pragma comment(lib,&quot;libeay32.lib&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void encrypt(char *filename, char passwd[], int pwdLen) //加密</span><br><span class="line">&#123;</span><br><span class="line">	char inString[1024];</span><br><span class="line">	char enFile[1024];  //加密后的文件名</span><br><span class="line">	strcpy(enFile,filename);</span><br><span class="line">	strcat(enFile,&quot;_encrypt&quot;); //加密后的文件名</span><br><span class="line"></span><br><span class="line">	//文件读取</span><br><span class="line">	FILE *fp=fopen(filename,&quot;r&quot;);</span><br><span class="line">	if(fp==NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;文件%s打开错误\n&quot;,filename);</span><br><span class="line">		fclose(fp);</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	char c=fgetc(fp);  //从fp所指文件的当前指针位置读取一个字符</span><br><span class="line">	int i=0;</span><br><span class="line">	while(c!=EOF)</span><br><span class="line">	&#123;</span><br><span class="line">		inString[i++]=c;</span><br><span class="line">		c=fgetc(fp);</span><br><span class="line">	&#125;</span><br><span class="line">	inString[i]=0;   //输入结束符</span><br><span class="line">	fclose(fp);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	//加密（demo部分代码）</span><br><span class="line">	int j, len, nLoop, nRes;</span><br><span class="line">	char enString[1024];</span><br><span class="line">	</span><br><span class="line">	unsigned char buf[16];</span><br><span class="line">	unsigned char buf2[16];</span><br><span class="line">	unsigned char aes_keybuf[32];</span><br><span class="line">	AES_KEY aeskey;</span><br><span class="line"></span><br><span class="line">	int inLen=strlen(inString);  //原始字符串的长度</span><br><span class="line">	// 准备32字节(256位)的AES密码字节</span><br><span class="line">	memset(aes_keybuf,0x90,32);</span><br><span class="line">	if(pwdLen&lt;32)&#123; len=pwdLen; &#125; else &#123; len=32;&#125;</span><br><span class="line">	for(i=0;i&lt;len;i++) aes_keybuf[i]=passwd[i];</span><br><span class="line">	// 输入字节串分组成16字节的块	</span><br><span class="line">	nLoop=inLen/16; nRes = inLen%16;</span><br><span class="line">	// 加密输入的字节串</span><br><span class="line">	AES_set_encrypt_key(aes_keybuf,256,&amp;aeskey);</span><br><span class="line">	for(i=0;i&lt;nLoop;i++)&#123;</span><br><span class="line">		memset(buf,0,16);</span><br><span class="line">		for(j=0;j&lt;16;j++) buf[j]=inString[i*16+j];</span><br><span class="line">		AES_encrypt(buf,buf2,&amp;aeskey);</span><br><span class="line">		for(j=0;j&lt;16;j++) enString[i*16+j]=buf2[j];</span><br><span class="line">	&#125;</span><br><span class="line">	if(nRes&gt;0)&#123;</span><br><span class="line">		memset(buf,0,16);</span><br><span class="line">		for(j=0;j&lt;nRes;j++) buf[j]=inString[i*16+j];</span><br><span class="line">		AES_encrypt(buf,buf2,&amp;aeskey);</span><br><span class="line">		for(j=0;j&lt;16;j++) enString[i*16+j]=buf2[j];</span><br><span class="line">		//puts(&quot;encrypt&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	enString[i*16+j]=0;</span><br><span class="line"></span><br><span class="line">	//写入文件</span><br><span class="line">	FILE *fpw=fopen(enFile,&quot;w&quot;);</span><br><span class="line">	if(fpw==NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;不能写入%s\n&quot;,enFile);</span><br><span class="line">		fclose(fpw);</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	int len1=strlen(enString);</span><br><span class="line">	for(int i=0;i&lt;len1;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		fputc(enString[i],fpw);</span><br><span class="line">	&#125;</span><br><span class="line">	fclose(fpw);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void decrypt(char *filename, char passwd[], int pwdLen)  //解密</span><br><span class="line">&#123;</span><br><span class="line">	char enString[1024]; //从文件中读取的密文串</span><br><span class="line">	char deFile[1024];  //解密后的文件名</span><br><span class="line">	strcpy(deFile,filename);</span><br><span class="line">	strcat(deFile,&quot;_decrypt&quot;); //解密后的文件名</span><br><span class="line"></span><br><span class="line">	//文件读取</span><br><span class="line">	FILE *fp=fopen(filename,&quot;r&quot;);</span><br><span class="line">	if(fp==NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;文件%s打开错误\n&quot;,filename);</span><br><span class="line">		fclose(fp);</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	char c=fgetc(fp);  //从fp所指文件的当前指针位置读取一个字符</span><br><span class="line">	int i=0;</span><br><span class="line">	while(c!=EOF)</span><br><span class="line">	&#123;</span><br><span class="line">		enString[i++]=c;</span><br><span class="line">		c=fgetc(fp);</span><br><span class="line">	&#125;</span><br><span class="line">	enString[i]=0;   //输入结束符</span><br><span class="line">	fclose(fp);</span><br><span class="line"></span><br><span class="line">	//解密</span><br><span class="line">	int j, len, nLoop, nRes;</span><br><span class="line">	char deString[1024]; //解密后的字符串</span><br><span class="line"></span><br><span class="line">	unsigned char buf[16];</span><br><span class="line">	unsigned char buf2[16];</span><br><span class="line">	unsigned char aes_keybuf[32];</span><br><span class="line">	AES_KEY aeskey;</span><br><span class="line"></span><br><span class="line">	// 准备32字节(256位)的AES密码字节</span><br><span class="line">	memset(aes_keybuf,0x90,32);</span><br><span class="line">	if(pwdLen&lt;32)&#123; len=pwdLen; &#125; else &#123; len=32;&#125;</span><br><span class="line">	for(i=0;i&lt;len;i++) aes_keybuf[i]=passwd[i];</span><br><span class="line">	</span><br><span class="line">	int inLen=strlen(enString);</span><br><span class="line">	// 密文字节串分组成16字节的块	</span><br><span class="line">	nLoop=inLen/16; nRes = inLen%16;</span><br><span class="line">	</span><br><span class="line">	// 密文串的解密	</span><br><span class="line">	AES_set_decrypt_key(aes_keybuf,256,&amp;aeskey);</span><br><span class="line">	for(i=0;i&lt;nLoop;i++)&#123;</span><br><span class="line">		memset(buf,0,16);</span><br><span class="line">		for(j=0;j&lt;16;j++) buf[j]=enString[i*16+j];</span><br><span class="line">		AES_decrypt(buf,buf2,&amp;aeskey);</span><br><span class="line">		for(j=0;j&lt;16;j++) deString[i*16+j]=buf2[j];</span><br><span class="line">	&#125;</span><br><span class="line">	if(nRes&gt;0)&#123;</span><br><span class="line">		memset(buf,0,16);</span><br><span class="line">		for(j=0;j&lt;16;j++) buf[j]=enString[i*16+j];</span><br><span class="line">		AES_decrypt(buf,buf2,&amp;aeskey);</span><br><span class="line">		for(j=0;j&lt;16;j++) deString[i*16+j]=buf2[j];</span><br><span class="line">		//puts(&quot;decrypt&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	deString[i*16+nRes]=0;</span><br><span class="line"></span><br><span class="line">	//写入文件</span><br><span class="line">	FILE *fpw=fopen(deFile,&quot;w&quot;);</span><br><span class="line">	if(fpw==NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;不能写入%s.\n&quot;,deFile);</span><br><span class="line">		fclose(fpw);</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	int len1=strlen(deString);</span><br><span class="line">	for(i=0;i&lt;len1;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		fputc(deString[i],fpw);</span><br><span class="line">	&#125;</span><br><span class="line">	fclose(fpw);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main(int argc, char* argv[])</span><br><span class="line">&#123;</span><br><span class="line">	// 检测参数是否为4个</span><br><span class="line">	if(argc!=4)</span><br><span class="line">		printf(&quot;Error format!\n&quot;);</span><br><span class="line">		</span><br><span class="line">	//获取参数</span><br><span class="line">	char *type=argv[1];</span><br><span class="line">	char *filename=argv[2];</span><br><span class="line">	char *passwd=argv[3];</span><br><span class="line">	</span><br><span class="line">	//加密&amp;解密</span><br><span class="line">	if(strcmp(type,&quot;enc&quot;)==0)</span><br><span class="line">		encrypt(filename,passwd,strlen(passwd));</span><br><span class="line">	else if(strcmp(type,&quot;dec&quot;)==0)</span><br><span class="line">		decrypt(filename,passwd,strlen(passwd));</span><br><span class="line">	else</span><br><span class="line">		printf(&quot;parameter error!\n&quot;);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="编译encfile-cpp"><a href="#编译encfile-cpp" class="headerlink" title="编译encfile.cpp"></a>编译encfile.cpp</h3><p>写完之后，在终端下,执行下面的操作,进行编译，生成encfile<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o encfile encfile.cpp -lcrypto</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://i.helloworldroom.com/uploads/noi/wl/03-03.png" alt="此处输入图片的描述"></p>
+<p>明文文件内容如下：<br><img src="http://i.helloworldroom.com/uploads/noi/wl/03-04.png" alt="此处输入图片的描述"></p>
+<h3 id="执行加密"><a href="#执行加密" class="headerlink" title="执行加密"></a>执行加密</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./encfile enc file 0123456789ABCDEFGHIJK</span><br></pre></td></tr></table></figure>
+<p>密文文件内容如下：<br><img src="http://i.helloworldroom.com/uploads/noi/wl/03-05.png" alt="此处输入图片的描述"></p>
+<h3 id="执行解密"><a href="#执行解密" class="headerlink" title="执行解密"></a>执行解密</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./encfile dec file_encrypt 0123456789ABCDEFGHIJK</span><br></pre></td></tr></table></figure>
+<p><img src="http://i.helloworldroom.com/uploads/noi/wl/03-06.png" alt="此处输入图片的描述"></p>
+<p>可以看出，加密前后的内容是一致的。</p>
+<p>#四、实验心得<br>通过这次试验，对 aes 加密解密有了简单的了解，并简单实验了加密和解密过程，将处理后的信息保存下来。通过这次实验自己亲手体会了其中加密和解密的过程，收获很大。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/USTC网络安全/网络安全第三次实验 陈实 SA17011008/" rel="next" title="网络安全第三次实验 陈实 SA17011008">
+                <i class="fa fa-chevron-left"></i> 网络安全第三次实验 陈实 SA17011008
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/USTC网络安全/网络安全第五次实验 陈实 SA17011008/" rel="prev" title="网络安全第五次实验 陈实 SA17011008">
+                网络安全第五次实验 陈实 SA17011008 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译encfile-cpp"><span class="nav-number">1.</span> <span class="nav-text">编译encfile.cpp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行加密"><span class="nav-number">2.</span> <span class="nav-text">执行加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行解密"><span class="nav-number">3.</span> <span class="nav-text">执行解密</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

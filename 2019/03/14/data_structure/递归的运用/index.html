@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="#一、递归的相关点 ###1.1怎么去写一个递归函数?我认为写一个递归函数，主要就是两点：   什么时候出递归 每一次递归前/后还要做哪些事情   下面的题目，尽量依靠这两点来分析。 ###1.2递归是怎么实现的？在递归调用情况下，被调函数的局部变量采用动态分配存储区（每调用一次就分配一份，以存放当前使用的数据，当返回时随即释放）。我们把这个动态区称为运行栈。每次调用函数执行入栈操作，每次从函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="递归的运用">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/data_structure/递归的运用/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="#一、递归的相关点 ###1.1怎么去写一个递归函数?我认为写一个递归函数，主要就是两点：   什么时候出递归 每一次递归前/后还要做哪些事情   下面的题目，尽量依靠这两点来分析。 ###1.2递归是怎么实现的？在递归调用情况下，被调函数的局部变量采用动态分配存储区（每调用一次就分配一份，以存放当前使用的数据，当返回时随即释放）。我们把这个动态区称为运行栈。每次调用函数执行入栈操作，每次从函数">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test01.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test02.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test03.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test04.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test05.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test06.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test07.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test08.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test09.jpg">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test10.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.504Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="递归的运用">
+<meta name="twitter:description" content="#一、递归的相关点 ###1.1怎么去写一个递归函数?我认为写一个递归函数，主要就是两点：   什么时候出递归 每一次递归前/后还要做哪些事情   下面的题目，尽量依靠这两点来分析。 ###1.2递归是怎么实现的？在递归调用情况下，被调函数的局部变量采用动态分配存储区（每调用一次就分配一份，以存放当前使用的数据，当返回时随即释放）。我们把这个动态区称为运行栈。每次调用函数执行入栈操作，每次从函数">
+<meta name="twitter:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/data_structure/递归的运用/">
+
+
+
+
+
+  <title>递归的运用 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/data_structure/递归的运用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">递归的运用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-structure/" itemprop="url" rel="index">
+                    <span itemprop="name">data_structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>#一、递归的相关点</p>
+<p>###1.1怎么去写一个递归函数?<br>我认为写一个递归函数，主要就是两点：</p>
+<blockquote>
+<ul>
+<li>什么时候出递归</li>
+<li>每一次递归前/后还要做哪些事情</li>
+</ul>
+</blockquote>
+<p>下面的题目，尽量依靠这两点来分析。</p>
+<p>###1.2递归是怎么实现的？<br>在递归调用情况下，被调函数的局部变量采用动态分配存储区（每调用一次就分配一份，以存放当前使用的数据，当返回时随即释放）。我们把这个动态区称为运行栈。每次调用函数执行入栈操作，每次从函数返回时，执行出栈操作。  </p>
+<p>概括来讲，函数的调用可分为三个步骤：</p>
+<blockquote>
+<ul>
+<li>调用函数发送调用信息，包括调用方要传给被调方的信息，如传给形参的实参值，函数返回地址；</li>
+<li>分配被调方需要的局部数据区，用来存放被调方定义的局部变量，形参变量，返回地址等，并接收调用方传来的调用信息；</li>
+<li>调用方暂停，把计算控制力转移到被调方。</li>
+</ul>
+</blockquote>
+<p>当被调方结束运行，返回调用方时，返回处理分为三个步骤：</p>
+<blockquote>
+<ul>
+<li>传送返回信息，包括被调方要传回给调用方的信息，如计算结果等；</li>
+<li>释放分配给被调方的数据区；</li>
+<li>按返回地址把控制转回给调用方；</li>
+</ul>
+</blockquote>
+<p>###1.3如何计算时间复杂度和空间复杂度？<br>一般的题目复杂度可以大致看看就能算出来，但是一旦比较难，就不能直接的看出来，下面链接是网上总结比较好的一篇博文，放在此留作参考。</p>
+<p><a href="http://www.cnblogs.com/python27/archive/2011/12/09/2282486.html" target="_blank" rel="noopener">递归算法的时间复杂度终篇</a></p>
+<p>###1.4关于递归与非递归的转化<br>递归实际上是非常非常的消耗空间的，每次递归就会开辟一个递归运行栈，很可能就会由于递归的次数太多初始默认的栈空间被耗尽。同时，也不会去建议为了递归而调高空间。</p>
+<hr>
+<p>首先，我们需要先了解下，递归是如何调用的<br><a href="https://www.zybuluo.com/rg070836rg/note/84273" target="_blank" rel="noopener">递归调用的详细过程</a></p>
+<hr>
+<p>那么对于一个问题，要怎么去把递归换成非递归？</p>
+<blockquote>
+<ul>
+<li>可以取一个特例</li>
+<li>分析哪些元素需要放在栈中</li>
+<li>分析栈的变化</li>
+<li>转化到普遍，编写算法</li>
+</ul>
+</blockquote>
+<p>其实最重要的就是最后一部，如何把特例转化为普遍规律，这步是很难的，理论上，所有的递归都能用栈来解决，搞清楚递归调用树，分析每步的操作。</p>
+<p>下面，链接一篇文章，详细的讲了该问题：<a href="http://www.doc88.com/p-993284721279.html" target="_blank" rel="noopener">算法设计中的递归与非递归转换</a></p>
+<p>#二、练习</p>
+<p>##1、进制转换</p>
+<p>编写把十进制正整数转换为S进制(S=2，8，16)数输出的递归算法。<br>十进制转换为S进制的基本方法是“除基取余，上右下左”。</p>
+<p>###1.1、递归算法</p>
+<blockquote>
+<ul>
+<li>什么时候出递归</li>
+<li>每一次递归前/后还要做哪些事情</li>
+</ul>
+</blockquote>
+<p><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test01.png" alt="此处输入图片的描述"></p>
+<p>1、当新的被除数为0的时候，出递归；<br>2、每次递归输后出余数</p>
+<p>所以代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* void transfrom(int x,int n)</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">* 用于进制的转换</span></span><br><span class="line"><span class="comment">* 采用递归的方式</span></span><br><span class="line"><span class="comment">* @param[in]   x十进制数  n转的进制数</span></span><br><span class="line"><span class="comment">* @param[out]T x</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">transfrom</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x==<span class="number">0</span>) <span class="keyword">return</span> ;<span class="comment">//当新的被除数为0的时候，出递归；</span></span><br><span class="line"></span><br><span class="line">	transfrom(x/n,n);</span><br><span class="line">	<span class="keyword">if</span> (x%n&lt;<span class="number">9</span>)			<span class="comment">//每次递归输后出余数</span></span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;x%n;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="keyword">char</span>(x%n+<span class="number">55</span>);</span><br><span class="line">		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>main中测试:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"递归操作："</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">transfrom(<span class="number">171</span>,<span class="number">16</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;	</span><br><span class="line">transfrom(<span class="number">2147483647</span>,<span class="number">8</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">transfrom(<span class="number">2147483647</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure></p>
+<p>测试截图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test02.png" alt="此处输入图片的描述"><br>复杂度很好分析，每次递归做的事情级别为O(1),一共递归了n次，所以是O(n).</p>
+<hr>
+<p>###1.2、非递归算法<br>下面提供一种非递归的方法，原来的递归是把数字反序输出，所以用栈，可以达到这个目的。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* void transfrom_1(int x,int n)</span></span><br><span class="line"><span class="comment">* 用于进制的转换</span></span><br><span class="line"><span class="comment">* 采用栈的方式</span></span><br><span class="line"><span class="comment">* @param[in]   x十进制数  n转的进制数</span></span><br><span class="line"><span class="comment">* @param[out]T x</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">transfrom_1</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; tmp;</span><br><span class="line">	<span class="keyword">while</span>(x!=<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		tmp.push(x%n);</span><br><span class="line">		x=x/n;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (!tmp.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (tmp.top()&gt;<span class="number">9</span>)</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="keyword">char</span>(<span class="number">55</span>+tmp.top());</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;tmp.top();</span><br><span class="line">		tmp.pop();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"栈操作："</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">transfrom_1(<span class="number">171</span>,<span class="number">16</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">transfrom_1(<span class="number">2147483647</span>,<span class="number">8</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">transfrom_1(<span class="number">2147483647</span>,<span class="number">2</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<p>测试截图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test03.png" alt="此处输入图片的描述"></p>
+<hr>
+<p>##2、Fibonacci数列</p>
+<p>###2.1、数学定义：<br>斐波那契数列<br>F（0）=0，<br>F（1）=1，<br>F（n）=F(n-1)+F(n-2)（n≥2，n∈N*）</p>
+<p>###2.2、递归分析<br>1、当新的数为1的时候，出递归；<br>2、每次返回结果</p>
+<p>所以代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* int' Fibonacci(int n)</span></span><br><span class="line"><span class="comment">* 计算斐波那契数列的值</span></span><br><span class="line"><span class="comment">* 采用递归的方式</span></span><br><span class="line"><span class="comment">* @param[in]  n 项数</span></span><br><span class="line"><span class="comment">* @param[out]T x</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n==<span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (n==<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> Fibonacci(n<span class="number">-1</span>)+Fibonacci(n<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试函数：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">30</span>;i++)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;Fibonacci(i)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试截图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test04.png" alt="此处输入图片的描述"><br>关于复杂度：<br>我们取F(n)看，发现能展开n-1层，每层又需要计算很多重复的东西，比如算f(100)需要重新算f(99)与f(98)，所以时间复杂度应该近似会为O($2^n$),空间复杂度，到后期，每增加一个维度，都会把前面的重新再算一遍，所以空间复杂度额也近似为O($2^n$)</p>
+<hr>
+<p>###2.3、非递归算法<br>同样，这个也提供一种复杂度较低的非递归算法：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">Fibonacci_2</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a,b,c;		</span><br><span class="line">	a=<span class="number">1</span>;b=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (n==<span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (n==<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		c=a+b;</span><br><span class="line">		a=b;</span><br><span class="line">		b=c;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>很明显这个复杂度就降到了O(n)级别了，空间没有额外开辟为O(1);<br>分析下这个算法，这个方法每次只保存当前计算值的前两个数，不必像递归那般重复计算已经算过的值多次。那么，同样，可以用这种思路去优化递归算法。</p>
+<hr>
+<p>###2.4、递归算法的改进<br>并没有必要重复计算那么多次， 每个值只要计算一次即可，计算完存到一个数组里面，用的时候直接调。代码实现如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* int' Fibonacci_1(int n)</span></span><br><span class="line"><span class="comment">* 计算斐波那契数列的值</span></span><br><span class="line"><span class="comment">* 采用数组记忆法，减少了重复计算的步骤，大大降低了时间复杂度</span></span><br><span class="line"><span class="comment">* @param[in]  n 项数</span></span><br><span class="line"><span class="comment">* @param[out]T x</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">long</span> memory[<span class="number">100</span>];</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">Fibonacci_1</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n==<span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (n==<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (memory[n]!=<span class="number">0</span>) </span><br><span class="line">		<span class="keyword">return</span> memory[n];</span><br><span class="line">	<span class="keyword">return</span> memory[n]=Fibonacci_1(n<span class="number">-1</span>)+Fibonacci_1(n<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这段代码，大大降低了原来递归的复杂度，和非递归相比，在计算多个值上比较有效率，而非递归的那种方法，只是在计算每个值时，效率比这段代码高。</p>
+<p>##3、杨辉三角<br>杨辉三角数为：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test05.png" alt="此处输入图片的描述"></p>
+<p>###3.1、递归算法<br>看得出，除了两边的数，其余的都是上边两数字的和，所以：</p>
+<blockquote>
+<ul>
+<li>当每排第一个或者每排最后一个时，返回1出递归</li>
+<li>否则返回两递归之和</li>
+</ul>
+</blockquote>
+<p>所以代码设计十分之简单<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Triangle</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(y==<span class="number">1</span>||y==x)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">		<span class="keyword">return</span> Triangle(x<span class="number">-1</span>,y<span class="number">-1</span>)+Triangle(x<span class="number">-1</span>,y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br></pre></td></tr></table></figure></p>
+<p>通过打印Triangle(i,j)就能得到第i行第j个数字。</p>
+<p>主函数测试打印：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> RowCount,i,j,k;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入杨辉三角的行数:"</span>;</span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; RowCount;</span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">1</span> ;i &lt;=RowCount;i++)<span class="comment">//从第0行开始</span></span><br><span class="line">&#123;   <span class="comment">//打印第i行第一个元素前面的空格</span></span><br><span class="line">	<span class="keyword">for</span>(k = <span class="number">0</span>;k &lt; RowCount - i;k++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"    "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(j = <span class="number">1</span>;j &lt;= i ;j++)<span class="comment">//打印第i行的所有元素</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; Triangle(i,j) &lt;&lt; <span class="string">"       "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试结果：</p>
+<h2 id><a href="#" class="headerlink" title></a><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test06.png" alt="此处输入图片的描述"></h2><p>###3.2、改进<br>当然，这样的复杂度也很高，每次都是把前面的工作全部重做，近似指数级指数。</p>
+<p>同样，类似于Fibonacci数列，可以用记忆数组，把算过的全部存储起来。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* int Triangle_1(int x,int y)</span></span><br><span class="line"><span class="comment">* 用于求第x行第y个元素的值</span></span><br><span class="line"><span class="comment">* 采用递归的方式，记忆数组辅助</span></span><br><span class="line"><span class="comment">* @param[in]   x行  y列</span></span><br><span class="line"><span class="comment">* @param[out]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">int</span> memory[<span class="number">100</span>][<span class="number">100</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Triangle_1</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (memory[x][y]!=<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> memory[x][y];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(y==<span class="number">1</span>||y==x)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">	&#123;</span><br><span class="line">		memory[x][y]=Triangle(x<span class="number">-1</span>,y<span class="number">-1</span>)+Triangle(x<span class="number">-1</span>,y);</span><br><span class="line">		<span class="keyword">return</span> memory[x][y];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样，复杂度一下就降低到了O(n)级别了，效率已经算是很高了</p>
+<hr>
+<p>##4、全排列<br>定义相信都很熟悉，不再阐述。</p>
+<p>###4.1、问题分析<br>全排序1~4，就是4个首位交替，并且降低规模，重新交替，再降低规模</p>
+<blockquote>
+<ul>
+<li>只剩一位数，开始打印，退出递归</li>
+<li>递归前交换首位与后面的位置，递归后再交换回来</li>
+</ul>
+</blockquote>
+<p>###4.2、递归算法<br>所以代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FullArray</span><span class="params">(<span class="keyword">int</span> k,<span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(k==m)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;=m; i++)</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[i];</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"\t"</span>;</span><br><span class="line">		count++;</span><br><span class="line">		<span class="keyword">if</span>(count % <span class="number">5</span>==<span class="number">0</span>) </span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(i=k; i&lt;=m; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			Swap(&amp;a[k],&amp;a[i]);</span><br><span class="line">			FullArray(k+<span class="number">1</span>,m);</span><br><span class="line">			Swap(&amp;a[i],&amp;a[k]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试函数：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;	</span><br><span class="line">	count=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;MaxNum; i++)</span><br><span class="line">		a[i]=i+<span class="number">1</span>;</span><br><span class="line">	FullArray(<span class="number">0</span>,<span class="number">3</span>);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"1~"</span>&lt;&lt;<span class="number">4</span>&lt;&lt;<span class="string">"全排列总数为："</span>&lt;&lt;count&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行截图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test07.png" alt="此处输入图片的描述"><br>复杂度也是规模越大，前面做的活就越多，近似指数级了吧。</p>
+<hr>
+<p>##5、打靶问题</p>
+<p>###5.1、问题描述<br>一个射击运动员打靶，靶一共有10环，连开10枪打中90环的可能性有多少种？试用递归算法实现。 </p>
+<p>###5.2、分析<br>其实这个问题是很好分析的，我要前n枪共打m环，那如果我最后一枪大了i环，就需要前n-1枪打了m-i环，所以问题化简就有了。</p>
+<blockquote>
+<ul>
+<li>当最后一枪需要打比10还要大，无解，返回0</li>
+<li>当最后一枪需要小于等于10，唯一解，返回1</li>
+<li>当总环数比枪数的10倍还要大，无解，返回0</li>
+<li>当总环数刚好等于10倍枪数，唯一解，返回1</li>
+<li>然后考虑当前枪会达到i环，递归到下一个子问题，中间用计数器记上总数</li>
+</ul>
+</blockquote>
+<p>具体实现：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* int GetN(int Sum, int n)</span></span><br><span class="line"><span class="comment">* 获得可能的方法述</span></span><br><span class="line"><span class="comment">* 采用递归的方式</span></span><br><span class="line"><span class="comment">* @param[in]  所给总分Sum 所给次数n</span></span><br><span class="line"><span class="comment">* @param[out]T x</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GetN</span><span class="params">(<span class="keyword">int</span> Sum, <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">	<span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>	(Sum&gt;n*<span class="number">10</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>	(Sum==n*<span class="number">10</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>	(n == <span class="number">1</span> &amp;&amp;  Sum &gt;= <span class="number">0</span> &amp;&amp; Sum &lt;= <span class="number">10</span>)	<span class="comment">//若只打一枪，并且环数在0-10之间，只有一种可能性，返回1</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (n==<span class="number">1</span> &amp;&amp;  Sum &gt; <span class="number">10</span> )</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span>			</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">10</span>; i++)		</span><br><span class="line">		&#123;</span><br><span class="line">			k += GetN(Sum-i, n - <span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> k;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>main中测试:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;GetN(<span class="number">90</span>,<span class="number">10</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试结果如图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test08.png" alt="此处输入图片的描述"></p>
+<hr>
+<p>##6、格雷码（GRAY）</p>
+<p>###6.1、问题分析<br>格雷码是在数电中第一次接触到的，当时还为怎么记所困扰，现在看来，很简单。<br>格雷码的定义是，每次变化只翻转一位。<br>通过观察，会发现：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test09.jpg" alt="此处输入图片的描述"></p>
+<blockquote>
+<ul>
+<li>当只有一位时，输出0,1</li>
+<li>递归后，把当前列前一半填0，当前列后一半填1，前几列逆序</li>
+</ul>
+</blockquote>
+<p>###6.2、递归算法<br>所以，代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">TraGray</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> m=<span class="built_in">pow</span>(<span class="number">2</span>,n);</span><br><span class="line">	<span class="comment">//退出条件</span></span><br><span class="line">	<span class="keyword">if</span> (n==<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		result[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">		result[<span class="number">1</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//缩小问题规模</span></span><br><span class="line">		TraGray(n<span class="number">-1</span>);</span><br><span class="line">		<span class="comment">//当前列前一半填0</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m/<span class="number">2</span>;i++)</span><br><span class="line">			result[i][n<span class="number">-1</span>]=<span class="number">0</span>;</span><br><span class="line">		<span class="comment">//当前列后一半填1</span></span><br><span class="line">		<span class="keyword">for</span> (i=m/<span class="number">2</span>;i&lt;m;i++)</span><br><span class="line">			result[i][n<span class="number">-1</span>]=<span class="number">1</span>;</span><br><span class="line">		<span class="comment">//前几列逆序</span></span><br><span class="line">		<span class="keyword">for</span> (i=m/<span class="number">2</span>;i&lt;m;i++)</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>;j&lt; n<span class="number">-1</span>;j++)</span><br><span class="line">				result[i][j]=result[m<span class="number">-1</span>-i][j];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试函数：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> N,M;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"请输入格雷码位数"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;N;</span><br><span class="line">	<span class="keyword">if</span> (!(N&gt;<span class="number">0</span>&amp;&amp;N&lt;=<span class="number">6</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"只支持6位"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		N=<span class="number">6</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	M=<span class="built_in">pow</span>(<span class="number">2</span>,N);</span><br><span class="line"></span><br><span class="line">	TraGray(N);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;M;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j=N<span class="number">-1</span>;j&gt;=<span class="number">0</span>;j--)</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;result[i][j];</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试结果：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%88test10.png" alt="此处输入图片的描述"></p>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/data_structure/表达式求值/" rel="next" title="表达式求值">
+                <i class="fa fa-chevron-left"></i> 表达式求值
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/data_structure/递归调用的详细过程/" rel="prev" title="递归调用的详细过程">
+                递归调用的详细过程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="由于自己的偷懒，现在才开始补作业。    2017年1月10日0点 #第四次作业 myping这个作业主要是用到icmp差错检查的知识，不是很难 设置ICMP报头函数,压包1234567891011121314151617181920/*设置ICMP报头*/  int pack(int pack_no)  &amp;#123;      int i,packsize;      struct icmp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP_IP第四次作业">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/TCP_IP/TCP_IP第四次作业/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="由于自己的偷懒，现在才开始补作业。    2017年1月10日0点 #第四次作业 myping这个作业主要是用到icmp差错检查的知识，不是很难 设置ICMP报头函数,压包1234567891011121314151617181920/*设置ICMP报头*/  int pack(int pack_no)  &amp;#123;      int i,packsize;      struct icmp">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.580Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TCP_IP第四次作业">
+<meta name="twitter:description" content="由于自己的偷懒，现在才开始补作业。    2017年1月10日0点 #第四次作业 myping这个作业主要是用到icmp差错检查的知识，不是很难 设置ICMP报头函数,压包1234567891011121314151617181920/*设置ICMP报头*/  int pack(int pack_no)  &amp;#123;      int i,packsize;      struct icmp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/TCP_IP/TCP_IP第四次作业/">
+
+
+
+
+
+  <title>TCP_IP第四次作业 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/TCP_IP/TCP_IP第四次作业/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TCP_IP第四次作业</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TCP-IP/" itemprop="url" rel="index">
+                    <span itemprop="name">TCP_IP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>由于自己的偷懒，现在才开始补作业。<br>    2017年1月10日0点</p>
+<p>#第四次作业 myping<br>这个作业主要是用到icmp差错检查的知识，不是很难</p>
+<h1 id="设置ICMP报头函数-压包"><a href="#设置ICMP报头函数-压包" class="headerlink" title="设置ICMP报头函数,压包"></a>设置ICMP报头函数,压包</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/*设置ICMP报头*/  </span><br><span class="line">int pack(int pack_no)  </span><br><span class="line">&#123;  </span><br><span class="line">    int i,packsize;  </span><br><span class="line">    struct icmp *icmp;  </span><br><span class="line">    struct timeval *tval;  </span><br><span class="line">    icmp = (struct icmp*)sendpacket;  </span><br><span class="line">    icmp-&gt;icmp_type = ICMP_ECHO; //ICMP_ECHO类型的类型号为0  </span><br><span class="line">    icmp-&gt;icmp_code = 0;  </span><br><span class="line">    icmp-&gt;icmp_cksum = 0;  </span><br><span class="line">    icmp-&gt;icmp_seq = pack_no;    //发送的数据报编号  </span><br><span class="line">    icmp-&gt;icmp_id = pid;  </span><br><span class="line">  </span><br><span class="line">    packsize = 8 + datalen;     //数据报大小为64字节  </span><br><span class="line">    tval = (struct timeval *)icmp-&gt;icmp_data;  </span><br><span class="line">    gettimeofday(tval,NULL);        //记录发送时间  </span><br><span class="line">    //校验算法  </span><br><span class="line">    icmp-&gt;icmp_cksum =  cal_chksum((unsigned shortshort *)icmp,packsize);   </span><br><span class="line">    return packsize;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#发送ICMP报文<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">void send_packet()  </span><br><span class="line">&#123;  </span><br><span class="line">    int packetsize;  </span><br><span class="line">    if(nsend &lt; MAX_NO_PACKETS)  </span><br><span class="line">    &#123;  </span><br><span class="line">        nsend++;  </span><br><span class="line">        packetsize = pack(nsend);   //设置ICMP报头  </span><br><span class="line">        //发送数据报  </span><br><span class="line">        if(sendto(sockfd,sendpacket,packetsize,0,  </span><br><span class="line">            (struct sockaddr *)&amp;dest_addr,sizeof(dest_addr)) &lt; 0)  </span><br><span class="line">        &#123;  </span><br><span class="line">            perror(&quot;sendto error&quot;);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#接受ICMP报文<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">void recv_packet()  </span><br><span class="line">&#123;  </span><br><span class="line">    int n,fromlen;  </span><br><span class="line">    extern int error;  </span><br><span class="line">    fromlen = sizeof(from);  </span><br><span class="line">    if(nreceived &lt; nsend)  </span><br><span class="line">    &#123;     </span><br><span class="line">        //接收数据报  </span><br><span class="line">        if((n = recvfrom(sockfd,recvpacket,sizeof(recvpacket),0,  </span><br><span class="line">            (struct sockaddr *)&amp;from,&amp;fromlen)) &lt; 0)  </span><br><span class="line">        &#123;  </span><br><span class="line">            perror(&quot;recvfrom error&quot;);  </span><br><span class="line">        &#125;  </span><br><span class="line">        gettimeofday(&amp;tvrecv,NULL);     //记录接收时间  </span><br><span class="line">        unpack(recvpacket,n);       //剥去ICMP报头  </span><br><span class="line">        nreceived++;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="拆包，做时间计算等"><a href="#拆包，做时间计算等" class="headerlink" title="拆包，做时间计算等"></a>拆包，做时间计算等</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">int unpack(charchar *buf,int len)  </span><br><span class="line">&#123;  </span><br><span class="line">    int i;  </span><br><span class="line">    int iphdrlen;       //ip头长度  </span><br><span class="line">    struct ip *ip;  </span><br><span class="line">    struct icmp *icmp;  </span><br><span class="line">    struct timeval *tvsend;  </span><br><span class="line">    double rtt;  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    ip = (struct ip *)buf;  </span><br><span class="line">    iphdrlen = ip-&gt;ip_hl &lt;&lt; 2; //求IP报文头长度，即IP报头长度乘4  </span><br><span class="line">    icmp = (struct icmp *)(buf + iphdrlen); //越过IP头，指向ICMP报头  </span><br><span class="line">    len -= iphdrlen;    //ICMP报头及数据报的总长度  </span><br><span class="line">    if(len &lt; 8)      //小于ICMP报头的长度则不合理  </span><br><span class="line">    &#123;  </span><br><span class="line">        printf(&quot;ICMP packet\&apos;s length is less than 8\n&quot;);  </span><br><span class="line">        return -1;  </span><br><span class="line">    &#125;  </span><br><span class="line">    //确保所接收的是所发的ICMP的回应  </span><br><span class="line">    if((icmp-&gt;icmp_type == ICMP_ECHOREPLY) &amp;&amp; (icmp-&gt;icmp_id == pid))  </span><br><span class="line">    &#123;  </span><br><span class="line">        tvsend = (struct timeval *)icmp-&gt;icmp_data;  </span><br><span class="line">        tv_sub(&amp;tvrecv,tvsend); //接收和发送的时间差  </span><br><span class="line">        //以毫秒为单位计算rtt  </span><br><span class="line">        rtt = tvrecv.tv_sec*1000 + tvrecv.tv_usec/1000;  </span><br><span class="line">        temp_rtt[nreceived] = rtt;  </span><br><span class="line">        all_time += rtt;    //总时间  </span><br><span class="line">        //显示相关的信息  </span><br><span class="line">        printf(&quot;%d bytes from %s: icmp_seq=%u ttl=%d time=%.1f ms\n&quot;,  </span><br><span class="line">                len,inet_ntoa(from.sin_addr),  </span><br><span class="line">                icmp-&gt;icmp_seq,ip-&gt;ip_ttl,rtt);  </span><br><span class="line">    &#125;  </span><br><span class="line">    else return -1;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#主调用函数<br>生成ICMP的原始套接字，压入ip，发包，守包，检查包内内容，然后设置ttl<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">main(int argc,charchar *argv[])  </span><br><span class="line">&#123;  </span><br><span class="line">    struct hostent *host;  </span><br><span class="line">    struct protoent *protocol;  </span><br><span class="line">    unsigned long inaddr = 0;  </span><br><span class="line">    int size = 550 * 1024;  </span><br><span class="line">    addr[0] = argv[1];  </span><br><span class="line">    //参数小于两个  </span><br><span class="line">    if(argc &lt; 2)       </span><br><span class="line">    &#123;  </span><br><span class="line">        printf(&quot;usage:%s hostname/IP address\n&quot;,argv[0]);  </span><br><span class="line">        exit(1);  </span><br><span class="line">    &#125;  </span><br><span class="line">    //不是ICMP协议  </span><br><span class="line">    if((protocol = getprotobyname(&quot;icmp&quot;)) == NULL)  </span><br><span class="line">    &#123;  </span><br><span class="line">        perror(&quot;getprotobyname&quot;);  </span><br><span class="line">        exit(1);  </span><br><span class="line">    &#125;  </span><br><span class="line">	</span><br><span class="line">    //生成使用ICMP的原始套接字</span><br><span class="line">    if((sockfd = socket(AF_INET,SOCK_RAW,protocol-&gt;p_proto)) &lt; 0)  </span><br><span class="line">    &#123;  </span><br><span class="line">        perror(&quot;socket error&quot;);  </span><br><span class="line">        exit(1);  </span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    setsockopt(sockfd,SOL_SOCKET,SO_RCVBUF,&amp;size,sizeof(size));  </span><br><span class="line">    bzero(&amp;dest_addr,sizeof(dest_addr));    //初始化  </span><br><span class="line">    dest_addr.sin_family = AF_INET;     //套接字域是AF_INET(网络套接字)  </span><br><span class="line">	</span><br><span class="line">	//压入ip</span><br><span class="line">	dest_addr.sin_addr.s_addr = inet_addr(argv[1]);  </span><br><span class="line">	</span><br><span class="line">    pid = getpid();  </span><br><span class="line">    printf(&quot;PING %s(%s):%d bytes of data.\n&quot;,argv[1],  </span><br><span class="line">		inet_ntoa(dest_addr.sin_addr),datalen);  </span><br><span class="line">	</span><br><span class="line">    //当按下ctrl+c时发出中断信号，并开始执行统计函数  </span><br><span class="line">    signal(SIGINT,statistics);    </span><br><span class="line">    while(nsend &lt; MAX_NO_PACKETS)&#123;  </span><br><span class="line">        sleep(1);       //每隔一秒发送一个ICMP报文  </span><br><span class="line">        send_packet();      //发送ICMP报文  </span><br><span class="line">        recv_packet();      //接收ICMP报文  </span><br><span class="line">    &#125;  </span><br><span class="line">    return 0;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/TCP_IP/TCP_IP第二次作业/" rel="next" title="TCP_IP第二次作业">
+                <i class="fa fa-chevron-left"></i> TCP_IP第二次作业
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/three.js/论文/" rel="prev" title="论文">
+                论文 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设置ICMP报头函数-压包"><span class="nav-number">1.</span> <span class="nav-text">设置ICMP报头函数,压包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#拆包，做时间计算等"><span class="nav-number">2.</span> <span class="nav-text">拆包，做时间计算等</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

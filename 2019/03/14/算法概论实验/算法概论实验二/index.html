@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1 K路归并1.0 问题描述  将$k$个已经排序的数组归并成一个大的排序的结果数组。  1.1 初步分析    其实这个问题可以说是一个问题的更加普遍形式。回顾一下我们在讨论归并排序的时候。那时候我们是将一个数组分解成两个子序列进行排序，然后再进行归并。这个过程一直递归下去。而其中归并结果的过程正好就是将两个已经排好序的序列合并成一个排好序的数组。我们可以看下面这一部分代码来回顾一下当时的实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法概论实验二">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/算法概论实验/算法概论实验二/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="1 K路归并1.0 问题描述  将$k$个已经排序的数组归并成一个大的排序的结果数组。  1.1 初步分析    其实这个问题可以说是一个问题的更加普遍形式。回顾一下我们在讨论归并排序的时候。那时候我们是将一个数组分解成两个子序列进行排序，然后再进行归并。这个过程一直递归下去。而其中归并结果的过程正好就是将两个已经排好序的序列合并成一个排好序的数组。我们可以看下面这一部分代码来回顾一下当时的实现">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.987Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法概论实验二">
+<meta name="twitter:description" content="1 K路归并1.0 问题描述  将$k$个已经排序的数组归并成一个大的排序的结果数组。  1.1 初步分析    其实这个问题可以说是一个问题的更加普遍形式。回顾一下我们在讨论归并排序的时候。那时候我们是将一个数组分解成两个子序列进行排序，然后再进行归并。这个过程一直递归下去。而其中归并结果的过程正好就是将两个已经排好序的序列合并成一个排好序的数组。我们可以看下面这一部分代码来回顾一下当时的实现">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/算法概论实验/算法概论实验二/">
+
+
+
+
+
+  <title>算法概论实验二 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/算法概论实验/算法概论实验二/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法概论实验二</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:21+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法概论实验/" itemprop="url" rel="index">
+                    <span itemprop="name">算法概论实验</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h1 id="1-K路归并"><a href="#1-K路归并" class="headerlink" title="1 K路归并"></a>1 K路归并</h1><h2 id="1-0-问题描述"><a href="#1-0-问题描述" class="headerlink" title="1.0 问题描述"></a>1.0 问题描述</h2><blockquote>
+<p> 将$k$个已经排序的数组归并成一个大的排序的结果数组。</p>
+</blockquote>
+<h2 id="1-1-初步分析"><a href="#1-1-初步分析" class="headerlink" title="1.1 初步分析"></a>1.1 初步分析</h2><blockquote>
+<p>   其实这个问题可以说是一个问题的更加普遍形式。回顾一下我们在讨论归并排序的时候。那时候我们是将一个数组分解成两个子序列进行排序，然后再进行归并。这个过程一直递归下去。而其中归并结果的过程正好就是将两个已经排好序的序列合并成一个排好序的数组。我们可以看下面这一部分代码来回顾一下当时的实现：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] r, <span class="keyword">int</span> low, <span class="keyword">int</span> mid, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO  归并两个有序数组</span></span><br><span class="line">		<span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> i = low;</span><br><span class="line">		<span class="keyword">int</span> j = mid + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span>[] tmp = <span class="keyword">new</span> <span class="keyword">int</span>[high - low + <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;= high) &#123;</span><br><span class="line">			<span class="keyword">if</span> (r[i] &lt;= r[j])</span><br><span class="line">				tmp[k++] = r[i++];</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				tmp[k++] = r[j++];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> (i &lt;= mid)</span><br><span class="line">			tmp[k++] = r[i++];</span><br><span class="line">		<span class="keyword">while</span> (j &lt;= high)</span><br><span class="line">			tmp[k++] = r[j++];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> m : tmp)</span><br><span class="line">			r[low++] = m;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>$2$路合并的思路很简单，每次都比较位于两数组最前面的元素，取中间比较小的那个，一直到某序列结束，把另一个序列的元素放在后面即可。</p>
+</blockquote>
+<h2 id="1-2-思路"><a href="#1-2-思路" class="headerlink" title="1.2 思路"></a>1.2 思路</h2><blockquote>
+<p>  由题意，有$k$个排好序的数组，假设所有数组的元素总和为$n$。只要不停的遍历数组，模仿$2$路归并，从每个数组里面从头到尾的去取，然后把每次得到的最小的元素取出来就可以。这样，我们就很容易得到一个解决办法一。</p>
+</blockquote>
+<h3 id="1-21-方法一：循环遍历"><a href="#1-21-方法一：循环遍历" class="headerlink" title="1.21 方法一：循环遍历"></a>1.21 方法一：循环遍历</h3><blockquote>
+<p>   这个办法的思路就比较直接，首先，我们比较所有k个数组的头一个元素，找到最小的那一个，然后取出来。我们在该最小元素所在的数组取下一个元素，然后重复前面的过程去找最小的那个。这样依次循环直到找到所有的元素。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public static void process(List&lt;int[]&gt; lists) &#123;</span><br><span class="line">		int min = Integer.MAX_VALUE;</span><br><span class="line">		boolean notEmpty = true;</span><br><span class="line">		int count = 0;</span><br><span class="line">		int pos = -1;</span><br><span class="line">		int[] flag = new int[lists.size()];// 记录K路的各路位置</span><br><span class="line">		for (int[] r : lists)</span><br><span class="line">			count += r.length;</span><br><span class="line">		int[] res = new int[count];</span><br><span class="line">		count = 0;//重置，后面用于结果计数</span><br><span class="line">		while (notEmpty) &#123;</span><br><span class="line">			for (int i = 0; i &lt; lists.size(); i++) &#123;</span><br><span class="line">				if (flag[i] &lt; lists.get(i).length</span><br><span class="line">						&amp;&amp; lists.get(i)[flag[i]] &lt; min) &#123;</span><br><span class="line">					min = lists.get(i)[flag[i]];</span><br><span class="line">					pos = i;// 最小值来源于第i路</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if (min != Integer.MAX_VALUE) &#123;</span><br><span class="line">				res[count++] = min;// 把最小值放到res中。</span><br><span class="line">				flag[pos]++;//第K路下标后移</span><br><span class="line">				min = Integer.MAX_VALUE;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				notEmpty = false;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;K路合并之后&quot; + &quot; &quot;);</span><br><span class="line">		for (int arr : res)</span><br><span class="line">			System.out.print(arr + &quot; &quot;);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 程序采用用一个$notEmpty$来标志所有序列是否已经遍历完了。我们每次遍历所有序列的当前元素，找到最小的。这样找一个最小元素都要比较$k$次，假设所有$n$个元素，其总体时间复杂度就达到了$O(nk)$。</p>
+</blockquote>
+<h3 id="1-22-方法二：最小堆k路归并排序"><a href="#1-22-方法二：最小堆k路归并排序" class="headerlink" title="1.22 方法二：最小堆k路归并排序"></a>1.22 方法二：最小堆k路归并排序</h3><blockquote>
+<p><strong>(1)用堆排序来合并</strong><br>我们知道堆的排序效率是非常高的，我们考虑到用堆来实现，我们创建一个<strong>最小堆</strong>。首先把所有的$n$个数组的第一个元素放入最小堆中，这个最小堆的大小为$k$。这样我们调整堆结构，那么它的第一个元素就是$$min( min(a_1),min(a_2)….min(a_n))$$显然就是所有数中的最小元素。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>(2)找元素替补</strong><br>在每一个数组中，元素都是按照升序排列的，当我们从堆中删除了一个最小的元素，就需要把他后面的一个元素重新入堆，因此，我们需要知道被删元素所在的数组，及其下一个元素的值<br>所以，如何去根据被删除的堆元素找这个被删除的堆元素所在的数组呢？这就需要在我们新建一个复合类型，它既包括当前的值，也包含这个当前值所在的数组的id,</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>(3)<strong>记录K个数组，目前元素的位置</strong><br>随着程序的运行，没有参与排序的元素是越来越少的的，所以我们用一个长度为k的数组，这个数组用来记录所要排序的每个数组中还没参与排序的位置。它的值随着元素的选择后移。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>(4)当某个数组移动到最后时候，我们得从<strong>下一个数组</strong>中找元素来填充</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>(5)最后总有所有的数组位置都到了末端，这时候我们就要<strong>判断当前的堆是否为空</strong>，如果不为空，那么他们就包含了最后的几个元素了，我们<strong>依次把这些数按照最小顺序</strong>输出。如果当前的堆已经为空，那么直接<strong>跳出循环</strong>。</p>
+</blockquote>
+<hr>
+<p>#附录：</p>
+<p>###源码1：循环实现K路归并<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">public class test &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		int[] array1 = &#123; 4, 5, 7, 8, 66, 69, 72, 79 &#125;;</span><br><span class="line">		int[] array2 = &#123; 3, 9, 42, 52, 53, 79, 82, 87 &#125;;</span><br><span class="line">		int[] array3 = &#123; 1, 17, 21, 31, 47, 55, 67, 95 &#125;;</span><br><span class="line">		int[] array4 = &#123; 6, 28, 49, 55, 68, 75, 83, 94 &#125;;</span><br><span class="line">		int[] array5 = &#123; 6, 28, 49, 55, 68, 75, 83, 94 &#125;;</span><br><span class="line">		System.out.println(&quot;数组1为：&quot;);</span><br><span class="line">		printarr(array1);</span><br><span class="line">		System.out.println();</span><br><span class="line"></span><br><span class="line">		System.out.println(&quot;数组2为：&quot;);</span><br><span class="line">		printarr(array2);</span><br><span class="line">		System.out.println();</span><br><span class="line"></span><br><span class="line">		System.out.println(&quot;数组3为：&quot;);</span><br><span class="line">		printarr(array3);</span><br><span class="line">		System.out.println();</span><br><span class="line"></span><br><span class="line">		System.out.println(&quot;数组4为：&quot;);</span><br><span class="line">		printarr(array4);</span><br><span class="line">		System.out.println();</span><br><span class="line">		</span><br><span class="line">		System.out.println(&quot;数组5为：&quot;);</span><br><span class="line">		printarr(array5);</span><br><span class="line">		System.out.println();</span><br><span class="line">		</span><br><span class="line">		List&lt;int[]&gt; arrayLists = new ArrayList&lt;int[]&gt;(4);</span><br><span class="line">		arrayLists.add(0, array1);</span><br><span class="line">		arrayLists.add(1, array2);</span><br><span class="line">		arrayLists.add(2, array3);</span><br><span class="line">		arrayLists.add(3, array4);</span><br><span class="line">		arrayLists.add(4, array5);</span><br><span class="line">		process(arrayLists);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static void printarr(int []r)</span><br><span class="line">	&#123;</span><br><span class="line">		for(int i:r)</span><br><span class="line">			System.out.print(i + &quot; &quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void process(List&lt;int[]&gt; lists) &#123;</span><br><span class="line">		int min = Integer.MAX_VALUE;</span><br><span class="line">		boolean notEmpty = true;</span><br><span class="line">		int count = 0;</span><br><span class="line">		int pos = -1;</span><br><span class="line">		int[] flag = new int[lists.size()];// 记录K路的各路位置</span><br><span class="line">		for (int[] r : lists)</span><br><span class="line">			count += r.length;</span><br><span class="line">		int[] res = new int[count];</span><br><span class="line">		count = 0;//重置，后面用于结果计数</span><br><span class="line">		while (notEmpty) &#123;</span><br><span class="line">			for (int i = 0; i &lt; lists.size(); i++) &#123;</span><br><span class="line">				if (flag[i] &lt; lists.get(i).length</span><br><span class="line">						&amp;&amp; lists.get(i)[flag[i]] &lt; min) &#123;</span><br><span class="line">					min = lists.get(i)[flag[i]];</span><br><span class="line">					pos = i;// 最小值来源于第i路</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if (min != Integer.MAX_VALUE) &#123;</span><br><span class="line">				res[count++] = min;// 把最小值放到res中。</span><br><span class="line">				flag[pos]++;//第K路下标后移</span><br><span class="line">				min = Integer.MAX_VALUE;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				notEmpty = false;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;K路合并之后&quot; + &quot; &quot;);</span><br><span class="line">		for (int arr : res)</span><br><span class="line">			System.out.print(arr + &quot; &quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>K路归并<br><a href="http://supercharles888.blog.51cto.com/609344/1351285" target="_blank" rel="noopener">教程1</a><br><a href="http://shmilyaw-hotmail-com.iteye.com/blog/1776132" target="_blank" rel="noopener">教程2</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/算法概论实验/算法概论实验九 贪心法/" rel="next" title="算法概论实验九 贪心法">
+                <i class="fa fa-chevron-left"></i> 算法概论实验九 贪心法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/算法概论实验/算法概论实验五/" rel="prev" title="算法概论实验五">
+                算法概论实验五 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-K路归并"><span class="nav-number">1.</span> <span class="nav-text">1 K路归并</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-0-问题描述"><span class="nav-number">1.1.</span> <span class="nav-text">1.0 问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-初步分析"><span class="nav-number">1.2.</span> <span class="nav-text">1.1 初步分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-思路"><span class="nav-number">1.3.</span> <span class="nav-text">1.2 思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-21-方法一：循环遍历"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.21 方法一：循环遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-22-方法二：最小堆k路归并排序"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.22 方法二：最小堆k路归并排序</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

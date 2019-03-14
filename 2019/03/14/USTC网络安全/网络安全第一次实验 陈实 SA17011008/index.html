@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1SA17011008 陈实 2017年9月28日  实验 1  建立实验环境 [TOC] #一、环境搭建 ##1.1 下载virtualBox安装包从官网链接下载对应平台的安装文件，比如Windows版本：  ##1.2 安装virtualBox安装过程：  软件界面：  ##1.3 配置网卡按要求，简历八块虚拟网卡： 全局概览： 第一块： 第五块： 其他类似，不作截图。 ##1.4 安装配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络安全第一次实验 陈实 SA17011008">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/USTC网络安全/网络安全第一次实验 陈实 SA17011008/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="1SA17011008 陈实 2017年9月28日  实验 1  建立实验环境 [TOC] #一、环境搭建 ##1.1 下载virtualBox安装包从官网链接下载对应平台的安装文件，比如Windows版本：  ##1.2 安装virtualBox安装过程：  软件界面：  ##1.3 配置网卡按要求，简历八块虚拟网卡： 全局概览： 第一块： 第五块： 其他类似，不作截图。 ##1.4 安装配置">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/qu2h2ji35rtg4thijsrj74fx/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/8zigjdwbqr9aqa0n3fwbq5a5/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/0j5r5jgdmga12nbhasmanffs/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/b3ejjcdwvvkvae6pjbn71sy6/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/4t1yo3qcfayi00kqh66zmu0o/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/schaddtsmcbu80oyqkmqyq9q/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/7onp3q8ngek8zjbu60h28m31/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/cokwhc3cislgf6io0al4xuvo/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/i13le0p3q1adgjnui0zmkz9r/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/ogels8cp1wbum5elcdku8cre/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/x85c00h6flwfky2cor9q3aje/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/32y1tqzx77z08sz6l6aiw6cq/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/w273c8wfe8wlyf7ekaruba3f/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/bc62beejflmn8tqg1sw3ropy/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/4s3d0eo3c12xpr2ehqo47x5t/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/u64m3e62yhdpza72flso6t36/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/qp3nw8cpd47473v7kxu691mg/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/g9188ct5ltuyn3n3zyp6upnv/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/8hi5fcumsfgeanddwdrwlvry/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/9z8d7o8fk6cartfkrq00ud0g/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/j6h5sinnivcbz4wn3xidzhuz/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/6pm5imth5cri8duyuo93w79v/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/84887q0q0tbq638l8ngm9mur/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/toslfhyl59wsix2l6sm1r09g/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/vhn6knhxpuoqnnf71u94wq46/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/wlh9856ppts2esj3tb8qu7az/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/kcj26sv7txr67sc1cbxxbzue/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/aehfxfue9n6x9lz211wj38sf/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/w77jmk2ghcn4yob06e28xof7/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/2bxjouo2zcjbiakng3pxhhmb/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/cjof5en5brtg5stz6m39s39j/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/u4u99l7al2hpev78jh3tnyzp/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/5xd1gwd36n5i1pzx2u50oy1o/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/6sqhqeewu8ccusf7oupsiysf/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/ol05wl436o5q9emiq0ibb53r/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/4oiqfr0zpne7dmsyl66hiilp/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/unr72l59n7i7wvcz7u7t6a3d/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/j6x0bjm75cucrppnaqjpoj3l/image.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.586Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络安全第一次实验 陈实 SA17011008">
+<meta name="twitter:description" content="1SA17011008 陈实 2017年9月28日  实验 1  建立实验环境 [TOC] #一、环境搭建 ##1.1 下载virtualBox安装包从官网链接下载对应平台的安装文件，比如Windows版本：  ##1.2 安装virtualBox安装过程：  软件界面：  ##1.3 配置网卡按要求，简历八块虚拟网卡： 全局概览： 第一块： 第五块： 其他类似，不作截图。 ##1.4 安装配置">
+<meta name="twitter:image" content="http://static.zybuluo.com/rg070836rg/qu2h2ji35rtg4thijsrj74fx/image.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/USTC网络安全/网络安全第一次实验 陈实 SA17011008/">
+
+
+
+
+
+  <title>网络安全第一次实验 陈实 SA17011008 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/USTC网络安全/网络安全第一次实验 陈实 SA17011008/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网络安全第一次实验 陈实 SA17011008</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/USTC网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">USTC网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SA17011008 陈实 2017年9月28日  实验 1  建立实验环境</span><br></pre></td></tr></table></figure>
+<p>[TOC]</p>
+<p>#一、环境搭建</p>
+<p>##1.1 下载virtualBox安装包<br>从<a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener">官网链接</a>下载对应平台的安装文件，比如Windows版本：</p>
+<p><img src="http://static.zybuluo.com/rg070836rg/qu2h2ji35rtg4thijsrj74fx/image.png" alt="image.png-15.8kB"></p>
+<p>##1.2 安装virtualBox<br>安装过程：</p>
+<p><img src="http://static.zybuluo.com/rg070836rg/8zigjdwbqr9aqa0n3fwbq5a5/image.png" alt="image.png-16.3kB"></p>
+<p>软件界面：</p>
+<p><img src="http://static.zybuluo.com/rg070836rg/0j5r5jgdmga12nbhasmanffs/image.png" alt="image.png-68.5kB"></p>
+<p>##1.3 配置网卡<br>按要求，简历八块虚拟网卡：</p>
+<p>全局概览：<br><img src="http://static.zybuluo.com/rg070836rg/b3ejjcdwvvkvae6pjbn71sy6/image.png" alt="image.png-38.6kB"></p>
+<p>第一块：<br><img src="http://static.zybuluo.com/rg070836rg/4t1yo3qcfayi00kqh66zmu0o/image.png" alt="image.png-14.7kB"></p>
+<p>第五块：<br><img src="http://static.zybuluo.com/rg070836rg/schaddtsmcbu80oyqkmqyq9q/image.png" alt="image.png-14.5kB"></p>
+<p>其他类似，不作截图。</p>
+<p>##1.4 安装配置虚拟机</p>
+<p>###1.4.1 下载ubuntu系统<br>本次实验使用ubuntu16.04桌面版，文件如下：、<br><img src="http://static.zybuluo.com/rg070836rg/7onp3q8ngek8zjbu60h28m31/image.png" alt="image.png-13.2kB"></p>
+<p>###1.4.2 新建虚拟机<br>选中linux，发现无法安装64位虚拟机<br><img src="http://static.zybuluo.com/rg070836rg/cokwhc3cislgf6io0al4xuvo/image.png" alt="image.png-19.6kB"></p>
+<p>查明CPU型号支持64位虚拟化后，即转去BIOS开启虚拟化选项:<br><img src="http://static.zybuluo.com/rg070836rg/i13le0p3q1adgjnui0zmkz9r/image.png" alt="image.png-1373.9kB"></p>
+<p>改变完成后，重新打开VBox，发现已经可以安装64bit系统：<br><img src="http://static.zybuluo.com/rg070836rg/ogels8cp1wbum5elcdku8cre/image.png" alt="image.png-16kB"></p>
+<p>内存分配4G，其他默认配置安装：<br><img src="http://static.zybuluo.com/rg070836rg/x85c00h6flwfky2cor9q3aje/image.png" alt="image.png-10.9kB"></p>
+<p>###1.4.3 选择系统镜像<br>按要求，选择下载好的ubuntu镜像：<br><img src="http://static.zybuluo.com/rg070836rg/32y1tqzx77z08sz6l6aiw6cq/image.png" alt="image.png-38.8kB"></p>
+<p>###1.4.4 启动并安装系统<br>启动，进入系统安装界面：<br><img src="http://static.zybuluo.com/rg070836rg/w273c8wfe8wlyf7ekaruba3f/image.png" alt="image.png-699.2kB"></p>
+<p>和真实物理机一样安装即可：<br><img src="http://static.zybuluo.com/rg070836rg/bc62beejflmn8tqg1sw3ropy/image.png" alt="image.png-117.5kB"></p>
+<p>等待安装完成：<br><img src="http://static.zybuluo.com/rg070836rg/4s3d0eo3c12xpr2ehqo47x5t/image.png" alt="image.png-342.4kB"></p>
+<p>###1.4.5 win2000备份导入<br>从百度网盘下载对应镜像：<br><img src="http://static.zybuluo.com/rg070836rg/u64m3e62yhdpza72flso6t36/image.png" alt="image.png-12.8kB"></p>
+<p>导入虚拟机：<br><img src="http://static.zybuluo.com/rg070836rg/qp3nw8cpd47473v7kxu691mg/image.png" alt="image.png-16.1kB"></p>
+<p><img src="http://static.zybuluo.com/rg070836rg/g9188ct5ltuyn3n3zyp6upnv/image.png" alt="image.png-32.8kB"></p>
+<p><img src="http://static.zybuluo.com/rg070836rg/8hi5fcumsfgeanddwdrwlvry/image.png" alt="image.png-21.4kB"></p>
+<p>###1.4.6 开启win2000<br>提示报错：implementation of the usb 2.0 controller not found virtualbox<br>关闭USB功能即可，或者降级至usb1.0：<br><img src="http://static.zybuluo.com/rg070836rg/9z8d7o8fk6cartfkrq00ud0g/image.png" alt="image.png-35.5kB"></p>
+<p>#二、实验命令</p>
+<p>##2.1 ubuntu</p>
+<p>###2.1.1 ubuntu_ls等命令<br><img src="http://static.zybuluo.com/rg070836rg/j6h5sinnivcbz4wn3xidzhuz/image.png" alt="image.png-232.1kB"></p>
+<p>###2.1.2 ubuntu_ifconfig<br><img src="http://static.zybuluo.com/rg070836rg/6pm5imth5cri8duyuo93w79v/image.png" alt="image.png-134.5kB"></p>
+<p>##2.2 windows</p>
+<p>###2.2.1 dir&amp;mkdir<br><img src="http://static.zybuluo.com/rg070836rg/84887q0q0tbq638l8ngm9mur/image.png" alt="image.png-42.8kB"></p>
+<p>###2.2.2 copy<br><img src="http://static.zybuluo.com/rg070836rg/toslfhyl59wsix2l6sm1r09g/image.png" alt="image.png-7.7kB"></p>
+<p>###2.2.3 ipconfig<br><img src="http://static.zybuluo.com/rg070836rg/vhn6knhxpuoqnnf71u94wq46/image.png" alt="image.png-25.7kB"></p>
+<p>###2.2.4 net&amp;netstat<br><img src="http://static.zybuluo.com/rg070836rg/wlh9856ppts2esj3tb8qu7az/image.png" alt="image.png-32.7kB"></p>
+<p>#三、上机实践</p>
+<p>##3.1 网络配置<br>我们现在将ubuntu和win2003的配在同一块host-only网卡上面。<br>virtual box设置如下：<br><img src="http://static.zybuluo.com/rg070836rg/kcj26sv7txr67sc1cbxxbzue/image.png" alt="image.png-14.7kB"></p>
+<p>dhcp服务器设置如下：<br><img src="http://static.zybuluo.com/rg070836rg/aehfxfue9n6x9lz211wj38sf/image.png" alt="image.png-15.7kB"></p>
+<p>##3.2 互通测试</p>
+<p>###3.2.1 win2003 ping ubuntu<br><img src="http://static.zybuluo.com/rg070836rg/w77jmk2ghcn4yob06e28xof7/image.png" alt="image.png-25.4kB"></p>
+<p>###3.2.2 ubuntu ping win2003<br>不能ping通：<br><img src="http://static.zybuluo.com/rg070836rg/2bxjouo2zcjbiakng3pxhhmb/image.png" alt="image.png-39.2kB"></p>
+<p>检查防火墙原因：关闭防火墙，或者修改iptables规则，这边选择关闭。<br><img src="http://static.zybuluo.com/rg070836rg/cjof5en5brtg5stz6m39s39j/image.png" alt="image.png-30.9kB"></p>
+<p>再次尝试ping，成功：<br><img src="http://static.zybuluo.com/rg070836rg/u4u99l7al2hpev78jh3tnyzp/image.png" alt="image.png-118.2kB"></p>
+<p>##3.3 nmap测试</p>
+<p>###3.3.1 nmap安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nmap</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://static.zybuluo.com/rg070836rg/5xd1gwd36n5i1pzx2u50oy1o/image.png" alt="image.png-143.9kB"></p>
+<p>###3.3.2 扫描目标主机端口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nmap -F -v 192.168.11.3 #快速扫描</span><br><span class="line">nmap -A -v 192.168.11.3 #完全扫描</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://static.zybuluo.com/rg070836rg/6sqhqeewu8ccusf7oupsiysf/image.png" alt="image.png-148.2kB"></p>
+<p>##3.4 net命令的使用</p>
+<p>###3.4.1 创建共享文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net share helloc=c:\       # 创建</span><br><span class="line">net share helloc /delete   # 删除</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://static.zybuluo.com/rg070836rg/ol05wl436o5q9emiq0ibb53r/image.png" alt="image.png-7.4kB"></p>
+<p>访问：<br><img src="http://static.zybuluo.com/rg070836rg/4oiqfr0zpne7dmsyl66hiilp/image.png" alt="image.png-39.8kB"></p>
+<p>###3.4.2 网络驱动器映射<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net use Y: \\192.168.11.3\helloc    # 简历映射</span><br><span class="line">net use Y:   /delete                # 删除映射</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://static.zybuluo.com/rg070836rg/unr72l59n7i7wvcz7u7t6a3d/image.png" alt="image.png-3.8kB"></p>
+<p>访问：<br><img src="http://static.zybuluo.com/rg070836rg/j6x0bjm75cucrppnaqjpoj3l/image.png" alt="image.png-38.4kB"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">陈实</span><br><span class="line">SA17001008</span><br><span class="line">2017年9月28日</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/uoj/uoj/" rel="next" title="uoj">
+                <i class="fa fa-chevron-left"></i> uoj
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/USTC网络安全/网络安全第三次实验 陈实 SA17011008/" rel="prev" title="网络安全第三次实验 陈实 SA17011008">
+                网络安全第三次实验 陈实 SA17011008 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

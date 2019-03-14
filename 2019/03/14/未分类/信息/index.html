@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="判断浮点数a,b是否相等if(a==b)if(fabs(a=b)&amp;lt;1e-9) 判断是否是奇数x%2!=0  更好x%2==1(不能判断负数) vector int n;cin&amp;gt;&amp;gt;n;int a[n]; vector num； ###027 移除元素双指针，一次扫描设置两个指针 分别fornt tail思路：front和tail分别从前后向中间扫描，当两个指针相遇，就结束。如果两">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/未分类/信息/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="判断浮点数a,b是否相等if(a==b)if(fabs(a=b)&amp;lt;1e-9) 判断是否是奇数x%2!=0  更好x%2==1(不能判断负数) vector int n;cin&amp;gt;&amp;gt;n;int a[n]; vector num； ###027 移除元素双指针，一次扫描设置两个指针 分别fornt tail思路：front和tail分别从前后向中间扫描，当两个指针相遇，就结束。如果两">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.839Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="信息">
+<meta name="twitter:description" content="判断浮点数a,b是否相等if(a==b)if(fabs(a=b)&amp;lt;1e-9) 判断是否是奇数x%2!=0  更好x%2==1(不能判断负数) vector int n;cin&amp;gt;&amp;gt;n;int a[n]; vector num； ###027 移除元素双指针，一次扫描设置两个指针 分别fornt tail思路：front和tail分别从前后向中间扫描，当两个指针相遇，就结束。如果两">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/未分类/信息/">
+
+
+
+
+
+  <title>信息 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/未分类/信息/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">信息</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:21+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>判断浮点数a,b是否相等<br>if(a==b)<br>if(fabs(a=b)&lt;1e-9)</p>
+<p>判断是否是奇数<br>x%2!=0  更好<br>x%2==1(不能判断负数)</p>
+<p>vector</p>
+<p>int n;<br>cin&gt;&gt;n;<br>int a[n];</p>
+<p>vector<int> num；</int></p>
+<p>###027 移除元素<br>双指针，一次扫描<br>设置两个指针 分别<br>fornt tail<br>思路：front和tail分别从前后向中间扫描，当两个指针相遇，就结束。<br>如果两个指针没有相遇<br>if（front&lt;tail）<br>    移动frnot,如果遇到了A[front]==val,暂停<br>    移动tail，如果我们遇到了一个不是val,把值复制给A[front]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int removeElement(vector&lt;int&gt;&amp; nums, int val) &#123;</span><br><span class="line">        int front=0;</span><br><span class="line">        int tail=nums.size()-1;</span><br><span class="line">        while(front&lt;=tail)</span><br><span class="line">        &#123;</span><br><span class="line">            if(nums[front]==val  &amp;&amp;  nums[tail]!=val)</span><br><span class="line">            &#123;</span><br><span class="line">                nums[front]=nums[tail];</span><br><span class="line">                nums[tail]=val;</span><br><span class="line">            &#125;</span><br><span class="line">            if(nums[front]!=val)</span><br><span class="line">                front++;</span><br><span class="line">            if(nums[tail]==val)</span><br><span class="line">                tail--;</span><br><span class="line">        &#125;</span><br><span class="line">        return tail+1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>双指针，顾名思义，就是利用两个指针去遍历数组，<br>一般来说，遍历数组是采用一个指针，而两个指针就是一般在有序数组中使用，一个放在头部，一个放在尾部，同时向中间走，直到两个指针相交。<br>front=0;<br>tail=A.size()-1;</p>
+<p>一般的循环结束条件、<br>while(front&lt;tail)<br>{<br>    ……<br>}</p>
+<p>in place 不额外开数组（不用额外的空间）</p>
+<h2 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="1  两数之和"></a>1  两数之和</h2><p>思路1：双重循环  o(n^2)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        vector&lt;int&gt; result;//动态数组</span><br><span class="line">        </span><br><span class="line">        for(int i=0;i&lt;nums.size();i++)</span><br><span class="line">        &#123;</span><br><span class="line">             for(int j=i+1;j&lt;nums.size();j++)</span><br><span class="line">             &#123;</span><br><span class="line">                 if(nums[i]+nums[j]==target)</span><br><span class="line">                 &#123;</span><br><span class="line">                     result.push_back(i);</span><br><span class="line">                     result.push_back(j);</span><br><span class="line">                     return result;</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>思路2：<br>双指针<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        vector&lt;int&gt; result;//动态数组</span><br><span class="line">        </span><br><span class="line">        vector&lt;int&gt; n=nums;//backup</span><br><span class="line">        </span><br><span class="line">        sort(nums.begin(),nums.end());//已经完成排序</span><br><span class="line">        </span><br><span class="line">        int front=0;</span><br><span class="line">        int tail=nums.size()-1;</span><br><span class="line">        </span><br><span class="line">        while(front&lt;tail)</span><br><span class="line">        &#123;</span><br><span class="line">            if(nums[front]+nums[tail]==target)</span><br><span class="line">            &#123;</span><br><span class="line">                </span><br><span class="line">                for(int i=0;i&lt;n.size();i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    if(nums[front]==n[i])</span><br><span class="line">                    &#123;</span><br><span class="line">                        result.push_back(i);</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                    </span><br><span class="line">                </span><br><span class="line">                 for(int i=n.size()-1;i&gt;=0;i--)</span><br><span class="line">                 &#123;</span><br><span class="line">                     if(nums[tail]==n[i])</span><br><span class="line">                    &#123;</span><br><span class="line">                        result.push_back(i);</span><br><span class="line">                         break;</span><br><span class="line">                    &#125;</span><br><span class="line">                 &#125;</span><br><span class="line">                    </span><br><span class="line">                </span><br><span class="line">                return result;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            if(nums[front]+nums[tail]&gt;target)</span><br><span class="line">                tail--;</span><br><span class="line">            else</span><br><span class="line">                front++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        return nums;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>思路3：利用hashmap优化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">       //用hashmap O(1) c++ unorder_map 实现键值对应</span><br><span class="line">        vector&lt;int&gt; res;</span><br><span class="line">        unordered_map&lt;int,int&gt; map;</span><br><span class="line">        int tmp;</span><br><span class="line">        for(int i=0;i&lt;nums.size();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            tmp=target-nums[i];</span><br><span class="line">            unordered_map&lt;int,int&gt;::iterator it =map.find(tmp);</span><br><span class="line">            if(it != map.end())</span><br><span class="line">            &#123;</span><br><span class="line">                return vector&lt;int&gt;(&#123;it-&gt;second,i&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            map[nums[i]]=i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="15-三数之和"><a href="#15-三数之和" class="headerlink" title="15 三数之和"></a>15 三数之和</h2><p>思路1 三重循环，容器判重<br>思路2<br>    随机确定了一个数 a  –》在剩下的数，找2个数，和0-a</p>
+<p>1.数组中允许重复的数<br>2.结果按照升序排序<br>3.不能出现重复       在操作前，首先进行排序</p>
+<p>l m r</p>
+<p>如何确定第一个数left？肯定是第一层循环，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">for(int l=0;l&lt;nums.size()&amp;&amp;nums[l]&lt;=0;l++)</span><br><span class="line"></span><br><span class="line">接下来，确定mid和right</span><br><span class="line"></span><br><span class="line">m=l+1;</span><br><span class="line">r=nums.size()-1;</span><br><span class="line">while(m&lt;r)</span><br><span class="line">&#123;</span><br><span class="line">    //....</span><br><span class="line">    int tmp=0-nums[l];</span><br><span class="line">    if(nums[m]+mums[r]==tmp)</span><br><span class="line">    &#123;</span><br><span class="line">        //加入结果集</span><br><span class="line">    &#125;</span><br><span class="line">    else if(nums[m]+nums[r]&gt;tmp)</span><br><span class="line">        r--;</span><br><span class="line">    else</span><br><span class="line">        m++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>//不能判重<br>如果l指向的是前面判断过的，跳过，<br>如果m和r在往中间移动的时候，是刚才的数，跳过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">m=l+1;</span><br><span class="line">r=nums.size()-1;</span><br><span class="line">while(m&lt;r)</span><br><span class="line">&#123;</span><br><span class="line">    //....</span><br><span class="line">    int tmp=0-nums[l];</span><br><span class="line">    </span><br><span class="line">    if(left&gt;0 &amp;&amp; nums[left]==nums[left-1])</span><br><span class="line">        continue;</span><br><span class="line">    </span><br><span class="line">    if(nums[m]+mums[r]==tmp)</span><br><span class="line">    &#123;</span><br><span class="line">        //加入结果集</span><br><span class="line">        </span><br><span class="line">        //判断m,r</span><br><span class="line">        while(m&lt;r &amp;&amp; nums[m+1]==nums[m]) m++;</span><br><span class="line">        while(m&lt;r &amp;&amp; nums[r-1]==nums[r]) r--;</span><br><span class="line">    &#125;</span><br><span class="line">    else if(nums[m]+nums[r]&gt;tmp)</span><br><span class="line">        r--;</span><br><span class="line">    else</span><br><span class="line">        m++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>AC代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; list;</span><br><span class="line">        </span><br><span class="line">        int m,r;</span><br><span class="line">        </span><br><span class="line">        for(int l=0;l&lt;nums.size()&amp;&amp;nums[l]&lt;=0;l++)</span><br><span class="line">        &#123;</span><br><span class="line">            m=l+1;</span><br><span class="line">            r=nums.size()-1;</span><br><span class="line">            </span><br><span class="line">            int tmp=0-nums[l];</span><br><span class="line">            </span><br><span class="line">            if(l&gt;0 &amp;&amp; nums[l]==nums[l-1])</span><br><span class="line">                continue;</span><br><span class="line">            </span><br><span class="line">            while(m&lt;r)</span><br><span class="line">            &#123;</span><br><span class="line">   </span><br><span class="line">                if(nums[m]+nums[r]==tmp)</span><br><span class="line">                &#123;</span><br><span class="line">                    //加入结果集</span><br><span class="line">                    int t_m = nums[m],t_r=nums[r];</span><br><span class="line">                    </span><br><span class="line">                    vector&lt;int&gt; tmp;</span><br><span class="line">                    tmp.push_back(nums[l]);</span><br><span class="line">                    tmp.push_back(nums[m]);</span><br><span class="line">                    tmp.push_back(nums[r]);</span><br><span class="line">                    //cout&lt;&lt;nums[l]&lt;&lt;&quot; &quot;&lt;&lt;nums[m]&lt;&lt;&quot; &quot;&lt;&lt;nums[r]&lt;&lt;&quot; &quot;&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">                    list.push_back(tmp);</span><br><span class="line">                    //判断m,r</span><br><span class="line">                    </span><br><span class="line">                    </span><br><span class="line">                    while(m&lt;r &amp;&amp; nums[++m]==t_m);</span><br><span class="line">                    while(m&lt;r &amp;&amp; nums[--r]==t_r);</span><br><span class="line">                    </span><br><span class="line">                    </span><br><span class="line">                &#125;</span><br><span class="line">                else if(nums[m]+nums[r]&gt;tmp)</span><br><span class="line">                    r--;</span><br><span class="line">                else</span><br><span class="line">                    m++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        return list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/未分类/uoj题目说明/" rel="next" title="uoj题目说明">
+                <i class="fa fa-chevron-left"></i> uoj题目说明
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/未分类/在此处输入标题/" rel="prev" title="在此处输入标题">
+                在此处输入标题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-两数之和"><span class="nav-number">1.</span> <span class="nav-text">1  两数之和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-三数之和"><span class="nav-number">2.</span> <span class="nav-text">15 三数之和</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

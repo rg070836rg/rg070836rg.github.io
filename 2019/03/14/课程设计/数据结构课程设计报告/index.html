@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="课题：排序算法、演示及飞机订票系统姓名：陈实学号：19130216班级：191302指导教师：陈波  #一、排序算法任务描述：利用c++生成100W个随机数，并实现归并，快排，希尔以及堆排序，记录排序结果及时间等。 ##1.1、生成随机数利用c#中的种子生成器，通过文件流保存至相应文件夹。1234567891011121314151617181920private void range()">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构课程设计报告">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/课程设计/数据结构课程设计报告/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="课题：排序算法、演示及飞机订票系统姓名：陈实学号：19130216班级：191302指导教师：陈波  #一、排序算法任务描述：利用c++生成100W个随机数，并实现归并，快排，希尔以及堆排序，记录排序结果及时间等。 ##1.1、生成随机数利用c#中的种子生成器，通过文件流保存至相应文件夹。1234567891011121314151617181920private void range()">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E6%8E%92%E5%BA%8F%E4%B8%BB%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E4%B8%80%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%951.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E4%B8%80%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%952.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%8D%81%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%951.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%8D%81%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%952.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%99%BE%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%951.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%99%BE%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%952.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E6%8E%92%E5%BA%8F%E7%BB%93%E6%9E%9C%E7%9B%AE%E5%BD%95.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%A8%8B%E5%BA%8F%E4%B8%BB%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%BD%95%E5%85%A5%E8%88%AA%E7%8F%AD.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%88%A0%E9%99%A4%E8%88%AA%E7%8F%AD.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E4%BF%AE%E6%94%B9%E8%88%AA%E7%8F%AD.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E8%88%AA%E7%8F%AD%E5%8F%B7%E8%AE%A2%E7%A5%A8.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E8%AE%A2%E7%A5%A8.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E9%80%80%E7%A5%A8.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%A8%8B%E5%BA%8F%E4%B8%BB%E7%95%8C%E9%9D%A2.jpg">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%86%92%E6%B3%A1.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:30.057Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构课程设计报告">
+<meta name="twitter:description" content="课题：排序算法、演示及飞机订票系统姓名：陈实学号：19130216班级：191302指导教师：陈波  #一、排序算法任务描述：利用c++生成100W个随机数，并实现归并，快排，希尔以及堆排序，记录排序结果及时间等。 ##1.1、生成随机数利用c#中的种子生成器，通过文件流保存至相应文件夹。1234567891011121314151617181920private void range()">
+<meta name="twitter:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E6%8E%92%E5%BA%8F%E4%B8%BB%E7%95%8C%E9%9D%A2.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/课程设计/数据结构课程设计报告/">
+
+
+
+
+
+  <title>数据结构课程设计报告 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/课程设计/数据结构课程设计报告/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构课程设计报告</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课程设计/" itemprop="url" rel="index">
+                    <span itemprop="name">课程设计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>课题：排序算法、演示及飞机订票系统<br>姓名：陈实<br>学号：19130216<br>班级：191302<br>指导教师：陈波</p>
+<hr>
+<p>#一、排序算法<br>任务描述：利用c++生成100W个随机数，并实现归并，快排，希尔以及堆排序，记录排序结果及时间等。</p>
+<p>##1.1、生成随机数<br>利用c#中的种子生成器，通过文件流保存至相应文件夹。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">private void range()</span><br><span class="line">      &#123;</span><br><span class="line">          string path = Directory.GetCurrentDirectory();//获取当前目录</span><br><span class="line">          path += &quot;/RawData.txt&quot;;//文件名</span><br><span class="line"></span><br><span class="line">          Random example = new Random();//种子生成器</span><br><span class="line"></span><br><span class="line">          //MessageBox.Show(path);//测试路径是否正确</span><br><span class="line"></span><br><span class="line">          using (StreamWriter sw = File.CreateText(path))</span><br><span class="line">          &#123;</span><br><span class="line">              for (int i = 0; i &lt; number; i++)</span><br><span class="line">              &#123;</span><br><span class="line">                  int tmp = example.Next(1, 65536);</span><br><span class="line">                  sw.WriteLine(tmp);</span><br><span class="line">              &#125;</span><br><span class="line">              MessageBox.Show(&quot;已生成&quot; + number/10000 + &quot;万个随机数&quot;);</span><br><span class="line">          &#125;</span><br><span class="line">          ReadFile(filedata, path);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></p>
+<p>##1.2、文件读取与存储<br>文件流读取文件与存储文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">private void ReadFile(int[] f, String path)</span><br><span class="line">&#123;</span><br><span class="line">    using (StreamReader sr = File.OpenText(path))</span><br><span class="line">    &#123;</span><br><span class="line">        string s = &quot;&quot;;</span><br><span class="line">        int i = 0;</span><br><span class="line">        while ((s = sr.ReadLine()) != null)</span><br><span class="line">        &#123;</span><br><span class="line">            int tmp = int.Parse(s);</span><br><span class="line">            f[i++] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void SaveFile(int[] f, String path)</span><br><span class="line">&#123;</span><br><span class="line">    using (StreamWriter sw = File.CreateText(path))</span><br><span class="line">    &#123;</span><br><span class="line">        for (int i = 0; i &lt; f.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            sw.WriteLine(f[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##1.3、排序gui界面控件的代码设置<br>四个算法类似</p>
+<blockquote>
+<ul>
+<li>若未检测到生成随机数，则生成随机数</li>
+<li>利用跑表来测程序时间</li>
+<li>通过文件流拷贝文件数据</li>
+<li>排序程序</li>
+<li>显示结果</li>
+<li>其他几个类似<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">private void ShellSort_Click(object sender, EventArgs e)</span><br><span class="line">      &#123;</span><br><span class="line">          if (filedata[1] == 0)</span><br><span class="line">          &#123;</span><br><span class="line">              range();</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          Stopwatch stopWatch = new Stopwatch();//跑表</span><br><span class="line"></span><br><span class="line">          int[] shell_copy = new int[filedata.Length];//拷贝原始数据</span><br><span class="line">          filedata.CopyTo(shell_copy, 0);</span><br><span class="line"></span><br><span class="line">          stopWatch.Start();</span><br><span class="line">          Shell(shell_copy);</span><br><span class="line">          stopWatch.Stop();</span><br><span class="line"></span><br><span class="line">          string path = Directory.GetCurrentDirectory();//获取当前目录</span><br><span class="line">          path += &quot;/&quot; + DateTime.Now.ToString(&quot;yyyyMMdd&quot;); ;</span><br><span class="line">          Directory.CreateDirectory(path);</span><br><span class="line"></span><br><span class="line">          String name = &quot;ShellRes_runtime_&quot;;</span><br><span class="line">          name += stopWatch.Elapsed.Milliseconds + &quot;ms_&quot;;</span><br><span class="line">          name += DateTime.Now.ToString(&quot;yyyyMMdd&quot;);</span><br><span class="line">          name += DateTime.Now.ToString(&quot;HHmmss&quot;);//获取当前时间，用于创建文件夹</span><br><span class="line">          name += &quot;.txt&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">          path += &quot;/&quot; + name;//获取写入目录</span><br><span class="line"></span><br><span class="line">          SaveFile(shell_copy, path);//写入文件</span><br><span class="line"></span><br><span class="line">          String res = &quot;希尔排序执行完毕，执行时间：&quot; + stopWatch.Elapsed.Milliseconds + &quot;ms,&quot; + &quot;结果保存至当前目录&quot;;</span><br><span class="line">          hint h = new hint();</span><br><span class="line">          h.setstr(res);</span><br><span class="line">          h.Show();</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>##1.4、排序过程</p>
+<p>###1.4.1、希尔排序<br>间隔递减的插入排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">private void Shell(int[] r)</span><br><span class="line">    &#123;</span><br><span class="line">        int n = r.Length;</span><br><span class="line">        for (int d = n; d &gt;= 1; d = d / 2)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int i = d; i &lt; n; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                int j;</span><br><span class="line">                int temp = r[i];				//暂存被插入记录</span><br><span class="line">                for (j = i - d; j &gt;= 0 &amp;&amp; temp &lt; r[j]; j = j - d)</span><br><span class="line">                    r[j + d] = r[j];			//记录后移d个位置</span><br><span class="line">                r[j + d] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>###1.4.2、快速排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">private int Partition(int[] r, int i, int j)</span><br><span class="line">&#123;</span><br><span class="line">    int temp = r[i];</span><br><span class="line">    while (i &lt; j)</span><br><span class="line">    &#123;</span><br><span class="line">        while (i &lt; j &amp;&amp; r[j] &gt;= temp)</span><br><span class="line">            j--;</span><br><span class="line">        if (i &lt; j)</span><br><span class="line">            r[i++] = r[j];</span><br><span class="line">        while (i &lt; j &amp;&amp; r[i] &lt;= temp)</span><br><span class="line">            i++;</span><br><span class="line">        if (i &lt; j)</span><br><span class="line">            r[j--] = r[i];</span><br><span class="line">    &#125;</span><br><span class="line">    r[i] = temp;</span><br><span class="line">    return i;</span><br><span class="line">&#125;</span><br><span class="line">void Quick(int[] r, int i, int j)//快速排序算法QuickSort</span><br><span class="line">&#123;</span><br><span class="line">    if (i &lt; j)</span><br><span class="line">    &#123;</span><br><span class="line">        int pivot = Partition(r, i, j);</span><br><span class="line">        Quick(r, i, pivot - 1);</span><br><span class="line">        Quick(r, pivot + 1, j);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###1.4.3、堆排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">private void sift(int[] array, int target, int tail)</span><br><span class="line">&#123;</span><br><span class="line">    int tmp;</span><br><span class="line">    int child = target * 2;</span><br><span class="line">    while (child &lt;= tail)</span><br><span class="line">    &#123;</span><br><span class="line">        if (child + 1 &lt;= tail &amp;&amp; array[child] &lt; array[child + 1])</span><br><span class="line">        &#123;</span><br><span class="line">            child++;</span><br><span class="line">        &#125;</span><br><span class="line">        if (array[child] &lt;= array[target])</span><br><span class="line">        &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        if (array[child] &gt; array[target])</span><br><span class="line">        &#123;</span><br><span class="line">            tmp = array[child];</span><br><span class="line">            array[child] = array[target];</span><br><span class="line">            array[target] = tmp;</span><br><span class="line">            target = child;</span><br><span class="line">            child = child * 2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Heap(int[] r)//堆排序Heap</span><br><span class="line">&#123;</span><br><span class="line">    int len = r.Length;</span><br><span class="line">    for (int i = len / 2; i &gt;= 0; i--)</span><br><span class="line">    &#123;</span><br><span class="line">        sift(r, i, len - 1);</span><br><span class="line">    &#125;</span><br><span class="line">    //sorted and adjust</span><br><span class="line">    int tmp, tail;</span><br><span class="line">    for (int i = 0; i &lt; len - 1; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        tail = len - 1 - i;</span><br><span class="line">        tmp = r[tail];</span><br><span class="line">        r[tail] = r[0];</span><br><span class="line">        r[0] = tmp;</span><br><span class="line">        sift(r, 0, tail - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###1.4.4、归并排序<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] <span class="built_in">array</span>, <span class="keyword">int</span> start, <span class="keyword">int</span> mid, <span class="keyword">int</span> end)</span></span></span><br><span class="line"><span class="function">      </span>&#123;</span><br><span class="line">          <span class="keyword">int</span>[] tmpArray = <span class="keyword">new</span> <span class="keyword">int</span>[end - start + <span class="number">1</span>];</span><br><span class="line">          <span class="keyword">int</span> i = start;</span><br><span class="line">          <span class="keyword">int</span> j = mid + <span class="number">1</span>;</span><br><span class="line">          <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">          <span class="keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;= end)</span><br><span class="line">          &#123;</span><br><span class="line">              <span class="keyword">if</span> (<span class="built_in">array</span>[i] &lt;= <span class="built_in">array</span>[j])</span><br><span class="line">              &#123;</span><br><span class="line">                  tmpArray[k++] = <span class="built_in">array</span>[i++];</span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">else</span></span><br><span class="line">              &#123;</span><br><span class="line">                  tmpArray[k++] = <span class="built_in">array</span>[j++];</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">while</span> (i &lt;= mid)</span><br><span class="line">          &#123;</span><br><span class="line">              tmpArray[k++] = <span class="built_in">array</span>[i++];</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">while</span> (j &lt;= end)</span><br><span class="line">          &#123;</span><br><span class="line">              tmpArray[k++] = <span class="built_in">array</span>[j++];</span><br><span class="line">          &#125;</span><br><span class="line">          i = <span class="number">0</span>;</span><br><span class="line">          <span class="keyword">while</span> (start &lt;= end)</span><br><span class="line">          &#123;</span><br><span class="line">              <span class="built_in">array</span>[start++] = tmpArray[i++];</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="keyword">void</span> <span class="title">Merge</span><span class="params">(<span class="keyword">int</span>[] <span class="built_in">array</span>, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span></span></span><br><span class="line"><span class="function">      </span>&#123;</span><br><span class="line">          <span class="keyword">if</span> (start &lt; end)</span><br><span class="line">          &#123;</span><br><span class="line">              <span class="keyword">int</span> mid = (start + end) / <span class="number">2</span>;</span><br><span class="line">              Merge(<span class="built_in">array</span>, start, mid);</span><br><span class="line">              Merge(<span class="built_in">array</span>, mid + <span class="number">1</span>, end);</span><br><span class="line">              merge(<span class="built_in">array</span>, start, mid, end);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></p>
+<p>##1.5、程序测试</p>
+<p>###1.5.1、主界面展示<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E6%8E%92%E5%BA%8F%E4%B8%BB%E7%95%8C%E9%9D%A2.png" alt="主界面展示"></p>
+<p>###1.5.2、生成随机数界面<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0.png" alt="生成随机数界面"></p>
+<p>###1.5.3、一万测试数据<br>（1）<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E4%B8%80%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%951.png" alt="一万测试数据1"><br>（2）<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E4%B8%80%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%952.png" alt="一万测试数据2"></p>
+<p>###1.5.4、十万测试数据<br>（1）<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%8D%81%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%951.png" alt="十万测试数据1"><br>（2）<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%8D%81%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%952.png" alt="十万测试数据2"></p>
+<p>###1.5.5、百万测试数据<br>（1）<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%99%BE%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%951.png" alt="百万测试数据1"><br>（2）<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%99%BE%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%952.png" alt="百万测试数据2"></p>
+<p>##1.6、结果目录展示<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E6%8E%92%E5%BA%8F%E7%BB%93%E6%9E%9C%E7%9B%AE%E5%BD%95.png" alt="此处输入图片的描述"></p>
+<p>###1.7、数据结果分析<br>万级别上，各排序速度相仿，均在几毫秒之内完成内存排序，<br>十万级别及百万级别上，随机数生成的测试文件，快速排序表现尤其好。<br>测试数据范围：1~65535</p>
+<p>#二、飞机管理系统</p>
+<p>##2.1、问题描述<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">任务：通过此系统可以实现如下功能：</span><br><span class="line">录入：可以录入航班情况（数据可以存储在一个数据文件中，数据结构、具体数据自定）</span><br><span class="line">查询：可以查询某个航线的情况（如，输入航班号，查询起降时间，起飞抵达城市，航班票价，票价折扣，确定航班是否满仓）；</span><br><span class="line">可以输入起飞抵达城市，查询飞机航班情况；</span><br><span class="line">订票：（订票情况可以存在一个数据文件中，结构自己设定）</span><br><span class="line">可以订票，如果该航班已经无票，可以提供相关可选择航班；</span><br><span class="line">退票： 可退票，退票后修改相关数据文件；</span><br><span class="line">客户资料有姓名，证件号，订票数量及航班情况，订单要有编号。</span><br><span class="line">修改航班信息：当航班信息改变可以修改航班数据文件</span><br></pre></td></tr></table></figure></p>
+<p>##2.2、问题解析</p>
+<blockquote>
+<ul>
+<li>问题不难，即一个管理系统，本文采用c#做gui界面，数据结构是可变数组。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>文件操作，仿照数据库操作，即用即读，不再在加载界面时读入内存。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>本文主界面共提供了8个按钮,分三组为：航班管理，票务管理以及系统。</li>
+</ul>
+</blockquote>
+<p>##2.3、航班管理</p>
+<p>###2.3.1、录入航班</p>
+<blockquote>
+<ul>
+<li>通过人工键入值，追加保存到文件末尾</li>
+</ul>
+</blockquote>
+<p>###2.3.2、删除航班</p>
+<blockquote>
+<ul>
+<li>从文件读取，并绑定到下拉列表框，提供显示与删除功能。并做了一定的安全测试。</li>
+</ul>
+</blockquote>
+<p>###2.3.3、修改航班</p>
+<blockquote>
+<ul>
+<li>从文件读取，并绑定到下拉列表框，提供显示与修改功能。并做了一定的安全测试。</li>
+</ul>
+</blockquote>
+<p>##2.3、票务管理</p>
+<p>###2.3.1、航班号订票</p>
+<blockquote>
+<ul>
+<li>已知航班号，从文件读取数据，输入相关信息，订票并写回文件，并做了一定的安全测试。</li>
+</ul>
+</blockquote>
+<p>###2.3.2、选择订票</p>
+<blockquote>
+<ul>
+<li>文件读取信息，绑定到控件，选择起始地与目的地订票，写回文件，并做了一定的安全测试。</li>
+</ul>
+</blockquote>
+<p>###2.3.3、退票</p>
+<blockquote>
+<ul>
+<li>文件读取信息，绑定到控件，选择客户ID，退票。</li>
+</ul>
+</blockquote>
+<p>##2.4、系统</p>
+<p>###2.4.1、退出系统</p>
+<blockquote>
+<ul>
+<li>提供退出程序的功能。</li>
+</ul>
+</blockquote>
+<p>###2.4.2、关于</p>
+<blockquote>
+<ul>
+<li>关于本软件的信息。</li>
+</ul>
+</blockquote>
+<p>##2.5、数据格式设计</p>
+<p>###2.5.1、航班数据<br>共9个字段，均为string型，方便操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">class Flight</span><br><span class="line">   &#123;</span><br><span class="line">       public string FlightNumber;</span><br><span class="line">       public string StartTime;</span><br><span class="line">       public string EndTime;</span><br><span class="line">       public string StartCity;</span><br><span class="line">       public string EndCity;</span><br><span class="line">       public string FlightTicket;</span><br><span class="line">       public string TicketDisconut;</span><br><span class="line">       public string MaxNumber;</span><br><span class="line">       public string RestTicketNum;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       public Flight(string[] str)</span><br><span class="line">       &#123;</span><br><span class="line">           if (str.Length != 9)</span><br><span class="line">           &#123;</span><br><span class="line">               throw new Exception();</span><br><span class="line">           &#125;</span><br><span class="line">           else</span><br><span class="line">           &#123;</span><br><span class="line">               FlightNumber = str[0];</span><br><span class="line">               StartTime = str[1];</span><br><span class="line">               EndTime = str[2];</span><br><span class="line">               StartCity = str[3];</span><br><span class="line">               EndCity = str[4];</span><br><span class="line">               FlightTicket = str[5];</span><br><span class="line">               TicketDisconut = str[6];</span><br><span class="line">               MaxNumber = str[7];</span><br><span class="line">               RestTicketNum = str[8];</span><br><span class="line"></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       public override string ToString()</span><br><span class="line">       &#123;</span><br><span class="line">           string res = &quot;&quot;;</span><br><span class="line">           res +=</span><br><span class="line">           FlightNumber +&quot;,&quot;+</span><br><span class="line">           StartTime + &quot;,&quot; +</span><br><span class="line">           EndTime + &quot;,&quot; +</span><br><span class="line">           StartCity + &quot;,&quot; +</span><br><span class="line">           EndCity + &quot;,&quot; +</span><br><span class="line">           FlightTicket + &quot;,&quot; +</span><br><span class="line">           TicketDisconut + &quot;,&quot; +</span><br><span class="line">           MaxNumber + &quot;,&quot; +</span><br><span class="line">           RestTicketNum;</span><br><span class="line">           return res;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>###2.5.1、订单数据<br>共4个字段，均为string型，方便操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">class Order</span><br><span class="line">&#123;</span><br><span class="line">    public string FlightNumber;</span><br><span class="line">    public string Ordernum;</span><br><span class="line">    public string name;</span><br><span class="line">    public string Id;</span><br><span class="line"></span><br><span class="line">    public Order(string[] str)</span><br><span class="line">    &#123;</span><br><span class="line">        if (str.Length != 4)</span><br><span class="line">        &#123;</span><br><span class="line">            throw new Exception();</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            Ordernum = str[0];</span><br><span class="line">            FlightNumber = str[1];</span><br><span class="line">            name = str[2];</span><br><span class="line">            Id = str[3];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public override string ToString()</span><br><span class="line">    &#123;</span><br><span class="line">        string res = &quot;&quot;;</span><br><span class="line">        res +=</span><br><span class="line">        Ordernum + &quot;,&quot; +</span><br><span class="line">        FlightNumber + &quot;,&quot; +</span><br><span class="line">        name + &quot;,&quot; +</span><br><span class="line">        Id;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##2.6、软件测试<br>测试繁多，不宜展示，在测试的时候修复许多bug，一定程度上增强了软件的安全性。</p>
+<p>###2.6.1、软件主界面<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%A8%8B%E5%BA%8F%E4%B8%BB%E7%95%8C%E9%9D%A2.png" alt="软件主界面"></p>
+<p>###2.6.2、录入航班<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%BD%95%E5%85%A5%E8%88%AA%E7%8F%AD.png" alt="录入航班"></p>
+<p>###2.6.3、删除航班<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%88%A0%E9%99%A4%E8%88%AA%E7%8F%AD.png" alt="删除航班"></p>
+<p>###2.6.4、修改航班<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E4%BF%AE%E6%94%B9%E8%88%AA%E7%8F%AD.png" alt="修改航班"></p>
+<p>###2.6.5、航班号订票<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E8%88%AA%E7%8F%AD%E5%8F%B7%E8%AE%A2%E7%A5%A8.png" alt="航班号订票"></p>
+<p>###2.6.6、目的地订票<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E8%AE%A2%E7%A5%A8.png" alt="目的地订票"></p>
+<p>###2.6.7、退票<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E9%80%80%E7%A5%A8.png" alt="退票"></p>
+<p>#三、排序演示</p>
+<blockquote>
+<ul>
+<li>本程序是基于MFC编写的，原框架是来源于VC课程，再次做了重构，提取出了方法，便于加类以实现不同的排序演示，在这里，介绍一个demo。</li>
+<li>程序采用绘制view和时钟中断，实现了模拟排序的效果。</li>
+</ul>
+</blockquote>
+<p>##3.1、csArray类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是所有排序类的基类，其他排序类由此扩展，负责绘制一些基本的试图。</span><br></pre></td></tr></table></figure></p>
+<p>##3.2、CTestView<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">视图类，控制时钟中段，建立排序类实例，绘制排序类等功能。</span><br></pre></td></tr></table></figure></p>
+<p>##3.3、扩展排序类</p>
+<pre><code>目前实现了冒泡，插入，选择，希尔的演示
+</code></pre><p>##3.4、程序测试</p>
+<p>###3.4.1、程序主界面<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%A8%8B%E5%BA%8F%E4%B8%BB%E7%95%8C%E9%9D%A2.jpg" alt="程序主界面"></p>
+<p>###3.4.2、冒泡排序<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%86%92%E6%B3%A1.png" alt="冒泡排序"></p>
+<p>###3.4.3、插入排序<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.png" alt="插入排序"></p>
+<p>###3.4.4、选择排序<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.png" alt="选择排序"></p>
+<p>###3.4.5、希尔排序<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F.png" alt="希尔排序"></p>
+<p>#四、课设心得</p>
+<blockquote>
+<ul>
+<li>更好的掌握数据结构</li>
+<li>更严谨的测试程序</li>
+<li>通过实际编译系统的分析设计、编程调试，掌握应用软件的分析方法和工程设计方法</li>
+<li>培养了我选用参考书，查阅手册及文献资料的能力。培养独立思考，深入研究，分析问题、解决问题的能力</li>
+<li>严肃认真的心态</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/课程设计/c#一些操作记录/" rel="next" title="c#一些操作记录">
+                <i class="fa fa-chevron-left"></i> c#一些操作记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/南师大大创中期读书笔记/hadoop及spark平台搭建笔记/" rel="prev" title="hadoop及spark平台搭建笔记">
+                hadoop及spark平台搭建笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

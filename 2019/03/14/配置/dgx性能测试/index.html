@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="更换docker源docker默认镜像拉取地址为国外仓库下载速度较慢，会超时，换成国内镜像。sudo vim /etc/docker/daemon.json1/etc/docker/daemon.json 重启服务sudo service docker restart 拉取docker服务https://hub.docker.com在这边搜索，或者直接用 docker serach XXX利用命">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dgx性能测试">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/配置/dgx性能测试/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="更换docker源docker默认镜像拉取地址为国外仓库下载速度较慢，会超时，换成国内镜像。sudo vim /etc/docker/daemon.json1/etc/docker/daemon.json 重启服务sudo service docker restart 拉取docker服务https://hub.docker.com在这边搜索，或者直接用 docker serach XXX利用命">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-14T08:30:30.089Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="dgx性能测试">
+<meta name="twitter:description" content="更换docker源docker默认镜像拉取地址为国外仓库下载速度较慢，会超时，换成国内镜像。sudo vim /etc/docker/daemon.json1/etc/docker/daemon.json 重启服务sudo service docker restart 拉取docker服务https://hub.docker.com在这边搜索，或者直接用 docker serach XXX利用命">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/配置/dgx性能测试/">
+
+
+
+
+
+  <title>dgx性能测试 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/配置/dgx性能测试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">dgx性能测试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/配置/" itemprop="url" rel="index">
+                    <span itemprop="name">配置</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h2 id="更换docker源"><a href="#更换docker源" class="headerlink" title="更换docker源"></a>更换docker源</h2><p>docker默认镜像拉取地址为国外仓库下载速度较慢，会超时，换成国内镜像。<br>sudo vim /etc/docker/daemon.json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/docker/daemon.json</span><br></pre></td></tr></table></figure></p>
+<p>重启服务<br>sudo service docker restart</p>
+<h2 id="拉取docker服务"><a href="#拉取docker服务" class="headerlink" title="拉取docker服务"></a>拉取docker服务</h2><p><a href="https://hub.docker.com" target="_blank" rel="noopener">https://hub.docker.com</a><br>在这边搜索，或者直接用 docker serach XXX<br>利用命令  nvidia-docker pull   名字:tag<br>拉取镜像</p>
+<p>删除docker实例<br>nvidia-docker rm c8a4bf012268</p>
+<p>停止docker实例<br>docker stop a004f2b5888a</p>
+<p>停止后再启动<br>docker start a004f2b5888a</p>
+<p>退出后重连<br>docker attach a004f2b5888a</p>
+<p>##使用docker<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docker run -it -v /raid/chenshi:/chen_data  --name chen_keras_tf nvcr.io/nvidia/tensorflow:18.03-py3 bash</span><br></pre></td></tr></table></figure></p>
+<p>nvidia-docker run<br>-it<br>-v /raid/chenshi:/chen_data    #映射主机磁盘到docker /源地址：docker地址<br>–name chen_keras_tf    #别名<br>nvcr.io/nvidia/tensorflow:18.03-py3    @镜像名:tag<br>bash</p>
+<p>如果需要隔离显卡，在run前面，加上对应代码即可<br>NV_GPU=0,1,4 nvidia-docker run…..</p>
+<p>这边使用时，请注意加上别名区分，如果环境有改变，可以考虑提交成镜像，共下次自己使用，方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docker commit 2b1a57a3cb4c chen_keras:v1.0</span><br><span class="line">其中2b1a57a3cb4c是容器id  chen_keras是镜像名字   v1.0是tag标签</span><br><span class="line"></span><br><span class="line">然后再save成镜像</span><br><span class="line">nvidia-docker chen_keras:v1.0 &gt; chen_keras.tar</span><br></pre></td></tr></table></figure></p>
+<p>##注意<br>1、run之前，先考虑好是否需要隔离显卡<br>2、注意磁盘的映射，建议在某个文件夹下面建议自己的文件夹，整体映射<br>3、建议利用names区分是谁的镜像，以防混乱</p>
+<p>##测试</p>
+<p>###测试1 plant_seedlings：keras<br>K80：单个Epoch 216s 2s/step<br>dgx：单个Epoch 36s 285ms/ste<br>加速比例:216/36=6  </p>
+<p>###测试2 neural-style-master<br>imagenet-vgg-verydeep-19.mat  做迭代<br><a href="https://github.com/anishathalye/neural-style" target="_blank" rel="noopener">https://github.com/anishathalye/neural-style</a><br>对同一张图片进行1000次迭代：<br>dgx:208s<br>k80:1451s<br>加速比例：1451/208=6.975962</p>
+<p>###测试3 mnist_mlp<br>dgx:<br>1：2s 26us/step<br>2: 2s 38us/step<br>4：3s 55us/step<br>8：6s 104us/step</p>
+<p>k80:<br>1：2s</p>
+<p>任务太小，近乎没有加速</p>
+<p>###测试4 Dog_breed_identification</p>
+<p>DGX：<br>InceptionV3：321.28376555<br>Xception：315.984331607<br>InceptionResNetV2：344.929951</p>
+<p>k80：<br>InceptionV3：737.23624<br>Xception：1092.263<br>InceptionResNetV2：1374.97</p>
+<p>加速比例：2~3倍</p>
+<p>###测试5 cifar-10<br>k80:<br>1：step 180, loss = 3.86 (4249.7 examples/sec; 0.030 sec/batch)<br>2：step 15560, loss = 0.72 (8375.4 examples/sec; 0.015 sec/batch)<br>4：step 180, loss = 3.72 (17076.5 examples/sec; 0.007 sec/batch)</p>
+<p>dgx:<br>1:step 880, loss = 2.52 (11222.9 examples/sec; 0.011 sec/batch)<br>2:step 1490, loss = 1.80 (15099.7 examples/sec; 0.008 sec/batch)<br>4:step 310, loss = 3.59 (15553.4 examples/sec; 0.008 sec/batch)<br>8:step 2760, loss = 1.17 (14002.3 examples/sec; 0.009 sec/batch)</p>
+<p>多卡加速效果不明显。单卡在三倍左右的效率。</p>
+<p>###测试6 强化学习任务<br>k80:<br>6ms/step<br>dgx:<br>2ms/step</p>
+<p>单卡效率3倍左右</p>
+<p>###总结<br>1 本次对比和k80服务器进行对比，从结果来看，单卡效率远超过k80，某些任务下，能达到k80的7倍左右。<br>2 在多卡协作对比时，k80服务器能较好的保持线性效率的增长，但是在dgx上，多卡协作，效率没有多大提升。猜测：①单卡本身能保持较快的计算速度，所以在多卡时，其他时延成为了瓶颈 ②有可能docker优化不够充分。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">% load the data</span><br><span class="line">trainLen = 3000;</span><br><span class="line">testLen = 1000;</span><br><span class="line">initLen = 100;</span><br><span class="line"></span><br><span class="line">data = load(&apos;MackeyGlass-t17.txt&apos;);</span><br><span class="line"></span><br><span class="line">% plot some of it</span><br><span class="line">% figure(10);</span><br><span class="line">% plot(data(1:1000));</span><br><span class="line">% title(&apos;A sample of data&apos;);</span><br><span class="line"></span><br><span class="line">% generate the ESN reservoir</span><br><span class="line">inSize = 1; outSize = 1;</span><br><span class="line">resSize = 500;</span><br><span class="line">a = 0.3; % leaking rate</span><br><span class="line"></span><br><span class="line">%rand( &apos;seed&apos;, 42 );</span><br><span class="line">% Win = (rand(resSize,1+inSize)-0.5) .* 1;</span><br><span class="line">% W = rand(resSize,resSize)-0.5;</span><br><span class="line">% Option 1 - direct scaling (quick&amp;dirty, reservoir-specific):</span><br><span class="line">% W = W .* 0.13;</span><br><span class="line">% Option 2 - normalizing and setting spectral radius (correct, slower):</span><br><span class="line">% disp &apos;Computing spectral radius...&apos;;</span><br><span class="line">% opt.disp = 0;</span><br><span class="line">% rhoW = abs(eigs(W,1,&apos;LM&apos;,opt));</span><br><span class="line">% disp &apos;done.&apos;</span><br><span class="line">% W = W .* ( 1.25 /rhoW);</span><br><span class="line"></span><br><span class="line">%%% the fourth question %%%</span><br><span class="line">r_i = .5;</span><br><span class="line">r_c = .8;</span><br><span class="line">r_j = .7;</span><br><span class="line">jump_l = 10;</span><br><span class="line">load(&apos;signv.mat&apos;);</span><br><span class="line"></span><br><span class="line">Win = ones(resSize,1+inSize) .* r_i;</span><br><span class="line">W = zeros(resSize, resSize);</span><br><span class="line"></span><br><span class="line">W(1, resSize) = r_c;</span><br><span class="line">for i = 1 : resSize</span><br><span class="line">    if(i + 1 &lt;= resSize)</span><br><span class="line">        W(i + 1, i) = r_c;</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">for i = 1 : jump_l : resSize</span><br><span class="line">    if(i + jump_l &lt; resSize)</span><br><span class="line">        W(i, i + jump_l) = r_j;</span><br><span class="line">        W(i + jump_l, i) = r_j;</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">% allocated memory for the design (collected states) matrix</span><br><span class="line">X = zeros(1+inSize+resSize,trainLen-initLen);</span><br><span class="line">% set the corresponding target matrix directly</span><br><span class="line">Yt = data(initLen+2:trainLen+1)&apos;;</span><br><span class="line"></span><br><span class="line">% run the reservoir with the data and collect X</span><br><span class="line">x = zeros(resSize,1);</span><br><span class="line">for t = 1:trainLen</span><br><span class="line">	u = data(t);</span><br><span class="line">	x = (1-a)*x + a*tanh( Win.*sign(:,1:2)*[1;u] + W*x );</span><br><span class="line">	if t &gt; initLen</span><br><span class="line">		X(:,t-initLen) = [1;u;x];</span><br><span class="line">	end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">% train the output</span><br><span class="line">reg = 1e-8;  % regularization coefficient</span><br><span class="line">X_T = X&apos;;</span><br><span class="line">% Wout = Yt*X_T * inv(X*X_T + reg*eye(1+inSize+resSize));</span><br><span class="line">Wout = Yt*X_T / (X*X_T + reg*eye(1+inSize+resSize));</span><br><span class="line">% Wout = Yt*pinv(X);</span><br><span class="line"></span><br><span class="line">% run the trained ESN in a generative mode. no need to initialize here, </span><br><span class="line">% because x is initialized with training data and we continue from there.</span><br><span class="line">Y = zeros(outSize,testLen);</span><br><span class="line">u = data(trainLen+1);</span><br><span class="line">for t = 1:testLen </span><br><span class="line">	x = (1-a)*x + a*tanh( Win.*sign(:,1:2)*[1;u] + W*x );</span><br><span class="line">	y = Wout*[1;u;x];</span><br><span class="line">	Y(:,t) = y;</span><br><span class="line">	% generative mode:</span><br><span class="line">	u = y;</span><br><span class="line">	% this would be a predictive mode:</span><br><span class="line">	%u = data(trainLen+t+1);</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">errorLen = 1000;</span><br><span class="line">mse = sum((data(trainLen+2:trainLen+errorLen+1)&apos;-Y(1,1:errorLen)).^2)./errorLen;</span><br><span class="line">disp( [&apos;MSE = &apos;, num2str( mse )] );</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/配置/centos 安装jdk1.8  mysql/" rel="next" title="centos 安装jdk1.8  mysql">
+                <i class="fa fa-chevron-left"></i> centos 安装jdk1.8  mysql
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/配置/HWCraft代码提交流程/" rel="prev" title="HWCraft代码提交流程">
+                HWCraft代码提交流程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#更换docker源"><span class="nav-number">1.</span> <span class="nav-text">更换docker源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拉取docker服务"><span class="nav-number">2.</span> <span class="nav-text">拉取docker服务</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

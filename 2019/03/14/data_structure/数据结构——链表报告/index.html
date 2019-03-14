@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="返回目录  ##一、设计方式结点结构：包含数据域以及指针域，数据域通过模板可以实现不同类型的数据类型。123456template &amp;lt;class T&amp;gt;struct Node&amp;#123;	T data;	Node&amp;lt;T&amp;gt; *next;&amp;#125;; 链表结构：包含头结点，用于数据的存储，包含一系列函数，用于数据的访问及管理。123456789template &amp;lt;clas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构——链表报告">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/data_structure/数据结构——链表报告/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="返回目录  ##一、设计方式结点结构：包含数据域以及指针域，数据域通过模板可以实现不同类型的数据类型。123456template &amp;lt;class T&amp;gt;struct Node&amp;#123;	T data;	Node&amp;lt;T&amp;gt; *next;&amp;#125;; 链表结构：包含头结点，用于数据的存储，包含一系列函数，用于数据的访问及管理。123456789template &amp;lt;clas">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A801.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A802.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A803.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A804.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A805.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A806.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A807.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A808.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A809.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A810.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.475Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构——链表报告">
+<meta name="twitter:description" content="返回目录  ##一、设计方式结点结构：包含数据域以及指针域，数据域通过模板可以实现不同类型的数据类型。123456template &amp;lt;class T&amp;gt;struct Node&amp;#123;	T data;	Node&amp;lt;T&amp;gt; *next;&amp;#125;; 链表结构：包含头结点，用于数据的存储，包含一系列函数，用于数据的访问及管理。123456789template &amp;lt;clas">
+<meta name="twitter:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A801.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/data_structure/数据结构——链表报告/">
+
+
+
+
+
+  <title>数据结构——链表报告 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/data_structure/数据结构——链表报告/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构——链表报告</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-structure/" itemprop="url" rel="index">
+                    <span itemprop="name">data_structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p><a href="https://www.zybuluo.com/rg070836rg/note/83692" target="_blank" rel="noopener">返回目录</a></p>
+<hr>
+<p>##一、设计方式<br><strong>结点结构</strong>：<br>包含<strong>数据域</strong>以及<strong>指针域</strong>，数据域通过模板可以实现不同类型的数据类型。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	T data;</span><br><span class="line">	Node&lt;T&gt; *next;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>链表结构</strong>：<br>包含<strong>头结点</strong>，用于数据的存储，包含一系列<strong>函数</strong>，用于数据的访问及管理。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">LinkList</span></span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    略去一系列成员函数</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Node&lt;T&gt; *pHead;		<span class="comment">//节点，包含数据域和指针域</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>文件结构</strong>：</p>
+<blockquote>
+<ul>
+<li>LinkList.cpp</li>
+<li>LinkList.h</li>
+<li>test.cpp</li>
+</ul>
+</blockquote>
+<p>LinkList.cpp与LinkList.h用于<strong>实现</strong>链表模板<br>test.cpp用于<strong>测试</strong>模板的正确性</p>
+<hr>
+<p>##二、具体实现</p>
+<p>###2.1 LinkList类设计<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">LinkList</span></span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line"><span class="comment">//**********</span></span><br><span class="line"><span class="comment">//基本函数</span></span><br><span class="line"><span class="comment">//**********</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	LinkList();					<span class="comment">//无参构造函数</span></span><br><span class="line">	~LinkList();				<span class="comment">//析构函数，作垃圾回收</span></span><br><span class="line">	LinkList(T a[], <span class="keyword">int</span> n,<span class="built_in">string</span> flag);		<span class="comment">//构造函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//**********</span></span><br><span class="line"><span class="comment">//功能函数</span></span><br><span class="line"><span class="comment">//**********</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">ListLength</span><span class="params">()</span></span>;				<span class="comment">//返回链表长度</span></span><br><span class="line">	<span class="function">T&amp; <span class="title">Get</span><span class="params">(<span class="keyword">int</span> pos)</span></span>;				<span class="comment">//按位返回元素引用</span></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">Locate</span><span class="params">(T item)</span></span>;				<span class="comment">//按值找位</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">PrintListLink</span><span class="params">()</span></span>;			<span class="comment">//遍历打印</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Insert</span><span class="params">(<span class="keyword">int</span> pos, T item)</span></span>;	<span class="comment">//按位插值</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Delete</span><span class="params">(<span class="keyword">int</span> i)</span></span>;				<span class="comment">//按位删值</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Invert</span><span class="params">()</span></span>;					<span class="comment">//逆序链表</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Merge</span><span class="params">(LinkList&lt;T&gt; &amp;L)</span></span>;		<span class="comment">//归并链表</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">SelectSort</span><span class="params">()</span></span>;				<span class="comment">//选择排序</span></span><br><span class="line">	LinkList&lt;T&gt;&amp; <span class="keyword">operator</span>=(LinkList&lt;T&gt;* L);<span class="comment">//重载赋值，便于合并</span></span><br><span class="line">	<span class="keyword">friend</span> LinkList&lt;T&gt;* Merge(LinkList&lt;T&gt; &amp;LA, LinkList&lt;T&gt;&amp;LB);</span><br><span class="line">	<span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">Merge_1</span><span class="params">(LinkList&lt;T&gt; &amp;LA, LinkList&lt;T&gt;&amp;LB)</span></span>;</span><br><span class="line"><span class="comment">//**********</span></span><br><span class="line"><span class="comment">//成员变量</span></span><br><span class="line"><span class="comment">//**********</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	Node&lt;T&gt; *pHead;		<span class="comment">//节点，包含数据域和指针域</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>####2.1.1   单链表的初始化<br><strong>单链表</strong>可以有两种初始化，无参初始化，只生成头结点的空链表，有参初始化，可以实现带元素节点的链表。</p>
+<p><code>单链表的无参构造函数：</code><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 无参数构造函数</span></span><br><span class="line"><span class="comment">* 作用:生成头结点</span></span><br><span class="line"><span class="comment">* @param[in] 无</span></span><br><span class="line"><span class="comment">* @param[out] 无</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">LinkList</span>&lt;T&gt;:</span>:LinkList()</span><br><span class="line">&#123;</span><br><span class="line">	pHead = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">	pHead-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>单链表的有参构造函数：</code></p>
+<p>本函数提供三种插入方法：</p>
+<blockquote>
+<ul>
+<li>头插法（head）</li>
+<li>顺序插法（sorted）</li>
+<li>尾插法（tail）</li>
+</ul>
+</blockquote>
+<p>根据所给标志不同，选择不同构造方法。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">LinkList</span>&lt;T&gt;:</span>:LinkList(T a[],<span class="keyword">int</span> n,<span class="built_in">string</span> flag)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>1、 头插法（head）</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (flag==<span class="string">"head"</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		pHead = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">		pHead-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			Node&lt;T&gt; *p = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">			p-&gt;data = a[i];</span><br><span class="line">			p-&gt;next = pHead-&gt;next;</span><br><span class="line">			pHead-&gt;next = p;</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>头插法每次生成的节点插在头结点的后面，操作简单。</p>
+<blockquote>
+<p>2、顺序插法（sorted）</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (flag == <span class="string">"sorted"</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		pHead = <span class="keyword">new</span> Node&lt;T&gt;;	pHead-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">		Node&lt;T&gt; *p, *front, *current;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			front = pHead;</span><br><span class="line">			p = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">			p-&gt;data = a[i];</span><br><span class="line">			current = pHead-&gt;next;</span><br><span class="line">			<span class="keyword">while</span> ((current != <span class="literal">NULL</span>) &amp;&amp; (current-&gt;data &lt; p-&gt;data))</span><br><span class="line">			&#123;</span><br><span class="line">				front = current;</span><br><span class="line">				current = current-&gt;next;</span><br><span class="line">			&#125;</span><br><span class="line">			p-&gt;next = current;</span><br><span class="line">			front-&gt;next = p;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>顺序插法，在构造的时候，考虑顺序，使得构造函数完成的同时链表有序，时间复杂度为$O(n^2)$，p是新建节点，front以及current确定插入位置。</p>
+<blockquote>
+<p>3、尾插法（tail）<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (flag == <span class="string">"tail"</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		pHead = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">		Node&lt;T&gt; * rear = pHead;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			Node&lt;T&gt; *p = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">			p-&gt;data = a[i];</span><br><span class="line">			rear-&gt;next = p;</span><br><span class="line">			rear = p;</span><br><span class="line">		&#125;</span><br><span class="line">		rear-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>尾插法，每次生成的节点放在链表尾部，rear指针指向最后一个节点，无须重新遍历。便于插入操作。</p>
+<blockquote>
+<ul>
+<li>其他情况   程序提示错误<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cerr</span> &lt;&lt; <span class="string">"error at flag choosing!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>###2.1.2求链表长度<br>遍历链表，通过计数器计数，并返回。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* int ListLength()</span></span><br><span class="line"><span class="comment">* 作用:返回链表节点数</span></span><br><span class="line"><span class="comment">* @param[in] 无</span></span><br><span class="line"><span class="comment">* @param[out] int</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">int</span> <span class="title">LinkList</span>&lt;T&gt;:</span>:ListLength()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">	Node&lt;T&gt; *p = pHead-&gt;next;</span><br><span class="line">	<span class="keyword">while</span> (p!=<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">		num++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###2.1.3按位找值<br>从第一个元素点开始，计数器i初始化为1，找到位序pos后，返回该位置元素的引用，注意此返回值的修改，会对链表值进行改动。同时，需要考虑异常情况，保证程序安全。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* T&amp; Get(int pos)</span></span><br><span class="line"><span class="comment">* 作用:获得指定pos位的元素的引用</span></span><br><span class="line"><span class="comment">* @param[in] pos</span></span><br><span class="line"><span class="comment">* @param[out] T</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span>&amp; <span class="title">LinkList</span>&lt;T&gt;:</span>:Get(<span class="keyword">int</span> pos)</span><br><span class="line">&#123;</span><br><span class="line">	Node&lt;T&gt; *p = pHead-&gt;next;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (p!=<span class="literal">NULL</span> &amp;&amp; i!=pos)</span><br><span class="line">	&#123;</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">		i++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (p == <span class="literal">NULL</span>||i&gt;pos)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cerr</span> &lt;&lt; <span class="string">"数据非法，异常退出。"</span>;</span><br><span class="line">		system(<span class="string">"pause"</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> p-&gt;data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###2.1.4遍历单链表<br>遍历单链表，并输出各节点元素数据域值。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* PrintListLink()</span></span><br><span class="line"><span class="comment">* 作用:遍历并打印链表数据</span></span><br><span class="line"><span class="comment">* @param[in] </span></span><br><span class="line"><span class="comment">* @param[out] </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">LinkList</span>&lt;T&gt;:</span>:PrintListLink()</span><br><span class="line">&#123;</span><br><span class="line">	Node&lt;T&gt; *p = pHead-&gt;next;</span><br><span class="line">	<span class="keyword">while</span> (p!=<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; p-&gt;data&lt;&lt;<span class="string">"\t"</span>;</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###2.1.5单链表的按位插值<br>遍历查找到第pos-1个节点，插入元素item<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Insert(int pos,T item)</span></span><br><span class="line"><span class="comment">* 作用:在pos位置插入元素item</span></span><br><span class="line"><span class="comment">* @param[in]  位置pos 元素item</span></span><br><span class="line"><span class="comment">* @param[out]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">LinkList</span>&lt;T&gt;:</span>:Insert(<span class="keyword">int</span> pos,T item)</span><br><span class="line">&#123;</span><br><span class="line">	Node&lt;T&gt; *p = pHead;</span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (p!=<span class="literal">NULL</span> &amp;&amp; j&lt;pos<span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">		j++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (p == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"已至链表尾，放弃插入位置，自动插入尾部"</span>;</span><br><span class="line">		Node&lt;T&gt; *tmp = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">		tmp-&gt;data = item;</span><br><span class="line">		tmp-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">		p-&gt;next = tmp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		Node&lt;T&gt; *tmp = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">		tmp-&gt;data = item;</span><br><span class="line">		tmp-&gt;next = p-&gt;next;</span><br><span class="line">		p-&gt;next = tmp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###2.1.7按位删除<br>删除第i个元素值，必找到第i-1个节点，并使之链接到i+1个节点上， 同时销毁第i个元素的空间，同时置为NULL。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Delete(int i)</span></span><br><span class="line"><span class="comment">* 作用:按照位序i删除节点</span></span><br><span class="line"><span class="comment">* @param[in]  位置i</span></span><br><span class="line"><span class="comment">* @param[out]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">LinkList</span>&lt;T&gt;:</span>:Delete(<span class="keyword">int</span> i)</span><br><span class="line">&#123;</span><br><span class="line">	Node&lt;T&gt; *p = pHead;</span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (p!=<span class="literal">NULL</span> &amp;&amp; j&lt;i<span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">		j++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (p == <span class="literal">NULL</span> || p-&gt;next == <span class="literal">NULL</span> || j &gt; i<span class="number">-1</span> )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cerr</span> &lt;&lt; <span class="string">"删除位置不在表内，异常退出"</span>;</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		Node&lt;T&gt; *tmp = p-&gt;next;</span><br><span class="line">		p-&gt;next = tmp-&gt;next;</span><br><span class="line">		<span class="keyword">delete</span> tmp;</span><br><span class="line">		tmp=<span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###2.1.8 单链表的逆置<br>实际就是使用头插法，重新组织链表。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Invert()</span></span><br><span class="line"><span class="comment">* 作用:逆序该链表</span></span><br><span class="line"><span class="comment">* @param[in]  </span></span><br><span class="line"><span class="comment">* @param[out]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">LinkList</span>&lt;T&gt;:</span>:Invert()</span><br><span class="line">&#123;</span><br><span class="line">	Node&lt;T&gt; *p =  pHead-&gt;next;</span><br><span class="line">	pHead-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">while</span> (p != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		Node&lt;T&gt; *q = p;</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">		q-&gt;next = pHead-&gt;next;</span><br><span class="line">		pHead-&gt;next= q;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###2.1.9 合并单链表<br>这块采用了三种方式合并链表：</p>
+<blockquote>
+<ul>
+<li>成员函数调用</li>
+<li>友元无返回值合并</li>
+<li>友元有返回值合并</li>
+</ul>
+</blockquote>
+<p>下面来一一介绍。</p>
+<p>首先，合并单链表的前提是有序，所以假定传进来的表都是有序的。这边不做有序的判断。</p>
+<blockquote>
+<ul>
+<li>成员函数调用</li>
+</ul>
+</blockquote>
+<p>作为链表的成员函数调用，把传入的链表，归并到调用链表中。由于是成员函数，所以在其中访问私有成员没有问题。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Merge(LinkList&lt;T&gt; &amp;L)</span></span><br><span class="line"><span class="comment">* 作用:将L链表数据合并到调用表 </span></span><br><span class="line"><span class="comment">* @param[in]	</span></span><br><span class="line"><span class="comment">* @param[out]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">LinkList</span>&lt;T&gt;:</span>:Merge(LinkList&lt;T&gt; &amp;L)</span><br><span class="line">&#123;</span><br><span class="line">	Node&lt;T&gt; *p3 = pHead;</span><br><span class="line">	Node&lt;T&gt; *p1 = pHead-&gt;next;</span><br><span class="line">	Node&lt;T&gt; *p2 = L.pHead-&gt;next;</span><br><span class="line">	<span class="keyword">while</span> ((p1 != <span class="literal">NULL</span>) &amp;&amp; (p2 != <span class="literal">NULL</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> ((p1-&gt;data) &lt; (p2-&gt;data))</span><br><span class="line">		&#123;</span><br><span class="line">			p3-&gt;next = p1;</span><br><span class="line">			p1 = p1-&gt;next;</span><br><span class="line">			p3 = p3-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			p3-&gt;next = p2;</span><br><span class="line">			p2=p2-&gt;next;</span><br><span class="line">			p3 = p3-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (p1 != <span class="literal">NULL</span>) p3-&gt;next = p1;</span><br><span class="line">	<span class="keyword">if</span> (p2 != <span class="literal">NULL</span>) p3-&gt;next = p2;</span><br><span class="line">	<span class="keyword">delete</span> L.pHead;</span><br><span class="line">	L.pHead = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<ul>
+<li>友元无返回值合并</li>
+</ul>
+</blockquote>
+<p>这是通过友元的方式，无须调用者，函数目的是把两个链表的值，归并到第一个链表中，友元的声明，使其能够方便的使用私有成员。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	* LinkList&lt;T&gt;* Merge(LinkList&lt;T&gt; &amp;, LinkList&lt;T&gt;&amp;)</span></span><br><span class="line"><span class="comment">	* 作用:通过友元方式，把LB元素合并到LA中</span></span><br><span class="line"><span class="comment">	* 注意：LA,LB需有序</span></span><br><span class="line"><span class="comment">	* @param[in] LA,LB</span></span><br><span class="line"><span class="comment">	* @param[out] </span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">Merge_1</span><span class="params">(LinkList&lt;T&gt; &amp;LA, LinkList&lt;T&gt;&amp;LB)</span></span>&#123;</span><br><span class="line">		Node&lt;T&gt; *p1 = LA.pHead-&gt;next;</span><br><span class="line">		Node&lt;T&gt; *p2 = LB.pHead-&gt;next;</span><br><span class="line">		Node&lt;T&gt; *p3 = LA.pHead;</span><br><span class="line">		<span class="keyword">while</span> (p1 != <span class="literal">NULL</span> &amp;&amp; p2 != <span class="literal">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (p1-&gt;data&lt;p2-&gt;data)</span><br><span class="line">			&#123;</span><br><span class="line">				p3-&gt;next = p1;</span><br><span class="line">				p1 = p1-&gt;next;</span><br><span class="line">				p3 = p3-&gt;next;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				p3-&gt;next = p2;</span><br><span class="line">				p2 = p2-&gt;next;</span><br><span class="line">				p3 = p3-&gt;next;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (p1 != <span class="literal">NULL</span>) p3 = p1-&gt;next;</span><br><span class="line">		<span class="keyword">if</span> (p2 != <span class="literal">NULL</span>) p3 = p2-&gt;next;</span><br><span class="line">		<span class="keyword">delete</span> LB.pHead;</span><br><span class="line">		LB.pHead = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<ul>
+<li>友元有返回值合并</li>
+</ul>
+</blockquote>
+<p>这个函数与上个函数的区别在于，这个函数，合并两个链表，并返回这个合并的链表。为了接受这个返回的链表，在类中，重载了赋值运算符“=”。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* LinkList&lt;T&gt;* Merge(LinkList&lt;T&gt; &amp;, LinkList&lt;T&gt;&amp;)</span></span><br><span class="line"><span class="comment">* 作用:通过友元方式，合并链表LA,LB元素，并返回合并后链表</span></span><br><span class="line"><span class="comment">* 注意：LA,LB需有序</span></span><br><span class="line"><span class="comment">* @param[in] LA,LB</span></span><br><span class="line"><span class="comment">* @param[out] 合并后链表LC</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">friend</span> LinkList&lt;T&gt;* Merge(LinkList&lt;T&gt; &amp;LA, LinkList&lt;T&gt;&amp;LB)</span><br><span class="line">&#123;</span><br><span class="line">	LinkList&lt;T&gt; *LC = <span class="keyword">new</span> LinkList&lt;T&gt;;</span><br><span class="line">	Node&lt;T&gt; *p1 = LA.pHead-&gt;next;</span><br><span class="line">	Node&lt;T&gt; *p2 = LB.pHead-&gt;next;</span><br><span class="line">	Node&lt;T&gt; *p3 = LC-&gt;pHead;</span><br><span class="line">	<span class="keyword">while</span> (p1 != <span class="literal">NULL</span> &amp;&amp; p2 != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (p1-&gt;data &lt; p2-&gt;data)</span><br><span class="line">		&#123;</span><br><span class="line">			p3-&gt;next = p1;</span><br><span class="line">			p1 = p1-&gt;next;</span><br><span class="line">			p3 = p3-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			p3-&gt;next = p2;</span><br><span class="line">			p2 = p2-&gt;next;</span><br><span class="line">			p3 = p3-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (p1 != <span class="literal">NULL</span>)</span><br><span class="line">		p3-&gt;next = p1;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		p3-&gt;next = p2;</span><br><span class="line">	<span class="keyword">delete</span> LA.pHead; LA.pHead = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">delete</span> LB.pHead; LB.pHead = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">return</span> LC;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>重载赋值运算符：</code><br>若链表本身为空，使用插值的方法生成链表。若本身不空，可以再次调用归并，是两者进行归并。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">LinkList</span>&lt;T&gt;&amp; <span class="title">LinkList</span>&lt;T&gt;:</span>:<span class="keyword">operator</span> = (LinkList&lt;T&gt; *L)</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">this</span>-&gt;pHead-&gt;next==<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		Node&lt;T&gt; *p = L-&gt;pHead-&gt;next;</span><br><span class="line">		<span class="keyword">while</span> (p != <span class="literal">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">this</span>-&gt;Insert(<span class="keyword">this</span>-&gt;ListLength()+<span class="number">1</span>,p-&gt;data);</span><br><span class="line">			p = p-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">		L-&gt;~LinkList();</span><br><span class="line">		<span class="comment">//因为尝试的是值复制，所以显示调用析构函数删除空间</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>-&gt;Merge(*L);</span><br><span class="line">	&#125;</span><br><span class="line">	 <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###2.1.10链表的排序<br>这里选用插入排序法，将链表按照升序排列。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* SelectSort()</span></span><br><span class="line"><span class="comment">* 作用:将L链表按升序排列</span></span><br><span class="line"><span class="comment">* @param[in]</span></span><br><span class="line"><span class="comment">* @param[out]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">LinkList</span>&lt;T&gt;:</span>:SelectSort()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//选择排序,每次选择未排序部分的最小值交换到前面 </span></span><br><span class="line">	<span class="keyword">if</span> (pHead-&gt;next == <span class="literal">NULL</span>) <span class="keyword">return</span>; <span class="comment">//链表为空  </span></span><br><span class="line">	<span class="keyword">if</span> (pHead-&gt;next-&gt;next == <span class="literal">NULL</span>) <span class="keyword">return</span>; <span class="comment">//只有一个节点  </span></span><br><span class="line">	Node&lt;T&gt; *Pre_Sorting = pHead-&gt;next; <span class="comment">//记录正在排序的点  </span></span><br><span class="line">	<span class="keyword">while</span> (Pre_Sorting != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		Node&lt;T&gt; *pTemp = Pre_Sorting-&gt;next; <span class="comment">//从pSorting开始往后遍历  </span></span><br><span class="line">		Node&lt;T&gt; *pMin = Pre_Sorting; <span class="comment">//暂存从pSorting开始的最小的点  </span></span><br><span class="line">		<span class="keyword">while</span> (pTemp != <span class="literal">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (pTemp-&gt;data &lt; pMin-&gt;data)</span><br><span class="line">				pMin = pTemp;</span><br><span class="line">			pTemp = pTemp-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//进行交换  </span></span><br><span class="line">		T temp = Pre_Sorting-&gt;data;</span><br><span class="line">		Pre_Sorting-&gt;data = pMin-&gt;data;</span><br><span class="line">		pMin-&gt;data = temp;</span><br><span class="line">		<span class="comment">//排序下一个点  </span></span><br><span class="line">		Pre_Sorting = Pre_Sorting-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>至此，链表功能基本说明完毕。下面进入测试阶段。</p>
+<hr>
+<p>##三、测试</p>
+<p>###3.1有参构造函数测试<br>部分代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">10</span>] = &#123;<span class="number">8</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">9</span>,<span class="number">7</span>,<span class="number">10</span>&#125;;</span><br><span class="line">	LinkList&lt;<span class="keyword">int</span>&gt; L1(a, <span class="number">10</span>, <span class="string">"head"</span>);</span><br><span class="line">	LinkList&lt;<span class="keyword">int</span>&gt; L2(a, <span class="number">10</span>, <span class="string">"sorted"</span>);</span><br><span class="line">	LinkList&lt;<span class="keyword">int</span>&gt; L3(a, <span class="number">10</span>, <span class="string">"tail"</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"链表L1(头插)为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	L1.PrintListLink();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"链表L2（顺序插）为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	L2.PrintListLink();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"链表L3（尾插）为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	L3.PrintListLink();</span><br><span class="line">    ………………</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试截图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A801.png" alt="无"></p>
+<p>###3.2返回链表长度测试<br>部分代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">8</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">7</span>, <span class="number">10</span> &#125;;</span><br><span class="line">LinkList&lt;<span class="keyword">int</span>&gt; L(a, <span class="number">10</span>, <span class="string">"head"</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"链表L为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">L.PrintListLink();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"返回链表长度："</span> &lt;&lt; <span class="built_in">endl</span> </span><br><span class="line">	&lt;&lt; L.ListLength()&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure></p>
+<p>测试截图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A802.png" alt="此处输入图片的描述"></p>
+<p>###3.3按位返回元素引用测试<br>部分代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">8</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">7</span>, <span class="number">10</span> &#125;;</span><br><span class="line">LinkList&lt;<span class="keyword">int</span>&gt; L(a, <span class="number">10</span>, <span class="string">"head"</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"链表L为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">L.PrintListLink();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"返回位序5的元素值："</span> &lt;&lt; <span class="built_in">endl</span> </span><br><span class="line">	&lt;&lt; L.Get(<span class="number">5</span>)&lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure></p>
+<p>测试截图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A803.png" alt="此处输入图片的描述"></p>
+<p>###3.4  按值找位测试<br>部分代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">8</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">7</span>, <span class="number">10</span> &#125;;</span><br><span class="line">LinkList&lt;<span class="keyword">int</span>&gt; L(a, <span class="number">10</span>, <span class="string">"head"</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"链表L为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">L.PrintListLink();</span><br><span class="line"><span class="keyword">int</span> A = <span class="number">7</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"返回元素A(7)的位序值："</span> &lt;&lt; <span class="built_in">endl</span></span><br><span class="line">	&lt;&lt; L.Locate(A) &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure></p>
+<p>测试截图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A804.png" alt="此处输入图片的描述"></p>
+<p>###3.5按位插值测试<br>部分代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">8</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">7</span>, <span class="number">10</span> &#125;;</span><br><span class="line">LinkList&lt;<span class="keyword">int</span>&gt; L(a, <span class="number">10</span>, <span class="string">"head"</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"链表L为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">L.PrintListLink();</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt; <span class="string">"按位(4)插值(11)："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">L.Insert(<span class="number">4</span>, <span class="number">11</span>);	</span><br><span class="line">L.PrintListLink();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure></p>
+<p>测试截图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A805.png" alt="此处输入图片的描述"></p>
+<p>###3.6按位删值测试<br>部分代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">8</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">7</span>, <span class="number">10</span> &#125;;</span><br><span class="line">LinkList&lt;<span class="keyword">int</span>&gt; L(a, <span class="number">10</span>, <span class="string">"head"</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"链表L为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">L.PrintListLink();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"按位(1)删值："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">L.Delete(<span class="number">1</span>);</span><br><span class="line">L.PrintListLink();</span><br></pre></td></tr></table></figure></p>
+<p>测试截图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A806.png" alt="此处输入图片的描述"></p>
+<p>###3.7逆序链表测试<br>部分代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">8</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">7</span>, <span class="number">10</span> &#125;;</span><br><span class="line">LinkList&lt;<span class="keyword">int</span>&gt; L(a, <span class="number">10</span>, <span class="string">"head"</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"链表L为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">L.PrintListLink();</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt; <span class="string">"逆序链表："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">L.Invert();</span><br><span class="line">L.PrintListLink();</span><br></pre></td></tr></table></figure></p>
+<p>测试截图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A807.png" alt="此处输入图片的描述"></p>
+<p>###3.8 归并测试<br>部分代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt;  <span class="string">"归并链表(成员函数)："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">int</span> b[<span class="number">6</span>] = &#123; <span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> c[<span class="number">6</span>] = &#123;<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">12</span>&#125;;</span><br><span class="line">LinkList&lt;<span class="keyword">int</span>&gt; LB(b, <span class="number">6</span>, <span class="string">"tail"</span>);</span><br><span class="line">LinkList&lt;<span class="keyword">int</span>&gt; LC(c, <span class="number">6</span>, <span class="string">"tail"</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"链表LB为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">LB.PrintListLink();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"链表LC为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">LC.PrintListLink();</span><br><span class="line">LB.Merge(LC);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"归并后的链表LB为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">LB.PrintListLink(); </span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure></p>
+<p>测试截图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A808.png" alt="此处输入图片的描述"></p>
+<p>###3.9有返回值归并友元函数测试<br>部分代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt;  <span class="string">"归并链表(有返回值函数)："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">int</span> b[<span class="number">6</span>] = &#123; <span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> c[<span class="number">6</span>] = &#123;<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">12</span>&#125;;</span><br><span class="line">LinkList&lt;<span class="keyword">int</span>&gt; LB(b, <span class="number">6</span>, <span class="string">"tail"</span>);</span><br><span class="line">LinkList&lt;<span class="keyword">int</span>&gt; LC(c, <span class="number">6</span>, <span class="string">"tail"</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"链表LB为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">LB.PrintListLink();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"链表LC为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">LC.PrintListLink();</span><br><span class="line">LinkList&lt;<span class="keyword">int</span>&gt; L;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"合并后的L链表："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">L = Merge(LB, LC);</span><br><span class="line">L.PrintListLink();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure></p>
+<p>测试截图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A809.png" alt="此处输入图片的描述"></p>
+<p>###3.10 无返回值归并链表测试<br>部分代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt;  <span class="string">"归并链表(无返回值函数)："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">int</span> b[<span class="number">6</span>] = &#123; <span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> c[<span class="number">6</span>] = &#123;<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">12</span>&#125;;</span><br><span class="line">LinkList&lt;<span class="keyword">int</span>&gt; LB(b, <span class="number">6</span>, <span class="string">"tail"</span>);</span><br><span class="line">LinkList&lt;<span class="keyword">int</span>&gt; LC(c, <span class="number">6</span>, <span class="string">"tail"</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"链表LB为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">LB.PrintListLink();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"链表LC为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">LC.PrintListLink();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"合并后的LB链表："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">Merge_1(LB, LC);</span><br><span class="line">LB.PrintListLink();</span><br></pre></td></tr></table></figure></p>
+<p>测试截图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A810.png" alt="此处输入图片的描述"></p>
+<hr>
+<pre><code>陈实
+2015年3月29日
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/data_structure/字符串/" rel="next" title="字符串">
+                <i class="fa fa-chevron-left"></i> 字符串
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/data_structure/树/" rel="prev" title="树">
+                树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

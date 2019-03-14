@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="#1001 Sum Problem1In this problem, your task is to calculate SUM(n) = 1 + 2 + 3 + ... + n 123456789101112131415#include&amp;lt;stdio.h&amp;gt;void main()&amp;#123;	int i,n,sum;	while(scanf(&amp;quot;%d&amp;quot;,&amp;amp;n)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="杭电OJ">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/未分类/杭电OJ/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="#1001 Sum Problem1In this problem, your task is to calculate SUM(n) = 1 + 2 + 3 + ... + n 123456789101112131415#include&amp;lt;stdio.h&amp;gt;void main()&amp;#123;	int i,n,sum;	while(scanf(&amp;quot;%d&amp;quot;,&amp;amp;n)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.853Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="杭电OJ">
+<meta name="twitter:description" content="#1001 Sum Problem1In this problem, your task is to calculate SUM(n) = 1 + 2 + 3 + ... + n 123456789101112131415#include&amp;lt;stdio.h&amp;gt;void main()&amp;#123;	int i,n,sum;	while(scanf(&amp;quot;%d&amp;quot;,&amp;amp;n)">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/未分类/杭电OJ/">
+
+
+
+
+
+  <title>杭电OJ | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/未分类/杭电OJ/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">杭电OJ</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:21+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>#1001 Sum Problem<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">In this problem, your task is to calculate SUM(n) = 1 + 2 + 3 + ... + n</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">	int i,n,sum;</span><br><span class="line">	while(scanf(&quot;%d&quot;,&amp;n)!=EOF)</span><br><span class="line">	&#123;</span><br><span class="line">		sum=0;</span><br><span class="line">		for(i=1;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			sum=sum+i;</span><br><span class="line">		&#125; </span><br><span class="line">		printf(&quot;%d\n\n&quot;,sum);</span><br><span class="line">		sum=0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#1002 A + B Problem II<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">大数相加 cpp</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;stack&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int n;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">    for(int x=1;x&lt;=n;x++)</span><br><span class="line">    &#123;</span><br><span class="line">        stack&lt;int&gt; s;</span><br><span class="line">       char a[1000],b[1000];</span><br><span class="line">       int sum=0;</span><br><span class="line">       scanf(&quot;%s%s&quot;,a,b);</span><br><span class="line">        int stra=strlen(a);</span><br><span class="line">       int strb=strlen(b);</span><br><span class="line">       int i,j;</span><br><span class="line">       for(i=stra-1,j=strb-1;i&gt;=0&amp;&amp;j&gt;=0;i--,j--)</span><br><span class="line">       &#123;</span><br><span class="line">            sum+=a[i]-&apos;0&apos;+b[j]-&apos;0&apos;;</span><br><span class="line">            s.push(sum%10);    //由于是由后面低位开始处理的，输出时要由高位到低位输出，故用栈处理</span><br><span class="line">            sum/=10;    //记录上一位进位情况</span><br><span class="line">       &#125;</span><br><span class="line">       if(i&gt;=0)   //第一个数位数较多</span><br><span class="line">       &#123;</span><br><span class="line">            for(;i&gt;=0;i--)</span><br><span class="line">            &#123;</span><br><span class="line">                sum+=a[i]-&apos;0&apos;;</span><br><span class="line">                s.push(sum%10);</span><br><span class="line">                sum/=10;</span><br><span class="line">            &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       else   //第二个数位数较多</span><br><span class="line">       &#123;</span><br><span class="line">            for(;j&gt;=0;j--)</span><br><span class="line">            &#123;</span><br><span class="line">                sum+=b[j]-&apos;0&apos;;</span><br><span class="line">                s.push(sum%10);</span><br><span class="line">                sum/=10;</span><br><span class="line">            &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       if(x!=1)</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">       printf(&quot;Case %d:\n&quot;,x);</span><br><span class="line">       printf(&quot;%s + %s = &quot;,a,b);</span><br><span class="line">       while(!s.empty())</span><br><span class="line">       &#123;</span><br><span class="line">           printf(&quot;%d&quot;,s.top());</span><br><span class="line">           s.pop();</span><br><span class="line">       &#125;</span><br><span class="line">       printf(&quot;\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#1003 Max Sum<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">最大连续子段和 cpp</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int T,N,num,startP,endP;</span><br><span class="line">    cin&gt;&gt;T;</span><br><span class="line">    for(int k=0;k&lt;T;k++)</span><br><span class="line">    &#123;</span><br><span class="line">            cin&gt;&gt;N;</span><br><span class="line">            int max=-1001,sum=0,temp=1;</span><br><span class="line">            for(int i=0;i&lt;N;i++)</span><br><span class="line">            &#123;</span><br><span class="line">                            cin&gt;&gt;num;</span><br><span class="line">                            sum+=num;</span><br><span class="line">                            if(sum&gt;max)</span><br><span class="line">                            &#123;</span><br><span class="line">                                      max=sum;</span><br><span class="line">                                      startP=temp;</span><br><span class="line">                                      endP=i+1;</span><br><span class="line">                            &#125;</span><br><span class="line">                            if(sum&lt;0)</span><br><span class="line">                            &#123;</span><br><span class="line">                                    sum=0;</span><br><span class="line">                                    temp=i+2;</span><br><span class="line">                            &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            cout&lt;&lt;&quot;Case &quot;&lt;&lt;k+1&lt;&lt;&quot;:&quot;&lt;&lt;endl&lt;&lt;max&lt;&lt;&quot; &quot;&lt;&lt;startP&lt;&lt;&quot; &quot;&lt;&lt;endP&lt;&lt;endl;</span><br><span class="line">            if(k!=T-1) cout&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#1004 Let the Balloon Rise<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">找出出现最多的颜色 cpp</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">using namespace std; </span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    int  nCount=0; </span><br><span class="line">    string strTmp;</span><br><span class="line">    while(cin&gt;&gt;nCount&amp;&amp;nCount!=0)</span><br><span class="line">    &#123;</span><br><span class="line">        map&lt;string,int&gt; mapColor;//用map容器非常方便</span><br><span class="line">        for(int i=0;i&lt;nCount;++i)</span><br><span class="line">        &#123;</span><br><span class="line">            cin&gt;&gt;strTmp;</span><br><span class="line">            mapColor[strTmp]++;</span><br><span class="line">        &#125;</span><br><span class="line">       map&lt;string, int&gt;::iterator iter;</span><br><span class="line">       int max = -1;</span><br><span class="line">       for(iter = mapColor.begin(); iter != mapColor.end(); iter++)</span><br><span class="line">       &#123;//第一次遍历标记最大次数所在位置</span><br><span class="line">           if(iter-&gt;second&gt;max)</span><br><span class="line">           &#123;</span><br><span class="line">               max = iter-&gt;second;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       for(iter = mapColor.begin(); iter != mapColor.end(); iter++)</span><br><span class="line">       &#123;//第二次遍历找到标记的位置</span><br><span class="line">           if(iter-&gt;second==max)</span><br><span class="line">           &#123;</span><br><span class="line">               cout&lt;&lt;iter-&gt;first&lt;&lt;endl;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;  </span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#1005 Number Sequence<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f(1) = 1, f(2) = 1, f(n) = (A * f(n - 1) + B * f(n - 2)) mod 7.</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt; </span><br><span class="line">int main() </span><br><span class="line">&#123; </span><br><span class="line">    int a,b,i; </span><br><span class="line">    long n,f[201]; </span><br><span class="line">    while (scanf(&quot;%d %d %ld&quot;,&amp;a,&amp;b,&amp;n)!=EOF) </span><br><span class="line">    &#123; </span><br><span class="line">        if(a==0 &amp;&amp; b==0 &amp;&amp; n==0) </span><br><span class="line">             break; </span><br><span class="line">        f[1]=1;</span><br><span class="line">        f[2]=1; </span><br><span class="line">        if(n&gt;=3) </span><br><span class="line">        &#123; </span><br><span class="line">             for(i=3;i&lt;200;i++) </span><br><span class="line">             &#123; </span><br><span class="line">                  f[i]=(a*f[i-1]+b*f[i-2])%7; </span><br><span class="line">                  if(f[i-1]==1 &amp;&amp; f[i]==1) </span><br><span class="line">                       break; </span><br><span class="line">             &#125; </span><br><span class="line">             i=i-2;</span><br><span class="line">             n=n%i; </span><br><span class="line">             if(n==0) </span><br><span class="line">                  n=i; </span><br><span class="line">             printf(&quot;%d\n&quot;,f[n]); </span><br><span class="line">        &#125; </span><br><span class="line">        else </span><br><span class="line">             printf(&quot;1\n&quot;);       </span><br><span class="line">    &#125; </span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#1007Quoit Design<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">求任两点间距离最小的两点间的距离</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int N = 100005;</span><br><span class="line">const double MAX = 10e100;</span><br><span class="line">const double eps = 0.00001;</span><br><span class="line">typedef struct TYPE</span><br><span class="line">&#123;</span><br><span class="line">    double x, y;</span><br><span class="line">    int index;</span><br><span class="line">&#125; Point;</span><br><span class="line">Point a[N], b[N], c[N];</span><br><span class="line">double closest(Point *, Point *, Point *, int, int);</span><br><span class="line">double dis(Point, Point);</span><br><span class="line">int cmp_x(const void *, const void*);</span><br><span class="line">int cmp_y(const void *, const void*);</span><br><span class="line">int merge(Point *, Point *, int, int, int);</span><br><span class="line">inline double min(double, double);</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int n, i;</span><br><span class="line">    double d;</span><br><span class="line">    scanf(&quot;%d&quot;, &amp;n);</span><br><span class="line">    while (n)</span><br><span class="line">    &#123;</span><br><span class="line">        for (i = 0; i &lt; n; i++)</span><br><span class="line">            scanf(&quot;%lf%lf&quot;, &amp;(a[i].x), &amp;(a[i].y));</span><br><span class="line">        qsort(a, n, sizeof(a[0]), cmp_x);</span><br><span class="line">        for (i = 0; i &lt; n; i++)</span><br><span class="line">            a[i].index = i;</span><br><span class="line">        memcpy(b, a, n *sizeof(a[0]));</span><br><span class="line">        qsort(b, n, sizeof(b[0]), cmp_y);</span><br><span class="line">        d = closest(a, b, c, 0, n - 1);</span><br><span class="line">        printf(&quot;%.2lf\n&quot;, d/2);</span><br><span class="line">        scanf(&quot;%d&quot;, &amp;n);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double closest(Point a[], Point b[], Point c[], int p, int q)</span><br><span class="line">&#123;</span><br><span class="line">    if (q - p == 1)</span><br><span class="line">        return dis(a[p], a[q]);</span><br><span class="line">    if (q - p == 2)</span><br><span class="line">    &#123;</span><br><span class="line">        double x1 = dis(a[p], a[q]);</span><br><span class="line">        double x2 = dis(a[p + 1], a[q]);</span><br><span class="line">        double x3 = dis(a[p], a[p + 1]);</span><br><span class="line">        if (x1 &lt; x2 &amp;&amp; x1 &lt; x3)</span><br><span class="line">            return x1;</span><br><span class="line">        else if (x2 &lt; x3)</span><br><span class="line">            return x2;</span><br><span class="line">        else</span><br><span class="line">            return x3;</span><br><span class="line">    &#125;</span><br><span class="line">    int m = (p + q) / 2;</span><br><span class="line">    int i, j, k;</span><br><span class="line">    double d1, d2;</span><br><span class="line">    for (i = p, j = p, k = m + 1; i &lt;= q; i++)</span><br><span class="line">        if (b[i].index &lt;= m)</span><br><span class="line">            c[j++] = b[i];</span><br><span class="line">    //数组c左半部保存划分后左部的点, 且对y是有序的.</span><br><span class="line">    else</span><br><span class="line">        c[k++] = b[i];</span><br><span class="line">    d1 = closest(a, c, b, p, m);</span><br><span class="line">    d2 = closest(a, c, b, m + 1, q);</span><br><span class="line">    double dm = min(d1, d2);</span><br><span class="line">    merge(b, c, p, m, q); //数组c左右部分分别是对y坐标有序的, 将其合并到b.</span><br><span class="line">    for (i = p, k = p; i &lt;= q; i++)</span><br><span class="line">        if (fabs(b[i].x - b[m].x) &lt; dm)</span><br><span class="line">            c[k++] = b[i];</span><br><span class="line">    //找出离划分基准左右不超过dm的部分, 且仍然对y坐标有序.</span><br><span class="line">    for (i = p; i &lt; k; i++)</span><br><span class="line">    for (j = i + 1; j &lt; k &amp;&amp; c[j].y - c[i].y &lt; dm; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        double temp = dis(c[i], c[j]);</span><br><span class="line">        if (temp &lt; dm)</span><br><span class="line">            dm = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    return dm;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double dis(Point p, Point q)</span><br><span class="line">&#123;</span><br><span class="line">    double x1 = p.x - q.x, y1 = p.y - q.y;</span><br><span class="line">    return sqrt(x1 *x1 + y1 * y1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int merge(Point p[], Point q[], int s, int m, int t)</span><br><span class="line">&#123;</span><br><span class="line">    int i, j, k;</span><br><span class="line">    for (i = s, j = m + 1, k = s; i &lt;= m &amp;&amp; j &lt;= t;)</span><br><span class="line">    &#123;</span><br><span class="line">        if (q[i].y &gt; q[j].y)</span><br><span class="line">            p[k++] = q[j], j++;</span><br><span class="line">        else</span><br><span class="line">            p[k++] = q[i], i++;</span><br><span class="line">    &#125;</span><br><span class="line">    while (i &lt;= m)</span><br><span class="line">        p[k++] = q[i++];</span><br><span class="line">    while (j &lt;= t)</span><br><span class="line">        p[k++] = q[j++];</span><br><span class="line">    memcpy(q + s, p + s, (t - s + 1) *sizeof(p[0]));</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int cmp_x(const void *p, const void *q)</span><br><span class="line">&#123;</span><br><span class="line">    double temp = ((Point*)p)-&gt;x - ((Point*)q)-&gt;x;</span><br><span class="line">    if (temp &gt; 0)</span><br><span class="line">        return 1;</span><br><span class="line">    else if (fabs(temp) &lt; eps)</span><br><span class="line">        return 0;</span><br><span class="line">    else</span><br><span class="line">        return  - 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int cmp_y(const void *p, const void *q)</span><br><span class="line">&#123;</span><br><span class="line">    double temp = ((Point*)p)-&gt;y - ((Point*)q)-&gt;y;</span><br><span class="line">    if (temp &gt; 0)</span><br><span class="line">        return 1;</span><br><span class="line">    else if (fabs(temp) &lt; eps)</span><br><span class="line">        return 0;</span><br><span class="line">    else</span><br><span class="line">        return  - 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">inline double min(double p, double q)</span><br><span class="line">&#123;</span><br><span class="line">    return (p &gt; q) ? (q): (p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#1008 电梯问题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">花费6秒移动电梯一层,4秒移动到下一层。电梯将在每一站停留5秒。</span><br><span class="line">3 2 3 1 === 41s</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123; int a[100],i,j,k,n; </span><br><span class="line">  while(scanf(&quot;%d&quot;,&amp;i)!=EOF &amp;&amp; i) </span><br><span class="line">   &#123;   n=0;a[0]=0; </span><br><span class="line">        for(j=1;j&lt;=i;j++)   </span><br><span class="line">        scanf(&quot;%d&quot;,&amp;a[j]);  </span><br><span class="line">           for(j=1;j&lt;=i;j++)  </span><br><span class="line">              &#123;    if(a[j]&gt;a[j-1])   </span><br><span class="line">                 &#123;     n+=(a[j]-a[j-1])*6;   </span><br><span class="line">                   n+=5;    &#125;  </span><br><span class="line">                     else    &#123;     n+=(a[j-1]-a[j])*4;  </span><br><span class="line">                    n+=5;</span><br><span class="line">    &#125;  </span><br><span class="line">     &#125;  </span><br><span class="line">     printf(&quot;%d\n&quot;,n);   &#125;</span><br><span class="line"> return 0;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>#<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">老鼠有很多的猫粮   要和看仓库的猫换java豆吃    每个仓库的java豆有不同的储量和价格</span><br><span class="line">老鼠想你帮助他用自己猫粮换最多的java豆</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef struct node&#123;</span><br><span class="line">    double gs;</span><br><span class="line">    double jg;</span><br><span class="line">    double dj;</span><br><span class="line">&#125;mat;</span><br><span class="line">mat a[1002];</span><br><span class="line">int cmp(mat a,mat b)</span><br><span class="line">&#123;</span><br><span class="line">    return a.dj&lt;b.dj;    </span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int n,i;</span><br><span class="line">    double m,count;</span><br><span class="line">    while(scanf(&quot;%lf%d&quot;,&amp;m,&amp;n))</span><br><span class="line">    &#123;</span><br><span class="line">        if(m==-1&amp;&amp;n==-1)break;</span><br><span class="line">        count=0;</span><br><span class="line">        for(i=0;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            scanf(&quot;%lf%lf&quot;,&amp;a[i].gs,&amp;a[i].jg);</span><br><span class="line">            a[i].dj=a[i].gs/a[i].jg;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(a,a+n,cmp);</span><br><span class="line">        i=n-1;</span><br><span class="line">        while(m!=0.0)</span><br><span class="line">        &#123;</span><br><span class="line">            if(a[i].jg&gt;=m)</span><br><span class="line">            &#123;</span><br><span class="line">                count+=a[i].dj*m;</span><br><span class="line">                m=0;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                count+=a[i].gs;</span><br><span class="line">                m-=a[i].jg;</span><br><span class="line">                i--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        printf(&quot;%.3lf\n&quot;,count);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#1024 dp 最大M籽椴和<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">问题： </span><br><span class="line">给定由n个整数(可能为负整数)组成的序列e1,e2,…,en,以及一个正整数m，要求确定序列的m个不相交子段，使这m个子段的总和达到最大。 </span><br><span class="line">分析： </span><br><span class="line">设b(i，j)表示数组e的前j项中i个子段和的最大值，且第i个子段含e[j](1￡ i ￡m，i￡ j ￡n)。以下称b(i, j)为“最后一个元素属于第i子段的j元素i子段问题”。则n个元素中求i个子段的最优值显然为： </span><br><span class="line">best(i, n) = Max&#123; b(i, j) &#125; (i &lt;= j &lt;= n) </span><br><span class="line">计算b(i，j)的最优子结构为： </span><br><span class="line">b(i，j) = Max&#123; b(i, j-1) + e[i], Max&#123; b(i-1, t) &#125; + e[i] &#125; (i &lt;= t &lt; j) </span><br><span class="line">这样，可以得到时间复杂度为O(m * n ^ 2)和空间复杂度为O(m * n)的MS相当漂亮而且容易理解的DP算法。当n不大的时候，这个算法足够优秀，然而，当n很大的时候，这个算法显然是不能让人满意的！ </span><br><span class="line">优化： </span><br><span class="line">观察上面的最优子结构，我们发现b(i, j)的计算只和b(i, j-1)和b(i-1, t)有关，也就是说只和最后一个元素属于第i子段的j-1元素i子段问题和前j-1个元素的最大i-1子段问题有关（可以分别理解为将e[j]作为最后一个元素而并入第i子段和将e[j]另起一段作为第i分段）。这样，我们只要分别用curr_best和prev_best两个一维数组保存当前阶段和前一阶段的状态值b(i, *)和b(i-1, *) 就行了，内存使用也就可以降为O(2 * n)。 </span><br><span class="line">再来看看时间。分析发现，原算法低效主要是在求max_sum(i, t) = Max&#123;b(i, t)&#125; (i &lt;= t &lt; j)的时候用了O(n)的时间。其实，在求b(i, j)的过程中，我们完全可以同时计算出max_sum(i, t)，因为max_sum(i,j) = Max&#123;b(i,j), max_sum(i,j-1)&#125;，这个只花费O(1)的时间。而max_sum(i,t)不就是i+1阶段中要用到的吗？关键问题已经解决了！那如何保存max_sum呢？再开一个数组？我们可以在prev_best数组中保存！这个数组的任务相当艰巨，它既存放着i-1阶段的max_sum数值，又存放这供i+1阶段使用的i阶段的max_sum值。MS这有点矛盾？其实这是可行的。注意到我们在计算b(i,j)时只使用了prev_best[j-1]，使用完了再也没有用了，这样空闲着岂不浪费？其实我们可以将max_sum(i, j-1)存放到prev_best[j-1]里面——这个主意相当不错，它让所有问题迎刃而解。 </span><br><span class="line">现在，我们得到了一个时间复杂度为O(m * n)、空间复杂度为(2 * n)的算法。这个算法相当优秀，以至于m为小常数，n = 1000000时，结果也是瞬间就出来了（此时算法的时间复杂度可以认为是O(n)的）。</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt; </span><br><span class="line">#include&lt;stdlib.h&gt; </span><br><span class="line">#define MIN_SUM 0x80000000 </span><br><span class="line"></span><br><span class="line">int max_sum(int e[], int n, int m) </span><br><span class="line">&#123; </span><br><span class="line">	int *curr_best; </span><br><span class="line">	int *prev_best; </span><br><span class="line">	int max_sum, i, j; </span><br><span class="line">	</span><br><span class="line">	curr_best = (int*)malloc(sizeof(int) * (n + 1)); </span><br><span class="line">	prev_best = (int*)calloc(n + 1, sizeof(int)); </span><br><span class="line">	</span><br><span class="line">	*curr_best = 0; </span><br><span class="line">	e--; </span><br><span class="line">	</span><br><span class="line">	for(i = 1; i &lt;= m; ++i) </span><br><span class="line">	&#123; </span><br><span class="line">		max_sum = MIN_SUM; </span><br><span class="line">		for(j = i; j &lt;= n; ++j) </span><br><span class="line">		&#123; </span><br><span class="line">			if(curr_best[j - 1] &lt; prev_best[j - 1]) </span><br><span class="line">				curr_best[j] = prev_best[j - 1] + e[j]; </span><br><span class="line">			else </span><br><span class="line">				curr_best[j] = curr_best[j - 1] + e[j]; </span><br><span class="line">			prev_best[j - 1] = max_sum; </span><br><span class="line">			if(max_sum &lt; curr_best[j]) </span><br><span class="line">				max_sum = curr_best[j]; </span><br><span class="line">		&#125; </span><br><span class="line">		prev_best[j - 1] = max_sum; </span><br><span class="line">	&#125; </span><br><span class="line">	</span><br><span class="line">	free(prev_best); </span><br><span class="line">	free(curr_best); </span><br><span class="line">	</span><br><span class="line">	return max_sum; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">int main() </span><br><span class="line">&#123; </span><br><span class="line">	int n, m, i, *data; </span><br><span class="line">	while(scanf(&quot;%d%d&quot;, &amp;m, &amp;n) == 2 &amp;&amp; n &gt; 0 &amp;&amp; m &gt; 0) </span><br><span class="line">	&#123; </span><br><span class="line">		data = (int*)malloc(sizeof(int) * n); </span><br><span class="line">		for(i = 0; i &lt; n; ++i) </span><br><span class="line">			scanf(&quot;%d&quot;, &amp;data[i]); </span><br><span class="line">		printf(&quot;%d\n&quot;, max_sum(data, n, m)); </span><br><span class="line">		free(data); </span><br><span class="line">	&#125; </span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/未分类/操作系统作业1/" rel="next" title="操作系统作业1">
+                <i class="fa fa-chevron-left"></i> 操作系统作业1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/未分类/流播放/" rel="prev" title="流播放">
+                流播放 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="#6.17123给定数量无限的面值分别为x1,x2,…,xn的硬币，我们希望将价格v兑换成零钱。也即，我们希望找出一堆总价值恰好为v的硬币。这有时候是不可能的：例如，如果硬币只有5和10两种面值，则我们可以兑换15却不能兑换12.请给出一个针对如下问题的O(nv)的动态规划算法：输入：x1,x2,…xn;v问题：能否用面值分别为x1,x2..,xn的硬币兑换价格v？ DP方程： 12345678">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法概论作业6.17 6.18 6.23 6.26">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/算法概论作业/算法概论作业6.17 6.18 6.23 6.26/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="#6.17123给定数量无限的面值分别为x1,x2,…,xn的硬币，我们希望将价格v兑换成零钱。也即，我们希望找出一堆总价值恰好为v的硬币。这有时候是不可能的：例如，如果硬币只有5和10两种面值，则我们可以兑换15却不能兑换12.请给出一个针对如下问题的O(nv)的动态规划算法：输入：x1,x2,…xn;v问题：能否用面值分别为x1,x2..,xn的硬币兑换价格v？ DP方程： 12345678">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/z4z3lcdt5dryhqfrfkm3p3mx/0.jpg">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.961Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法概论作业6.17 6.18 6.23 6.26">
+<meta name="twitter:description" content="#6.17123给定数量无限的面值分别为x1,x2,…,xn的硬币，我们希望将价格v兑换成零钱。也即，我们希望找出一堆总价值恰好为v的硬币。这有时候是不可能的：例如，如果硬币只有5和10两种面值，则我们可以兑换15却不能兑换12.请给出一个针对如下问题的O(nv)的动态规划算法：输入：x1,x2,…xn;v问题：能否用面值分别为x1,x2..,xn的硬币兑换价格v？ DP方程： 12345678">
+<meta name="twitter:image" content="http://static.zybuluo.com/rg070836rg/z4z3lcdt5dryhqfrfkm3p3mx/0.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/算法概论作业/算法概论作业6.17 6.18 6.23 6.26/">
+
+
+
+
+
+  <title>算法概论作业6.17 6.18 6.23 6.26 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/算法概论作业/算法概论作业6.17 6.18 6.23 6.26/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法概论作业6.17 6.18 6.23 6.26</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:21+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法概论作业/" itemprop="url" rel="index">
+                    <span itemprop="name">算法概论作业</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>#6.17<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">给定数量无限的面值分别为x1,x2,…,xn的硬币，我们希望将价格v兑换成零钱。也即，我们希望找出一堆总价值恰好为v的硬币。这有时候是不可能的：例如，如果硬币只有5和10两种面值，则我们可以兑换15却不能兑换12.请给出一个针对如下问题的O(nv)的动态规划算法：</span><br><span class="line">输入：x1,x2,…xn;v</span><br><span class="line">问题：能否用面值分别为x1,x2..,xn的硬币兑换价格v？</span><br></pre></td></tr></table></figure></p>
+<p>DP方程：<br><img src="http://static.zybuluo.com/rg070836rg/z4z3lcdt5dryhqfrfkm3p3mx/0.jpg" alt="0.jpg-261.8kB"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">bool canChange(int *x,int n,int v)</span><br><span class="line">&#123;</span><br><span class="line">    bool h[v];</span><br><span class="line">    int j;</span><br><span class="line">    h[0]=true;</span><br><span class="line">    for(j=1;j&lt;=v;j++)</span><br><span class="line">    	h[j]=false;//initialization</span><br><span class="line">    for(j=1;j&lt;=v;j++)</span><br><span class="line">    &#123;</span><br><span class="line">    	for(int i=1;i&lt;=n;i++)</span><br><span class="line">    	&#123;</span><br><span class="line">    		if(j==x[i])</span><br><span class="line">    			h[j]=true;</span><br><span class="line">    		else if(j&gt;x[i])</span><br><span class="line">    			h[j]=h[j] || h[j-x[i]];</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return h[v];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#6.18<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">考虑以上零钱兑换问题的一个变形：您有面值x1,x2…xn的硬币，希望兑换的价格为v，但是每种面值的硬币最多只能使用一次。举例来说，如果硬币面值为1,5,10,20，则可兑换的价包括1+15=16,1+10+20=31,但是无法兑换40（因为20不能用2次）。请说明如何在O（nv）时间内解决该问题。</span><br></pre></td></tr></table></figure></p>
+<p>DP方程:<br>$h(i,j)=  h(i-1,j-x[i]) || h(i-1,j)$</p>
+<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">For(i=0;i&lt;=n;i++)</span><br><span class="line">	H(I,0)=0;</span><br><span class="line">For(j=0;j&lt;=v;j++)</span><br><span class="line">	H(0,j)=0;</span><br><span class="line">For(i=1;i&lt;=n;i++)</span><br><span class="line">	For(j=1;j&lt;=v;j++)</span><br><span class="line">		H(i,j)=h(i-1,j-x[i]) || h(i-1,j)</span><br></pre></td></tr></table></figure></p>
+<p>#6.23<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">一个生产系统共包含n个顺序执行的阶段。每个阶段i（1&lt;=i&lt;=n）由对应的机器Mi执行。Mi可靠工作的概率为ri(失效的概率为1-ri)。因此，如果我们在每个阶段都只使用一台机器，整个系统可靠工作的概率将为r1*r2…rn。为了有所改进，我们引入机器的冗余，即对每台机器Mi都建立mi个副本。Mi的所有mi个副本同时失效的概率为（1-ri）^mi，这意味着第i阶段工作顺利完成的概率为1-（1-ri）^mi，从而整个系统的可靠性提高到了∏(1-(1-ri)^mi)。设机器Mi的成本为ci，购买机器的总预算为B（假设B和ci都是正整数）</span><br><span class="line">	给定概率r1,r2…rn,成本c1,c2…cn和预算B，请给出在预算范围内进行冗余配置的策略(m1,m2…mn),以最大限度的保证系统的可行性。</span><br></pre></td></tr></table></figure></p>
+<p>思路：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">假设h(I,j)为前i个阶段预算为j的最大正常运行概率。</span><br><span class="line">前i-1个阶段可能情况为h(i-1,j-mc[i])*(1-(1-ri)^m),m&gt;=1,</span><br><span class="line">h(I,j)取其中的最大一个，并且由于前i-1个阶段每个机器至少要1个，</span><br><span class="line">所以m*c[i]&lt;=j-(c[1]+c[2]+…+c[i-1]),</span><br><span class="line">令s[i]=c[1]+c[2]+…+c[i],</span><br><span class="line">那么m*c[i]&lt;=j-s[i-1]。</span><br></pre></td></tr></table></figure></p>
+<p>DP方程：</p>
+<p>$h(i,j)$     =      1,    $i=0 | j=0$<br>$h(i,j)$         = $Max(H(i-1,j-mc[i])<em>(1-(1-ri)^m))$   $(m&gt;=1,m</em>c[i]&lt;=j-s[i-1]), others$</p>
+<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">IntI,j;</span><br><span class="line">For(i=0;i&lt;=n;i++)</span><br><span class="line">	H(I,0)=1;</span><br><span class="line">For(j=0;j&lt;=B;j++)</span><br><span class="line">	H(0,j)=1;</span><br><span class="line">For(i=1;i&lt;=n;i++)</span><br><span class="line">	For(j=1;j&lt;=B;j++)</span><br><span class="line">		H(I,j)=0;</span><br><span class="line">For(i=1;i&lt;=n;i++)</span><br><span class="line">	For(j=1;j&lt;=B;j++)</span><br><span class="line">		Int m=1;</span><br><span class="line">		While(m*c[i]&lt;=j-s[i])</span><br><span class="line">			If(h(i-1,j-m*c[i])*(1-(1-ri)^m)&gt;h(I,j))</span><br><span class="line">				H(I,j)=h(i-1,j-m*c[i])*(1-(1-ri)^m);</span><br><span class="line">Return h(n,B);</span><br></pre></td></tr></table></figure></p>
+<p>#6.26<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">序列对齐。新的基因被发现后，为了了解其功能，一个常用的方法是查找已知基因中与之相似的基因。两个基因之间的相似度是由他们可以相互对齐的程度决定的。为了对他进行量化，考虑基于字母表M=&#123;A,C,G,T&#125;定义的字符串。设两个基因（字符串）分别为x=ATGCC,y=TACGCA。X和y的一个对齐是指将它们都横向书写，然后将其中相同的字符进行匹配的方式，例如：</span><br><span class="line">	-	A	T	-	G	C	C</span><br><span class="line">	T	A	-	C	G	C	A</span><br><span class="line">其中：“-”表示一个空隙；串中所有字符必须保持原有的顺序，且每行必须包含至少一个字符串的某个字符。对齐的分值基于一个（M+1）*（M+1）的评分矩阵定义，其中包含特定的行和列对应于空隙的情况。举例来说，此前列举的对齐方式分值如下：</span><br><span class="line">	O(-,T),O(A,A),O(T,-),O(-,C),O(G,G),O(C,C),o(C,A)</span><br><span class="line">请给出一个动态规划算法，以两个字符串x[1…n],y[1…m]以及评分矩阵为O为输入，返回分值最高的对齐。要求运行时间为O（mn）。</span><br></pre></td></tr></table></figure></p>
+<p>DP方程：<br>$h(I,j)=$ $max${    $h(i-1,j)+O(x[i],-)$,                    $H(I,j-1)+O(-,y[j])$,$H(i-1,j-1)+O(x[i-1],y[j-1])$    }</p>
+<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Int i,j;</span><br><span class="line">For(i=0;i&lt;=n;i++)</span><br><span class="line">	For(j=0;j&lt;=m;j++)</span><br><span class="line">		H(I,j)=0;</span><br><span class="line">For(i=1;i&lt;=n;i++)</span><br><span class="line">	For(j=1;j&lt;=m;j++)</span><br><span class="line">	&#123;	H1=h(i-1,j)+O(x[i],-);</span><br><span class="line">		H2=h(I,j-1)+O(-,y[j]);</span><br><span class="line">		H3=h(i-1,j-1)+O(x[i],y[j]);</span><br><span class="line">		If(h1&gt;h(I,j))</span><br><span class="line">			H(I,j)=h1;</span><br><span class="line">		If(h2&gt;h(I,j))</span><br><span class="line">			H(I,j)=h2;</span><br><span class="line">		If(h3&gt;h(I,j))</span><br><span class="line">			H(I,j)=h3;&#125;</span><br><span class="line">Return h(n,m)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/算法概论作业/算法概论作业6.16 6.19 6.21 6.14/" rel="next" title="算法概论作业6.16 6.19 6.21 6.14">
+                <i class="fa fa-chevron-left"></i> 算法概论作业6.16 6.19 6.21 6.14
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/算法作业/分布式算法/" rel="prev" title="在此处输入标题">
+                在此处输入标题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

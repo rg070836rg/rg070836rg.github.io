@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="学号：   19130216姓名：    陈实完成时间：2015年11月24日  #1.八数码游戏简介123八数码问题也称为九宫问题。在3×3的棋盘，摆有八个棋子，每个棋子上标有1至8的某一数字，不同棋子上标的数字不相同。棋盘上还有一个空格，与空格相邻的棋子可以移到空格中。要求解决的问题是：给出一个初始状态和一个目标状态，找出一种从初始转变成目标状态的移动棋子步数最少的移动步骤。所谓问题的一个状">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用状态空间法解决八数码游戏问题">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/南师大人工智能论文/利用状态空间法解决八数码游戏问题/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="学号：   19130216姓名：    陈实完成时间：2015年11月24日  #1.八数码游戏简介123八数码问题也称为九宫问题。在3×3的棋盘，摆有八个棋子，每个棋子上标有1至8的某一数字，不同棋子上标的数字不相同。棋盘上还有一个空格，与空格相邻的棋子可以移到空格中。要求解决的问题是：给出一个初始状态和一个目标状态，找出一种从初始转变成目标状态的移动棋子步数最少的移动步骤。所谓问题的一个状">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/sjgrt24m1cjqnasq8ogeym53/03.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/bbznoee0gx4mfqm3vn8yhgn7/01.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/0isbjhp4af4bgbh20yisxi95/04.jpg">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/om7xyyjvdzpj707jnlxupu23/05.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/u1mqxg2n66rd1qmy5syjjjkw/06.jpg">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/o570i2hznodsw2fvqczji3wz/07.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/i9vncv0wrrq39xxw2hc143v1/10.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/mexqozu9kg9h5ynlpsztgyxy/002.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/01aob72tj3j3x6r3k1fo47it/08.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/i4cog06v759b49k6fti5253p/9.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/dfecssrwdiimv1auj8vrpax5/001.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.641Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用状态空间法解决八数码游戏问题">
+<meta name="twitter:description" content="学号：   19130216姓名：    陈实完成时间：2015年11月24日  #1.八数码游戏简介123八数码问题也称为九宫问题。在3×3的棋盘，摆有八个棋子，每个棋子上标有1至8的某一数字，不同棋子上标的数字不相同。棋盘上还有一个空格，与空格相邻的棋子可以移到空格中。要求解决的问题是：给出一个初始状态和一个目标状态，找出一种从初始转变成目标状态的移动棋子步数最少的移动步骤。所谓问题的一个状">
+<meta name="twitter:image" content="http://static.zybuluo.com/rg070836rg/sjgrt24m1cjqnasq8ogeym53/03.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/南师大人工智能论文/利用状态空间法解决八数码游戏问题/">
+
+
+
+
+
+  <title>利用状态空间法解决八数码游戏问题 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/南师大人工智能论文/利用状态空间法解决八数码游戏问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">利用状态空间法解决八数码游戏问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/南师大人工智能论文/" itemprop="url" rel="index">
+                    <span itemprop="name">南师大人工智能论文</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>学号：   19130216<br>姓名：    陈实<br>完成时间：2015年11月24日</p>
+<hr>
+<p>#1.八数码游戏简介<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">八数码问题也称为九宫问题。在3×3的棋盘，摆有八个棋子，每个棋子上标有1至8的某一数字，不同棋子上标的数字不相同。棋盘上还有一个空格，与空格相邻的棋子可以移到空格中。</span><br><span class="line">要求解决的问题是：给出一个初始状态和一个目标状态，找出一种从初始转变成目标状态的移动棋子步数最少的移动步骤。</span><br><span class="line">所谓问题的一个状态就是棋子在棋盘上的一种摆法。解八数码问题实际上就是找出从初始状态到达目标状态所经过的一系列中间过渡状态。</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>#2.八数码游戏问题的状态空间法表示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（利用课程介绍的状态空间法来描述八数码游戏问题，需定义相应的状态与操作符）</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>##2.1.状态定义<br>利用<strong>矩阵</strong>存储每一步的状态，空位用0表示，例如：<br>初始状态为<br>\begin{equation}       %开始数学环境<br>\left(                 %左括号<br>  \begin{array}{ccc}   %该矩阵一共3列，每一列都居中放置<br>    2 &amp; 8 &amp; 3\  %第一行元素<br>    1 &amp; 0 &amp; 4\  %第二行元素<br>    7 &amp; 6 &amp; 5<br>  \end{array}<br>\right)                 %右括号<br>\end{equation}<br>目标状态为<br>\begin{equation}       %开始数学环境<br>\left(                 %左括号<br>  \begin{array}{ccc}   %该矩阵一共3列，每一列都居中放置<br>    1 &amp; 2 &amp; 3\  %第一行元素<br>    8 &amp; 0 &amp; 4\  %第二行元素<br>    7 &amp; 6 &amp; 5<br>  \end{array}<br>\right)                 %右括号<br>\end{equation}<br>将所有的中间生成状态列成图表，可以清晰的看出搜索的顺序，直观地理解算法。</p>
+<hr>
+<p>##2.2.定义算符</p>
+<blockquote>
+<ul>
+<li>空格的上、下、左、右移动</li>
+</ul>
+</blockquote>
+<p>并标记为四个方向的箭头如下图所示：<br><img src="http://static.zybuluo.com/rg070836rg/sjgrt24m1cjqnasq8ogeym53/03.png" alt="03.png-1.7kB"></p>
+<hr>
+<p>##2.3.从初始状态到目标状态的求解过程<br>例：下图为宽度优先搜索算法对应具体搜索路径：<br><img src="http://static.zybuluo.com/rg070836rg/bbznoee0gx4mfqm3vn8yhgn7/01.png" alt="01.png-46.3kB"></p>
+<hr>
+<p>#3.八数码游戏问题的盲目搜索技术概述<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（介绍宽度和深度优先搜索算法的基本原理和流程图）</span><br><span class="line">（算法复杂性分析：时间与空间复杂性（选做））</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>##3.1.宽度优先搜索算法</p>
+<p>###3.11.宽度优先搜索定义</p>
+<blockquote>
+<ul>
+<li><strong>宽度优先搜索</strong>：以接近起始节点的程度依次扩展节点的搜索技术（即：离起始节点近的节点先被扩展）</li>
+<li><strong>扩展节点的原则</strong>：先扩展出来的节点随后优先被扩展（生成其所有的后继节点）</li>
+</ul>
+</blockquote>
+<hr>
+<p>###3.12.宽度优先搜索算法步骤</p>
+<blockquote>
+<ul>
+<li>① 把起始节点放到 <strong>OPEN</strong> 表中(如果该起始节点为一目标节点，则得到解)</li>
+<li>② 如果 <strong>OPEN</strong> 是个空表，则无解，失败退出；否则继续下一步</li>
+<li>③  把第一个节点(记作节点 <strong>n</strong> )从 <strong>OPEN</strong> 表移出，并把它放入 <strong>CLOSED</strong> 的已扩展节点表中</li>
+<li>④ 扩展节点 <strong>n</strong> 。如果没有后继节点，则转向第②步</li>
+<li>⑤ 把 <strong>n</strong> 的所有后继节点放到OPEN表的<strong>末端</strong>，并提供从这些后继节点回到 <strong>n</strong> 的指针(<strong>记录每一个节点的父节点信息</strong>)</li>
+<li>⑥ 如果 <strong>n</strong> 的任一个后继节点是个目标节点，则找到一个解（<strong>反向追踪得到从目标节点到起始节点的路径</strong>），成功退出，否则转向第②步</li>
+</ul>
+</blockquote>
+<hr>
+<p>###3.13.宽度优先搜索算法的流程图<br><img src="http://static.zybuluo.com/rg070836rg/0isbjhp4af4bgbh20yisxi95/04.jpg" alt="04.jpg-22.2kB"></p>
+<hr>
+<p>##3.2.深度优先搜索算法</p>
+<p>###3.21.深度优先搜索定义<br>    深度优先搜索过程是沿着一条路径进行下去，直到深度界限为止，然后再考虑只有最后一步有差别的相同深度或较浅深度可供选择的路径，接着再考虑最后两步有差别的那些路径。</p>
+<blockquote>
+<ul>
+<li><strong>深度优先搜索策略</strong>是先扩展最新产生的(即最深的)节点 </li>
+<li><strong>深度优先搜索的基本思路</strong>：先扩展最深的节点。当出现没有后继节点时，换到旁边的次深节点</li>
+</ul>
+</blockquote>
+<hr>
+<p>###3.22.深度优先搜索算法步骤</p>
+<blockquote>
+<ul>
+<li>①    把起始节点 <strong>S</strong> 放到未扩展节点的 <strong>OPEN</strong> 表（此时OPEN表是一个<strong>堆栈</strong>，后进先出）中。如果此节点为一目标节点，则得到解</li>
+<li>② 如果 <strong>OPEN</strong> 为一空表，则无解、失败退出</li>
+<li>③ 把第一个节点(记作节点 <strong>n</strong> )从 <strong>OPEN</strong> 表移到 <strong>CLOSED</strong> 表</li>
+<li>④ 如果节点 <strong>n</strong> 的深度等于最大深度，则转向②</li>
+<li>⑤ 扩展节点 <strong>n</strong> ，产生其全部后继节点，并把它们放入 <strong>OPEN</strong> 表的<strong>前头</strong>。如果没有后继节点，则转向②</li>
+<li>⑥ 如果后继节点中有任一个节点为目标节点，则求得一个解（<strong>反向追踪从目标节点到起始节点的路径</strong>），成功退出；否则，转向②</li>
+</ul>
+</blockquote>
+<hr>
+<p>###3.23.深度优先搜索算法的流程图</p>
+<h2 id><a href="#" class="headerlink" title></a><img src="http://static.zybuluo.com/rg070836rg/om7xyyjvdzpj707jnlxupu23/05.png" alt="05.png-42.5kB"></h2><hr>
+<p>#4.八数码游戏问题的启发式搜索技术<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（给出你所采用估价函数，并介绍算法的基本原理和流程图）</span><br></pre></td></tr></table></figure></p>
+<p>##4.1.启发式搜索原理</p>
+<blockquote>
+<ul>
+<li><strong>启发信息</strong>：与具体问题特性有关的一些信息。（在具体的使用过程中，还与使用人、算法有关）</li>
+<li><strong>启发式搜索方法</strong>：利用启发信息的搜索方法 </li>
+</ul>
+</blockquote>
+<p>启发式搜索就是在状态空间中的搜索对每一个<strong>搜索的位置</strong>进行<strong>评估</strong>，得到<strong>最好</strong>的位置，再从这个位置进行搜索直到目标。这样可以<strong>省略</strong>大量无谓的搜索路径，提高了效率。在启发式搜索中，对位置的估价是十分重要的。采用了不同的估价可以有不同的效果。</p>
+<hr>
+<p>##4.2.估价函数<br>估价函是用来估算节点“ <strong>希望</strong> ”程度的函数</p>
+<blockquote>
+<ul>
+<li>一般情况下，估计函数值<strong>越大</strong>，希望程度就<strong>越低</strong></li>
+<li>根据搜索过程、问题的启发信息来定义的，对搜索效率会产生较大的影响</li>
+<li>用  f (n)  表示节点  n  的估价函数值，并且期望，它是从起始节点、通过节点 n 、到达目标节点的<strong>最小代价</strong>的一个估计值</li>
+</ul>
+</blockquote>
+<hr>
+<p>##4.3.估价函数的计算<br>计算一个节点的“ <strong>估价函数</strong> ” ，可以分成两个部分：</p>
+<blockquote>
+<ul>
+<li>①已经付出的代价（<strong>起始节点到当前节点</strong>）</li>
+<li>②将要付出的代价（<strong>当前节点到目标节点</strong>）</li>
+<li>节点  <strong>n</strong>  的估价函数  <strong>$f ( n )$</strong> 定义为从初始节点、经过 <strong>n</strong>到达目标节点的路径的最小代价的估计值，即$f(n)=g(n)+h(n)$</li>
+<li>$g ( n )$ 是从初始节点到达当前节点 <strong>n</strong> 的<strong>实际代价</strong></li>
+<li><strong>$h ( n )$</strong> 是从节点 <strong>n</strong> 到目标节点的最佳路径的<strong>估计代价</strong></li>
+</ul>
+</blockquote>
+<p>$h ( n )$ 体现出搜索过程中采用的启发式信息（背景知识），称之为<strong>启发函数</strong><br>$g ( n )$ 所占的比重越大，<strong>越趋向于宽度优先或等代价搜索</strong>；<br>$h ( n )$ 的比重越大，表示<strong>启发性能就越强</strong></p>
+<hr>
+<p>##4.4. 有序搜索算法<br>在搜索过程中，<strong>OPEN</strong>表中节点按照其估价函数值以递增顺序排列，选择<strong>OPEN</strong>表中具有<strong>最小</strong>估价函数值的节点作为下一个待扩展的节点，这种搜索方法称为<strong>有序搜索</strong>。</p>
+<hr>
+<p>##4.5. 算法描述</p>
+<blockquote>
+<ul>
+<li>①    把起始节点<strong>S</strong>放到<strong>OPEN</strong>表中，并计算节点<strong>S</strong>的<strong>$f (S)$</strong>；</li>
+<li>②    如果<strong>OPEN</strong>是空表，则失败退出（无解）；</li>
+<li>③    从<strong>OPEN</strong>表中选择一个<strong>f</strong>值最小的节点<strong>i</strong>。如果有几个节点值相同，当其中 有一个为目标节点时，则选择目标节点；否则就选择其中任一个节点作为节点<strong>i</strong>；</li>
+<li>④    把节点 <strong>i</strong> 从 <strong>OPEN</strong> 表中移出，并把它放入 <strong>CLOSED</strong> 的已扩展节点表中</li>
+<li>⑤    如果 <strong>i</strong> 是个目标节点，则成功退出（有解）</li>
+<li>⑥    扩展节点 <strong>i</strong> ，生成其全部后继节点。对于 <strong>i</strong> 的每一个后继节点  <strong>j</strong> ： </li>
+<li>⑦    转向②</li>
+</ul>
+</blockquote>
+<hr>
+<p>##4.6.算法流程图<br><img src="http://static.zybuluo.com/rg070836rg/u1mqxg2n66rd1qmy5syjjjkw/06.jpg" alt="06.jpg-18.3kB"></p>
+<hr>
+<p>#5.例子及分析<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">对于算法的运行过程，需要记录下列信息：</span><br><span class="line">起始状态、目标状态、所走的步数及其对应操作符、生成的状态总数（OPEN表和CLOSED表的大小）、搜索CPU时间（毫秒）等。</span><br></pre></td></tr></table></figure></p>
+<p>##5.1.测试例子1<br>初始状态：<br>\begin{equation}       %开始数学环境<br>\left(                 %左括号<br>  \begin{array}{ccc}   %该矩阵一共3列，每一列都居中放置<br>    2 &amp; 0 &amp; 3\  %第一行元素<br>    1 &amp; 8 &amp; 4\  %第二行元素<br>    7 &amp; 6 &amp; 5<br>  \end{array}<br>\right)                 %右括号<br>\end{equation}<br>目标状态：<br>\begin{equation}       %开始数学环境<br>\left(                 %左括号<br>  \begin{array}{ccc}   %该矩阵一共3列，每一列都居中放置<br>    1 &amp; 2 &amp; 3\  %第一行元素<br>    8 &amp; 0 &amp; 4\  %第二行元素<br>    7 &amp; 6 &amp; 5<br>  \end{array}<br>\right)                 %右括号<br>\end{equation}</p>
+<p>###<strong>运行截图</strong></p>
+<p>####<strong>宽度优先搜索</strong>：<br><img src="http://static.zybuluo.com/rg070836rg/o570i2hznodsw2fvqczji3wz/07.png" alt="07.png-7.3kB"></p>
+<p>####<strong>深度优先搜索</strong>：<br><img src="http://static.zybuluo.com/rg070836rg/i9vncv0wrrq39xxw2hc143v1/10.png" alt="10.png-5.9kB"></p>
+<p>####<strong>启发式搜索</strong>：<br><img src="http://static.zybuluo.com/rg070836rg/mexqozu9kg9h5ynlpsztgyxy/002.png" alt="002.png-4.2kB"><br>| 项目      | 宽度优先搜索   | 深度优先搜索|启发式搜索<br>|—| —– |<br>|起始状态|2 0 3 1 8 4 7 6 5|2 0 3 1 8 4 7 6 5|2 0 3 1 8 4 7 6 5|<br>|目标状态|1 2 3 8 0 4 7 6 5|1 2 3 8 0 4 7 6 5|1 2 3 8 0 4 7 6 5|<br>|所走的步数|3|3|3<br>|对应操作符|L D R|L D R|L D R<br>|生成的状态总数|10|20|3<br>|搜索CPU时间|8ms|3ms|0ms</p>
+<hr>
+<p>##5.2.测试例子2<br>初始状态：<br>\begin{equation}       %开始数学环境<br>\left(                 %左括号<br>  \begin{array}{ccc}   %该矩阵一共3列，每一列都居中放置<br>    2 &amp; 8 &amp; 3\  %第一行元素<br>    1 &amp; 6 &amp; 4\  %第二行元素<br>    7 &amp; 0 &amp; 5<br>  \end{array}<br>\right)                 %右括号<br>\end{equation}<br>目标状态：<br>\begin{equation}       %开始数学环境<br>\left(                 %左括号<br>  \begin{array}{ccc}   %该矩阵一共3列，每一列都居中放置<br>    1 &amp; 2 &amp; 3\  %第一行元素<br>    8 &amp; 0 &amp; 4\  %第二行元素<br>    7 &amp; 6 &amp; 5<br>  \end{array}<br>\right)                 %右括号<br>\end{equation}</p>
+<p>###<strong>运行截图</strong></p>
+<p>####<strong>宽度优先搜索</strong>：<br><img src="http://static.zybuluo.com/rg070836rg/01aob72tj3j3x6r3k1fo47it/08.png" alt="08.png-6.7kB"></p>
+<p>####<strong>深度优先搜索</strong>：<br><img src="http://static.zybuluo.com/rg070836rg/i4cog06v759b49k6fti5253p/9.png" alt="9.png-6.8kB"></p>
+<p>####<strong>启发式搜索</strong>:<br><img src="http://static.zybuluo.com/rg070836rg/dfecssrwdiimv1auj8vrpax5/001.png" alt="001.png-4.7kB"><br>| 项目      | 宽度优先搜索   | 深度优先搜索|启发式搜索<br>|—| —– |<br>|起始状态|2 8 3 1 6 4 7 0 5|2 8 3 1 6 4 7 0 5|2 8 3 1 6 4 7 0 5<br>|目标状态|1 2 3 8 0 4 7 6 5|1 2 3 8 0 4 7 6 5|1 2 3 8 0 4 7 6 5<br>|所走的步数|5|5|5<br>|对应操作符| U U L D R|U U L D R|U U L D R<br>|生成的状态总数|46|121|5<br>|搜索CPU时间|58ms|4ms|0ms</p>
+<hr>
+<p>#6．体会与致谢<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（说一说，做这一编程实验与书写报告的体会。如果求助过同学，请在此表示感谢）</span><br></pre></td></tr></table></figure></p>
+<p>通过本次试验，我对<strong>BFS、DFS以及启发式</strong>搜索有了更加深入的了解。同时感谢老师课上的指导，以及课程PPT的制作，对我作业的编写有很大的帮助。下面说说我的想法：</p>
+<blockquote>
+<ul>
+<li>在试验中，通过用不同的测试数据结果来看，宽度优先搜索方法能够保证在搜索树中找到一条通向目标节点的最短途径（所用操作符最少），只要结点间可以到达，就一定可以找到一个最优解。</li>
+<li>而深度优先搜索具有深度界限，当搜索深度达到深度界限时，停止搜索。所以，深度优先搜索有可能会得不到结果，是一种不安全的搜索方法。但是当结果在搜索界限内时，可以快速的得到结果，时间效率高。故对于深度优先搜索，如何去定义一个较好的搜索界限，是下一步需要继续改进的方面。</li>
+<li>相比之下，启发式搜索看来更加实用有效，能在较复杂情况下求得更加优质的解，但是对于估价函数的定义趋向多元化，如何更好地定义一个估价函数有待深入讨论。</li>
+</ul>
+</blockquote>
+<hr>
+<p>#7．实验程序简单说明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（简要地说明实验程序的使用方法，此处不用附源代码）</span><br></pre></td></tr></table></figure></p>
+<p>三段程序均仅需要输入<strong>初始状态</strong>和<strong>目标状态</strong>即可</p>
+<blockquote>
+<ul>
+<li>宽度优先会提供操作符的方向</li>
+<li>深度优先会输出第一个能够找到解的宽度</li>
+<li>启发式搜索具有更加实用的效率</li>
+</ul>
+</blockquote>
+<hr>
+<p>##代码介绍：</p>
+<p>###7.1.宽度优先搜索<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/*定义状态结构*/</span><br><span class="line">class NineNode&#123;……&#125;；</span><br><span class="line"></span><br><span class="line">/*判断两个节点是否相同，相同返回true，否则返回false*/</span><br><span class="line">bool match(NineNode node1, NineNode node2)  </span><br><span class="line"></span><br><span class="line">/*判断新节点是否已经存在，即判断是否存在于open队列和closed列表中*/</span><br><span class="line">bool ishave(deque&lt;NineNode&gt; openQueue, vector&lt;NineNode&gt; closedList, NineNode node)</span><br><span class="line"></span><br><span class="line">/*判断给定的八数码问题是否有解*/</span><br><span class="line">bool havesolution(NineNode start, NineNode end)</span><br><span class="line"></span><br><span class="line">/*用于状态的输入和状态的选择*/</span><br><span class="line">int main()</span><br></pre></td></tr></table></figure></p>
+<p>###7.2.深度优先搜索<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//定义结构</span><br><span class="line">struct Map&#123;……&#125;；</span><br><span class="line"></span><br><span class="line">//打印图</span><br><span class="line">void PrintMap(struct Map *map);</span><br><span class="line"></span><br><span class="line">//移动图</span><br><span class="line">struct Map * MoveMap(struct Map * map, Direction Direct, bool CreateNewMap);</span><br><span class="line"></span><br><span class="line">//初始化一个初始图,由目标图生成初始图，保证可以获得结果</span><br><span class="line">struct Map * RandomMap(const struct Map * map);</span><br><span class="line"></span><br><span class="line">//初始图的另种生成方式，随机生成各位置的数,此方式生成的图在有限次搜索中若深度超过5则多数无解</span><br><span class="line">struct Map * RandomMap();</span><br><span class="line"></span><br><span class="line">//判断是否搜索成功</span><br><span class="line">bool IsSuccess(struct Map * map, struct Map * Target);</span><br><span class="line"></span><br><span class="line">//深搜过程</span><br><span class="line">struct Map * DNF_Search(struct Map * begin, struct Map * Target, int dm)</span><br></pre></td></tr></table></figure></p>
+<p>###7.3.启发式搜索<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//定义存储结构</span><br><span class="line">struct node&#123;……&#125;;</span><br><span class="line"></span><br><span class="line">//函数说明：计算s与目标状态的差距值</span><br><span class="line">int hx(int s[3][3])；</span><br><span class="line"></span><br><span class="line">//函数说明：扩展ex指向的结点，并将扩展所得结点组成一条单链表，head指向该链表首结点，并且作为返回值</span><br><span class="line">struct node *extend(node *ex)； </span><br><span class="line">	</span><br><span class="line">//函数说明：将head链表的结点依次插入到open链表相应的位置，使open表中的结点按从小到大排序。函数返回open指针</span><br><span class="line">node* insert(node *open, node * head)；</span><br><span class="line">	</span><br><span class="line">//状态的输入和状态的选择</span><br><span class="line">int main()</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>完成时间 2015年11月24日</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/南师大大创中期读书笔记/hadoop及spark平台搭建笔记/" rel="next" title="hadoop及spark平台搭建笔记">
+                <i class="fa fa-chevron-left"></i> hadoop及spark平台搭建笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/南师大人工智能论文/利用状态空间法解决八数码游戏问题old/" rel="prev" title="利用状态空间法解决八数码游戏问题old">
+                利用状态空间法解决八数码游戏问题old <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

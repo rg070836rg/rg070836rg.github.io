@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="陈实 SA17011008 计算机学院 2017年10月31日 #一、实验环境描述首先请参见实验环境的安装：ubuntu实验环境的安装 #二、ubuntu_samples测试    本课程的实验，将会以两个平台进行，分别是ubuntu下以及windows下，ubuntu是来自于学校的服务器，windows是自己的笔记本，记录遇到的问题，供大家分享。 ##2.1 deviceQuery接下来，尝试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cuda实验报告">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/GPU并行计算课程实验与报告/cuda实验报告/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="陈实 SA17011008 计算机学院 2017年10月31日 #一、实验环境描述首先请参见实验环境的安装：ubuntu实验环境的安装 #二、ubuntu_samples测试    本课程的实验，将会以两个平台进行，分别是ubuntu下以及windows下，ubuntu是来自于学校的服务器，windows是自己的笔记本，记录遇到的问题，供大家分享。 ##2.1 deviceQuery接下来，尝试">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/cqz2lmy4skbjiz3e555y5a8e/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/9mdayd0c0lwdm7zau2a30383/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/wq2eg7jpwqfutok8kb5032z8/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/p4tfmqg2yx9xgscb13btjuem/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/euzjb7m4ucf4nfru00s74gwn/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/8j3u7bzi4j2nc23wc1e4xr51/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/2texek77838rbjw2qlf3t9hm/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/rbdog4f6zior0qk300zrt5gj/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/l7kxp5g2qi17qt6ar7bfo55r/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/djvrs3zi7fjosnhytsyfyu75/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/el420cb9sosglxcvsq541qsr/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/ozdi0927cdid6k0rnvvvbg94/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/j9t2tqz6pyedmxt3pm1yzfo1/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/ytu4pw5i1qcfzd480zk9ah5p/image_1bthjodgrh1k1m0e1u0n8021rgs2a.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/varpi5brwhkicl4vq5w1sb2q/image_1bthjlt7gmr7r0b13q11t33sc11g.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/8o86o9574eb4b6u6zeuvc6l6/image_1bthjmaqpbkhq8o1gvc1shd4da1t.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/l16w6wsnziil5lfgiivcd00y/image_1bthjsb8919np11ubd5qn027312n.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/cj1gyk5oia88vyzb9vkmjn7g/image_1bthju3tm1p1t1gmlrcker3an4h.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/9x031gk7ck9csxmzz2pqyreb/image_1bthjtqu3146g19ejrebb9e1n3e44.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/n67zrpqqfr355jc4yzt78wwd/image_1bthkb2g5oou1hpintl1t8711co4u.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/82pchbhevdcwhfwlnh9883ez/image_1bthkbr5dgqr8vb1sd15qvunp5b.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/ykpbhwxlrktn3bjat4egkhms/image_1bthkhg5h17p98uvtu14je25o68.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/ile9o4wbdq6y7k8gr2g6zcff/image_1bthkhp6fd55to618ghaer18596l.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/6v1bxx9skbret1ivq53my0yy/image_1bti1n26u104v1tbd2leus3ri7p.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/sywdg7bhe47vw0pqw2mrjdjh/image_1bti1nb7i2f01ffpkpm9absl016.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/j21x1ik1c381yhq0hhea8n5s/image_1bti1sjfo132d10nuhbhdna47t1j.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/dvsxml85ybp8zwb0s0wtd8js/image_1bti1spjd1967t3519q91lki1nfk20.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/y011xlgt66bk7qu69m4p0b2y/image_1bti3m5jldoh14rqqup13ko1cvs2q.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/y1naq3i9ihgz9zre8f9nf90n/image_1bti3m0bi1263b79kus1ai01u3d2d.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.550Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cuda实验报告">
+<meta name="twitter:description" content="陈实 SA17011008 计算机学院 2017年10月31日 #一、实验环境描述首先请参见实验环境的安装：ubuntu实验环境的安装 #二、ubuntu_samples测试    本课程的实验，将会以两个平台进行，分别是ubuntu下以及windows下，ubuntu是来自于学校的服务器，windows是自己的笔记本，记录遇到的问题，供大家分享。 ##2.1 deviceQuery接下来，尝试">
+<meta name="twitter:image" content="http://static.zybuluo.com/rg070836rg/cqz2lmy4skbjiz3e555y5a8e/image.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/GPU并行计算课程实验与报告/cuda实验报告/">
+
+
+
+
+
+  <title>cuda实验报告 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/GPU并行计算课程实验与报告/cuda实验报告/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">cuda实验报告</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/GPU并行计算课程实验与报告/" itemprop="url" rel="index">
+                    <span itemprop="name">GPU并行计算课程实验与报告</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>陈实 SA17011008 计算机学院 2017年10月31日</p>
+<p>#一、实验环境描述<br>首先请参见实验环境的安装：<br><a href="https://www.zybuluo.com/rg070836rg/note/701577" target="_blank" rel="noopener">ubuntu实验环境的安装</a></p>
+<p>#二、ubuntu_samples测试<br>    本课程的实验，将会以两个平台进行，分别是ubuntu下以及windows下，ubuntu是来自于学校的服务器，windows是自己的笔记本，记录遇到的问题，供大家分享。</p>
+<p>##2.1 deviceQuery<br>接下来，尝试几个例子：<br>首先cd到样例目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@ubuntu:~/NVIDIA_CUDA-8.0_Samples/1_Utilities/deviceQuery$</span><br></pre></td></tr></table></figure></p>
+<p>我们通过make编译文件，再执行./deviceQuery ，即可看到服务器GPU相关信息：</p>
+<p><img src="http://static.zybuluo.com/rg070836rg/cqz2lmy4skbjiz3e555y5a8e/image.png" alt="image.png-70.4kB"></p>
+<p>我们把结果剪贴下来：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line">Detected 4 CUDA Capable device(s)</span><br><span class="line"></span><br><span class="line">Device 0: &quot;Tesla K80&quot;</span><br><span class="line">  CUDA Driver Version / Runtime Version          8.0 / 8.0</span><br><span class="line">  CUDA Capability Major/Minor version number:    3.7</span><br><span class="line">  Total amount of global memory:                 11440 MBytes (11995578368 bytes)</span><br><span class="line">  (13) Multiprocessors, (192) CUDA Cores/MP:     2496 CUDA Cores</span><br><span class="line">  GPU Max Clock rate:                            824 MHz (0.82 GHz)</span><br><span class="line">  Memory Clock rate:                             2505 Mhz</span><br><span class="line">  Memory Bus Width:                              384-bit</span><br><span class="line">  L2 Cache Size:                                 1572864 bytes</span><br><span class="line">  Maximum Texture Dimension Size (x,y,z)         1D=(65536), 2D=(65536, 65536), 3D=(4096, 4096, 4096)</span><br><span class="line">  Maximum Layered 1D Texture Size, (num) layers  1D=(16384), 2048 layers</span><br><span class="line">  Maximum Layered 2D Texture Size, (num) layers  2D=(16384, 16384), 2048 layers</span><br><span class="line">  Total amount of constant memory:               65536 bytes</span><br><span class="line">  Total amount of shared memory per block:       49152 bytes</span><br><span class="line">  Total number of registers available per block: 65536</span><br><span class="line">  Warp size:                                     32</span><br><span class="line">  Maximum number of threads per multiprocessor:  2048</span><br><span class="line">  Maximum number of threads per block:           1024</span><br><span class="line">  Max dimension size of a thread block (x,y,z): (1024, 1024, 64)</span><br><span class="line">  Max dimension size of a grid size    (x,y,z): (2147483647, 65535, 65535)</span><br><span class="line">  Maximum memory pitch:                          2147483647 bytes</span><br><span class="line">  Texture alignment:                             512 bytes</span><br><span class="line">  Concurrent copy and kernel execution:          Yes with 2 copy engine(s)</span><br><span class="line">  Run time limit on kernels:                     No</span><br><span class="line">  Integrated GPU sharing Host Memory:            No</span><br><span class="line">  Support host page-locked memory mapping:       Yes</span><br><span class="line">  Alignment requirement for Surfaces:            Yes</span><br><span class="line">  Device has ECC support:                        Enabled</span><br><span class="line">  Device supports Unified Addressing (UVA):      Yes</span><br><span class="line">  Device PCI Domain ID / Bus ID / location ID:   0 / 5 / 0</span><br><span class="line">  Compute Mode:</span><br><span class="line">     &lt; Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) &gt;</span><br><span class="line"></span><br><span class="line">Device 1: &quot;Tesla K80&quot;</span><br><span class="line">  CUDA Driver Version / Runtime Version          8.0 / 8.0</span><br><span class="line">  CUDA Capability Major/Minor version number:    3.7</span><br><span class="line">  Total amount of global memory:                 11440 MBytes (11995578368 bytes)</span><br><span class="line">  (13) Multiprocessors, (192) CUDA Cores/MP:     2496 CUDA Cores</span><br><span class="line">  GPU Max Clock rate:                            824 MHz (0.82 GHz)</span><br><span class="line">  Memory Clock rate:                             2505 Mhz</span><br><span class="line">  Memory Bus Width:                              384-bit</span><br><span class="line">  L2 Cache Size:                                 1572864 bytes</span><br><span class="line">  Maximum Texture Dimension Size (x,y,z)         1D=(65536), 2D=(65536, 65536), 3D=(4096, 4096, 4096)</span><br><span class="line">  Maximum Layered 1D Texture Size, (num) layers  1D=(16384), 2048 layers</span><br><span class="line">  Maximum Layered 2D Texture Size, (num) layers  2D=(16384, 16384), 2048 layers</span><br><span class="line">  Total amount of constant memory:               65536 bytes</span><br><span class="line">  Total amount of shared memory per block:       49152 bytes</span><br><span class="line">  Total number of registers available per block: 65536</span><br><span class="line">  Warp size:                                     32</span><br><span class="line">  Maximum number of threads per multiprocessor:  2048</span><br><span class="line">  Maximum number of threads per block:           1024</span><br><span class="line">  Max dimension size of a thread block (x,y,z): (1024, 1024, 64)</span><br><span class="line">  Max dimension size of a grid size    (x,y,z): (2147483647, 65535, 65535)</span><br><span class="line">  Maximum memory pitch:                          2147483647 bytes</span><br><span class="line">  Texture alignment:                             512 bytes</span><br><span class="line">  Concurrent copy and kernel execution:          Yes with 2 copy engine(s)</span><br><span class="line">  Run time limit on kernels:                     No</span><br><span class="line">  Integrated GPU sharing Host Memory:            No</span><br><span class="line">  Support host page-locked memory mapping:       Yes</span><br><span class="line">  Alignment requirement for Surfaces:            Yes</span><br><span class="line">  Device has ECC support:                        Enabled</span><br><span class="line">  Device supports Unified Addressing (UVA):      Yes</span><br><span class="line">  Device PCI Domain ID / Bus ID / location ID:   0 / 6 / 0</span><br><span class="line">  Compute Mode:</span><br><span class="line">     &lt; Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) &gt;</span><br><span class="line"></span><br><span class="line">Device 2: &quot;Tesla K80&quot;</span><br><span class="line">  CUDA Driver Version / Runtime Version          8.0 / 8.0</span><br><span class="line">  CUDA Capability Major/Minor version number:    3.7</span><br><span class="line">  Total amount of global memory:                 11440 MBytes (11995578368 bytes)</span><br><span class="line">  (13) Multiprocessors, (192) CUDA Cores/MP:     2496 CUDA Cores</span><br><span class="line">  GPU Max Clock rate:                            824 MHz (0.82 GHz)</span><br><span class="line">  Memory Clock rate:                             2505 Mhz</span><br><span class="line">  Memory Bus Width:                              384-bit</span><br><span class="line">  L2 Cache Size:                                 1572864 bytes</span><br><span class="line">  Maximum Texture Dimension Size (x,y,z)         1D=(65536), 2D=(65536, 65536), 3D=(4096, 4096, 4096)</span><br><span class="line">  Maximum Layered 1D Texture Size, (num) layers  1D=(16384), 2048 layers</span><br><span class="line">  Maximum Layered 2D Texture Size, (num) layers  2D=(16384, 16384), 2048 layers</span><br><span class="line">  Total amount of constant memory:               65536 bytes</span><br><span class="line">  Total amount of shared memory per block:       49152 bytes</span><br><span class="line">  Total number of registers available per block: 65536</span><br><span class="line">  Warp size:                                     32</span><br><span class="line">  Maximum number of threads per multiprocessor:  2048</span><br><span class="line">  Maximum number of threads per block:           1024</span><br><span class="line">  Max dimension size of a thread block (x,y,z): (1024, 1024, 64)</span><br><span class="line">  Max dimension size of a grid size    (x,y,z): (2147483647, 65535, 65535)</span><br><span class="line">  Maximum memory pitch:                          2147483647 bytes</span><br><span class="line">  Texture alignment:                             512 bytes</span><br><span class="line">  Concurrent copy and kernel execution:          Yes with 2 copy engine(s)</span><br><span class="line">  Run time limit on kernels:                     No</span><br><span class="line">  Integrated GPU sharing Host Memory:            No</span><br><span class="line">  Support host page-locked memory mapping:       Yes</span><br><span class="line">  Alignment requirement for Surfaces:            Yes</span><br><span class="line">  Device has ECC support:                        Enabled</span><br><span class="line">  Device supports Unified Addressing (UVA):      Yes</span><br><span class="line">  Device PCI Domain ID / Bus ID / location ID:   0 / 133 / 0</span><br><span class="line">  Compute Mode:</span><br><span class="line">     &lt; Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) &gt;</span><br><span class="line"></span><br><span class="line">Device 3: &quot;Tesla K80&quot;</span><br><span class="line">  CUDA Driver Version / Runtime Version          8.0 / 8.0</span><br><span class="line">  CUDA Capability Major/Minor version number:    3.7</span><br><span class="line">  Total amount of global memory:                 11440 MBytes (11995578368 bytes)</span><br><span class="line">  (13) Multiprocessors, (192) CUDA Cores/MP:     2496 CUDA Cores</span><br><span class="line">  GPU Max Clock rate:                            824 MHz (0.82 GHz)</span><br><span class="line">  Memory Clock rate:                             2505 Mhz</span><br><span class="line">  Memory Bus Width:                              384-bit</span><br><span class="line">  L2 Cache Size:                                 1572864 bytes</span><br><span class="line">  Maximum Texture Dimension Size (x,y,z)         1D=(65536), 2D=(65536, 65536), 3D=(4096, 4096, 4096)</span><br><span class="line">  Maximum Layered 1D Texture Size, (num) layers  1D=(16384), 2048 layers</span><br><span class="line">  Maximum Layered 2D Texture Size, (num) layers  2D=(16384, 16384), 2048 layers</span><br><span class="line">  Total amount of constant memory:               65536 bytes</span><br><span class="line">  Total amount of shared memory per block:       49152 bytes</span><br><span class="line">  Total number of registers available per block: 65536</span><br><span class="line">  Warp size:                                     32</span><br><span class="line">  Maximum number of threads per multiprocessor:  2048</span><br><span class="line">  Maximum number of threads per block:           1024</span><br><span class="line">  Max dimension size of a thread block (x,y,z): (1024, 1024, 64)</span><br><span class="line">  Max dimension size of a grid size    (x,y,z): (2147483647, 65535, 65535)</span><br><span class="line">  Maximum memory pitch:                          2147483647 bytes</span><br><span class="line">  Texture alignment:                             512 bytes</span><br><span class="line">  Concurrent copy and kernel execution:          Yes with 2 copy engine(s)</span><br><span class="line">  Run time limit on kernels:                     No</span><br><span class="line">  Integrated GPU sharing Host Memory:            No</span><br><span class="line">  Support host page-locked memory mapping:       Yes</span><br><span class="line">  Alignment requirement for Surfaces:            Yes</span><br><span class="line">  Device has ECC support:                        Enabled</span><br><span class="line">  Device supports Unified Addressing (UVA):      Yes</span><br><span class="line">  Device PCI Domain ID / Bus ID / location ID:   0 / 134 / 0</span><br><span class="line">  Compute Mode:</span><br><span class="line">     &lt; Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) &gt;</span><br><span class="line">&gt; Peer access from Tesla K80 (GPU0) -&gt; Tesla K80 (GPU1) : Yes</span><br><span class="line">&gt; Peer access from Tesla K80 (GPU0) -&gt; Tesla K80 (GPU2) : No</span><br><span class="line">&gt; Peer access from Tesla K80 (GPU0) -&gt; Tesla K80 (GPU3) : No</span><br><span class="line">&gt; Peer access from Tesla K80 (GPU1) -&gt; Tesla K80 (GPU0) : Yes</span><br><span class="line">&gt; Peer access from Tesla K80 (GPU1) -&gt; Tesla K80 (GPU2) : No</span><br><span class="line">&gt; Peer access from Tesla K80 (GPU1) -&gt; Tesla K80 (GPU3) : No</span><br><span class="line">&gt; Peer access from Tesla K80 (GPU2) -&gt; Tesla K80 (GPU0) : No</span><br><span class="line">&gt; Peer access from Tesla K80 (GPU2) -&gt; Tesla K80 (GPU1) : No</span><br><span class="line">&gt; Peer access from Tesla K80 (GPU2) -&gt; Tesla K80 (GPU3) : Yes</span><br><span class="line">&gt; Peer access from Tesla K80 (GPU3) -&gt; Tesla K80 (GPU0) : No</span><br><span class="line">&gt; Peer access from Tesla K80 (GPU3) -&gt; Tesla K80 (GPU1) : No</span><br><span class="line">&gt; Peer access from Tesla K80 (GPU3) -&gt; Tesla K80 (GPU2) : Yes</span><br><span class="line"></span><br><span class="line">deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 8.0, CUDA Runtime Version = 8.0, NumDevs = 4, Device0 = Tesla K80, Device1 = Tesla K80, Device2 = Tesla K80, Device3 = Tesla K80</span><br><span class="line">Result = PASS</span><br></pre></td></tr></table></figure></p>
+<pre><code>从上面这一段，发现有四张显卡设备，不过记得当时拿到机器的时候，记得只分了两块K80，经查询，Tesla K80一块拥有俩GK210核心，从程序返回的结果来看，原配的2880个流处理器分成的15个阵列，也仅仅被打开了13组，这样，单核心，也就有2496个流处理器了，单卡的话就是两倍的核心，同时，单卡24G内存，确实为一块性能不错的GPU处理器。其他的参数也没有仔细看，用到了再说。
+</code></pre><p>为了后续例子方便，我们在上级目录下，make整个sample,这样，就会为为子目录下面每一个程序，生存可执行文件了。</p>
+<p><img src="http://static.zybuluo.com/rg070836rg/9mdayd0c0lwdm7zau2a30383/image.png" alt="image.png-4.4kB"><br>等到刷出Finished building CUDA samples，即安装完成。</p>
+<p>##2.2 nvcc问题<br>想自行编译windows上的一个例子，不过输入nvcc，发现没有安装？<br><img src="http://static.zybuluo.com/rg070836rg/wq2eg7jpwqfutok8kb5032z8/image.png" alt="image.png-11.6kB"><br>不过转念一想，通过make可以编译，那没道理没装nvcc，后来一想，可能是没有配置环境变量，转到cuda安装目录，一看nvcc好好的在那边。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/cuda/bin/</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://static.zybuluo.com/rg070836rg/p4tfmqg2yx9xgscb13btjuem/image.png" alt="image.png-24.8kB"></p>
+<p>转去配置环境变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br><span class="line">#发现已经配置过环境变量，不过检查了一下，cuda路径不对，修改一下，顺便加上bin目录，</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#在最后加上这几行</span><br><span class="line">export LD_LIBRARY_PATH=&quot;$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64&quot;</span><br><span class="line">export CUDA_HOME=/usr/local/cuda</span><br><span class="line">export PATH=$PATH:/usr/local/cuda/bin</span><br><span class="line"></span><br><span class="line">#保存并刷新环境变量</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure></p>
+<p>再次测试nvcc，发现找到了：</p>
+<p><img src="http://static.zybuluo.com/rg070836rg/euzjb7m4ucf4nfru00s74gwn/image.png" alt="image.png-14.6kB"></p>
+<p>#三、安装vnc server<br>因为server不能直接运行带有图形界面的代码，比如这一段简单的python代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf-8 -*-</span><br><span class="line">from PIL import Image</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">bg_pic = Image.open(&apos;01.jpg&apos;)</span><br><span class="line">plt.figure()</span><br><span class="line">plt.imshow(bg_pic)</span><br><span class="line">plt.axis(&apos;off&apos;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://static.zybuluo.com/rg070836rg/8j3u7bzi4j2nc23wc1e4xr51/image.png" alt="image.png-35.4kB"></p>
+<p>由于可能需要用到图形界面，在此装个vnc，简单记录下</p>
+<p>安装服务:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vnc4server</span><br></pre></td></tr></table></figure></p>
+<p>编辑下方文件的内容加上自己的信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysconfig/vncservers</span><br><span class="line"></span><br><span class="line">VNCSERVERS=&quot;1:inspur&quot;</span><br><span class="line">VNCSERVERARGS[1]=&quot;-geometry 1920x1080 -alwaysshared&quot;</span><br></pre></td></tr></table></figure></p>
+<p>在自己的用户名下运行命令，启动vnc进程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vncserver</span><br><span class="line"></span><br><span class="line">输入2次密码即可</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://blog.csdn.net/zhangfuliang123/article/details/51598552" target="_blank" rel="noopener">http://blog.csdn.net/zhangfuliang123/article/details/51598552</a></p>
+<p>在自己的用户下,修改/home/ubuntu/.vnc/xstartup<br>配置xsrartup内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line"># Uncomment the following two lines for normal desktop:</span><br><span class="line"># unset SESSION_MANAGER</span><br><span class="line"># exec /etc/X11/xinit/xinitrc</span><br><span class="line">def</span><br><span class="line">export XKL_XMODMAP_DISABLE=1</span><br><span class="line">unset SESSION_MANAGER</span><br><span class="line">unset DBUS_SESSION_BUS_ADDRESS</span><br><span class="line"> </span><br><span class="line">gnome-panel &amp;</span><br><span class="line">gnome-settings-daemon &amp;</span><br><span class="line">metacity &amp;</span><br><span class="line">nautilus &amp;</span><br><span class="line">gnome-terminal &amp;</span><br></pre></td></tr></table></figure></p>
+<p>维护方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">关闭:vncserver -kill :3</span><br><span class="line">启动：vncserver :3</span><br></pre></td></tr></table></figure></p>
+<p>这样通过，windows上面的vncviewer连接，就可以运行带有图形界面的程序了。<br><img src="http://static.zybuluo.com/rg070836rg/2texek77838rbjw2qlf3t9hm/image.png" alt="image.png-162kB"></p>
+<h1 id="四、windows测试"><a href="#四、windows测试" class="headerlink" title="四、windows测试"></a>四、windows测试</h1><pre><code>本机的电脑，由于毕业设计时候做的是强化学习的相关课题，已经装过了cuda环境，来加速tensorflow-gpu等环境的加速，由于当时没有做记录笔记，并且，没有什么安装难度，这边省略安装步骤。
+</code></pre><p>##4.1 deviceQuery<br>在win下面我们利用vs进行cuda编程，本文windows实验环境为vs2013，首先运行例子deviceQuery,结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"> CUDA Device Query (Runtime API) version (CUDART static linking)</span><br><span class="line"></span><br><span class="line">Detected 1 CUDA Capable device(s)</span><br><span class="line"></span><br><span class="line">Device 0: &quot;GeForce GT 755M&quot;</span><br><span class="line">  CUDA Driver Version / Runtime Version          8.0 / 8.0</span><br><span class="line">  CUDA Capability Major/Minor version number:    3.0</span><br><span class="line">  Total amount of global memory:                 2048 MBytes (2147483648 bytes)</span><br><span class="line">  ( 2) Multiprocessors, (192) CUDA Cores/MP:     384 CUDA Cores</span><br><span class="line">  GPU Max Clock rate:                            1020 MHz (1.02 GHz)</span><br><span class="line">  Memory Clock rate:                             2700 Mhz</span><br><span class="line">  Memory Bus Width:                              128-bit</span><br><span class="line">  L2 Cache Size:                                 262144 bytes</span><br><span class="line">  Maximum Texture Dimension Size (x,y,z)         1D=(65536), 2D=(65536, 65536), 3D=(4096, 4096, 4096)</span><br><span class="line">  Maximum Layered 1D Texture Size, (num) layers  1D=(16384), 2048 layers</span><br><span class="line">  Maximum Layered 2D Texture Size, (num) layers  2D=(16384, 16384), 2048 layers</span><br><span class="line">  Total amount of constant memory:               65536 bytes</span><br><span class="line">  Total amount of shared memory per block:       49152 bytes</span><br><span class="line">  Total number of registers available per block: 65536</span><br><span class="line">  Warp size:                                     32</span><br><span class="line">  Maximum number of threads per multiprocessor:  2048</span><br><span class="line">  Maximum number of threads per block:           1024</span><br><span class="line">  Max dimension size of a thread block (x,y,z): (1024, 1024, 64)</span><br><span class="line">  Max dimension size of a grid size    (x,y,z): (2147483647, 65535, 65535)</span><br><span class="line">  Maximum memory pitch:                          2147483647 bytes</span><br><span class="line">  Texture alignment:                             512 bytes</span><br><span class="line">  Concurrent copy and kernel execution:          Yes with 1 copy engine(s)</span><br><span class="line">  Run time limit on kernels:                     Yes</span><br><span class="line">  Integrated GPU sharing Host Memory:            No</span><br><span class="line">  Support host page-locked memory mapping:       Yes</span><br><span class="line">  Alignment requirement for Surfaces:            Yes</span><br><span class="line">  Device has ECC support:                        Disabled</span><br><span class="line">  CUDA Device Driver Mode (TCC or WDDM):         WDDM (Windows Display Driver Model)</span><br><span class="line">  Device supports Unified Addressing (UVA):      Yes</span><br><span class="line">  Device PCI Domain ID / Bus ID / location ID:   0 / 1 / 0</span><br><span class="line">  Compute Mode:</span><br><span class="line">     &lt; Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) &gt;</span><br><span class="line"></span><br><span class="line">deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 8.0, CUDA Runtime Version = 8.0, NumDevs = 1, Device0 = GeForce GT 755M</span><br><span class="line">Result = PASS</span><br></pre></td></tr></table></figure></p>
+<p>##4.2 新建cuda项目&amp;测试环境<br>如果安装过程正常无误，那么在vs中应该已经有了cuda模板，我们选择并新建一个cuda工程：<br><img src="http://static.zybuluo.com/rg070836rg/rbdog4f6zior0qk300zrt5gj/image.png" alt="image.png-54.5kB"><br>创建完之后，发现自带了一个cuda例子，我们运行，发现可以出结果，至此，cuda运行环境检查完毕<br><img src="http://static.zybuluo.com/rg070836rg/l7kxp5g2qi17qt6ar7bfo55r/image.png" alt="image.png-31.3kB"></p>
+<p>#五、cuda实验</p>
+<p>##5.1 第一个程序 init.cu<br>首先了解cuda程序初始化的方式，于是先新建一个新的cudafile，开始编写，资料来自于课堂的ppt，并加以理解：<br><img src="http://static.zybuluo.com/rg070836rg/djvrs3zi7fjosnhytsyfyu75/image.png" alt="image.png-52.8kB"><br>课堂PPT中的代码，没有详细说明每一行的作用，现在对其中的部分进行修改，以更深刻的理解。<br>先贴上代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cuda_runtime.h&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">//2017年10月23日</span><br><span class="line">//陈实 SA17011008</span><br><span class="line"></span><br><span class="line">//CUDA 初始化</span><br><span class="line">bool InitCUDA()</span><br><span class="line">&#123;</span><br><span class="line">	int count;</span><br><span class="line">	//取得支持Cuda的装置的数目</span><br><span class="line">	cudaGetDeviceCount(&amp;count);</span><br><span class="line"></span><br><span class="line">	//没有符合的硬件</span><br><span class="line">	if (count == 0) &#123;</span><br><span class="line">		cout &lt;&lt; &quot;无可用的设备&quot;;</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">	int i;</span><br><span class="line">	//检查每个设备支持的参数，如果获得的版本号大于1 ，认为找到设备</span><br><span class="line">	for (i = 0; i &lt; count; i++) &#123;</span><br><span class="line">		cudaDeviceProp prop;</span><br><span class="line">		if (cudaGetDeviceProperties(&amp;prop, i) == cudaSuccess) &#123;</span><br><span class="line">			if (prop.major &gt;= 1) &#123;</span><br><span class="line">				//输入 并打断点，调试观察</span><br><span class="line">				cout &lt;&lt; &quot;设备&quot; &lt;&lt; i &lt;&lt; &quot;:&quot; &lt;&lt; prop.major &lt;&lt; &quot;.&quot; &lt;&lt; prop.minor &lt;&lt; endl;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	if (i == count) &#123;</span><br><span class="line">		cout &lt;&lt; &quot;未找到能支持1.x以上的cuda设备&quot; &lt;&lt; endl;</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	cudaSetDevice(i);</span><br><span class="line"></span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	if (InitCUDA())</span><br><span class="line">		cout &lt;&lt; &quot;初始化成功！&quot; &lt;&lt; endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过查看prop变量，我们可以观察到很多的参数，并输出自己的设备支持的cuda版本：<br><img src="http://static.zybuluo.com/rg070836rg/el420cb9sosglxcvsq541qsr/image.png" alt="image.png-36.9kB"></p>
+<p>windows上的运行结果是这样：（计算能力3.0）<br><img src="http://static.zybuluo.com/rg070836rg/ozdi0927cdid6k0rnvvvbg94/image.png" alt="image.png-4kB"></p>
+<p>通过winscp 传到服务器，编译并运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvcc init.cu -o init.out</span><br></pre></td></tr></table></figure></p>
+<p>ubuntu服务器：（计算能力3.7）<br><img src="http://static.zybuluo.com/rg070836rg/j9t2tqz6pyedmxt3pm1yzfo1/image.png" alt="image.png-6.2kB"></p>
+<p>##5.2 素数测试</p>
+<p>###5.2.1 初始测试<br>本次实验准备以素数测试作为实验题材，进行一个素数的测试，采用不优化的全算法，测试时间。<br>实验预计采用int范围内最大的素数：2147483647<br>写了一份简单的代码，其中，核函数如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">__global__ static void is_prime_g(int *x, bool *result)</span><br><span class="line">&#123;</span><br><span class="line">	if (*x == 0 || *x == 1)</span><br><span class="line">	&#123;</span><br><span class="line">		*result = false;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	for (int j = 2; j &lt; *x; j++)</span><br><span class="line">	&#123;</span><br><span class="line">		if (*x%j == 0)</span><br><span class="line">		&#123;</span><br><span class="line">			*result = false;</span><br><span class="line">			return;</span><br><span class="line">		&#125;			</span><br><span class="line">	&#125;</span><br><span class="line">	*result = true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过cudaApi获得gpu运行时间：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cudaEvent_t start, stop;</span><br><span class="line">float Gpu_time;</span><br><span class="line">cudaEventCreate(&amp;start);</span><br><span class="line">cudaEventCreate(&amp;stop);</span><br><span class="line">cudaEventRecord(start, 0);</span><br><span class="line"></span><br><span class="line">//核函数</span><br><span class="line">//........</span><br><span class="line"></span><br><span class="line">cudaEventRecord(stop, 0);</span><br><span class="line">cudaEventSynchronize(stop);</span><br><span class="line">cudaEventElapsedTime(&amp;Gpu_time, start, stop);	      //GPU  测时</span><br><span class="line">cudaEventDestroy(start);</span><br><span class="line">cudaEventDestroy(stop);</span><br><span class="line">printf(&quot;Gpu time is: %f ms\n&quot;, Gpu_time);</span><br></pre></td></tr></table></figure></p>
+<p>通过clock记录cpu函数时间,循环执行多次，取得平均值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">begin = clock();//开始计时  </span><br><span class="line">for (int i = 0; i &lt; n; i++)</span><br><span class="line">&#123;</span><br><span class="line">    //......</span><br><span class="line">&#125;</span><br><span class="line">end = clock();//结束计时  </span><br><span class="line">printf(&quot;%d次总耗时%d ms  平均耗时：%f ms\n&quot;,n, end - begin, (end - begin)*1.0/n);//差为时间，单位毫秒</span><br></pre></td></tr></table></figure></p>
+<p>实验记录如下：<br>windows:<br><img src="http://static.zybuluo.com/rg070836rg/ytu4pw5i1qcfzd480zk9ah5p/image_1bthjodgrh1k1m0e1u0n8021rgs2a.png" alt="image_1bthjodgrh1k1m0e1u0n8021rgs2a.png-7.4kB"><br>K20:<br><img src="http://static.zybuluo.com/rg070836rg/varpi5brwhkicl4vq5w1sb2q/image_1bthjlt7gmr7r0b13q11t33sc11g.png" alt="image_1bthjlt7gmr7r0b13q11t33sc11g.png-18.3kB"><br>K80:<br><img src="http://static.zybuluo.com/rg070836rg/8o86o9574eb4b6u6zeuvc6l6/image_1bthjmaqpbkhq8o1gvc1shd4da1t.png" alt="image_1bthjmaqpbkhq8o1gvc1shd4da1t.png-25kB"></p>
+<p>将数字规模扩大10倍：<br>windows：（出错）<br><img src="http://static.zybuluo.com/rg070836rg/l16w6wsnziil5lfgiivcd00y/image_1bthjsb8919np11ubd5qn027312n.png" alt="image_1bthjsb8919np11ubd5qn027312n.png-7.4kB"><br>K20:<br><img src="http://static.zybuluo.com/rg070836rg/cj1gyk5oia88vyzb9vkmjn7g/image_1bthju3tm1p1t1gmlrcker3an4h.png" alt="image_1bthju3tm1p1t1gmlrcker3an4h.png-14.8kB"><br>K80:<br><img src="http://static.zybuluo.com/rg070836rg/9x031gk7ck9csxmzz2pqyreb/image_1bthjtqu3146g19ejrebb9e1n3e44.png" alt="image_1bthjtqu3146g19ejrebb9e1n3e44.png-14.5kB"></p>
+<p>由于windows显卡出错，下面的实验，仅在服务器上运行：<br>修改线程数为256：<br>素数为2048261<br>K20:<br><img src="http://static.zybuluo.com/rg070836rg/n67zrpqqfr355jc4yzt78wwd/image_1bthkb2g5oou1hpintl1t8711co4u.png" alt="image_1bthkb2g5oou1hpintl1t8711co4u.png-16.4kB"><br>K80:<br><img src="http://static.zybuluo.com/rg070836rg/82pchbhevdcwhfwlnh9883ez/image_1bthkbr5dgqr8vb1sd15qvunp5b.png" alt="image_1bthkbr5dgqr8vb1sd15qvunp5b.png-15kB"></p>
+<p>素数为20232347<br>K20:<br><img src="http://static.zybuluo.com/rg070836rg/ykpbhwxlrktn3bjat4egkhms/image_1bthkhg5h17p98uvtu14je25o68.png" alt="image_1bthkhg5h17p98uvtu14je25o68.png-14.6kB"><br>K80:<br><img src="http://static.zybuluo.com/rg070836rg/ile9o4wbdq6y7k8gr2g6zcff/image_1bthkhp6fd55to618ghaer18596l.png" alt="image_1bthkhp6fd55to618ghaer18596l.png-17.1kB"></p>
+<p>发现，效率并没有提高，继续修改线程为1024，重新编译，经过测试，时间反而还提高了，估计是程序处理的有问题，看到老师PPT，由于是做的东西不太相同，所以没法按PPT上的方法，对线程数进行修改处理。</p>
+<p>###5.2.2 优化测试<br>所以换一个思考方式：<strong>每个线程判断一个数是否可以被整除，将每线程判断结果写入shared memory内，然后统计结果，如果全部不能被整除，那就是素数。</strong>其中计时方式不参考老师ppt，仍然采用cudaApi。cpu不再记录时间（无意义），仅仅用于验证数据是否正确。</p>
+<p>仿照老师上课讲的内容，进行修改，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;cuda_runtime.h&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;time.h&gt;//time.h头文件  </span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define THREAD_NUM   1</span><br><span class="line">#define BLOCK_NUM   1</span><br><span class="line"></span><br><span class="line">//host code</span><br><span class="line">//产生一个要被测试的数组</span><br><span class="line">//</span><br><span class="line">void GenerateNumbers(long *number, int size)</span><br><span class="line">&#123;</span><br><span class="line">	for (int i = 0; i &lt; size - 2; i++) &#123;</span><br><span class="line">		number[i] = i + 2;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//device code</span><br><span class="line">//内核函数</span><br><span class="line">//</span><br><span class="line">__global__ static void IsPrime(long *num, bool* result, int TEST)</span><br><span class="line">&#123;</span><br><span class="line">	extern __shared__ bool shared[];</span><br><span class="line">	const int tid = threadIdx.x;			//块内线程索引</span><br><span class="line">	const int bid = blockIdx.x;				//网格中线程块索引</span><br><span class="line">	result[bid] = false;</span><br><span class="line">	int i;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	for (i = bid * THREAD_NUM + tid; i &lt; TEST; i += BLOCK_NUM * THREAD_NUM)</span><br><span class="line">	&#123;</span><br><span class="line">		if (TEST % num[bid*bid * THREAD_NUM + tid] == 0)			//能整除</span><br><span class="line">		&#123;</span><br><span class="line">			shared[tid] = true;</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			shared[tid] = false;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	__syncthreads();						//同步函数</span><br><span class="line"></span><br><span class="line">	if (tid == 0)</span><br><span class="line">	&#123;</span><br><span class="line">		for (i = 0; i&lt;THREAD_NUM; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			if (shared[i])</span><br><span class="line">			&#123;</span><br><span class="line">				result[bid] = true;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//原始素数求法</span><br><span class="line">bool is_prime(int x)</span><br><span class="line">&#123;</span><br><span class="line">	if (x == 0 || x == 1)</span><br><span class="line">		return false;</span><br><span class="line"></span><br><span class="line">	for (int j = 2; j &lt; x; j++)</span><br><span class="line">	&#123;</span><br><span class="line">		if (x%j == 0)</span><br><span class="line">			return false;</span><br><span class="line">	&#125;</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//host code</span><br><span class="line">//主函数</span><br><span class="line">//</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int TEST;</span><br><span class="line">	cin &gt;&gt; TEST;</span><br><span class="line">	long *data = new long[TEST];</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	GenerateNumbers(data, TEST);	//产生要测试的数组</span><br><span class="line"></span><br><span class="line">	//定义并分配内存</span><br><span class="line">	long* gpudata;</span><br><span class="line">	bool* result;</span><br><span class="line">	cudaMalloc((void**)&amp;gpudata, sizeof(long)* TEST);</span><br><span class="line">	cudaMalloc((void**)&amp;result, sizeof(bool)*BLOCK_NUM);</span><br><span class="line">	//数据拷贝</span><br><span class="line">	cudaMemcpy(gpudata, data, sizeof(long)* TEST, cudaMemcpyHostToDevice);</span><br><span class="line"></span><br><span class="line">	//api计时</span><br><span class="line">	cudaEvent_t start, stop;</span><br><span class="line">	float Gpu_time;</span><br><span class="line">	cudaEventCreate(&amp;start);</span><br><span class="line">	cudaEventCreate(&amp;stop);</span><br><span class="line">	cudaEventRecord(start, 0);</span><br><span class="line">	//调用内核函数</span><br><span class="line">	IsPrime &lt;&lt; &lt;BLOCK_NUM, THREAD_NUM, THREAD_NUM * sizeof(bool) &gt;&gt; &gt;(gpudata, result,TEST);</span><br><span class="line"></span><br><span class="line">	//api计时结束</span><br><span class="line">	cudaEventRecord(stop, 0);</span><br><span class="line">	cudaEventSynchronize(stop);</span><br><span class="line">	cudaEventElapsedTime(&amp;Gpu_time, start, stop);	      //GPU  测时</span><br><span class="line">	cudaEventDestroy(start);</span><br><span class="line">	cudaEventDestroy(stop);</span><br><span class="line">	printf(&quot;Gpu time is: %f ms\n&quot;, Gpu_time);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	bool sum[BLOCK_NUM];</span><br><span class="line">	//结果拷贝</span><br><span class="line">	cudaMemcpy(&amp;sum, result, sizeof(bool)*BLOCK_NUM, cudaMemcpyDeviceToHost);</span><br><span class="line">	//释放空间</span><br><span class="line">	cudaFree(gpudata);</span><br><span class="line">	cudaFree(result);</span><br><span class="line"></span><br><span class="line">	//验证结果（不参与计时）</span><br><span class="line">	bool isprime = true;</span><br><span class="line">	for (int i = 0; i &lt; BLOCK_NUM; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if (sum[i])</span><br><span class="line">		&#123;</span><br><span class="line">			isprime = false;</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//gpu</span><br><span class="line">	if (isprime)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;GPU:%d is a prime\n&quot;, TEST);</span><br><span class="line">	&#125;</span><br><span class="line">	else</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;GPU:%d is not a prime\n&quot;, TEST);</span><br><span class="line">	&#125;</span><br><span class="line">	//cpu</span><br><span class="line">	int begin, end;//定义开始和结束标志位  </span><br><span class="line">	begin = clock();//开始计时  </span><br><span class="line">	if (is_prime(TEST))</span><br><span class="line">		printf(&quot;CPU:%d is a prime\n&quot;, TEST);</span><br><span class="line">	else</span><br><span class="line">		printf(&quot;CPU:%d is not a prime\n&quot;, TEST);</span><br><span class="line">	end = clock();//结束计时  </span><br><span class="line">	printf(&quot;Cpu time is: %d\n&quot;, end-begin);</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<pre><code>每个具体的线程，即blockid的某个threadid的线程，所计算的是一个数或者好几个数，总共有block_NUM*THREAD_NUM这么多的线程，假设要计算素数test，则必须对所有从2,3,4...到test-1这么多数做除法运算，总共应该是test-1个数，这些数就按顺序安排到block_NUM*THREAD_NUM这些线程上运行，多出来的再次重复的安排也就是说i和i += BLOCK_NUM * THREAD_NUM都应该是安排在同一个线程块的同一个线程id上运行。
+</code></pre><p>测试1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#define THREAD_NUM   1</span><br><span class="line">#define BLOCK_NUM   1</span><br></pre></td></tr></table></figure></p>
+<p>K20：<br><img src="http://static.zybuluo.com/rg070836rg/6v1bxx9skbret1ivq53my0yy/image_1bti1n26u104v1tbd2leus3ri7p.png" alt="image_1bti1n26u104v1tbd2leus3ri7p.png-12.7kB"><br>K80：<br><img src="http://static.zybuluo.com/rg070836rg/sywdg7bhe47vw0pqw2mrjdjh/image_1bti1nb7i2f01ffpkpm9absl016.png" alt="image_1bti1nb7i2f01ffpkpm9absl016.png-14.6kB"></p>
+<p>测试2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#define THREAD_NUM   1024</span><br><span class="line">#define BLOCK_NUM   1</span><br></pre></td></tr></table></figure></p>
+<p>K20：<br><img src="http://static.zybuluo.com/rg070836rg/j21x1ik1c381yhq0hhea8n5s/image_1bti1sjfo132d10nuhbhdna47t1j.png" alt="image_1bti1sjfo132d10nuhbhdna47t1j.png-10.9kB"><br>K80：<br><img src="http://static.zybuluo.com/rg070836rg/dvsxml85ybp8zwb0s0wtd8js/image_1bti1spjd1967t3519q91lki1nfk20.png" alt="image_1bti1spjd1967t3519q91lki1nfk20.png-14.3kB"></p>
+<p>从实验结果来看，提升块并没有加速时间，怀疑用错了GPU计时，所以利用nvprof查看：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@ubuntu:~/cuda_test$ nvprof ./prime_3.out </span><br><span class="line">202261583</span><br><span class="line">==1365== NVPROF is profiling process 1365, command: ./prime_3.out</span><br><span class="line">Gpu time is: 0.072064 ms</span><br><span class="line">GPU:202261583 is a prime</span><br><span class="line">CPU:202261583 is a prime</span><br><span class="line">Cpu time is: 811364</span><br><span class="line">==1365== Profiling application: ./prime_3.out</span><br><span class="line">==1365== Profiling result:</span><br><span class="line">Time(%)      Time     Calls       Avg       Min       Max  Name</span><br><span class="line"> 99.97%  236.60ms         1  236.60ms  236.60ms  236.60ms  [CUDA memcpy HtoD]</span><br><span class="line">  0.03%  62.752us         1  62.752us  62.752us  62.752us  IsPrime(long*, bool*, int)</span><br><span class="line">  0.00%  3.3600us         1  3.3600us  3.3600us  3.3600us  [CUDA memcpy DtoH]</span><br><span class="line"></span><br><span class="line">==1365== API calls:</span><br><span class="line">Time(%)      Time     Calls       Avg       Min       Max  Name</span><br><span class="line"> 58.06%  337.27ms         2  168.64ms  375.87us  336.90ms  cudaMalloc</span><br><span class="line"> 40.76%  236.75ms         2  118.37ms  37.190us  236.71ms  cudaMemcpy</span><br><span class="line">  0.52%  3.0149ms       364  8.2820us     246ns  279.56us  cuDeviceGetAttribute</span><br><span class="line">  0.43%  2.5004ms         4  625.10us  615.91us  629.75us  cuDeviceTotalMem</span><br><span class="line">  0.15%  878.57us         2  439.28us  170.20us  708.37us  cudaFree</span><br><span class="line">  0.04%  232.24us         4  58.060us  56.043us  60.786us  cuDeviceGetName</span><br><span class="line">  0.02%  124.54us         1  124.54us  124.54us  124.54us  cudaEventSynchronize</span><br><span class="line">  0.01%  43.690us         1  43.690us  43.690us  43.690us  cudaLaunch</span><br><span class="line">  0.00%  9.5710us         2  4.7850us  1.7290us  7.8420us  cudaEventCreate</span><br><span class="line">  0.00%  9.3820us         2  4.6910us  2.9250us  6.4570us  cudaEventRecord</span><br><span class="line">  0.00%  7.5690us         3  2.5230us     270ns  6.7980us  cudaSetupArgument</span><br><span class="line">  0.00%  5.0280us        12     419ns     245ns     762ns  cuDeviceGet</span><br><span class="line">  0.00%  4.3560us         1  4.3560us  4.3560us  4.3560us  cudaEventElapsedTime</span><br><span class="line">  0.00%  2.9730us         3     991ns     281ns  2.0150us  cuDeviceGetCount</span><br><span class="line">  0.00%  2.8080us         2  1.4040us     740ns  2.0680us  cudaEventDestroy</span><br><span class="line">  0.00%  1.9640us         1  1.9640us  1.9640us  1.9640us  cudaConfigureCall</span><br></pre></td></tr></table></figure></p>
+<p>发现，计算时间确实很短，所以基本不需要优化。</p>
+<p>###5.2.3 其他优化<br>由于选题有问题，导致并不能测出优化前后的结果对比，但还是照着PPT上的其他思路进行优化，使用block与grid内建对象，进行重新改写kernel函数，并通过标记一个值进行返回，这样可以做到较好的效果，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;stdio.h&quot;</span><br><span class="line">#include &quot;stdlib.h&quot;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include &lt;cuda_runtime.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">//define kernel</span><br><span class="line">__global__ void prime_kernel(int *d_mark, int N)</span><br><span class="line">&#123;</span><br><span class="line">	int i = blockIdx.x * 256 + threadIdx.x + 16 + threadIdx.y;//threadIdx.x*16</span><br><span class="line">	if (i &gt;= 2 &amp;&amp; N%i == 0)//判断条件正确</span><br><span class="line">		*d_mark = 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//原始素数求法</span><br><span class="line">bool is_prime(int x)</span><br><span class="line">&#123;</span><br><span class="line">	if (x == 0 || x == 1)</span><br><span class="line">		return false;</span><br><span class="line"></span><br><span class="line">	for (int j = 2; j &lt; x; j++)</span><br><span class="line">	&#123;</span><br><span class="line">		if (x%j == 0)</span><br><span class="line">			return false;</span><br><span class="line">	&#125;</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	int N;</span><br><span class="line">	cin &gt;&gt; N;</span><br><span class="line">	int *h_mark;</span><br><span class="line">	h_mark = (int *)malloc(sizeof(int)* 1);</span><br><span class="line">	*h_mark = 1;//if *h_mark == 1 N is a prime number; else N is not a prime number</span><br><span class="line"></span><br><span class="line">	//分配空间</span><br><span class="line">	int *d_mark;</span><br><span class="line">	cudaMalloc((void **)&amp;d_mark, sizeof(int));</span><br><span class="line">	// 拷贝数据</span><br><span class="line">	cudaMemcpy(d_mark, h_mark, sizeof(int), cudaMemcpyHostToDevice);</span><br><span class="line">	// 设置执行参数</span><br><span class="line">	dim3 block(16, 16); //可以用一维实现,(256,1)</span><br><span class="line">	dim3 grid(4, 1);</span><br><span class="line"></span><br><span class="line">	//api计时</span><br><span class="line">	cudaEvent_t start, stop;</span><br><span class="line">	float Gpu_time;</span><br><span class="line">	cudaEventCreate(&amp;start);</span><br><span class="line">	cudaEventCreate(&amp;stop);</span><br><span class="line">	cudaEventRecord(start, 0);</span><br><span class="line">	</span><br><span class="line">	//执行kernel</span><br><span class="line">	prime_kernel &lt;&lt; &lt;block, grid &gt;&gt; &gt;(d_mark, N);//block和grid位置反了</span><br><span class="line"></span><br><span class="line">	//api计时结束</span><br><span class="line">	cudaEventRecord(stop, 0);</span><br><span class="line">	cudaEventSynchronize(stop);</span><br><span class="line">	cudaEventElapsedTime(&amp;Gpu_time, start, stop);	      //GPU  测时</span><br><span class="line">	cudaEventDestroy(start);</span><br><span class="line">	cudaEventDestroy(stop);</span><br><span class="line">	printf(&quot;Gpu time is: %f ms\n&quot;, Gpu_time);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	// 结果拷贝</span><br><span class="line">	cudaMemcpy(h_mark, d_mark, sizeof(int), cudaMemcpyDeviceToHost);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//GPU输出</span><br><span class="line">	if (*h_mark == 1)</span><br><span class="line">		printf( &quot;%d is a prime number\n&quot;, N);</span><br><span class="line">	else</span><br><span class="line">		printf( &quot;%d is not a prime number\n&quot;, N);</span><br><span class="line"></span><br><span class="line">	//释放</span><br><span class="line">	cudaFree(d_mark);</span><br><span class="line"></span><br><span class="line">	//cpu输出	</span><br><span class="line">	if (is_prime(N))</span><br><span class="line">		printf(&quot;CPU:%d is a prime\n&quot;, N);</span><br><span class="line">	else</span><br><span class="line">		printf(&quot;CPU:%d is not a prime\n&quot;, N);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>k20:<br><img src="http://static.zybuluo.com/rg070836rg/y011xlgt66bk7qu69m4p0b2y/image_1bti3m5jldoh14rqqup13ko1cvs2q.png" alt="image_1bti3m5jldoh14rqqup13ko1cvs2q.png-11kB"><br>k80:<br><img src="http://static.zybuluo.com/rg070836rg/y1naq3i9ihgz9zre8f9nf90n/image_1bti3m0bi1263b79kus1ai01u3d2d.png" alt="image_1bti3m0bi1263b79kus1ai01u3d2d.png-12.6kB"></p>
+<p>##5.3 总结<br>本次实验，分成下面几步：<br>1.串行：cpu上，测试一个数是否为素数<br>2.丢在GPU上:改写成kernel函数<br>3.基本并行化：每个线程判断一个数是否可以被整除，将每线程判断结果写入shared memory内，然后统计结果，如果全部不能被整除，那就是素数。<br>4、优化：使用block与grid内建对象，进行重新改写kernel函数</p>
+<p>#六、实验心得<br>1.学会了CUDA编程的基本原理，能够编写简单的CUDA程序并且比未优化的CPU版本运行速度快。<br>2.初步了解了CUDA并行化的基本知识。<br>3.对cuda编程工具有了较好的了解，对liunx的使用有了提升。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/enote/基本功能/" rel="next" title="基本功能">
+                <i class="fa fa-chevron-left"></i> 基本功能
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/GPU并行计算课程实验与报告/安装cuda8+cudnn5.1+tensorflowgpu+keras/" rel="prev" title="安装cuda8+cudnn5.1+tensorflowgpu+keras">
+                安装cuda8+cudnn5.1+tensorflowgpu+keras <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#四、windows测试"><span class="nav-number">1.</span> <span class="nav-text">四、windows测试</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

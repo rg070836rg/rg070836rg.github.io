@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="##A POJ 1321思路：这条题目给定棋盘，要求横竖不能放，按行数开始dfs，按列数循环，深搜进入下一层，本行测试完成后，直接进入下一行。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465//回溯法#i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="专题 简单搜索（bfs+dfs)">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/深搜/专题 简单搜索（bfs+dfs)/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="##A POJ 1321思路：这条题目给定棋盘，要求横竖不能放，按行数开始dfs，按列数循环，深搜进入下一层，本行测试完成后，直接进入下一行。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465//回溯法#i">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.904Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="专题 简单搜索（bfs+dfs)">
+<meta name="twitter:description" content="##A POJ 1321思路：这条题目给定棋盘，要求横竖不能放，按行数开始dfs，按列数循环，深搜进入下一层，本行测试完成后，直接进入下一行。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465//回溯法#i">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/深搜/专题 简单搜索（bfs+dfs)/">
+
+
+
+
+
+  <title>专题 简单搜索（bfs+dfs) | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/深搜/专题 简单搜索（bfs+dfs)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">专题 简单搜索（bfs+dfs)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/深搜/" itemprop="url" rel="index">
+                    <span itemprop="name">深搜</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>##A POJ 1321<br>思路：这条题目给定棋盘，要求横竖不能放，按行数开始dfs，按列数循环，深搜进入下一层，本行测试完成后，直接进入下一行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">//回溯法</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">//定义棋盘</span><br><span class="line">char qipan[8][8];</span><br><span class="line"></span><br><span class="line">//从行扫描，所以仅记录列数是否被占用，</span><br><span class="line">bool col[8];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//m是需要填充的个数</span><br><span class="line">//n是棋盘规模</span><br><span class="line">//cur是当前已填充个数</span><br><span class="line">int m,n;</span><br><span class="line">int cur;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//r为行数，k代表已经填充的棋子数，cur代表方案数</span><br><span class="line">void dfs(int r, int k)</span><br><span class="line">&#123;</span><br><span class="line">	if (k == m)</span><br><span class="line">	&#123;</span><br><span class="line">		cur++;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	if (r &gt; n)</span><br><span class="line">	&#123;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//若第i列没有放且qipan[r][i] == &apos;#&apos;，若不能填，直接进入下一次循环</span><br><span class="line">	for (int i = 0; i &lt; n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if (!col[i] &amp;&amp; qipan[r][i] == &apos;#&apos;)</span><br><span class="line">		&#123;</span><br><span class="line">			col[i] = 1;</span><br><span class="line">			dfs(r + 1, k + 1);</span><br><span class="line">			col[i] = 0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//本行已经全部测试完成，直接进入下一行</span><br><span class="line">	dfs(r + 1, k);</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	while (cin&gt;&gt;m&gt;&gt;n)</span><br><span class="line">	&#123;</span><br><span class="line">		if (n == -1 &amp;&amp; m == -1) break;</span><br><span class="line">		cur = 0;</span><br><span class="line">		for (int i = 0; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			for (int j = 0; j &lt; n; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				cin &gt;&gt; qipan[i][j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		memset(col, false, sizeof(col));</span><br><span class="line">		dfs(0, 0);</span><br><span class="line">		cout &lt;&lt; cur &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##B POJ 2251<br>3DBFS，扩展而已。水题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int L, R, C;</span><br><span class="line">const int maxn = 32;</span><br><span class="line"></span><br><span class="line">struct Node</span><br><span class="line">&#123;</span><br><span class="line">    int l, r, c;</span><br><span class="line">    int path;</span><br><span class="line">    //-1 = #     1 = .   2 = E</span><br><span class="line">    int own;</span><br><span class="line">    void assign(int x, int y, int z)</span><br><span class="line">    &#123;</span><br><span class="line">        l = x; r = y; c = z;</span><br><span class="line">        path = -1;</span><br><span class="line">        own = 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;node[maxn][maxn][maxn];</span><br><span class="line">queue&lt;Node&gt; Q;</span><br><span class="line"></span><br><span class="line">int bfs()</span><br><span class="line">&#123;</span><br><span class="line">    Node temp;</span><br><span class="line">    while (!Q.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        temp = Q.front();</span><br><span class="line">        if (temp.own == 2)return temp.path;</span><br><span class="line">        for (int dl = -1; dl &lt; 2; dl++)</span><br><span class="line">            for (int dr = -1; dr &lt; 2; dr++)</span><br><span class="line">                for (int dc = -1; dc &lt; 2; dc++)</span><br><span class="line">                &#123;</span><br><span class="line">                    int a[3] = &#123; dl, dr, dc &#125;;</span><br><span class="line">                    sort(a, a + 3);</span><br><span class="line">                    if (!((a[0] == 0 &amp;&amp; a[1] == 0) || (a[1] == 0 &amp;&amp; a[2] == 0)))continue;</span><br><span class="line">                    if (temp.l + dl &gt; 0 &amp;&amp; temp.l + dl &lt;= L &amp;&amp; temp.r + dr &gt; 0 &amp;&amp; temp.r + dr &lt;= R &amp;&amp; temp.c + dc &gt; 0 &amp;&amp; temp.c + dc &lt;= C &amp;&amp; node[temp.l + dl][temp.r + dr][temp.c + dc].own &gt; 0 &amp;&amp; node[temp.l + dl][temp.r + dr][temp.c + dc].path &lt; 0)</span><br><span class="line">                    &#123;</span><br><span class="line">                        node[temp.l + dl][temp.r + dr][temp.c + dc].path = node[temp.l][temp.r][temp.c].path + 1;</span><br><span class="line">                        Q.push(node[temp.l + dl][temp.r + dr][temp.c + dc]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">        Q.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    ios::sync_with_stdio(false);</span><br><span class="line">    while (cin &gt;&gt; L &gt;&gt; R &gt;&gt; C)</span><br><span class="line">    &#123;</span><br><span class="line">        if (L == 0 &amp;&amp; R == 0 &amp;&amp; C == 0)break;</span><br><span class="line">        while (!Q.empty())Q.pop();</span><br><span class="line">        string tmp;</span><br><span class="line">        for (int i = 1; i &lt;= L; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int j = 1; j &lt;= R; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                cin &gt;&gt; tmp;</span><br><span class="line">                for (int k = 1; k &lt;= C; k++)</span><br><span class="line">                &#123;</span><br><span class="line">                    node[i][j][k].assign(i, j, k);</span><br><span class="line">                    switch (tmp[k - 1])</span><br><span class="line">                    &#123;</span><br><span class="line">                    case &apos;.&apos;:node[i][j][k].own = 1; break;</span><br><span class="line">                    case &apos;S&apos;:node[i][j][k].own = 1; node[i][j][k].path = 0; Q.push(node[i][j][k]); break;</span><br><span class="line">                    case &apos;E&apos;:node[i][j][k].own = 2; break;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = bfs();</span><br><span class="line">        if (ans == 0)cout &lt;&lt; &quot;Trapped!\n&quot;;</span><br><span class="line">        else cout &lt;&lt; &quot;Escaped in &quot; &lt;&lt; ans &lt;&lt; &quot; minute(s).\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##C POJ 3278<br>隐式bfs。水题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int maxn = 100001;</span><br><span class="line"></span><br><span class="line">int N, K;</span><br><span class="line">queue&lt;int&gt; Q;</span><br><span class="line">int path[maxn];</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    cin &gt;&gt; N &gt;&gt; K;</span><br><span class="line">    memset(path, -1, sizeof(path));</span><br><span class="line">    path[N] = 0;</span><br><span class="line">    Q.push(N);</span><br><span class="line">    int temp;</span><br><span class="line">    while (!Q.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        temp = Q.front();</span><br><span class="line">        Q.pop();</span><br><span class="line">        if (temp == K) &#123; cout &lt;&lt; path[temp] &lt;&lt; endl; &#125;</span><br><span class="line">        if (temp &gt; 0 &amp;&amp; path[temp - 1] &lt; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            Q.push(temp - 1);</span><br><span class="line">            path[temp - 1] = path[temp] + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        if (temp &lt; 100000 &amp;&amp; path[temp + 1] &lt; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            Q.push(temp + 1);</span><br><span class="line">            path[temp + 1] = path[temp] + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        if (temp * 2 &lt; maxn &amp;&amp; path[temp * 2] &lt; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            Q.push(temp * 2);</span><br><span class="line">            path[temp * 2] = path[temp] + 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##D POJ 3279<br>值得注意的是第一行一旦确定后面行也确定。从这点出发的暴力运算量就可以AC<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line">//显然每个位置只能为0或1，不可能为2</span><br><span class="line">//而当第一行一旦确定，后面的m-1行也就确定</span><br><span class="line">//因此只要穷举第一行的情况，1&lt;&lt;16的运算量，再选字典序最小即可</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int M, N;</span><br><span class="line">int m[17][17];</span><br><span class="line">int map[17][17];</span><br><span class="line">int ans[17][17];</span><br><span class="line">int minans[17][17];</span><br><span class="line">int minp = (1 &lt;&lt; 30);</span><br><span class="line">int minv = (1 &lt;&lt; 30);</span><br><span class="line">const int dx[] = &#123; 1, -1, 0, 0 &#125;;</span><br><span class="line">const int dy[] = &#123; 0, 0, 1, -1 &#125;;</span><br><span class="line"></span><br><span class="line">void flip(int row, int col)</span><br><span class="line">&#123;</span><br><span class="line">    if (map[row][col] == 0)map[row][col] = 1;</span><br><span class="line">    else map[row][col] = 0;</span><br><span class="line">    for (int i = 0; i &lt; 4; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (row + dx[i] &lt; 0 || row + dx[i] &gt; M - 1 || col + dy[i] &lt; 0 || col + dy[i] &gt; N - 1)continue;</span><br><span class="line">        if (map[row + dx[i]][col + dy[i]] == 0)map[row + dx[i]][col + dy[i]] = 1;</span><br><span class="line">        else map[row + dx[i]][col + dy[i]] = 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    cin &gt;&gt; M &gt;&gt; N;</span><br><span class="line">    memset(m, -1, sizeof(m));</span><br><span class="line">    for (int i = 0; i &lt; M; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        for (int j = 0; j &lt; N; j++)</span><br><span class="line">            cin &gt;&gt; m[i][j];</span><br><span class="line">    &#125;</span><br><span class="line">    bool fuck = false;</span><br><span class="line">    for (int i = 0; i &lt; (1 &lt;&lt; N); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        memset(ans, 0, sizeof(ans));</span><br><span class="line">        for (int x = 0; x &lt; M; x++)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int y = 0; y &lt; N; y++)</span><br><span class="line">                map[x][y] = m[x][y];</span><br><span class="line">        &#125;</span><br><span class="line">        for (int j = 0; j &lt; N; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            ans[0][j] = (i &amp; (1 &lt;&lt; j));</span><br><span class="line">            if (ans[0][j] &gt; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                ans[0][j] = 1;</span><br><span class="line">                flip(0, j);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int j = 1; j &lt; M; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int k = 0; k &lt; N; k++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (map[j - 1][k] == 1)</span><br><span class="line">                &#123;</span><br><span class="line">                    flip(j, k);</span><br><span class="line">                    ans[j][k] = 1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        bool zz = true;</span><br><span class="line">        for (int j = 0; j &lt; N; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            if (map[M - 1][j] == 1)</span><br><span class="line">            &#123;</span><br><span class="line">                zz = false;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (zz)</span><br><span class="line">        &#123;</span><br><span class="line">            fuck = true;</span><br><span class="line">            int p = 0;</span><br><span class="line">            for (int k = 0; k &lt; M; k++)</span><br><span class="line">                for (int j = 0; j &lt; N; j++)</span><br><span class="line">                &#123;</span><br><span class="line">                    p += ans[k][j];</span><br><span class="line">                &#125;</span><br><span class="line">            if (p &lt; minv || (p == minv &amp;&amp; minp &gt; i))</span><br><span class="line">            &#123;</span><br><span class="line">                minv = p;</span><br><span class="line">                minp = i;</span><br><span class="line">                memcpy(minans, ans, sizeof(ans));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (!fuck)cout &lt;&lt; &quot;IMPOSSIBLE\n&quot;;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        for (int i = 0; i &lt; M; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int j = 0; j &lt; N - 1; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                cout &lt;&lt; minans[i][j] &lt;&lt; &quot; &quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            cout &lt;&lt; minans[i][N - 1] &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##E POJ 1426<br>隐式bfs剪枝，从最高位1开始。利用数论的知识来优化就不会爆炸<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">//第一位必定为1 选最小的即可</span><br><span class="line">//从最高位开始向后bfs，补0或1</span><br><span class="line">//剪枝：对于完全剩余系0-n-1</span><br><span class="line">//比如在第3位出现了k，而到第9位为0，结束</span><br><span class="line">//那么我在第6位又出现k，显然到12位就会为0</span><br><span class="line">//因此可以直接把又出现k的情况直接扔掉</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int N;</span><br><span class="line"></span><br><span class="line">struct Node</span><br><span class="line">&#123;</span><br><span class="line">    int value;</span><br><span class="line">    int pos;</span><br><span class="line">    int store[205];</span><br><span class="line">    Node() &#123;&#125;</span><br><span class="line">    Node(int a) :pos(a), value(1) &#123; memset(store, 0, sizeof(store)); store[a] = 1; &#125;</span><br><span class="line">    Node(Node n, int p)</span><br><span class="line">    &#123;</span><br><span class="line">        pos = n.pos + 1;</span><br><span class="line">        value = (n.value * 10 + p) % N;</span><br><span class="line">        memcpy(store, n.store, sizeof(store));</span><br><span class="line">        store[pos] = p;</span><br><span class="line">    &#125;</span><br><span class="line">    void print()</span><br><span class="line">    &#123;</span><br><span class="line">        for (int i = 1; i &lt;= pos; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; store[i];</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Node first;</span><br><span class="line">queue&lt;Node&gt; Q;</span><br><span class="line">int visited[205];</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    while (cin &gt;&gt; N &amp;&amp; N &gt; 0)</span><br><span class="line">    &#123;</span><br><span class="line">        memset(visited, 0, sizeof(visited));</span><br><span class="line">        while (!Q.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            Q.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        first = Node(1);</span><br><span class="line">        Q.push(first);</span><br><span class="line">        while (!Q.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            first = Q.front();</span><br><span class="line">            Q.pop();</span><br><span class="line">            if (visited[first.value] == 1)continue;</span><br><span class="line">            else visited[first.value] = 1;</span><br><span class="line">            if (first.value == 0)</span><br><span class="line">            &#123;</span><br><span class="line">                first.print();</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            Q.push(Node(first, 0));</span><br><span class="line">            Q.push(Node(first, 1));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##F POJ 3126<br>注意素数的判别不要弄错，小于等于根号n<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">//注意判断素数那里小于等于根号i</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int M;</span><br><span class="line">bool prime[10005];</span><br><span class="line">int path[10005];</span><br><span class="line">queue&lt;int&gt; Q;</span><br><span class="line"></span><br><span class="line">void primebuild()</span><br><span class="line">&#123;</span><br><span class="line">    memset(prime, 0, sizeof(prime));</span><br><span class="line">    for (int i = 1001; i &lt; 10000; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        int temp = floor(sqrt(1.0*i) + 0.5);</span><br><span class="line">        bool fuck = true;</span><br><span class="line">        for (int j = 2; j &lt;= temp; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            if (i % j == 0)</span><br><span class="line">            &#123;</span><br><span class="line">                fuck = false;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        prime[i] = fuck;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int bfs(int a, int b)</span><br><span class="line">&#123;</span><br><span class="line">    memset(path, -1, sizeof(path));</span><br><span class="line">    while (!Q.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        Q.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    path[a] = 0;</span><br><span class="line">    Q.push(a);</span><br><span class="line">    int first;</span><br><span class="line">    while (!Q.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        first = Q.front();</span><br><span class="line">        Q.pop();</span><br><span class="line">        if (first == b)return path[first];</span><br><span class="line">        int p = first % 1000;</span><br><span class="line">        for (int i = 1; i &lt; 10; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            p += 1000;</span><br><span class="line">            if (path[p] &lt; 0 &amp;&amp; prime[p])</span><br><span class="line">            &#123;</span><br><span class="line">                Q.push(p);</span><br><span class="line">                path[p] = path[first] + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        p = (first / 1000) * 1000 + (first % 100);</span><br><span class="line">        for (int i = 0; i &lt; 10; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if (path[p] &lt; 0 &amp;&amp; prime[p])</span><br><span class="line">            &#123;</span><br><span class="line">                Q.push(p);</span><br><span class="line">                path[p] = path[first] + 1;</span><br><span class="line">            &#125;</span><br><span class="line">            p += 100;</span><br><span class="line">        &#125;</span><br><span class="line">        p = first - (first % 100) + (first % 10);</span><br><span class="line">        for (int i = 0; i &lt; 10; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if (path[p] &lt; 0 &amp;&amp; prime[p])</span><br><span class="line">            &#123;</span><br><span class="line">                Q.push(p);</span><br><span class="line">                path[p] = path[first] + 1;</span><br><span class="line">            &#125;</span><br><span class="line">            p += 10;</span><br><span class="line">        &#125;</span><br><span class="line">        p = first - (first % 10);</span><br><span class="line">        for (int i = 0; i &lt; 10; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if (path[p] &lt; 0 &amp;&amp; prime[p])</span><br><span class="line">            &#123;</span><br><span class="line">                Q.push(p);</span><br><span class="line">                path[p] = path[first] + 1;</span><br><span class="line">            &#125;</span><br><span class="line">            p++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    primebuild();</span><br><span class="line">    cin &gt;&gt; M;</span><br><span class="line">    while (M--)</span><br><span class="line">    &#123;</span><br><span class="line">        int a, b;</span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        cout &lt;&lt; bfs(a, b) &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##G POJ 3087<br>模拟题，注意某一状态第二次出现时剪枝。水题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">//纯模拟题，注意两副牌重复交叉一定次数一定会循环到开始</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int M, C;</span><br><span class="line">string a, b, c;</span><br><span class="line">map&lt;string, int&gt; mm;</span><br><span class="line"></span><br><span class="line">string change()</span><br><span class="line">&#123;</span><br><span class="line">    string ret = &quot;&quot;;</span><br><span class="line">    for (int i = 0; i &lt; (C &lt;&lt; 1); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (i &amp; 1) ret += a[i&gt;&gt;1];</span><br><span class="line">        else ret += b[i&gt;&gt;1];</span><br><span class="line">    &#125;</span><br><span class="line">    a = ret.substr(0, C);</span><br><span class="line">    b = ret.substr(C, C);</span><br><span class="line">    return ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    cin &gt;&gt; M;</span><br><span class="line">    for (int kase = 0; kase &lt; M; kase++)</span><br><span class="line">    &#123;</span><br><span class="line">        mm.clear();</span><br><span class="line">        cin &gt;&gt; C &gt;&gt; a &gt;&gt; b &gt;&gt; c;</span><br><span class="line">        cout &lt;&lt; kase + 1 &lt;&lt; &quot; &quot;;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        while (true)</span><br><span class="line">        &#123;</span><br><span class="line">            string temp = change();</span><br><span class="line">            ans++;</span><br><span class="line">            if (temp == c)break;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if (mm[temp] == 1)</span><br><span class="line">                &#123;</span><br><span class="line">                    ans = -1;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    mm[temp] = 1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##H POJ 3414<br>细节上别弄错。bfs水题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line">//类的构造函数的形参类型为该类必须用引用</span><br><span class="line">//注意set放结构体的时候必须要重载&lt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int a, b, c;</span><br><span class="line"></span><br><span class="line">struct State</span><br><span class="line">&#123;</span><br><span class="line">    int la, lb;</span><br><span class="line">    bool ok() &#123; if (la == c || lb == c)return true; return false; &#125;</span><br><span class="line">    int path;</span><br><span class="line">    string way;</span><br><span class="line">    State() :path(-1), la(0), lb(0), way(&quot;&quot;) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct Node</span><br><span class="line">&#123;</span><br><span class="line">    int la, lb;</span><br><span class="line">    Node(State a):la(a.la), lb(a.lb) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">bool operator &lt; (Node a, Node b)</span><br><span class="line">&#123;</span><br><span class="line">    if (a.la != b.la)return a.la &lt; b.la;</span><br><span class="line">    else return a.lb &lt; b.lb;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">set&lt;Node&gt; S;</span><br><span class="line">queue&lt;State&gt; Q;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;</span><br><span class="line">    State first;</span><br><span class="line">    first.path++;</span><br><span class="line">    Q.push(first);</span><br><span class="line">    bool fuck = false;</span><br><span class="line">    while (!Q.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        first = Q.front();</span><br><span class="line">        Q.pop();</span><br><span class="line">        Node node(first);</span><br><span class="line">        if (S.count(node))continue;</span><br><span class="line">        else S.insert(node);</span><br><span class="line">        if (first.ok())</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; first.path &lt;&lt; endl;</span><br><span class="line">            cout &lt;&lt; first.way;</span><br><span class="line">            fuck = true;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            first.path++;</span><br><span class="line">            State temp = first;</span><br><span class="line">            if (first.la &lt; a)</span><br><span class="line">            &#123;</span><br><span class="line">                temp.way += &quot;FILL(1)\n&quot;;</span><br><span class="line">                temp.la = a;</span><br><span class="line">                Q.push(temp);</span><br><span class="line">            &#125;</span><br><span class="line">            temp = first;</span><br><span class="line">            if (first.lb &lt; b)</span><br><span class="line">            &#123;</span><br><span class="line">                temp.way += &quot;FILL(2)\n&quot;;</span><br><span class="line">                temp.lb = b;</span><br><span class="line">                Q.push(temp);</span><br><span class="line">            &#125;</span><br><span class="line">            temp = first;</span><br><span class="line">            if (first.la &gt; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                temp.way += &quot;DROP(1)\n&quot;;</span><br><span class="line">                temp.la = 0;</span><br><span class="line">                Q.push(temp);</span><br><span class="line">            &#125;</span><br><span class="line">            temp = first;</span><br><span class="line">            if (first.lb &gt; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                temp.way += &quot;DROP(2)\n&quot;;</span><br><span class="line">                temp.lb = 0;</span><br><span class="line">                Q.push(temp);</span><br><span class="line">            &#125;</span><br><span class="line">            temp = first;</span><br><span class="line">            if (first.la &lt; a &amp;&amp; first.lb &gt; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                temp.way += &quot;POUR(2,1)\n&quot;;</span><br><span class="line">                int cc = a - first.la;</span><br><span class="line">                if (cc &gt; first.lb)</span><br><span class="line">                &#123;</span><br><span class="line">                    temp.la += first.lb;</span><br><span class="line">                    temp.lb = 0;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    temp.lb -= cc;</span><br><span class="line">                    temp.la = a;</span><br><span class="line">                &#125;</span><br><span class="line">                Q.push(temp);</span><br><span class="line">            &#125;</span><br><span class="line">            temp = first;</span><br><span class="line">            if (first.lb &lt; b &amp;&amp; first.la &gt; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                temp.way += &quot;POUR(1,2)\n&quot;;</span><br><span class="line">                int cc = b - first.lb;</span><br><span class="line">                if (cc &gt; first.la)</span><br><span class="line">                &#123;</span><br><span class="line">                    temp.lb += first.la;</span><br><span class="line">                    temp.la = 0;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    temp.la -= cc;</span><br><span class="line">                    temp.lb = b;</span><br><span class="line">                &#125;</span><br><span class="line">                Q.push(temp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (!fuck) cout &lt;&lt; &quot;impossible&quot; &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##I FZU 2150<br>dfs穷举组合数+bfs。注意笔误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line">//dfs穷举组合数+bfs暴力</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int map[12][12];</span><br><span class="line">int grass[12][12];</span><br><span class="line">int T, n, m;</span><br><span class="line">int px[105], py[105];</span><br><span class="line">int tot;</span><br><span class="line">int fire[3];</span><br><span class="line">int ans;</span><br><span class="line">int dx[] = &#123; -1, 0, 1, 0 &#125;;</span><br><span class="line">int dy[] = &#123; 0, 1, 0, -1 &#125;;</span><br><span class="line">int visited[12][12];</span><br><span class="line"></span><br><span class="line">struct Node</span><br><span class="line">&#123;</span><br><span class="line">    int x, y;</span><br><span class="line">    int path;</span><br><span class="line">    Node() &#123;&#125;</span><br><span class="line">    Node(int x, int y, int path) :x(x), y(y), path(path) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">queue&lt;Node&gt; Q;</span><br><span class="line"></span><br><span class="line">void dfs(int cur, int num)</span><br><span class="line">&#123;</span><br><span class="line">    if (cur == 2)</span><br><span class="line">    &#123;</span><br><span class="line">        memcpy(grass, map, sizeof(map));</span><br><span class="line">        memset(visited, 0, sizeof(visited));</span><br><span class="line">        int t = -1;</span><br><span class="line">        Node t1 = Node(px[fire[0]], py[fire[0]], 0), t2 = Node(px[fire[1]], py[fire[1]], 0);</span><br><span class="line">        Q.push(t1);</span><br><span class="line">        Q.push(t2);</span><br><span class="line">        while (!Q.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            Node temp = Q.front();</span><br><span class="line">            Q.pop();</span><br><span class="line">            if (grass[temp.x][temp.y] == 0)continue;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                t = max(t, temp.path);</span><br><span class="line">                grass[temp.x][temp.y] = 0;</span><br><span class="line">                for (int i = 0; i &lt; 4; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (temp.x + dx[i] &lt; 0 || temp.x + dx[i] &gt; n - 1)continue;</span><br><span class="line">                    if (temp.y + dy[i] &lt; 0 || temp.y + dy[i] &gt; m - 1)continue;</span><br><span class="line">                    if (visited[temp.x + dx[i]][temp.y + dy[i]] == 1)continue;</span><br><span class="line">                    Q.push(Node(temp.x + dx[i], temp.y + dy[i], temp.path + 1));</span><br><span class="line">                    visited[temp.x + dx[i]][temp.y + dy[i]] = 1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        bool fuck = true;</span><br><span class="line">        for (int i = 0; i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            bool cc = true;</span><br><span class="line">            for (int j = 0; j &lt; m; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (grass[i][j] == 1)</span><br><span class="line">                &#123;</span><br><span class="line">                    cc = false;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (!cc)</span><br><span class="line">            &#123;</span><br><span class="line">                fuck = false;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (fuck)</span><br><span class="line">        &#123;</span><br><span class="line">            ans = min(ans, t);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        for (int i = num; i &lt; tot; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            fire[cur] = i;</span><br><span class="line">            dfs(cur + 1, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    ios::sync_with_stdio(false);</span><br><span class="line">    cin &gt;&gt; T;</span><br><span class="line">    for (int kase = 0; kase &lt; T; kase++)</span><br><span class="line">    &#123;</span><br><span class="line">        tot = 0;</span><br><span class="line">        ans = (1 &lt;&lt; 30);</span><br><span class="line">        memset(map, 0, sizeof(map));</span><br><span class="line">        memset(px, -1, sizeof(px));</span><br><span class="line">        memset(py, -1, sizeof(py));</span><br><span class="line">        cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">        char chTmp;</span><br><span class="line">        for (int i = 0; i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int j = 0; j &lt; m; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                cin &gt;&gt; chTmp;</span><br><span class="line">                if (chTmp == &apos;#&apos;)</span><br><span class="line">                &#123;</span><br><span class="line">                    map[i][j] = 1;</span><br><span class="line">                    px[tot] = i;</span><br><span class="line">                    py[tot] = j;</span><br><span class="line">                    tot++;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                    map[i][j] = 0;</span><br><span class="line">            &#125;</span><br><span class="line">            cin.ignore();</span><br><span class="line">        &#125;</span><br><span class="line">        dfs(0, 0);</span><br><span class="line">        if (ans == (1 &lt;&lt; 30))ans = -1;</span><br><span class="line">        cout &lt;&lt; &quot;Case &quot; &lt;&lt; kase + 1 &lt;&lt; &quot;: &quot; &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##J UVA 11624<br>注意状态的先后变化。bfs水题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int T;</span><br><span class="line">int R, C;</span><br><span class="line">int fr, fc;</span><br><span class="line">int map[1005][1005];</span><br><span class="line">int visited[1005][1005];</span><br><span class="line">const int dr[] = &#123; 0, 1, 0, -1 &#125;;</span><br><span class="line">const int dc[] = &#123; 1, 0, -1, 0 &#125;;</span><br><span class="line"></span><br><span class="line">struct Node</span><br><span class="line">&#123;</span><br><span class="line">    int row, col;</span><br><span class="line">    int path;</span><br><span class="line">    bool fire;</span><br><span class="line">    Node() &#123;&#125;</span><br><span class="line">    Node(int row, int col, int path, bool fire) :row(row), col(col), path(path), fire(fire) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">queue&lt;Node&gt; Q;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    cin &gt;&gt; T;</span><br><span class="line">    while (T--)</span><br><span class="line">    &#123;</span><br><span class="line">        while (!Q.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            Q.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        memset(map, -1, sizeof(map));</span><br><span class="line">        memset(visited, 0, sizeof(visited));</span><br><span class="line">        cin &gt;&gt; R &gt;&gt; C;</span><br><span class="line">        char chTmp;</span><br><span class="line">        for (int i = 1; i &lt;= R; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int j = 1; j &lt;= C; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                cin &gt;&gt; chTmp;</span><br><span class="line">                if (chTmp == &apos;#&apos;)</span><br><span class="line">                &#123;</span><br><span class="line">                    map[i][j] = -1;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    if (chTmp == &apos;.&apos;)</span><br><span class="line">                    &#123;</span><br><span class="line">                        map[i][j] = 1;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        if (chTmp == &apos;F&apos;)</span><br><span class="line">                        &#123;</span><br><span class="line">                            map[i][j] = -2;</span><br><span class="line">                            Q.push(Node(i, j, -1, true));</span><br><span class="line">                        &#125;</span><br><span class="line">                        else</span><br><span class="line">                        &#123;</span><br><span class="line">                            map[i][j] = 1;</span><br><span class="line">                            fr = i;</span><br><span class="line">                            fc = j;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            cin.ignore();</span><br><span class="line">        &#125;</span><br><span class="line">        Q.push(Node(fr, fc, 0, false));</span><br><span class="line">        bool fuck = true;</span><br><span class="line">        Node first;</span><br><span class="line">        while (!Q.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            first = Q.front();</span><br><span class="line">            Q.pop();</span><br><span class="line">            if (!first.fire)</span><br><span class="line">            &#123;</span><br><span class="line">                for (int i = 0; i &lt; 4; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (first.row + dr[i] &lt; 1 || first.row + dr[i] &gt; R || first.col + dc[i] &lt; 1 || first.col + dc[i] &gt; C)</span><br><span class="line">                    &#123;</span><br><span class="line">                        fuck = false;</span><br><span class="line">                        cout &lt;&lt; first.path + 1 &lt;&lt; endl;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        if (visited[first.row + dr[i]][first.col + dc[i]] == 0 &amp;&amp; map[first.row + dr[i]][first.col + dc[i]] &gt; 0)</span><br><span class="line">                        &#123;</span><br><span class="line">                            visited[first.row + dr[i]][first.col + dc[i]] = 1;</span><br><span class="line">                            Q.push(Node(first.row + dr[i], first.col + dc[i], first.path + 1, false));</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                if (!fuck)break;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                for (int i = 0; i &lt; 4; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (first.row + dr[i] &lt; 1 || first.row + dr[i] &gt; R || first.col + dc[i] &lt; 1 || first.col + dc[i] &gt; C)continue;</span><br><span class="line">                    if (map[first.row + dr[i]][first.col + dc[i]] &gt; 0 &amp;&amp; visited[first.row + dr[i]][first.col + dc[i]] == 0)</span><br><span class="line">                    &#123;</span><br><span class="line">                        Q.push(Node(first.row + dr[i], first.col + dc[i], -1, true));</span><br><span class="line">                        map[first.row + dr[i]][first.col + dc[i]] = -2;</span><br><span class="line">                        visited[first.row + dr[i]][first.col + dc[i]] = 1;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (fuck)cout &lt;&lt; &quot;IMPOSSIBLE&quot; &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##K POJ 3984<br>本专题最简单的水题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int map[5][5];</span><br><span class="line">int visited[5][5];</span><br><span class="line">const int dr[] = &#123; -1, 0, 1, 0 &#125;;</span><br><span class="line">const int dc[] = &#123; 0, -1, 0, 1 &#125;;</span><br><span class="line"></span><br><span class="line">struct Node</span><br><span class="line">&#123;</span><br><span class="line">    int row, col;</span><br><span class="line">    int path;</span><br><span class="line">    string way;</span><br><span class="line">    Node(int row, int col, int path) :row(row), col(col), path(path) &#123; way = &quot;&quot;; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">queue&lt;Node&gt; Q;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    for (int i = 0; i &lt; 5; i++)</span><br><span class="line">        for (int j = 0; j &lt; 5; j++)</span><br><span class="line">            cin &gt;&gt; map[i][j];</span><br><span class="line">    Node first = Node(0, 0, 0);</span><br><span class="line">    first.way = &quot;(0, 0)\n&quot;;</span><br><span class="line">    visited[0][0] = 1;</span><br><span class="line">    Q.push(first);</span><br><span class="line">    while (!Q.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        first = Q.front(); Q.pop();</span><br><span class="line">        if (first.row == 4 &amp;&amp; first.col == 4)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; first.way;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            for (int i = 0; i &lt; 4; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (first.row + dr[i] &lt; 0 || first.row + dr[i] &gt; 4 || first.col + dc[i] &lt; 0 || first.col + dc[i] &gt; 4)</span><br><span class="line">                &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    if (map[first.row + dr[i]][first.col + dc[i]] == 0 &amp;&amp; visited[first.row + dr[i]][first.col + dc[i]] == 0)</span><br><span class="line">                    &#123;</span><br><span class="line">                        Node temp = first;</span><br><span class="line">                        temp.row += dr[i];</span><br><span class="line">                        temp.col += dc[i];</span><br><span class="line">                        temp.path++;</span><br><span class="line">                        temp.way += &quot;(&quot;;</span><br><span class="line">                        temp.way += first.row + dr[i] + 48;</span><br><span class="line">                        temp.way += &quot;, &quot;;</span><br><span class="line">                        temp.way += first.col + dc[i] + 48;</span><br><span class="line">                        temp.way += &quot;)\n&quot;;</span><br><span class="line">                        Q.push(temp);</span><br><span class="line">                        visited[first.row + dr[i]][first.col + dc[i]] = 1;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##L HDU 1241<br>紫书例题，八连通图。水题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int maxn = 105;</span><br><span class="line">const int dr[] = &#123; -1, -1, -1, 0, 0, 1, 1, 1 &#125;;</span><br><span class="line">const int dc[] = &#123; -1, 0, 1, -1, 1, -1, 0, 1 &#125;;</span><br><span class="line"></span><br><span class="line">int ans;</span><br><span class="line">int r, c;</span><br><span class="line">int map[maxn][maxn];</span><br><span class="line">int visited[maxn][maxn];</span><br><span class="line">void dfs(int row, int col);</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    char chTmp;</span><br><span class="line">    while (cin &gt;&gt; r &gt;&gt; c)</span><br><span class="line">    &#123;</span><br><span class="line">        if (r == 0)break;</span><br><span class="line">        ans = 0;</span><br><span class="line">        memset(map, 0, sizeof(map));</span><br><span class="line">        memset(visited, 0, sizeof(map));</span><br><span class="line">        for (int i = 1; i &lt;= r; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int j = 1; j &lt;= c; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                cin &gt;&gt; chTmp;</span><br><span class="line">                if (chTmp == &apos;@&apos;)</span><br><span class="line">                    map[i][j] = 1;</span><br><span class="line">            &#125;</span><br><span class="line">            cin.ignore();</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt;= r; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int j = 1; j &lt;= c; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (map[i][j] == 1 &amp;&amp; visited[i][j] == 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    dfs(i, j);</span><br><span class="line">                    ans++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void dfs(int row, int col)</span><br><span class="line">&#123;</span><br><span class="line">    visited[row][col] = 1;</span><br><span class="line">    for (int i = 0; i &lt; 8; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (row + dr[i] &lt; 1 || row + dr[i] &gt; r || col + dc[i] &lt; 1 || col + dc[i] &gt; c)continue;</span><br><span class="line">        if (map[row + dr[i]][col + dc[i]] == 1 &amp;&amp; visited[row + dr[i]][col + dc[i]] == 0)</span><br><span class="line">        &#123;</span><br><span class="line">            dfs(row + dr[i], col + dc[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##M HDU 1495<br>和上面某题极其相似。水题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int s, n, m;</span><br><span class="line"></span><br><span class="line">struct Node</span><br><span class="line">&#123;</span><br><span class="line">    int a, b, c;</span><br><span class="line">    int path;</span><br><span class="line">    Node(int a, int b, int c, int path) :a(a), b(b), c(c), path(path) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct State</span><br><span class="line">&#123;</span><br><span class="line">    int a, b, c;</span><br><span class="line">    State() &#123;&#125;</span><br><span class="line">    State(Node x) :a(x.a), b(x.b), c(x.c) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">bool operator &lt; (const State&amp; x, const State&amp; y)</span><br><span class="line">&#123;</span><br><span class="line">    if (x.a != y.a) return x.a &lt; y.a;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        if (x.b != y.b) return x.b &lt; y.b;</span><br><span class="line">        else return x.c &lt; y.c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">set&lt;State&gt; S;</span><br><span class="line">queue&lt;Node&gt; Q;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;        </span><br><span class="line">    while (cin &gt;&gt; s &gt;&gt; n &gt;&gt; m)</span><br><span class="line">    &#123;</span><br><span class="line">        while (!Q.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            Q.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        S.clear();</span><br><span class="line">        if (s == 0)break;</span><br><span class="line">        Node first = Node(s, 0, 0, 0);</span><br><span class="line">        State temp;</span><br><span class="line">        Q.push(first);</span><br><span class="line">        bool fuck = true;</span><br><span class="line">        if (s % 2 == 0)</span><br><span class="line">        while (!Q.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            first = Q.front(); Q.pop();</span><br><span class="line">            temp = State(first);</span><br><span class="line">            int pp[3] = &#123; first.a, first.b, first.c &#125;;</span><br><span class="line">            sort(pp, pp + 3);</span><br><span class="line">            if (pp[1] == s / 2 &amp;&amp; pp[2] == s / 2)</span><br><span class="line">            &#123;</span><br><span class="line">                cout &lt;&lt; first.path &lt;&lt; endl;</span><br><span class="line">                fuck = false;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            if (S.count(temp) == 1)</span><br><span class="line">            &#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                S.insert(temp);</span><br><span class="line">                if (first.a &gt; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (first.b &lt; n)</span><br><span class="line">                    &#123;</span><br><span class="line">                        Q.push(Node(max(0, first.a - n + first.b), min(n, first.b + first.a), first.c, first.path + 1));</span><br><span class="line">                    &#125;</span><br><span class="line">                    if (first.c &lt; n)</span><br><span class="line">                    &#123;</span><br><span class="line">                        Q.push(Node(max(0, first.a - m + first.c), first.b, min(m, first.c + first.a), first.path + 1));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                if (first.b &gt; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    Q.push(Node(first.a + first.b, 0, first.c, first.path + 1));</span><br><span class="line">                    if (first.c &lt; m)</span><br><span class="line">                    &#123;</span><br><span class="line">                        Q.push(Node(first.a, max(0, first.b - m + first.c), min(m, first.c + first.b), first.path + 1));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                if (first.c &gt; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    Q.push(Node(first.a + first.c, first.b, 0, first.path + 1));</span><br><span class="line">                    if (first.b &lt; m)</span><br><span class="line">                    &#123;</span><br><span class="line">                        Q.push(Node(first.a, min(n, first.b + first.c), max(0, first.c - n + first.b), first.path + 1));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (fuck)cout &lt;&lt; &quot;NO&quot; &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##N HDU 2612<br>注意不能用太暴力的方法，不然会MLE/TLE<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line">//一开始的思路是穷举每个点到Y M的距离， TLE</span><br><span class="line">//改进了一下，打表，两次BFS求Y\M到每个点的距离，AC</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int maxn = 205;</span><br><span class="line">const int dr[] = &#123; -1, 0, 1, 0 &#125;;</span><br><span class="line">const int dc[] = &#123; 0, -1, 0, 1 &#125;;</span><br><span class="line">int r, c;</span><br><span class="line">int map[maxn][maxn];</span><br><span class="line">int visited[maxn][maxn];</span><br><span class="line">int tot = 0;</span><br><span class="line">int kr[maxn*maxn], kc[maxn*maxn];</span><br><span class="line">int yr, yc, mr, mc;</span><br><span class="line">int yk[maxn*maxn], mk[maxn*maxn];</span><br><span class="line"></span><br><span class="line">struct Node</span><br><span class="line">&#123;</span><br><span class="line">    int row, col;</span><br><span class="line">    int path;</span><br><span class="line">    Node() &#123;&#125;</span><br><span class="line">    Node(int row, int col, int path) :row(row), col(col), path(path) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">queue&lt;Node&gt; Q;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    char chTmp;</span><br><span class="line">    while (scanf(&quot;%d %d\n&quot;, &amp;r, &amp;c) != EOF)</span><br><span class="line">    &#123;</span><br><span class="line">        memset(map, -1, sizeof(map));</span><br><span class="line">        for (int i = 1; i &lt;= r; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int j = 1; j &lt;= c; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                cin &gt;&gt; chTmp;</span><br><span class="line">                if (chTmp == &apos;.&apos;)</span><br><span class="line">                &#123;</span><br><span class="line">                    map[i][j] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    if (chTmp == &apos;@&apos;)</span><br><span class="line">                    &#123;</span><br><span class="line">                        map[i][j] = ++tot;</span><br><span class="line">                        kr[tot] = i;</span><br><span class="line">                        kc[tot] = j;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        if (chTmp == &apos;Y&apos;)</span><br><span class="line">                        &#123;</span><br><span class="line">                            map[i][j] = 0;</span><br><span class="line">                            yr = i;</span><br><span class="line">                            yc = j;</span><br><span class="line">                        &#125;</span><br><span class="line">                        else</span><br><span class="line">                        &#123;</span><br><span class="line">                            if (chTmp == &apos;M&apos;)</span><br><span class="line">                            &#123;</span><br><span class="line">                                map[i][j] = 0;</span><br><span class="line">                                mr = i;</span><br><span class="line">                                mc = j;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            getchar();</span><br><span class="line">        &#125;</span><br><span class="line">        Node temp;</span><br><span class="line">        memset(visited, 0, sizeof(visited));</span><br><span class="line">        memset(yk, -1, sizeof(yk));</span><br><span class="line">        Q.push(Node(yr, yc, 0));</span><br><span class="line">        visited[yr][yc] = 1;</span><br><span class="line">        while (!Q.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            temp = Q.front(); Q.pop();</span><br><span class="line">            if (map[temp.row][temp.col] &gt; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                yk[map[temp.row][temp.col]] = temp.path;</span><br><span class="line">            &#125;</span><br><span class="line">            for (int i = 0; i &lt; 4; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (temp.row + dr[i] &lt; 1 || temp.row + dr[i] &gt; r || temp.col + dc[i] &lt; 1 || temp.col + dc[i] &gt; c)continue;</span><br><span class="line">                if (visited[temp.row + dr[i]][temp.col + dc[i]] == 0 &amp;&amp; map[temp.row + dr[i]][temp.col + dc[i]] &gt;= 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    visited[temp.row + dr[i]][temp.col + dc[i]] = 1;</span><br><span class="line">                    Q.push(Node(temp.row + dr[i], temp.col + dc[i], temp.path + 1));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        memset(visited, 0, sizeof(visited));</span><br><span class="line">        memset(mk, -1, sizeof(mk));</span><br><span class="line">        Q.push(Node(mr, mc, 0));</span><br><span class="line">        visited[mr][mc] = 1;</span><br><span class="line">        while (!Q.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            temp = Q.front(); Q.pop();</span><br><span class="line">            if (map[temp.row][temp.col] &gt; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                mk[map[temp.row][temp.col]] = temp.path;</span><br><span class="line">            &#125;</span><br><span class="line">            for (int i = 0; i &lt; 4; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (temp.row + dr[i] &lt; 1 || temp.row + dr[i] &gt; r || temp.col + dc[i] &lt; 1 || temp.col + dc[i] &gt; c)continue;</span><br><span class="line">                if (visited[temp.row + dr[i]][temp.col + dc[i]] == 0 &amp;&amp; map[temp.row + dr[i]][temp.col + dc[i]] &gt;= 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    visited[temp.row + dr[i]][temp.col + dc[i]] = 1;</span><br><span class="line">                    Q.push(Node(temp.row + dr[i], temp.col + dc[i], temp.path + 1));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = (1 &lt;&lt; 30);</span><br><span class="line">        for (int i = 1; i &lt;= tot; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if (yk[i] == -1 || mk[i] == -1)continue;</span><br><span class="line">            ans = min(ans, yk[i] + mk[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        printf(&quot;%d\n&quot;, ans * 11);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/深度学习问题集合/问题集合/" rel="next" title="问题集合">
+                <i class="fa fa-chevron-left"></i> 问题集合
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/数据库/数据库作业合集 无答案/" rel="prev" title="据库作业合集 无答案">
+                据库作业合集 无答案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

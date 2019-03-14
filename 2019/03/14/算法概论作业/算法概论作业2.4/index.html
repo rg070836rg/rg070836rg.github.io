@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="#6.1123451. 定义一维数组a[n]2. 用dist[i]来存放到a[i]结尾的子序列的最大和3. 求出dist[]中的最大值，即为最大连续子序列的和4. 每次dist[i-1] + array[i] &amp;lt;= array[i]时，将begin = i；5. 每次sum&amp;lt;dist[i]时，end = i； 代码如下：12345678910111213141516171819202">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法概论作业2.4">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/算法概论作业/算法概论作业2.4/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="#6.1123451. 定义一维数组a[n]2. 用dist[i]来存放到a[i]结尾的子序列的最大和3. 求出dist[]中的最大值，即为最大连续子序列的和4. 每次dist[i-1] + array[i] &amp;lt;= array[i]时，将begin = i；5. 每次sum&amp;lt;dist[i]时，end = i； 代码如下：12345678910111213141516171819202">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.953Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法概论作业2.4">
+<meta name="twitter:description" content="#6.1123451. 定义一维数组a[n]2. 用dist[i]来存放到a[i]结尾的子序列的最大和3. 求出dist[]中的最大值，即为最大连续子序列的和4. 每次dist[i-1] + array[i] &amp;lt;= array[i]时，将begin = i；5. 每次sum&amp;lt;dist[i]时，end = i； 代码如下：12345678910111213141516171819202">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/算法概论作业/算法概论作业2.4/">
+
+
+
+
+
+  <title>算法概论作业2.4 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/算法概论作业/算法概论作业2.4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法概论作业2.4</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:21+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法概论作业/" itemprop="url" rel="index">
+                    <span itemprop="name">算法概论作业</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>#6.1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 定义一维数组a[n]</span><br><span class="line">2. 用dist[i]来存放到a[i]结尾的子序列的最大和</span><br><span class="line">3. 求出dist[]中的最大值，即为最大连续子序列的和</span><br><span class="line">4. 每次dist[i-1] + array[i] &lt;= array[i]时，将begin = i；</span><br><span class="line">5. 每次sum&lt;dist[i]时，end = i；</span><br></pre></td></tr></table></figure></p>
+<p>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">  int array[n];</span><br><span class="line">  srand((unsigned)time(NULL));</span><br><span class="line">  for (int i = 0; i&lt;n; i++)   //生成串</span><br><span class="line">  &#123;</span><br><span class="line">      int temp = rand()%50-20;</span><br><span class="line">      array[i] = temp;</span><br><span class="line">      cout&lt;&lt;array[i]&lt;&lt;&quot; &quot;;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> int dist[n] = &#123;0&#125;;</span><br><span class="line"> int sum = 0;</span><br><span class="line"> int end;</span><br><span class="line"> int begin;</span><br><span class="line"> for (i = 1; i&lt;n; i++)</span><br><span class="line"> &#123;</span><br><span class="line">     if (dist[i-1] + array[i] &gt; array[i])</span><br><span class="line">     &#123;</span><br><span class="line">         dist[i] = dist[i-1]+array[i]; </span><br><span class="line">     &#125;</span><br><span class="line">     else</span><br><span class="line">     &#123;</span><br><span class="line">         dist[i] = array[i];</span><br><span class="line">         begin = i;  </span><br><span class="line">     &#125;</span><br><span class="line">     if (sum&lt;dist[i])</span><br><span class="line">     &#123;</span><br><span class="line">         sum = dist[i];</span><br><span class="line">         end = i;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> cout&lt;&lt;endl;</span><br><span class="line"> cout&lt;&lt;”最大相连子序列：”;</span><br><span class="line"> for(i = begin; i&lt;=end ; i++)</span><br><span class="line"> &#123;</span><br><span class="line">      cout&lt;&lt;array[i]&lt;&lt;” ”;</span><br><span class="line"> &#125;</span><br><span class="line"> cout&lt;&lt;endl;</span><br><span class="line"> cout&lt;&lt;&quot;最大和为：&quot;&lt;&lt;sum&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line"> return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#6.2<br>思想：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 设p[i]为停留在第i个旅店的总最小惩罚</span><br><span class="line">2. 枚举上一个落脚点位置j，则有p[i] = min(p[j] + (200-(a[i] – a[j]))2)，并将min存放入容器route中，用于存放路径。</span><br><span class="line">3. p[n]即为总最小惩罚。 </span><br><span class="line">```</span><br></pre></td></tr></table></figure></p>
+<p>  int main()<br> {<br>     int array[n];<br>     vector <int> route;<br>      srand((unsigned)time(NULL));<br>     array[0] = 0;<br>     for (int i = 1; i&lt;n; i++)   //随机产生英里数<br>     {<br>         int temp = rand()%100+10;<br>         array[i] = temp;<br>         cout&lt;&lt;array[i]&lt;&lt;” “;<br>     }</int></p>
+<pre><code>int dist[n] = {0};
+int min ;
+for (i = 1; i&lt;=n; i++)
+{
+    for(int j = 1 ; j&lt;=i ;j++)  //枚举上一个落脚点位置j
+    {    
+        if (array[i]-array[j]&lt;=200)  //行走距离不得超过200
+        {
+            if (dist[j] + (200-(array[i]-array[j])* (array[i]-array[j])) &lt; dist[j-1] + (200-(array[i]-array[j-1])* (array[i]-array[j-1])))
+            {
+                dist[i] = dist[j] + (200-(array[i]-array[j])* (array[i]-array[j])); 
+                min = j;
+            }
+        }
+    }
+
+    if (min&gt;0 &amp;&amp; min&lt;n )   //保存路径
+    {
+        route.push_back(min);
+    }
+}
+cout&lt;&lt;endl;
+cout&lt;&lt;&quot;总最小惩罚为：&quot;&lt;&lt;dist[n]&lt;&lt;endl;
+for (i = 0; i&lt; route.size()-1; i++)
+{
+    cout&lt;&lt;route[i]&lt;&lt;&quot;-&gt;&quot;;
+}
+cout&lt;&lt;route[route.size()-1];
+return 0;
+</code></pre><p> }</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">#6.3</span><br></pre></td></tr></table></figure>
+<ol>
+<li>设r[i]表示前i个位置开分店的最大总利润，且r0 = 0;</li>
+<li>若j为上一个满足mi-mj≥k的位置;</li>
+<li>则ri = max{ri-1,rj+pi};<br> 若取rj+pi，说明要在i点建酒店，则将i放入容器route</li>
+<li><p>最大总利润即为rn</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">代码如下：</span><br></pre></td></tr></table></figure>
+<p>int main()<br>{<br>  int m[n];//距离高速公路起点的距离<br>  int p[n];//可带来的利润<br>  int k  = 50;<br>  vector <int> route;<br>   srand((unsigned)time(NULL));<br>  m[0] = 0;<br>  p[0] = 0;<br>  int i,j = 0;<br>  for (i = 1; i&lt;n; i++)<br>  {</int></p>
+<pre><code>int temp  = rand()%100+20;
+int temp2 = rand()%1000+100;
+m[i] = m[i-1]+ temp;
+p[i] = temp2;
+cout&lt;&lt;i&lt;&lt;&quot;  距离： &quot;&lt;&lt;m[i]&lt;&lt;&quot; 利润：&quot;&lt;&lt;p[i]&lt;&lt;endl;
+</code></pre><p>  }</p>
+<p>  int r[n] = {0};<br>  int max ;<br>  for (i = 1; i&lt;=n; i++)<br>  {</p>
+<pre><code>for(j = 0; j &lt;= i; j++)//遍历之前的点
+{
+    if (m[i]-m[j]&gt;=k)
+    {
+        if(r[i-1]&gt;r[j]+p[i])
+        {
+            r[i] = r[i-1];
+        }
+        else
+        {
+            r[i] = r[j]+p[i];
+            route.push_back(i);//将要建造的点入队
+        }
+    }
+}
+</code></pre><p>  }<br>  cout&lt;&lt;endl;<br>  cout&lt;&lt;r[n]&lt;&lt;endl;<br>  for (i = 1; i&lt;route.size()-1;i++)//输出建造点<br>  {</p>
+<pre><code>if (route[i]!=route[i-1])
+{
+    cout&lt;&lt;route[i]&lt;&lt;&quot;-&gt;&quot;;
+}
+</code></pre><p>  }<br>  cout&lt;&lt;route[route.size()-1]&lt;&lt;endl;<br>  return 0;<br>}</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">6.4</span><br></pre></td></tr></table></figure>
+<ol>
+<li>设vi表示前i个字符组成的子串能否被有效分割；</li>
+<li>dict[i][j] ==1 为从第i个元素到第j个元素课组成合法字符串；</li>
+<li>若dict[j][i]==1 &amp;&amp; v[j] == 1，则v[i] = 1，即前i个字符可被有效分割，并将j入队；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">    vector &lt;int&gt; route;</span><br><span class="line"> 	string s = &quot;itwasthebest&quot;;</span><br><span class="line"> 	bool dict[n][n] = </span><br><span class="line"> 	&#123;&#123;1,1,0,0,0,0,0,0,0,0,0,0&#125;,/*i*/</span><br><span class="line"> 	&#123;0,0,0,0,0,0,0,0,0,0,0,0&#125;,/*t*/</span><br><span class="line"> 	&#123;0,0,0,0,1,1,0,0,0,0,0,0&#125;,/*w*/</span><br><span class="line"> 	&#123;0,0,0,1,1,0,0,0,0,0,0,0&#125;,/*a*/</span><br><span class="line"> 	&#123;0,0,0,0,0,0,0,0,0,0,0,0&#125;,/*s*/</span><br><span class="line"> 	&#123;0,0,0,0,0,0,0,1,0,0,0,0&#125;,/*t*/</span><br><span class="line"> 	&#123;0,0,0,0,0,0,0,1,0,0,0,0&#125;,/*h*/</span><br><span class="line"> 	&#123;0,0,0,0,0,0,0,0,0,0,0,0&#125;,/*e*/</span><br><span class="line"> 	&#123;0,0,0,0,0,0,0,0,0,1,0,1&#125;,/*b*/</span><br><span class="line"> 	&#123;0,0,0,0,0,0,0,0,0,0,0,0&#125;,/*e*/</span><br><span class="line"> 	&#123;0,0,0,0,0,0,0,0,0,0,0,0&#125;,/*s*/</span><br><span class="line"> 	&#123;0,0,0,0,0,0,0,0,0,0,0,0&#125;&#125;;/*t*/</span><br><span class="line"> 	int v[n] = &#123;1&#125;;</span><br><span class="line"> 	for (int i=0; i&lt;n;i++)</span><br><span class="line"> 	&#123;</span><br><span class="line"> 		for (int j=0; j&lt;i; j++)</span><br><span class="line"> 		&#123;</span><br><span class="line"> 			if (dict[j][i]==1 &amp;&amp; v[j] == 1)</span><br><span class="line"> 			&#123;</span><br><span class="line"> 				v[i] = 1;</span><br><span class="line"> 				route.push_back(j);</span><br><span class="line"> 			&#125;</span><br><span class="line"> 		&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	cout&lt;&lt;v[n-1]&lt;&lt;endl;</span><br><span class="line"> 	for (i = 0; i&lt;route.size();i++)</span><br><span class="line"> 	&#123;</span><br><span class="line"> 		cout&lt;&lt;route[i]&lt;&lt;&quot;-&gt;&quot;;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	cout&lt;&lt;endl;</span><br><span class="line"> 	return 0;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/算法概论作业/算法概论作业2.3/" rel="next" title="算法概论作业2.3">
+                <i class="fa fa-chevron-left"></i> 算法概论作业2.3
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/算法概论作业/算法概论作业5.21 5.22 5.32/" rel="prev" title="算法概论作业5.21 5.22 5.32">
+                算法概论作业5.21 5.22 5.32 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

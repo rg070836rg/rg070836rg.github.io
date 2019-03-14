@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1234567891011121314实验十三：T-SQL(11)1  实验目的    1．  熟悉数据库的交互式SQL工具。    2．  熟悉通过SQL对数据库进行操作。    3．  完成作业的上机练习。2  实验平台利用SQLServer及其交互式工具SSMS来熟悉T-SQL。3  实验内容及要求     基于student、course、sc表，用SQL语句实现如下要求，填写实验报告，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库12.10实验">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/数据库实验/数据库12.10实验/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="1234567891011121314实验十三：T-SQL(11)1  实验目的    1．  熟悉数据库的交互式SQL工具。    2．  熟悉通过SQL对数据库进行操作。    3．  完成作业的上机练习。2  实验平台利用SQLServer及其交互式工具SSMS来熟悉T-SQL。3  实验内容及要求     基于student、course、sc表，用SQL语句实现如下要求，填写实验报告，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.791Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库12.10实验">
+<meta name="twitter:description" content="1234567891011121314实验十三：T-SQL(11)1  实验目的    1．  熟悉数据库的交互式SQL工具。    2．  熟悉通过SQL对数据库进行操作。    3．  完成作业的上机练习。2  实验平台利用SQLServer及其交互式工具SSMS来熟悉T-SQL。3  实验内容及要求     基于student、course、sc表，用SQL语句实现如下要求，填写实验报告，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/数据库实验/数据库12.10实验/">
+
+
+
+
+
+  <title>数据库12.10实验 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/数据库实验/数据库12.10实验/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据库12.10实验</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库实验/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库实验</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">实验十三：T-SQL(11)</span><br><span class="line"></span><br><span class="line">1  实验目的</span><br><span class="line">    1．  熟悉数据库的交互式SQL工具。</span><br><span class="line">    2．  熟悉通过SQL对数据库进行操作。</span><br><span class="line">    3．  完成作业的上机练习。</span><br><span class="line">2  实验平台</span><br><span class="line">利用SQLServer及其交互式工具SSMS来熟悉T-SQL。</span><br><span class="line">3  实验内容及要求</span><br><span class="line">     基于student、course、sc表，用SQL语句实现如下要求，填写实验报告，记录所有的实验用例。</span><br><span class="line">1.	列出每门课程成绩都在90分以上的学生学号、姓名</span><br><span class="line">2.  查询没有选修数据结构课程的学生学号与姓名。</span><br><span class="line">3.	查询既没有选修数据结构又没有选修数据库课程的学生学号与姓名。</span><br><span class="line">4.	将所有选择“数据结构”课程的“计算机系”的学生成绩置为0分。</span><br></pre></td></tr></table></figure>
+<hr>
+<p>#0 建表代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">create database Students</span><br><span class="line">on</span><br><span class="line">primary(name=Students,</span><br><span class="line">   filename=&apos;D:\test\test.mdf&apos;,</span><br><span class="line">size=4mb,</span><br><span class="line">maxsize=10mb,</span><br><span class="line">filegrowth=2mb</span><br><span class="line">  )</span><br><span class="line">log on</span><br><span class="line">(name=Studentslog,</span><br><span class="line">filename=&apos;D:\test\testlog.ldf&apos;,</span><br><span class="line">size=1mb,</span><br><span class="line">maxsize=5mb,</span><br><span class="line">filegrowth=1mb</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">use Students;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">create table Student</span><br><span class="line">(</span><br><span class="line">sno char(8) not null primary key,</span><br><span class="line">Sname char(15) null,</span><br><span class="line">Ssex char(4) null,</span><br><span class="line">Sage int null,</span><br><span class="line">Sdept char(10) null</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">create table Course</span><br><span class="line">(</span><br><span class="line">Cno char(6) not null,</span><br><span class="line">Cname char(10),</span><br><span class="line">Cpno char(6),</span><br><span class="line">Ccredit int null,</span><br><span class="line">primary key(cno),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">go </span><br><span class="line">create table SC</span><br><span class="line">(</span><br><span class="line">Sno char(8) not null foreign key references Student(sno),</span><br><span class="line">Cno char(6) not null foreign key references course(cno),</span><br><span class="line">primary key(Sno,Cno),</span><br><span class="line">Grade int  null</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">insert into Student values(&apos;19130201&apos;,&apos;丁鹏&apos;,&apos;男&apos;,20,&apos;Software&apos;)</span><br><span class="line">insert into Student values(&apos;19130202&apos;,&apos;王韵婷&apos;,&apos;女&apos;,20,&apos;Software&apos;)</span><br><span class="line">insert into Student values(&apos;19130203&apos;,&apos;尹嘉琪&apos;,&apos;男&apos;,18,&apos;Software&apos;)</span><br><span class="line">insert into Student values(&apos;19130204&apos;,&apos;卢冬冬&apos;,&apos;男&apos;,20,&apos;Software&apos;)</span><br><span class="line">insert into Student values(&apos;19130205&apos;,&apos;史逸凡&apos;,&apos;男&apos;,19,&apos;Software&apos;)</span><br><span class="line"></span><br><span class="line">insert into Course values(&apos;1&apos;,&apos;数据库&apos;,5,4)</span><br><span class="line">insert into Course values(&apos;2&apos;,&apos;数学&apos;,null,2)</span><br><span class="line">insert into Course values(&apos;3&apos;,&apos;信息系统&apos;,1,4)</span><br><span class="line">insert into Course values(&apos;4&apos;,&apos;操作系统&apos;,6,3)</span><br><span class="line">insert into Course values(&apos;5&apos;,&apos;数据结构&apos;,7,5)</span><br><span class="line">insert into Course values(&apos;6&apos;,&apos;数据处理&apos;,null,2)</span><br><span class="line">insert into Course values(&apos;7&apos;,&apos;PASCAL语言&apos;,6,4)</span><br><span class="line"></span><br><span class="line">insert into SC values(&apos;19130201&apos;,1,99)</span><br><span class="line">insert into SC values(&apos;19130202&apos;,5,95)</span><br><span class="line">insert into SC values(&apos;19130203&apos;,3,100)</span><br><span class="line">insert into SC values(&apos;19130205&apos;,1,93)</span><br><span class="line">insert into SC values(&apos;19130204&apos;,5,92)</span><br><span class="line"></span><br><span class="line">alter table course add  foreign key(cpno) references course(cno)</span><br><span class="line"></span><br><span class="line">select * from Course;</span><br><span class="line">select * from SC;</span><br><span class="line">select * from Student;</span><br></pre></td></tr></table></figure></p>
+<p>#1.    列出每门课程成绩都在90分以上的学生学号、姓名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//拿出每条记录，若存在一门课小于90分，则不要</span><br><span class="line">select sno,sname</span><br><span class="line">from Student a</span><br><span class="line">where  not exists</span><br><span class="line">(</span><br><span class="line">select grade from sc</span><br><span class="line">where a.sno=sc.sno</span><br><span class="line">and sc.grade&lt;=90</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>#2.  查询没有选修数据结构课程的学生学号与姓名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//拿出每一条记录，对比是否选择了数据结构</span><br><span class="line">select a.sno,a.sname</span><br><span class="line">from Student a</span><br><span class="line">where not exists</span><br><span class="line">(</span><br><span class="line">select a.* from course b,sc c</span><br><span class="line">where a.sno=c.sno</span><br><span class="line">and b.cname=&apos;数据结构&apos;</span><br><span class="line">and c.cno=b.cno</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>#3.    查询既没有选修数据结构又没有选修数据库课程的学生学号与姓名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//利用交集，结合上题</span><br><span class="line">select a.sno,a.sname</span><br><span class="line">from Student a</span><br><span class="line">where not exists</span><br><span class="line">(</span><br><span class="line">select a.* from course b,sc c</span><br><span class="line">where a.sno=c.sno</span><br><span class="line">and b.cname=&apos;数据结构&apos;</span><br><span class="line">and c.cno=b.cno</span><br><span class="line">)</span><br><span class="line">intersect</span><br><span class="line">select a.sno,a.sname</span><br><span class="line">from Student a</span><br><span class="line">where not exists</span><br><span class="line">(</span><br><span class="line">select a.* from course b,sc c</span><br><span class="line">where a.sno=c.sno</span><br><span class="line">and b.cname=&apos;数据库&apos;</span><br><span class="line">and c.cno=b.cno</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>#4.    将所有选择“数据结构”课程的“计算机系”的学生成绩置为0分<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//结合第二题</span><br><span class="line">update sc </span><br><span class="line">set grade = 98</span><br><span class="line">where sno not in</span><br><span class="line">(</span><br><span class="line">select a.sno from student a ,course b,sc c</span><br><span class="line">where a.sno=c.sno</span><br><span class="line">and b.cname=&apos;数据结构&apos;</span><br><span class="line">and c.cno=b.cno</span><br><span class="line">and a.sdept=&apos;software&apos;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/数据库实验/数据库12.03实验/" rel="next" title="数据库12.03实验">
+                <i class="fa fa-chevron-left"></i> 数据库12.03实验
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/数据库实验/数据库12.17实验/" rel="prev" title="数据库12.17实验">
+                数据库12.17实验 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

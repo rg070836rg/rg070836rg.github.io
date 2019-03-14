@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="由于自己的偷懒，现在才开始补作业。    2017年1月9日19点 #第二次 作业域名查询域名解析协议（DNS）用来把便于人们记忆的主机域名和电子邮件地址映射为计算机易于识别的IP地址。DNS是一种c/s的结构，客户机就是用户用于查找一个名字对应的地址，而服务器通常用于为别人提供查询服务。 本次服务器采用的地址是谷歌的8.8.4.4 主要是利用winsock实现客户端查询。首先介绍几个必要的函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP_IP第二次作业">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/TCP_IP/TCP_IP第二次作业/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="由于自己的偷懒，现在才开始补作业。    2017年1月9日19点 #第二次 作业域名查询域名解析协议（DNS）用来把便于人们记忆的主机域名和电子邮件地址映射为计算机易于识别的IP地址。DNS是一种c/s的结构，客户机就是用户用于查找一个名字对应的地址，而服务器通常用于为别人提供查询服务。 本次服务器采用的地址是谷歌的8.8.4.4 主要是利用winsock实现客户端查询。首先介绍几个必要的函数">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/sg7thg60cjnz1nui3zlanwrm/image_1b61qnj0e1jf1jg476a1c225ll9.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.575Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TCP_IP第二次作业">
+<meta name="twitter:description" content="由于自己的偷懒，现在才开始补作业。    2017年1月9日19点 #第二次 作业域名查询域名解析协议（DNS）用来把便于人们记忆的主机域名和电子邮件地址映射为计算机易于识别的IP地址。DNS是一种c/s的结构，客户机就是用户用于查找一个名字对应的地址，而服务器通常用于为别人提供查询服务。 本次服务器采用的地址是谷歌的8.8.4.4 主要是利用winsock实现客户端查询。首先介绍几个必要的函数">
+<meta name="twitter:image" content="http://static.zybuluo.com/rg070836rg/sg7thg60cjnz1nui3zlanwrm/image_1b61qnj0e1jf1jg476a1c225ll9.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/TCP_IP/TCP_IP第二次作业/">
+
+
+
+
+
+  <title>TCP_IP第二次作业 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/TCP_IP/TCP_IP第二次作业/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TCP_IP第二次作业</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TCP-IP/" itemprop="url" rel="index">
+                    <span itemprop="name">TCP_IP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>由于自己的偷懒，现在才开始补作业。<br>    2017年1月9日19点</p>
+<p>#第二次 作业域名查询<br>域名解析协议（DNS）用来把便于人们记忆的主机域名和电子邮件地址映射为计算机易于识别的IP地址。DNS是一种c/s的结构，客户机就是用户用于查找一个名字对应的地址，而服务器通常用于为别人提供查询服务。</p>
+<p>本次服务器采用的地址是谷歌的8.8.4.4</p>
+<p>主要是利用winsock实现客户端查询。首先介绍几个必要的函数</p>
+<p>#1 初始化操作函数<br>按照之前的框架，进行winsock的初始化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 初始化操作</span><br><span class="line">bool initWSA()</span><br><span class="line">&#123;</span><br><span class="line">	WSADATA   wsaData; </span><br><span class="line">	int Result = WSAStartup( MAKEWORD( 2, 2 ), &amp;wsaData ); </span><br><span class="line">	if(Result!=0 )  </span><br><span class="line">	&#123;</span><br><span class="line">		return false; </span><br><span class="line">	&#125; </span><br><span class="line">	</span><br><span class="line">	if( LOBYTE( wsaData.wVersion) != 2 || HIBYTE(wsaData.wVersion)!= 2 )</span><br><span class="line">	&#123; </span><br><span class="line">		if(WSACleanup()==SOCKET_ERROR)//注释4</span><br><span class="line">			cout&lt;&lt;&quot;WSACleanup出错&lt;&lt;endl;</span><br><span class="line">		return false;   </span><br><span class="line">	&#125; </span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#2 创建套接字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//创建套接字,根据传来的类型创建，本程序需要创建UDP套接字</span><br><span class="line">SOCKET CreateSocket(int type)</span><br><span class="line">&#123;</span><br><span class="line">	SOCKET	sock=socket(AF_INET,type,0);</span><br><span class="line">	if (sock == INVALID_SOCKET )</span><br><span class="line">	&#123;</span><br><span class="line">		return 0;</span><br><span class="line">	&#125;</span><br><span class="line">	return sock;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#3 Dns头部结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _DNSHEAD&#123;   //dns 头部</span><br><span class="line">	USHORT ID;</span><br><span class="line">	USHORT tag;			// dns 标志(参数)</span><br><span class="line">	USHORT numQ;		// 问题数</span><br><span class="line">	USHORT numA;		// 答案数</span><br><span class="line">	USHORT numA1;		// 权威答案数</span><br><span class="line">	USHORT numA2;		// 附加答案数</span><br><span class="line">&#125;DnsHead;</span><br></pre></td></tr></table></figure></p>
+<p>#4 dns 查询结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _DNSQUERY	//dns 查询结构</span><br><span class="line">&#123;</span><br><span class="line">	USHORT type;</span><br><span class="line">	//查询类型，大约有20个不同的类型</span><br><span class="line">	USHORT classes;</span><br><span class="line">	//查询类,通常是A类既查询IP地</span><br><span class="line">&#125;DnsQuery;</span><br></pre></td></tr></table></figure></p>
+<p>#5 设置DNS 头部<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">bool SetDNSHead(char *name,char *buf)</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	memset(buf,0,sizeof(DnsHead));</span><br><span class="line">	</span><br><span class="line">	//设置头部</span><br><span class="line">	DnsHead *DnsH = (DnsHead *)buf;</span><br><span class="line">	DnsH-&gt;ID = (USHORT)1;</span><br><span class="line">	DnsH-&gt;tag = htons(0x0100);</span><br><span class="line">	DnsH-&gt;numQ = htons(1);</span><br><span class="line">	DnsH-&gt;numA = 0;</span><br><span class="line">	</span><br><span class="line">	DnsQuery *DnsQ =(DnsQuery *) ( buf+ sizeof(DnsHead) );</span><br><span class="line">	int NameLen = ChName(name,(char *)DnsQ);</span><br><span class="line">	</span><br><span class="line">	//设置查询信息</span><br><span class="line">	DnsQ = (DnsQuery *)( (char *)DnsQ + NameLen );</span><br><span class="line">	DnsQ-&gt;classes = htons(1);</span><br><span class="line">	DnsQ-&gt;type = htons(1);</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="6-发送DNS-请求"><a href="#6-发送DNS-请求" class="headerlink" title="6    发送DNS 请求"></a>6    发送DNS 请求</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">int MySendto(SOCKET sockTo, const char FAR * buf,int len,char *addr,USHORT port)</span><br><span class="line">&#123;</span><br><span class="line">	if (addr[0]&lt;&apos;0&apos;||addr[0]&gt;&apos;9&apos;) //addr 中不是IP 地址，域名解析</span><br><span class="line">	&#123;	</span><br><span class="line">		struct   sockaddr_in   addr_in;</span><br><span class="line">		HOSTENT *host = NULL;</span><br><span class="line">		host = gethostbyname(addr);//域名解析函数</span><br><span class="line">		if ( host-&gt;h_addr_list[0]!=NULL )</span><br><span class="line">		&#123;</span><br><span class="line">			memcpy  (&amp;addr_in.sin_addr.s_addr,host-&gt;h_addr_list[0], host-&gt;h_length);   </span><br><span class="line">			addr = inet_ntoa(addr_in.sin_addr);  </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	//设置发送数据到的 套接字及地址结构</span><br><span class="line">	SOCKADDR_IN   addrTo; </span><br><span class="line">	addrTo.sin_addr.S_un.S_addr=inet_addr(addr);</span><br><span class="line">	addrTo.sin_family=AF_INET; </span><br><span class="line">	addrTo.sin_port=htons(port);</span><br><span class="line">	</span><br><span class="line">	return sendto(sockTo, buf, len, 0,(sockaddr*)&amp;addrTo, sizeof(sockaddr));</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#7 接受DNS请求<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">MyRecvFrom</span><span class="params">(SOCKET s, <span class="keyword">char</span> FAR * buf,<span class="keyword">int</span> len,<span class="keyword">char</span> *addr,USHORT port)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (addr[<span class="number">0</span>]&lt;<span class="string">'0'</span>||addr[<span class="number">0</span>]&gt;<span class="string">'9'</span>) <span class="comment">//addr 中不是IP 地址，域名解析</span></span><br><span class="line">	&#123;	</span><br><span class="line">		<span class="class"><span class="keyword">struct</span>   <span class="title">sockaddr_in</span>   <span class="title">addr_in</span>;</span></span><br><span class="line">		HOSTENT *host = <span class="literal">NULL</span>;</span><br><span class="line">		host = gethostbyname(addr);<span class="comment">//域名解析函数</span></span><br><span class="line">		<span class="keyword">if</span> ( host-&gt;h_addr_list[<span class="number">0</span>]!=<span class="literal">NULL</span> )</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">memcpy</span>  (	&amp;addr_in.sin_addr.s_addr, </span><br><span class="line">				host-&gt;h_addr_list[<span class="number">0</span>], host-&gt;h_length);   </span><br><span class="line">			addr = inet_ntoa(addr_in.sin_addr);  </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//设置发送数据到的 套接字及地址结构</span></span><br><span class="line">	SOCKADDR_IN   addrFrom; </span><br><span class="line">	addrFrom.sin_addr.S_un.S_addr=inet_addr(addr);</span><br><span class="line">	addrFrom.sin_family=AF_INET; </span><br><span class="line">	addrFrom.sin_port=htons(port);</span><br><span class="line">	<span class="keyword">int</span> addrlen = <span class="keyword">sizeof</span>(SOCKADDR_IN);</span><br><span class="line">	<span class="keyword">return</span> recvfrom( s, buf, len, <span class="number">0</span>, (SOCKADDR *)&amp;addrFrom, &amp;addrlen);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#8 主函数设计<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">int main() </span><br><span class="line">&#123;</span><br><span class="line">	int Result=0;</span><br><span class="line">	char buf[1024]=&#123;0&#125;;</span><br><span class="line">	char addr[16] = &quot;8.8.4.4&quot;;// dns 服务器地址</span><br><span class="line">	char *name = NULL; //要查询的域名</span><br><span class="line">	</span><br><span class="line">	if ( !initWSA() )//初始化</span><br><span class="line">	&#123;</span><br><span class="line">		displayErrWSA(&quot;initWSA err!&quot;);</span><br><span class="line">		return 1;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//创建套接字</span><br><span class="line">	SOCKET sockTo ;</span><br><span class="line">	if ( (sockTo = CreateSocket(SOCK_DGRAM)) == 0)</span><br><span class="line">	&#123;</span><br><span class="line">		displayErrWSA(&quot;CreatSocket err!&quot;);</span><br><span class="line">		return 1;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	while (1)</span><br><span class="line">	&#123;</span><br><span class="line">		</span><br><span class="line">		char temp[1024]=&#123;0&#125;;</span><br><span class="line">		cout&lt;&lt;&quot;\n请输入要查询的域名:&quot;;</span><br><span class="line">		cin&gt;&gt;temp;</span><br><span class="line">		if (temp[0] == &apos;q&apos; ||temp[0] == &apos;Q&apos;)</span><br><span class="line">		&#123;</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line">		name =  temp;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		//设置dns 头部</span><br><span class="line">		SetDNSHead(name,buf);</span><br><span class="line">		</span><br><span class="line">		//发送出去的请求数据长度</span><br><span class="line">		int len = sizeof(DnsHead)+sizeof(DnsQuery)+strlen(name)+2;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		//发送DNS 请求</span><br><span class="line">		if ( ( Result =MySendto(sockTo,buf,len,addr,53) ) &lt;= 0)</span><br><span class="line">		&#123;</span><br><span class="line">			displayErrWSA(&quot;sendto err!&quot;);</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		//接收应答</span><br><span class="line">		if ( (Result =MyRecvFrom(sockTo,buf,1024,addr,53) ) &lt;=  0)</span><br><span class="line">		&#123;</span><br><span class="line">			displayErrWSA(&quot;recvfrom err!&quot;);</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		//简单的取得返回的 IP 地址( 收到的最后4字节 )</span><br><span class="line">		DnsHead *DnsH = (DnsHead *)buf;</span><br><span class="line">		if (DnsH-&gt;numA == 0)</span><br><span class="line">		&#123;</span><br><span class="line">			printf(&quot;无法解析 %s 的IP 地址。\n&quot;,name);</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">		char *getIP =(char *)buf +Result - 4;</span><br><span class="line">		printf(&quot;%s 的IP地址为: &quot;,name);</span><br><span class="line">		for (int Result= 0 ;Result&lt;4 ;Result++)</span><br><span class="line">		&#123;</span><br><span class="line">			printf(&quot;%u.&quot;,(UCHAR )getIP[Result]);</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#9 运行实例<br><img src="http://static.zybuluo.com/rg070836rg/sg7thg60cjnz1nui3zlanwrm/image_1b61qnj0e1jf1jg476a1c225ll9.png" alt="image_1b61qnj0e1jf1jg476a1c225ll9.png-26.7kB"></p>
+<p>#10 所有程序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br></pre></td><td class="code"><pre><span class="line">#include   &lt;iostream&gt;</span><br><span class="line">#include   &lt;Winsock2.h&gt; </span><br><span class="line">#include   &lt;windows.h&gt;   </span><br><span class="line">#pragma	comment(lib,&quot;ws2_32.lib&quot;)</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">typedef struct _DNSHEAD&#123;   //dns 头部</span><br><span class="line">	USHORT ID;</span><br><span class="line">	USHORT tag;			// dns 标志(参数)</span><br><span class="line">	USHORT numQ;		// 问题数</span><br><span class="line">	USHORT numA;		// 答案数</span><br><span class="line">	USHORT numA1;		// 权威答案数</span><br><span class="line">	USHORT numA2;		// 附加答案数</span><br><span class="line">&#125;DnsHead;</span><br><span class="line"></span><br><span class="line">typedef struct _DNSQUERY	//dns 查询结构</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	USHORT type;</span><br><span class="line">	//查询类型，大约有20个不同的类型</span><br><span class="line">	USHORT classes;</span><br><span class="line">	//查询类,通常是A类既查询IP地</span><br><span class="line">&#125;DnsQuery;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 初始化操作</span><br><span class="line">bool initWSA()</span><br><span class="line">&#123;</span><br><span class="line">	WSADATA   wsaData; </span><br><span class="line">	int Result = WSAStartup( MAKEWORD( 2, 2 ), &amp;wsaData ); </span><br><span class="line">	if(Result!=0 )  </span><br><span class="line">	&#123;</span><br><span class="line">		return false; </span><br><span class="line">	&#125; </span><br><span class="line">	</span><br><span class="line">	if( LOBYTE( wsaData.wVersion) != 2 || HIBYTE(wsaData.wVersion)!= 2 )</span><br><span class="line">	&#123; </span><br><span class="line">		if(WSACleanup()==SOCKET_ERROR)//注释4</span><br><span class="line">			cout&lt;&lt;&quot;WSACleanup出错\n&quot;&lt;&lt;endl;</span><br><span class="line">		return false;   </span><br><span class="line">	&#125; </span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool SetDNSHead(char *name,char *buf)</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	memset(buf,0,sizeof(DnsHead));</span><br><span class="line">	</span><br><span class="line">	//设置头部</span><br><span class="line">	DnsHead *DnsH = (DnsHead *)buf;</span><br><span class="line">	DnsH-&gt;ID = (USHORT)1;</span><br><span class="line">	DnsH-&gt;tag = htons(0x0100);</span><br><span class="line">	DnsH-&gt;numQ = htons(1);</span><br><span class="line">	DnsH-&gt;numA = 0;</span><br><span class="line">	</span><br><span class="line">	DnsQuery *DnsQ =(DnsQuery *) ( buf+ sizeof(DnsHead) );</span><br><span class="line">	int NameLen = ChName(name,(char *)DnsQ);</span><br><span class="line">	</span><br><span class="line">	//设置查询信息</span><br><span class="line">	DnsQ = (DnsQuery *)( (char *)DnsQ + NameLen );</span><br><span class="line">	DnsQ-&gt;classes = htons(1);</span><br><span class="line">	DnsQ-&gt;type = htons(1);</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//显示错误信息</span><br><span class="line">void displayErrWSA(char *str)</span><br><span class="line">&#123;</span><br><span class="line">	printf(&quot;\n%s,err = %d\n&quot;,str,WSAGetLastError());</span><br><span class="line">	getchar();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//域名转化</span><br><span class="line">int  ChName(char *fname,char *tname)</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	int j =0;</span><br><span class="line">	int i =strlen(fname)-1;</span><br><span class="line">	tname[i+2] = 0;</span><br><span class="line">	int k = i+1;</span><br><span class="line">	for (; i&gt;=0;i--,k--)</span><br><span class="line">	&#123;</span><br><span class="line">		if (fname[i] == &apos;.&apos;)</span><br><span class="line">		&#123;</span><br><span class="line">			tname[k] = j;</span><br><span class="line">			j=0;</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			tname[k] = fname[i];</span><br><span class="line">			j++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	tname[k] = j;</span><br><span class="line">	return strlen(tname)+1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//创建套接字</span><br><span class="line">SOCKET CreateSocket(int type)</span><br><span class="line">&#123;</span><br><span class="line">	SOCKET	sock=socket(AF_INET,type,0);</span><br><span class="line">	if (sock == INVALID_SOCKET )</span><br><span class="line">	&#123;</span><br><span class="line">		return 0;</span><br><span class="line">	&#125;</span><br><span class="line">	return sock;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//UDP sendto</span><br><span class="line">int MySendto(SOCKET sockTo, const char FAR * buf,int len,char *addr,USHORT port)</span><br><span class="line">&#123;</span><br><span class="line">	if (addr[0]&lt;&apos;0&apos;||addr[0]&gt;&apos;9&apos;) //addr 中不是IP 地址，域名解析</span><br><span class="line">	&#123;	</span><br><span class="line">		struct   sockaddr_in   addr_in;</span><br><span class="line">		HOSTENT *host = NULL;</span><br><span class="line">		host = gethostbyname(addr);//域名解析函数</span><br><span class="line">		if ( host-&gt;h_addr_list[0]!=NULL )</span><br><span class="line">		&#123;</span><br><span class="line">			memcpy  (	&amp;addr_in.sin_addr.s_addr, </span><br><span class="line">				host-&gt;h_addr_list[0], host-&gt;h_length);   </span><br><span class="line">			addr = inet_ntoa(addr_in.sin_addr);  </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	//设置发送数据到的 套接字及地址结构</span><br><span class="line">	SOCKADDR_IN   addrTo; </span><br><span class="line">	addrTo.sin_addr.S_un.S_addr=inet_addr(addr);</span><br><span class="line">	addrTo.sin_family=AF_INET; </span><br><span class="line">	addrTo.sin_port=htons(port);</span><br><span class="line">	</span><br><span class="line">	return sendto(  sockTo, buf, len, 0,</span><br><span class="line">		(sockaddr*)&amp;addrTo, sizeof(sockaddr)  );</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// UDP recvfrom</span><br><span class="line">int MyRecvFrom(SOCKET s, char FAR * buf,int len,char *addr,USHORT port)</span><br><span class="line">&#123;</span><br><span class="line">	if (addr[0]&lt;&apos;0&apos;||addr[0]&gt;&apos;9&apos;) //addr 中不是IP 地址，域名解析</span><br><span class="line">	&#123;	</span><br><span class="line">		struct   sockaddr_in   addr_in;</span><br><span class="line">		HOSTENT *host = NULL;</span><br><span class="line">		host = gethostbyname(addr);//域名解析函数</span><br><span class="line">		if ( host-&gt;h_addr_list[0]!=NULL )</span><br><span class="line">		&#123;</span><br><span class="line">			memcpy  (	&amp;addr_in.sin_addr.s_addr, </span><br><span class="line">				host-&gt;h_addr_list[0], host-&gt;h_length);   </span><br><span class="line">			addr = inet_ntoa(addr_in.sin_addr);  </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//设置发送数据到的 套接字及地址结构</span><br><span class="line">	SOCKADDR_IN   addrFrom; </span><br><span class="line">	addrFrom.sin_addr.S_un.S_addr=inet_addr(addr);</span><br><span class="line">	addrFrom.sin_family=AF_INET; </span><br><span class="line">	addrFrom.sin_port=htons(port);</span><br><span class="line">	int addrlen = sizeof(SOCKADDR_IN);</span><br><span class="line">	return recvfrom( s, buf, len, 0, (SOCKADDR *)&amp;addrFrom, &amp;addrlen);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main() </span><br><span class="line">&#123;</span><br><span class="line">	int Result=0;</span><br><span class="line">	char buf[1024]=&#123;0&#125;;</span><br><span class="line">	char addr[16] = &quot;8.8.4.4&quot;;// dns 服务器地址</span><br><span class="line">	char *name = NULL; //要查询的域名</span><br><span class="line">	</span><br><span class="line">	if ( !initWSA() )//初始化</span><br><span class="line">	&#123;</span><br><span class="line">		displayErrWSA(&quot;initWSA err!&quot;);</span><br><span class="line">		return 1;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//创建套接字</span><br><span class="line">	SOCKET sockTo ;</span><br><span class="line">	if ( (sockTo = CreateSocket(SOCK_DGRAM)) == 0)</span><br><span class="line">	&#123;</span><br><span class="line">		displayErrWSA(&quot;CreatSocket err!&quot;);</span><br><span class="line">		return 1;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	while (1)</span><br><span class="line">	&#123;</span><br><span class="line">		</span><br><span class="line">		char temp[1024]=&#123;0&#125;;</span><br><span class="line">		cout&lt;&lt;&quot;\n请输入要查询的域名:&quot;;</span><br><span class="line">		cin&gt;&gt;temp;</span><br><span class="line">		if (temp[0] == &apos;q&apos; ||temp[0] == &apos;Q&apos;)</span><br><span class="line">		&#123;</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line">		name =  temp;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		//设置dns 头部</span><br><span class="line">		SetDNSHead(name,buf);</span><br><span class="line">		</span><br><span class="line">		//发送出去的请求数据长度</span><br><span class="line">		int len = sizeof(DnsHead)+sizeof(DnsQuery)+strlen(name)+2;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		//发送DNS 请求</span><br><span class="line">		if ( ( Result =MySendto(sockTo,buf,len,addr,53) ) &lt;= 0)</span><br><span class="line">		&#123;</span><br><span class="line">			displayErrWSA(&quot;sendto err!&quot;);</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		//接收应答</span><br><span class="line">		if ( (Result =MyRecvFrom(sockTo,buf,1024,addr,53) ) &lt;=  0)</span><br><span class="line">		&#123;</span><br><span class="line">			displayErrWSA(&quot;recvfrom err!&quot;);</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		//简单的取得返回的 IP 地址( 收到的最后4字节 )</span><br><span class="line">		DnsHead *DnsH = (DnsHead *)buf;</span><br><span class="line">		if (DnsH-&gt;numA == 0)</span><br><span class="line">		&#123;</span><br><span class="line">			printf(&quot;无法解析 %s 的IP 地址。\n&quot;,name);</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">		char *getIP =(char *)buf +Result - 4;</span><br><span class="line">		printf(&quot;%s 的IP地址为: &quot;,name);</span><br><span class="line">		for (int Result= 0 ;Result&lt;4 ;Result++)</span><br><span class="line">		&#123;</span><br><span class="line">			printf(&quot;%u.&quot;,(UCHAR )getIP[Result]);</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/TCP_IP/TCP_IP第三次作业/" rel="next" title="TCP_IP第三次作业">
+                <i class="fa fa-chevron-left"></i> TCP_IP第三次作业
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/TCP_IP/TCP_IP第四次作业/" rel="prev" title="TCP_IP第四次作业">
+                TCP_IP第四次作业 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#6-发送DNS-请求"><span class="nav-number">1.</span> <span class="nav-text">6    发送DNS 请求</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

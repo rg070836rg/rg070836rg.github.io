@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="12.26 悬疑 第一章：软件安全怎么理解？什么是软件安全？p5不给分回答安全属性 cia保密 完整 可用性用信息安全的属性来解释软件安全书上的只是讲了为什么要研究软件安全 版权还要看资料，记录等补充的东西？ 第二章没怎么讲 第三章提到了很多的漏洞以及产生的原因，有四个大题目比如web三层架构存在的漏洞以及存在的问题每一块要分析，跟我们的作业有关web三层架构是什么？每一块 前端后端传输存在的问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件安全复习">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/软件安全/软件安全复习/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="12.26 悬疑 第一章：软件安全怎么理解？什么是软件安全？p5不给分回答安全属性 cia保密 完整 可用性用信息安全的属性来解释软件安全书上的只是讲了为什么要研究软件安全 版权还要看资料，记录等补充的东西？ 第二章没怎么讲 第三章提到了很多的漏洞以及产生的原因，有四个大题目比如web三层架构存在的漏洞以及存在的问题每一块要分析，跟我们的作业有关web三层架构是什么？每一块 前端后端传输存在的问">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-14T08:30:30.083Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件安全复习">
+<meta name="twitter:description" content="12.26 悬疑 第一章：软件安全怎么理解？什么是软件安全？p5不给分回答安全属性 cia保密 完整 可用性用信息安全的属性来解释软件安全书上的只是讲了为什么要研究软件安全 版权还要看资料，记录等补充的东西？ 第二章没怎么讲 第三章提到了很多的漏洞以及产生的原因，有四个大题目比如web三层架构存在的漏洞以及存在的问题每一块要分析，跟我们的作业有关web三层架构是什么？每一块 前端后端传输存在的问">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/软件安全/软件安全复习/">
+
+
+
+
+
+  <title>软件安全复习 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/软件安全/软件安全复习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件安全复习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件安全/" itemprop="url" rel="index">
+                    <span itemprop="name">软件安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>12.26 悬疑</p>
+<p>第一章：<br>软件安全怎么理解？什么是软件安全？p5不给分<br>回答安全属性 cia保密 完整 可用性<br>用信息安全的属性来解释软件安全<br>书上的只是讲了为什么要研究软件安全</p>
+<p>版权<br>还要看资料，记录等补充的东西？</p>
+<p>第二章<br>没怎么讲</p>
+<p>第三章<br>提到了很多的漏洞以及产生的原因，有四个大题目<br>比如web三层架构存在的漏洞以及存在的问题<br>每一块要分析，跟我们的作业有关<br>web三层架构是什么？<br>每一块 前端后端传输存在的问题有哪些<br>要分析</p>
+<p>还与威胁建模有关系</p>
+<p>什么叫缓冲区溢出？按照书/课上讲的<br>首先缓冲区是什么<br>什么是堆栈，跟第四张4.1.1/.2/.3/.4<br>名词解释，<br>格式化串漏洞  （给你一段代码，问问题）课上都讲过的<br>（sql注入，缓冲区一处，格式化串）</p>
+<p>4.2 跨站脚本xss<br>跨站请求伪造csrf</p>
+<p>也会在大题目用到，在前端还是后端？<br>xss？前端？后端</p>
+<p>什么叫模糊测试<br>什么叫渗透测试</p>
+<p>或者什么叫静态/动态分析</p>
+<p>第六章肯定会考</p>
+<p>windows下面 安全防护机制有哪些？<br>/gs   dep（数据执行保护）<br>地址空间分布随机化<br>/safe？？不能只写名字，要写意思，要解释</p>
+<p>第七章<br>拆成了好几章，<br>开发<br>题目多<br>比如说<br>安全开发周期模型sdl，什么是sdl<br>威胁建模中的作业 stride是什么  五类威胁的缩写？<br>s欺骗。。</p>
+<p>sd3原则  安全设计原则<br>sd3+c（conmunication）（书上的不对）是沟通</p>
+<p>渗透模糊静态动态测试</p>
+<p>身份认证+访问控制<br>比如用户名密码属于身份认证的什么<br>身份认证一般分为三大类<br>what you konw/have/are<br>口令属于你知道什么know<br>校园卡，U盾之类的叫have<br>安全性稍微高一点<br>are，刷指纹之类的</p>
+<p>验证码起到什么作用1.区分人机2.otp一次性口令认证哈希加盐为什么要哈希加盐<br>不能用什么对称?/非对称区别</p>
+<p>访问控制指的是你能干什么<br>考rbac基于角色的访问控制<br>合并同类项？1W人可能只有4类权限<br>例如 管理员一类，教务，学生，教师</p>
+<p>第八章<br>什么是恶意代码  概念<br>恶意代码的种类  分类<br>防护的主要技术  模型<br>特征可信<br>身份可信 identity<br>能力 行为可信<br>环境可信</p>
+<p>8-11  四章   考简答题</p>
+<p>第四部分<br>软件自我保护<br>简答题：软件知识产权面临什么样的威胁以及常用的技术保护措施</p>
+<p>有序列号验证<br>keyfile验证<br>网络验证<br>光盘验证<br>加密锁验证<br>软件狗 safenet<br>代码</p>
+<p>几个名词解释<br>堆栈 xss 说过的4个-5个20分</p>
+<p>没有选择 填空 判断</p>
+<p>谈谈对软件安全的理解</p>
+<p>四个大题目 40分<br>比如说 程序题一个 问题（注入，缓冲区溢出）<br>材料分析 例子<br>京东泄露12G信息，请你从软件开发者角度来谈谈你对这个事件的认识<br>要有技术性 从模型开始介绍，那前面的内容来答</p>
+<p>美国大规模断网–什么是ddos攻击<br>怎么实施ddos攻击   大规模请求超出了负荷，  什么请求？什么东西瘫痪的<br>dns查询攻击   硬件漏洞<br>攻击原理的分析</p>
+<p>威胁建模分析  更具体</p>
+<p>世纪佳缘被逮<br>月饼们事件<br>绝对控制？电影<br>1.谈个人修养<br>2.谈漏洞管理 挖到漏洞以后 从国家公司层面 应该怎么管理？法律制度<br>技术 道德 法律 个人修养</p>
+<p>10分<br>问这学期做了哪些实验，看了什么书，包括电影，谈谈自己的体会什么的</p>
+<p>红帽子 黑帽子 灰帽子</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/人流量/活动、移动联合建模/" rel="next" title="活动、移动联合建模">
+                <i class="fa fa-chevron-left"></i> 活动、移动联合建模
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/软件分析与测试/10.15软件测试作业--三角形/" rel="prev" title="10.15软件测试作业--三角形">
+                10.15软件测试作业--三角形 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

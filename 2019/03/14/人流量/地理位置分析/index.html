@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Discovering Urban Functional Zones Using Latent Activity TrajectoriesIeee Transactions on Knowledge and Data Engineering, 2015 Yuan N. J. , Zheng Y. , Xie X. 研究问题：​    发现城市的功能区域，并对得出的区域进行解释 模型与方法： 根据城">
+<meta property="og:type" content="article">
+<meta property="og:title" content="地理位置分析">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/人流量/地理位置分析/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="Discovering Urban Functional Zones Using Latent Activity TrajectoriesIeee Transactions on Knowledge and Data Engineering, 2015 Yuan N. J. , Zheng Y. , Xie X. 研究问题：​    发现城市的功能区域，并对得出的区域进行解释 模型与方法： 根据城">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.628Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="地理位置分析">
+<meta name="twitter:description" content="Discovering Urban Functional Zones Using Latent Activity TrajectoriesIeee Transactions on Knowledge and Data Engineering, 2015 Yuan N. J. , Zheng Y. , Xie X. 研究问题：​    发现城市的功能区域，并对得出的区域进行解释 模型与方法： 根据城">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/人流量/地理位置分析/">
+
+
+
+
+
+  <title>地理位置分析 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/人流量/地理位置分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">地理位置分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人流量/" itemprop="url" rel="index">
+                    <span itemprop="name">人流量</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Discovering-Urban-Functional-Zones-Using-Latent-Activity-Trajectories"><a href="#Discovering-Urban-Functional-Zones-Using-Latent-Activity-Trajectories" class="headerlink" title="Discovering Urban Functional Zones Using Latent Activity Trajectories"></a>Discovering Urban Functional Zones Using Latent Activity Trajectories</h3><p><em>Ieee Transactions on Knowledge and Data Engineering, 2015</em></p>
+<p><em>Yuan N. J. , Zheng Y. , Xie X.</em></p>
+<h4 id="研究问题："><a href="#研究问题：" class="headerlink" title="研究问题："></a>研究问题：</h4><p>​    发现城市的功能区域，并对得出的区域进行解释</p>
+<h4 id="模型与方法："><a href="#模型与方法：" class="headerlink" title="模型与方法："></a>模型与方法：</h4><ul>
+<li>根据城市道路网络，讲城市划分成区域</li>
+<li>从轨迹数据中提取出转移模式立方体，包括两类，离开立方体（三个维度分别是，离开的区域，到达的区域，离开时间）和到达立方体（离开的区域，到达的区域，到达时间）</li>
+<li>通过POI类型的TF-IDF来衡量每个区域内各种类型的活动的重要程度，形成R-C矩阵。然后对R-C矩阵进行奇异值分解来解决缺失值和潜在语义规律，分解为POI特征向量和区域特征向量</li>
+<li>把区域看作文档，转移立方当作词汇表，转移模式是词汇，区域内的活动是文档的主体，POI特征向量是文档元数据，用LDA来刻画区域内的活动</li>
+<li>除了转移模式反应的区域-活动关系，同时考虑了位置的语义，对POI特征向量用DMR建模，然后和LDA结合在一起</li>
+<li>利用K-means，根据之前得到的区域的活动主题分布，对由道路网络划分的区域聚类，得到城市的功能区域。用核密度估计的方式对每个功能区域的热度，即人流量，最后根据区域的POI分布，给功能区域进行了解释</li>
+</ul>
+<h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p>[9]</p>
+<h3 id="Land-Use-Classification-Using-Taxi-GPS-Traces"><a href="#Land-Use-Classification-Using-Taxi-GPS-Traces" class="headerlink" title="Land-Use Classification Using Taxi GPS Traces"></a>Land-Use Classification Using Taxi GPS Traces</h3><p><em>Ieee Transactions on Intelligent Transportation Systems</em></p>
+<p><em>Pan G. , Qi G. D. , Wu Z. H.</em></p>
+<h4 id="研究问题：-1"><a href="#研究问题：-1" class="headerlink" title="研究问题："></a>研究问题：</h4><p>​    划分城市区域，并对其进行分类（定义了14种城市区域的类型）</p>
+<h4 id="模型与方法：-1"><a href="#模型与方法：-1" class="headerlink" title="模型与方法："></a>模型与方法：</h4><ul>
+<li>利用出租车数据，统计出上下客的位置分布。将城市划分为10m*10m的网格，发现上客数据稀疏、上下客有聚集现象，这些聚集的区域大小和人流密度都有各不相同</li>
+<li>定义了上下车点周围的密度，然后用DBSCAN对这些点进行聚类，得到了城市的区域划分</li>
+<li>对每个区域，定义了6个特征，包括一天内每个时段上下客数量、上下客人数差别、上下客人数比值、一周每天上下客数量。然后根据这6个特征，对之前得到的区域进行了分类</li>
+</ul>
+<h4 id="College-Towns-Vacation-Spots-and-Tech-Hubs-Using-Geo-Social-Media-to-Model-and-Compare-Locations"><a href="#College-Towns-Vacation-Spots-and-Tech-Hubs-Using-Geo-Social-Media-to-Model-and-Compare-Locations" class="headerlink" title="College Towns, Vacation Spots, and Tech Hubs: Using Geo-Social Media to Model and Compare Locations"></a>College Towns, Vacation Spots, and Tech Hubs: Using Geo-Social Media to Model and Compare Locations</h4><p><em>Proceedings of the Thirtieth AAAI Conference on Artificial Intelligence (AAAI-16)</em></p>
+<p><em>Hancheng Ge, James Caverlee</em></p>
+<h4 id="研究问题：-2"><a href="#研究问题：-2" class="headerlink" title="研究问题："></a>研究问题：</h4><p>​    对不同的城市进行聚类，找出各城市发展的重心</p>
+<h4 id="模型与方法：-2"><a href="#模型与方法：-2" class="headerlink" title="模型与方法："></a>模型与方法：</h4><ul>
+<li>给城市定义了一个n-维兴趣向量，文中包含14个维度</li>
+<li>首先将推特分为与活动主题有关的和无关的，利用12个二进制特征，还有关键词特征，采用随机森林进行2分类</li>
+<li>再用多分类器和活动主题有关的推特划分到14个活动种类中</li>
+<li>再根据城市的活动种类向量对城市进行聚类</li>
+</ul>
+<h4 id="Modeling-User-Mobility-for-Location-Promotion-in-Location-based-Social-Networks"><a href="#Modeling-User-Mobility-for-Location-Promotion-in-Location-based-Social-Networks" class="headerlink" title="Modeling User Mobility for Location Promotion in Location-based Social Networks"></a>Modeling User Mobility for Location Promotion in Location-based Social Networks</h4><p><em>kdd ’15 , Zhu Wen-Yuan, Peng Wen-Chih, Chen Ling-Jyh, Zheng Kai, Zhou Xiaofang</em></p>
+<h4 id="研究问题：-3"><a href="#研究问题：-3" class="headerlink" title="研究问题："></a>研究问题：</h4><p>​    对给定位置，找出最有影响力的k个用户</p>
+<h4 id="模型与方法：-3"><a href="#模型与方法：-3" class="headerlink" title="模型与方法："></a>模型与方法：</h4><ul>
+<li>建立用户-POI的对应图，用户-用户之间有社交关系</li>
+<li>在用户-用户图上求社交影响力</li>
+<li>估计每个用户到访每个位置的概率，采用基于距离的模型</li>
+<li>奖基于距离的用户移动模型和社交关系模型联合建模，以此推导出每个用户对该位置的提升概率</li>
+</ul>
+<h4 id="参考文献-1"><a href="#参考文献-1" class="headerlink" title="参考文献"></a>参考文献</h4><p>5，6，17，chapter 2.3</p>
+<h4 id="Collective-Traffic-Prediction-with-Partially-Observed-Traffic-History-using-Location-Based-Social-Media"><a href="#Collective-Traffic-Prediction-with-Partially-Observed-Traffic-History-using-Location-Based-Social-Media" class="headerlink" title="Collective Traffic Prediction with Partially Observed Traffic History using Location-Based Social Media"></a>Collective Traffic Prediction with Partially Observed Traffic History using Location-Based Social Media</h4><p><em>CIKM’16 , Liu Xinyue, Kong Xiangnan , Li Yanhua</em> </p>
+<h4 id="研究问题：-4"><a href="#研究问题：-4" class="headerlink" title="研究问题："></a>研究问题：</h4><p>​    利用LBSN的数据来预测交通状况</p>
+<h4 id="模型与方法：-4"><a href="#模型与方法：-4" class="headerlink" title="模型与方法："></a>模型与方法：</h4><ul>
+<li>结合LBSN数据和部分观测的历史轨迹数据</li>
+<li>将地图划分成网格，从LBSN中统计一定时间窗口内出地理区域的特征向量</li>
+<li>对于有交通状况记录数据的区域，结合之前一段时间的交通状况和LBSN特征向量来预测交通状况，对于没有交通状况记录的区域，只试用LBSN特征向量来预测。该特征向量的每一位的值表示在该时间段内，在该区域内发布的堵塞、停车等关键词出现的数量</li>
+<li>对某一区域内车流速度，文中指出3种关系：和同一区域内之前时段的车流速度有关系、相邻区域之前时段的车流速度、同一时段附近区域的车流速度。将这三种关系线性结合，得到对该区域当前时段的车流速度的估计</li>
+<li>采用迭代分类算法</li>
+</ul>
+<h3 id="Mining-Significant-Semantic-Locations-From-GPS-Data"><a href="#Mining-Significant-Semantic-Locations-From-GPS-Data" class="headerlink" title="Mining Significant Semantic Locations From GPS Data"></a>Mining Significant Semantic Locations From GPS Data</h3><p><em>VLDB‘10 , Xin Cao, Gao Cong, Christian S. Jensen</em></p>
+<h4 id="研究问题：-5"><a href="#研究问题：-5" class="headerlink" title="研究问题："></a>研究问题：</h4><p>​    从GPS数据中挖掘有意义的位置，并为这些位置做重要性排名</p>
+<h4 id="模型与方法：-5"><a href="#模型与方法：-5" class="headerlink" title="模型与方法："></a>模型与方法：</h4><ul>
+<li>同时建模了位置之间的连通关系和用户-位置的到访关系</li>
+</ul>
+<h4 id="Improving-Personalized-Trip-Recommendation-by-Avoiding-Crowds"><a href="#Improving-Personalized-Trip-Recommendation-by-Avoiding-Crowds" class="headerlink" title="Improving Personalized Trip Recommendation by Avoiding Crowds"></a>Improving Personalized Trip Recommendation by Avoiding Crowds</h4><p><em>CIKM’16 , Wang Xiaoting , Leckie Christophe</em></p>
+<h4 id="研究问题：-6"><a href="#研究问题：-6" class="headerlink" title="研究问题："></a>研究问题：</h4><p>​    结合POI的当前流量，设计一个避开高峰的行程推荐</p>
+<h4 id="模型与方法：-6"><a href="#模型与方法：-6" class="headerlink" title="模型与方法："></a>模型与方法：</h4><ul>
+<li>POI流量直接用行人数量统计数据</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/人流量/兴趣点推荐总结/" rel="next" title="兴趣点推荐总结">
+                <i class="fa fa-chevron-left"></i> 兴趣点推荐总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/人流量/活动、移动联合建模/" rel="prev" title="活动、移动联合建模">
+                活动、移动联合建模 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Discovering-Urban-Functional-Zones-Using-Latent-Activity-Trajectories"><span class="nav-number">1.</span> <span class="nav-text">Discovering Urban Functional Zones Using Latent Activity Trajectories</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#研究问题："><span class="nav-number">1.1.</span> <span class="nav-text">研究问题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法："><span class="nav-number">1.2.</span> <span class="nav-text">模型与方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考文献"><span class="nav-number">1.3.</span> <span class="nav-text">参考文献</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Land-Use-Classification-Using-Taxi-GPS-Traces"><span class="nav-number">2.</span> <span class="nav-text">Land-Use Classification Using Taxi GPS Traces</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#研究问题：-1"><span class="nav-number">2.1.</span> <span class="nav-text">研究问题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-1"><span class="nav-number">2.2.</span> <span class="nav-text">模型与方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#College-Towns-Vacation-Spots-and-Tech-Hubs-Using-Geo-Social-Media-to-Model-and-Compare-Locations"><span class="nav-number">2.3.</span> <span class="nav-text">College Towns, Vacation Spots, and Tech Hubs: Using Geo-Social Media to Model and Compare Locations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#研究问题：-2"><span class="nav-number">2.4.</span> <span class="nav-text">研究问题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-2"><span class="nav-number">2.5.</span> <span class="nav-text">模型与方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Modeling-User-Mobility-for-Location-Promotion-in-Location-based-Social-Networks"><span class="nav-number">2.6.</span> <span class="nav-text">Modeling User Mobility for Location Promotion in Location-based Social Networks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#研究问题：-3"><span class="nav-number">2.7.</span> <span class="nav-text">研究问题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-3"><span class="nav-number">2.8.</span> <span class="nav-text">模型与方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考文献-1"><span class="nav-number">2.9.</span> <span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Collective-Traffic-Prediction-with-Partially-Observed-Traffic-History-using-Location-Based-Social-Media"><span class="nav-number">2.10.</span> <span class="nav-text">Collective Traffic Prediction with Partially Observed Traffic History using Location-Based Social Media</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#研究问题：-4"><span class="nav-number">2.11.</span> <span class="nav-text">研究问题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-4"><span class="nav-number">2.12.</span> <span class="nav-text">模型与方法：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mining-Significant-Semantic-Locations-From-GPS-Data"><span class="nav-number">3.</span> <span class="nav-text">Mining Significant Semantic Locations From GPS Data</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#研究问题：-5"><span class="nav-number">3.1.</span> <span class="nav-text">研究问题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-5"><span class="nav-number">3.2.</span> <span class="nav-text">模型与方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Improving-Personalized-Trip-Recommendation-by-Avoiding-Crowds"><span class="nav-number">3.3.</span> <span class="nav-text">Improving Personalized Trip Recommendation by Avoiding Crowds</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#研究问题：-6"><span class="nav-number">3.4.</span> <span class="nav-text">研究问题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-6"><span class="nav-number">3.5.</span> <span class="nav-text">模型与方法：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

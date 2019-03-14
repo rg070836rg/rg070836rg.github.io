@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="#1    请定义一个类，存储指定文件夹下的所有文件名（含各级子文件夹），并写出该类的构造函数。1234567891011121314151617Public Class clsDirectory    Public Files As List(Of String)    Public Directories As List(Of clsDirectory)    Public Sub New(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="人机交互技术复习提纲（17-21）">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/人机交互技术复习/人机交互技术复习提纲（17-21）/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="#1    请定义一个类，存储指定文件夹下的所有文件名（含各级子文件夹），并写出该类的构造函数。1234567891011121314151617Public Class clsDirectory    Public Files As List(Of String)    Public Directories As List(Of clsDirectory)    Public Sub New(">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/1bp38o4tapu2xi8oy5ubdwtu/01.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/fjpb1180zok7uvrrevy56hgk/02.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/o77kb5xmqxu7y2dsbfpgdx46/1.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/tukh8g9m5fianmhpizdgja9g/03.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.613Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="人机交互技术复习提纲（17-21）">
+<meta name="twitter:description" content="#1    请定义一个类，存储指定文件夹下的所有文件名（含各级子文件夹），并写出该类的构造函数。1234567891011121314151617Public Class clsDirectory    Public Files As List(Of String)    Public Directories As List(Of clsDirectory)    Public Sub New(">
+<meta name="twitter:image" content="http://static.zybuluo.com/rg070836rg/1bp38o4tapu2xi8oy5ubdwtu/01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/人机交互技术复习/人机交互技术复习提纲（17-21）/">
+
+
+
+
+
+  <title>人机交互技术复习提纲（17-21） | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/人机交互技术复习/人机交互技术复习提纲（17-21）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">人机交互技术复习提纲（17-21）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人机交互技术复习/" itemprop="url" rel="index">
+                    <span itemprop="name">人机交互技术复习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>#1<br>    请定义一个类，存储指定文件夹下的所有文件名（含各级子文件夹），并写出该类的构造函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Public Class clsDirectory</span><br><span class="line">    Public Files As List(Of String)</span><br><span class="line">    Public Directories As List(Of clsDirectory)</span><br><span class="line"></span><br><span class="line">    Public Sub New(PathName As String)</span><br><span class="line">        Create(PathName)</span><br><span class="line">    End Sub</span><br><span class="line">    </span><br><span class="line">        Private Sub Create(PathName As String)</span><br><span class="line">            Files = Directory.GetFiles(PathName).ToList</span><br><span class="line">            directories = New List(Of clsDirectory)</span><br><span class="line">            Dim foldes() As String = Directory.GetDirectories(PathName)</span><br><span class="line">            For i = 0 To foldes.Count - 1</span><br><span class="line">                Directories.Add(New clsDirectory(foldes(i)))</span><br><span class="line">            Next</span><br><span class="line">    End Sub</span><br><span class="line">End Class</span><br></pre></td></tr></table></figure></p>
+<p>#2<br>    请编写函数，将指定的Tuple类型数据（例如:(“dad”, ”son”)）插入到TreeView控件中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">知识点：Tuple(Of String, String)：二元组类型。主要成员：Item1，Item2</span><br><span class="line">Public Tuples As List(Of Tuple(Of String, String)) //树形结构中的二元关系集合</span><br><span class="line">-----------------------------------------------------------------------------------------------------------------</span><br><span class="line">Public Sub Append(tuple As Tuple(Of String, String))</span><br><span class="line">        If AppendNode(tuple) = True Then</span><br><span class="line">            //树中添加了节点，二元关系集合才能添加二元关系</span><br><span class="line">            Tuples.Add(tuple)</span><br><span class="line">        End If</span><br><span class="line">End Sub</span><br><span class="line"></span><br><span class="line">Private Function AppendNode(tuple As Tuple(Of String, String)) As Boolean</span><br><span class="line">        Dim parentnode As TreeNode = SearchNode(Root, tuple.Item1)</span><br><span class="line">        If parentnode Is Nothing Then Return False</span><br><span class="line">        parentnode.Nodes.Add(tuple.Item2)</span><br><span class="line">        Return True</span><br><span class="line">End Function</span><br><span class="line"></span><br><span class="line">//在node所表示的属性结构中，查找关键值为key的节点</span><br><span class="line">    Private Function SearchNode(node As TreeNode, key As String) As TreeNode</span><br><span class="line">        If node.Text = key Then Return node</span><br><span class="line">        For i = 0 To node.Nodes.Count - 1</span><br><span class="line">            Dim node1 As TreeNode = SearchNode(node.Nodes(i), key)</span><br><span class="line">            If node1 IsNot Nothing Then Return node1</span><br><span class="line">        Next</span><br><span class="line">        Return Nothing</span><br><span class="line">End Function</span><br></pre></td></tr></table></figure></p>
+<p>#3<br>    请编写函数，在TreeView控件中，删除text等于指定字符串的结点及其子树。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Public Sub Remove(key As String)</span><br><span class="line">        If RemoveNode(key) = False Then Return</span><br><span class="line">        For i = Tuples.Count - 1 To 0 Step -1</span><br><span class="line">            If Tuples(i).Item1 = key Or Tuples(i).Item2 = key Then</span><br><span class="line">                Tuples.RemoveAt(i)</span><br><span class="line">            End If</span><br><span class="line">        Next</span><br><span class="line">End Sub</span><br><span class="line"></span><br><span class="line">    Private Function RemoveNode(key As String) As Boolean</span><br><span class="line">        Dim node As TreeNode = SearchNode(Root, key)</span><br><span class="line">        If node Is Nothing Then Return False</span><br><span class="line">        Dim parentnode As TreeNode = node.Parent()</span><br><span class="line">        If parentnode Is Nothing Then Return False //企图删除根节点</span><br><span class="line">        parentnode.Nodes.Remove(node)</span><br><span class="line">        Return True</span><br><span class="line">    End Function</span><br></pre></td></tr></table></figure>
+<p>#4<br>    请编写函数，创建一列n个按钮控件，并指定每个按钮的Click事件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">Public Class clsButtonRow</span><br><span class="line">    Private Buttons As List(Of Button)</span><br><span class="line">    Private Width As Integer   // 方形按钮的宽度</span><br><span class="line">    Private XGap As Integer    //X方向按钮的间距</span><br><span class="line">    Private Start As Point     //按钮集合的排列起点（左上角）</span><br><span class="line"></span><br><span class="line">    Public Sub New(frm As frmTest, Start As Point, ButtonN As Integer)</span><br><span class="line">        Me.Width = 25 : Me.XGap = 1</span><br><span class="line">        Me.Start = Start</span><br><span class="line">        // 创建按钮集合</span><br><span class="line">        CreateButtons(ButtonN)</span><br><span class="line">        //将按钮集合加入frm中</span><br><span class="line">        For i = 0 To ButtonN - 1</span><br><span class="line">            frm.Controls.Add(Buttons(i))</span><br><span class="line">        Next</span><br><span class="line">        frm.ResumeLayout(False) </span><br><span class="line">        //恢复正常的布局逻辑，可以选择强制对挂起的布局请求立即进行布局。</span><br><span class="line">        frm.PerformLayout()     </span><br><span class="line">        //强制控件将布局逻辑应用于其所有子控件。</span><br><span class="line">    End Sub</span><br><span class="line"></span><br><span class="line">    Public Sub CreateButtons(ButtonN As Integer)</span><br><span class="line">        Buttons = New List(Of Button)</span><br><span class="line">        For i = 0 To ButtonN - 1</span><br><span class="line">            Buttons.Add(New Button)</span><br><span class="line">            With Buttons(i)</span><br><span class="line">                .Name = &quot;btn&quot; &amp; i</span><br><span class="line">                .Text = &quot;&quot;</span><br><span class="line">                .TabIndex = i</span><br><span class="line">                .UseVisualStyleBackColor = True</span><br><span class="line">                .Size = New System.Drawing.Size(Width, Width)</span><br><span class="line">                .Location = New System.Drawing.Point(Start.X + i * (Width + XGap), Start.Y)</span><br><span class="line">            End With</span><br><span class="line">            AddHandler Buttons(i).Click, AddressOf Button_Click</span><br><span class="line">        Next</span><br><span class="line">    End Sub</span><br><span class="line"></span><br><span class="line">    Private Sub Button_Click(sender As Object, e As EventArgs)</span><br><span class="line">        MsgBox(&quot;Hello &quot; &amp; sender.name)</span><br><span class="line">    End Sub</span><br><span class="line"></span><br><span class="line">End Class</span><br></pre></td></tr></table></figure></p>
+<p>#5<br>    请举例说明Delegate类型的作用。</p>
+<blockquote>
+<ul>
+<li>可交互的后台任务类<br>1 学习委托类型。其本质是指向函数的指针类型。委托对象是具体某个函数的地址。<br>2 在跨线程操作的流程中，委托对象使得一个线程可以通知另一个线程，执行指定的操作。</li>
+</ul>
+</blockquote>
+<p>界面窗体的引用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Private frmOut As frmTest       //拥有控件的窗体，有权改写控件</span><br><span class="line">Public Sub New(para As WorkerPara, frmOut As frmTest)</span><br><span class="line">       Me.frmOut = frmOut</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure></p>
+<p>委托类型的定义:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Delegate Sub AppendMessage(id As Integer, msg As String) //函数类型</span><br></pre></td></tr></table></figure></p>
+<p>委托对象的定义、创建、使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Private ReportProgress As AppendMessage  </span><br><span class="line">&apos;函数对象，向界面报告计算的进度</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Me.ReportProgress = New AppendMessage(AddressOf frmOut.AppendMessage)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//在拥有控件的窗口线程上，用指定的参数列表执行指定委托函数。</span><br><span class="line">frmOut.Invoke(ReportProgress, para.id, sum.ToString)</span><br></pre></td></tr></table></figure>
+<p>#6<br>    请举例说明自定义事件的使用方法。</p>
+<p>#7<br>    请举例说明BackgroundWorker的使用方法。</p>
+<blockquote>
+<ul>
+<li>BackgroundWorker是•net里用来执行多线程任务的控件</li>
+<li>BackgroundWorker类（在单独的线程上执行操作）。</li>
+<li>RunWorkerAsync方法：开始执行后台操作；</li>
+<li>CancelAsync方法：请求取消挂起的后台操作。</li>
+<li>在程序中调用BackgroundWorker控件的RunWorkerAsync方法则会启动DoWork事件的事件处理，当DoWork事件处理完成时，则会触发RunWorkerCompleted事件。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">例子：2开发环境-&gt;5多线程技术-&gt;2单个后台线程的运行过程</span><br><span class="line">附加：发射小球（多线程）</span><br><span class="line">功能：利用BackgroundWorker类的对象，在后台线程上，进行大计算，界面无停滞感觉。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>（1）在frmTest窗口设计中，从工具箱拖拉一个BackgroundWorker控件至窗口下方，重命名为bkWork。</li>
+<li>（2）在开始按钮的Click事件btnStart_Click中，开始执行后台操作：<br>Me.bkWork.RunWorkerAsync(para)，其中para是包装后的参数</li>
+<li>（3）在bkWork_DoWork事件中，处理大计算操作。</li>
+<li>（4）在bkWork_RunWorkerCompleted事件中，在文本框中显示大计算的结果：txtResult.Text = e.Result</li>
+<li>（5）在取消按钮的Click事件btnCancel_Click中，请求取消挂起的后台操作：      Me.bkWork.CancelAsync()</li>
+</ul>
+</blockquote>
+<p>#8<br>    请举例说明Parallel.For的使用方法。</p>
+<p>#9<br>    在智能输入中，用户在文本框中按键后，会显示输入提示，文本框将显示用户所确定的选项。请写出程序操作流程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">参考程序：3开发项目-&gt;1键盘操作-&gt;1智能输入-&gt;2词库类</span><br><span class="line">功能：在文本框中输入字符，弹出单词选择窗口，用户可以输入字符，也可选择单词。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>（1）frmListBox_Load事件中：读文件，初始化词库</li>
+<li>（2）txtContent_KeyPress事件中：获取当前用户在文本框中输入字符串<pre><code>frm_WordSelected，frm_CharPress事件，GetLastChars()函数
+</code></pre></li>
+<li>（3）WordListInit(LastChars As String)中：显示最接近的单词集<pre><code>LastChars是指主窗口中正在输入的单词，已经输入的部分。
+</code></pre></li>
+<li>（4）lstWords_KeyPress事件中：接受输入的字符，将其传入主窗口的文本框中，同时调整当前选项的位置； </li>
+<li>（5）lstWords_KeyPress事件中：接受空格字符，表示选定当前选项，并将选定单词传入主窗口的文本框中；</li>
+</ul>
+</blockquote>
+<p>#10<br>    在文本编辑中，常常有对命令序列的管理要求。请写出基本操作的类型定义，及命令序列的存储结构。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">参考程序：3开发项目-&gt;1键盘操作-&gt;1智能输入-&gt;4操作历史-&gt;2回退&amp;前进</span><br></pre></td></tr></table></figure></p>
+<p>##<strong>基本操作的类型定义：</strong></p>
+<p>###（1）操作虚类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Public MustInherit Class clsOp</span><br><span class="line">    Public MustOverride Sub DoWork(txtContent As TextBox)</span><br><span class="line">    Public MustOverride Sub UnDo(txtContent As TextBox)</span><br><span class="line">End Class</span><br><span class="line">无子过程</span><br></pre></td></tr></table></figure></p>
+<p>###（2）插入类，继承于操作虚类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//在position之前插入newchars </span><br><span class="line">Public Class clsInsertOp</span><br><span class="line">    Inherits clsOp</span><br><span class="line">    Private position As Integer, newchars As String</span><br></pre></td></tr></table></figure></p>
+<p>###（3）更新类，继承于操作虚类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Public Class clsUpdateOp</span><br><span class="line">    Inherits clsOp</span><br><span class="line">    Private position As Integer, length As Integer</span><br><span class="line">    Private oldchars As String, newchars As String   </span><br><span class="line">    //    替换前的旧文本, 替换后的新文本</span><br><span class="line">包含的子过程：</span><br><span class="line">New(position As Integer, length As Integer, oldchars As String, newchars As String)（其他同上）</span><br></pre></td></tr></table></figure></p>
+<p>###（4）删除类，继承于操作虚类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//从position开始删除长度为length的字符串</span><br><span class="line">Public Class clsDeleteOp</span><br><span class="line">    Inherits clsOp</span><br><span class="line">    Private position As Integer, length As Integer</span><br><span class="line">    Private deletetxt As String  </span><br><span class="line">    // 删除的文本</span><br><span class="line">包含的子过程：</span><br><span class="line">New(position As Integer, length As Integer, deletetxt As String) </span><br><span class="line">（其他同上）</span><br></pre></td></tr></table></figure></p>
+<p>##<strong>命令序列的存储结构：</strong></p>
+<p>###（5）操作集合类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Public Class clsOps</span><br><span class="line">    Private Ops As List(Of clsOp), ith As Integer</span><br><span class="line">End Class</span><br></pre></td></tr></table></figure></p>
+<p>#11<br>    在图像处理中，位图的数据类型是什么？举例说明如何读写像素？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">参考程序：3开发项目-&gt;2图像处理-&gt;1图像读写与分析-&gt;1图像文件及像素RGB的读写</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>位图的数据类型：<strong>Bitmap</strong><br><strong>Bitmap类：</strong>用于处理由像素数据定义的图像的对象。<br><strong>读写像素举例：</strong></p>
+</blockquote>
+<p>##（1）在picturebox  picCanvas中打开显示图像：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Fname = &quot;Tulips.jpg&quot;</span><br><span class="line">        	Source = New Bitmap(Fname)   //在图像计算中，用作数据源</span><br><span class="line">        	Target = New Bitmap(Source)    // 用于显示</span><br><span class="line">        	picCanvas.Image = Target       </span><br><span class="line">        	                            // Bitmap是Image(虚类)的子类</span><br><span class="line">       	picCanvas.Width = Target.Width</span><br><span class="line">        picCanvas.Height = Target.Height</span><br></pre></td></tr></table></figure></p>
+<p>##（2）保存图像：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Dim Fname1 As String = &quot;Tulips1.jpg&quot;</span><br><span class="line">Target.Save(Fname1)</span><br></pre></td></tr></table></figure></p>
+<p>##（3）图像的操作（修改像素）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    // GetPixel、SetPixel</span><br><span class="line">Dim oldcolor As Color = Source.GetPixel(i, j)</span><br><span class="line">newcolor = Color.FromArgb(oldcolor.R, 0, 0)</span><br><span class="line">Target.SetPixel(i, j, newcolor)</span><br></pre></td></tr></table></figure></p>
+<p>注：FromArgb(R,G,B)从指定的8位颜色值（红绿蓝）创建system.drawing.color结构。</p>
+<p>#12<br>    在播放幻灯片时，有许多图像切换特效。请举例说明其实现方法。</p>
+<p>通过文件名获得source原图片，并设置target图片的宽和高，设置picturebox控件中的图片为target暂时为空，并设置picturebox的宽和高为target的 宽和高<br><strong>百叶窗效果：</strong><br>①//自定义一个timer控件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Private WithEvents Timer1 As System.Windows.Forms.Timer </span><br><span class="line">并设置这个控件的属性（在btnOpen_Click（）事件中添加）</span><br><span class="line">Timer1 = New System.Windows.Forms.Timer		//创建一个类的对象</span><br><span class="line">Timer1.Interval = 50					//设置tick时间发生的时间间隔为50ms</span><br><span class="line">Timer1.Enabled = True				//使timer控件中的timer事件有效</span><br></pre></td></tr></table></figure></p>
+<p>②添加Timer 的tick事件，每经过Interval属性指定的时间间隔时发生一次<br>根据单选按钮Radio的check值选择执行DisplayVertical函数还是DisplayHorizontal函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Private Sub Timer1_Tick(sender As Object, e As System.EventArgs) Handles Timer1.Tick</span><br><span class="line">     Const dx As Integer = 5, dy As Integer = 5</span><br><span class="line">     If RadioVertical.Checked = True Then DisplayVertical(dx)	</span><br><span class="line">     If RadioHorizontal.Checked = True Then DisplayHorizontal(dy)</span><br><span class="line">     picCanvas.Refresh()</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure></p>
+<p>③添加 DisplayVertical (dx As Integer)函数            垂直百叶<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Private Sub DisplayVertical(dx As Integer)</span><br><span class="line">        Static xStart As Integer = 0</span><br><span class="line">        If xStart &gt;= Source.Width Then</span><br><span class="line">            xStart = 0 : Timer1.Enabled = False</span><br><span class="line">        End If</span><br><span class="line">        For x = xStart To xStart + dx - 1</span><br><span class="line">            If x &gt;= Source.Width Then Exit For	//如果像素点横坐标超过图片宽度则退出循环</span><br><span class="line">            For y = 0 To Source.Height - 1</span><br><span class="line">                Dim c As Color = Source.GetPixel(x, y)</span><br><span class="line">                Target.SetPixel(x, y, c)</span><br><span class="line">            Next</span><br><span class="line">        Next</span><br><span class="line">        xStart += dx</span><br><span class="line">    End Sub</span><br></pre></td></tr></table></figure></p>
+<p>#13<br>    区域选择是图像处理中的基本操作，请说明区域选择的方法，区域的数据结构，及可能的操作。</p>
+<p>##区域的数据结构：<br><img src="http://static.zybuluo.com/rg070836rg/1bp38o4tapu2xi8oy5ubdwtu/01.png" alt="01.png-40.3kB"><br><img src="http://static.zybuluo.com/rg070836rg/fjpb1180zok7uvrrevy56hgk/02.png" alt="02.png-24kB"></p>
+<p>##区域选择的方法：</p>
+<blockquote>
+<ul>
+<li>首先创建BitmapModifier对象，在创建的过程中通过new函数将SourceBuff中符合条件的像素值，改为Mark色，写入TargetBuff</li>
+<li>然后通过GetRegions函数根据Mark色识别、创建区域，保存到区域集合对象中</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//构造函数</span><br><span class="line">Public Sub New(fname As String, red As Tuple(Of Integer, Integer), green As Tuple(Of Integer, Integer), blue As Tuple(Of Integer, Integer), Mark As Color)</span><br><span class="line">    </span><br><span class="line">//GetRegions函数 通过像素点的颜色值来选择的，RGB的颜色值在上面范围呢，就选中</span><br><span class="line">//在TargetBuff中，根据Mark识别、创建区域，保存到区域集合对象中</span><br><span class="line">    Function GetRegions() As clsRegions</span><br><span class="line">   </span><br><span class="line">//bfs函数</span><br><span class="line">Private Function Bfs(Buff As Bitmap, sp As Point, flagMatrix(,) As Boolean) As List(Of Point)</span><br></pre></td></tr></table></figure>
+<p>##可能的操作</p>
+<blockquote>
+<ul>
+<li>定义了red,green,blue三个二元组。</li>
+<li>当点击form上的open按钮获得图片，此时同时设置这三个二元组（这个作为区域内点的颜色范围）,</li>
+<li>创建BitmapModifier对象根据区域内点的颜色范围为source图片标记mark色（在构造函数里）。</li>
+<li>当点击GetRegions函数时，调用BitmapModifier类的GetRegions函数和Regions的FillList函数</li>
+</ul>
+</blockquote>
+<p>#14<br>    绘图软件中，图形对象的管理是如何实现的？请写出图元类的结构定义。</p>
+<p>##图形对象的管理</p>
+<blockquote>
+<ul>
+<li>定义抽象基类clsElem，类clsLine、clsRectangle等图形类继承它</li>
+<li>定义类clsElems作为图形元素的集合类，其数据成员是List类型存放clasElem对象。</li>
+<li>绘图时，创建一个clsElems的对象Elems作为存储图形元素的对象，</li>
+<li>当鼠标按下并抬起后创建直线或矩形等图形对象，并将其添加到Elems中。</li>
+</ul>
+</blockquote>
+<p>##图元类的结构定义</p>
+<p>###抽象类：clsElem<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Public MustInherit Class clsElem</span><br><span class="line">    Public MustOverride Sub Draw(ByVal g As Graphics)</span><br><span class="line">End Class</span><br></pre></td></tr></table></figure></p>
+<p>###子类1直线类：clsElem<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Class clsLine</span><br><span class="line">    Inherits clsElem</span><br><span class="line"></span><br><span class="line">    Private sp, ep As PointF</span><br><span class="line"></span><br><span class="line">    Public Sub New(ByVal sp As PointF, ByVal ep As PointF)</span><br><span class="line">        Me.sp = sp : Me.ep = ep</span><br><span class="line">    End Sub</span><br><span class="line"></span><br><span class="line">    Public Overrides Sub Draw(g As Graphics)	</span><br><span class="line">        Dim myPen As New Pen(Color.Red, 1)</span><br><span class="line">        g.DrawLine(myPen, sp, ep)</span><br><span class="line">    End Sub</span><br><span class="line">    Public Overrides Function ToString() As String</span><br><span class="line">        Dim s As String = &quot;Line &quot;</span><br><span class="line">        s = s &amp; &quot;: &quot; &amp; sp.ToString &amp; &quot;,&quot; &amp; ep.ToString</span><br><span class="line">        Return s</span><br><span class="line">    End Function</span><br><span class="line"></span><br><span class="line">End Class</span><br></pre></td></tr></table></figure></p>
+<p>###类clsElems：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Public Class clsElems</span><br><span class="line">    Public elems As List(Of clsElem)</span><br><span class="line">Event Redraw()</span><br><span class="line"></span><br><span class="line">    Public Sub New()</span><br><span class="line">        elems = New List(Of clsElem)</span><br><span class="line">    End Sub</span><br><span class="line">    Public Sub Append(e As clsElem)</span><br><span class="line">        elems.Add(e)</span><br><span class="line">        RaiseEvent Redraw() </span><br><span class="line">    End Sub</span><br><span class="line"></span><br><span class="line">    Public Sub Draw(ByVal g As Graphics)</span><br><span class="line">        For i = 0 To elems.Count - 1</span><br><span class="line">            elems(i).Draw(g)</span><br><span class="line">        Next</span><br><span class="line">    End Sub</span><br><span class="line"></span><br><span class="line">    Public Function Count() As Integer</span><br><span class="line">        Return elems.Count</span><br><span class="line">    End Function</span><br><span class="line">    Public Function GetElem(index As Integer) As clsElem</span><br><span class="line">        Return elems(index)</span><br><span class="line">    End Function</span><br><span class="line">End Class</span><br></pre></td></tr></table></figure></p>
+<p>#15<br>    绘图软件中，用户应能设定作图的范围，并在该范围内利用鼠标绘图。请写出实现方法。</p>
+<p>##变换矩阵<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Class clsMatrix3</span><br><span class="line">    Private M11, M12, M13 As Single</span><br><span class="line">    Private M21, M22, M23 As Single</span><br><span class="line">    Private M31, M32, M33 As Single</span><br><span class="line"></span><br><span class="line">    Public Sub New()</span><br><span class="line">        M11 = 1 : M12 = 0 : M13 = 0</span><br><span class="line">        M21 = 0 : M22 = 1 : M23 = 0</span><br><span class="line">        M31 = 0 : M32 = 0 : M33 = 1</span><br><span class="line">    End Sub</span><br><span class="line">    Sub New(a As Single, b As Single, c As Single, d As Single)</span><br><span class="line">        M11 = a : M12 = 0 : M13 = 0</span><br><span class="line">        M21 = 0 : M22 = c : M23 = 0</span><br><span class="line">        M31 = b : M32 = d : M33 = 1</span><br><span class="line">    End Sub</span><br><span class="line"></span><br><span class="line">    Function Tranform(p As PointF) As PointF</span><br><span class="line">        Dim newp As PointF</span><br><span class="line">        newp.X = p.X * M11 + p.Y * M21 + M31</span><br><span class="line">        newp.Y = p.X * M12 + p.Y * M22 + M32</span><br><span class="line">        Return newp</span><br><span class="line">    End Function</span><br><span class="line"></span><br><span class="line">End Class</span><br></pre></td></tr></table></figure></p>
+<p>##转换公式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">通过Lp2Dp函数可以将逻辑坐标转为设备坐标</span><br><span class="line">Public Function Lp2Dp(Lp As PointF) As Point</span><br><span class="line">        Dim p As PointF = M_Lp2Dp.Tranform(Lp)</span><br><span class="line">        Dim newp As Point</span><br><span class="line">        newp.X = p.X : newp.Y = p.Y</span><br><span class="line">        Return newp</span><br><span class="line">    End Function</span><br><span class="line"></span><br><span class="line">通过Dp2Lp函数可以将设备坐标转为逻辑坐标</span><br><span class="line">Public Function Dp2Lp(Dp As Point) As PointF</span><br><span class="line">        Return M_Dp2Lp.Tranform(Dp)</span><br><span class="line">    End Function</span><br><span class="line">    End Function</span><br></pre></td></tr></table></figure></p>
+<p>定义两个数据成员：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Private CS As clsCS  //picCanvas中的坐标系</span><br><span class="line">Dim DBox, LBox As clsBox    //设备坐标、逻辑坐标的范围</span><br></pre></td></tr></table></figure></p>
+<p>窗口在初始化时设置设备坐标，逻辑坐标，坐标系的值，其中逻辑坐标范围是由用户设定的，根据DBox和LBox设置picCanvas中的坐标系<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Private Sub frmTest_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load</span><br><span class="line">        DBox = New clsBox(0, picCanvas.Width, picCanvas.Height, 0)</span><br><span class="line">        LBox = New clsBox(txtXmin.Text, txtXmax.Text, txtYmin.Text, txtYmax.Text)</span><br><span class="line">        CS = New clsCS(DBox, LBox)</span><br><span class="line">        Lines = New clsLines : Polygon = Nothing</span><br><span class="line">        Flag = OpFlag.Create : tvPoints.Nodes.Add(Lines.Node)</span><br><span class="line">        Redraw()</span><br><span class="line">    End Sub</span><br></pre></td></tr></table></figure></p>
+<p>当设置作图范围的按钮按下时，逻辑坐标的范围将重置并重新设定作图范围<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Private Sub btnSetup_Click(sender As System.Object, e As System.EventArgs) Handles btnSetup.Click</span><br><span class="line">        LBox = New clsBox(txtXmin.Text, txtXmax.Text, txtYmin.Text, txtYmax.Text)</span><br><span class="line">        CS = New clsCS(DBox, LBox)</span><br><span class="line">        Redraw()</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure></p>
+<p>重新设定作图范围，首先将整个绘图界面清除并填充为白色，通过调用CS的Draw函数为作图区域作坐标系<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Private Sub Redraw()</span><br><span class="line">        Dim g As Graphics = picCanvas.CreateGraphics</span><br><span class="line">        g.Clear(Color.White)</span><br><span class="line">        CS.Draw(g)</span><br><span class="line">        If Flag = OpFlag.Create Then Lines.Draw(g, CS)</span><br><span class="line">        If Flag = OpFlag.Modify Then Polygon.Draw(g, CS)</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure></p>
+<p>CS的Draw函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Public Sub Draw(g As Graphics)</span><br><span class="line">		//通过Lp2Dp()函数和sp,ep的横坐标画出坐标系的横坐标</span><br><span class="line">        Dim myPen = New Pen(Color.Blue, 1)</span><br><span class="line">        Dim sp, ep As PointF</span><br><span class="line">        sp.X = LBox.xmin : sp.Y = 0</span><br><span class="line">        ep.X = LBox.xmax : ep.Y = 0</span><br><span class="line">        Dim sp1 As Point = Lp2Dp(sp)</span><br><span class="line">        Dim ep1 As Point = Lp2Dp(ep)</span><br><span class="line">        g.DrawLine(myPen, sp1, ep1)</span><br><span class="line"></span><br><span class="line">		//通过Lp2Dp()函数和sp,ep的纵坐标画出坐标系的横坐标</span><br><span class="line">        sp.X = 0 : sp.Y = LBox.ymin</span><br><span class="line">        ep.X = 0 : ep.Y = LBox.ymax</span><br><span class="line">        Dim sp2 As Point = Lp2Dp(sp)</span><br><span class="line">        Dim ep2 As Point = Lp2Dp(ep)</span><br><span class="line">        g.DrawLine(myPen, sp2, ep2)</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure></p>
+<p>#16<br>    绘图软件中，创建图形对象中的橡皮筋技术、图形变换中的拖动技术，极大的改善了绘图界面，请说明其中的事件流程。</p>
+<p>##橡皮筋技术<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">class CEx1View : public CView</span><br><span class="line">&#123;</span><br><span class="line">protected:</span><br><span class="line">	CPoint m_prev, m_ep;</span><br><span class="line">void CEx1View::OnLButtonDown(UINT nFlags, CPoint point) </span><br><span class="line">&#123;</span><br><span class="line">	CView::OnLButtonDown(nFlags, point);</span><br><span class="line">    m_prev=point;	m_ep=point;</span><br><span class="line">	CDC *pDC=GetDC();</span><br><span class="line">	pDC-&gt;SetROP2(R2_NOTXORPEN); </span><br><span class="line">    if(m_tool==1)</span><br><span class="line">	&#123; CLine oldline(m_prev,m_ep ); </span><br><span class="line">	  oldline.SetColor(m_color); oldline.Draw(pDC);</span><br><span class="line">	&#125;</span><br><span class="line">    if(m_tool==2)</span><br><span class="line">    &#123; double oldr=…………;</span><br><span class="line">      CCircle oldcircle(m_prev,oldr);</span><br><span class="line">	  oldcircle.SetColor(m_color); oldcircle.Draw(pDC);</span><br><span class="line">    &#125;</span><br><span class="line">	SetCapture();</span><br><span class="line">&#125;</span><br><span class="line">void CEx1View::OnMouseMove(UINT nFlags, CPoint point) </span><br><span class="line">&#123;</span><br><span class="line">	if(nFlags!=MK_LBUTTON)   return;</span><br><span class="line">	CDC *pDC=GetDC();</span><br><span class="line">	pDC-&gt;SetROP2(R2_NOTXORPEN);</span><br><span class="line">    if(m_tool==1)</span><br><span class="line">	&#123; CLine oldline(m_prev,m_ep ); </span><br><span class="line">	  oldline.SetColor(m_color); oldline.Draw(pDC);</span><br><span class="line">	  CLine newline(m_prev,point);</span><br><span class="line">	  newline.SetColor(m_color); newline.Draw(pDC);</span><br><span class="line">	&#125;</span><br><span class="line">    if(m_tool==2)</span><br><span class="line">    &#123; double oldr=…………;</span><br><span class="line">      CCircle oldcircle(m_prev,oldr);</span><br><span class="line">	  oldcircle.SetColor(m_color); oldcircle.Draw(pDC);</span><br><span class="line">	  double newr=…………;</span><br><span class="line">      CCircle newcircle(m_prev,newr);</span><br><span class="line">	  newcircle.SetColor(m_color); newcircle.Draw(pDC);</span><br><span class="line">    &#125;</span><br><span class="line">	m_ep=point;</span><br><span class="line">	CView::OnMouseMove(nFlags, point);</span><br><span class="line">&#125;</span><br><span class="line">void CEx1View::OnLButtonUp(UINT nFlags, CPoint point) </span><br><span class="line">&#123;  ……………………</span><br><span class="line">	CEx1Doc* pDoc = GetDocument();</span><br><span class="line">     ………</span><br><span class="line">     pDoc-&gt;AddElem(pline);</span><br><span class="line">	ReleaseCapture();</span><br><span class="line">	Invalidate(true);</span><br><span class="line">&#125;</span><br><span class="line">void CEx1View::OnDraw(CDC* pDC)</span><br><span class="line">&#123;</span><br><span class="line">	pDC-&gt;SetROP2(R2_COPYPEN);</span><br><span class="line">	for(int i=0; i&lt;pDoc-&gt;GetElemCount(); i++)</span><br><span class="line">	&#123; CElem *pelem=pDoc-&gt;GetElem(i);</span><br><span class="line">	  pelem-&gt;Draw(pDC); </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##拖动技术<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class CEx1View : public CView</span><br><span class="line">&#123;  ……………</span><br><span class="line">    CLine   *m_pLine;</span><br><span class="line">	CCircle *m_pCircle;</span><br><span class="line">	CPoint m_prev, m_ep;</span><br><span class="line">void CEx1View::OnMouseMove(UINT nFlags, CPoint point) </span><br><span class="line">&#123;</span><br><span class="line">	if(nFlags!=MK_LBUTTON)   return;</span><br><span class="line">	CDC *pDC=GetDC();</span><br><span class="line">	pDC-&gt;SetROP2(R2_NOTXORPEN); </span><br><span class="line">    if(m_tool==1)</span><br><span class="line">	&#123; CLine oldline(*m_pLine);</span><br><span class="line">	  oldline.Pan(m_ep-m_prev); oldline.Draw(pDC);</span><br><span class="line">      CLine newline(*m_pLine);</span><br><span class="line">	  newline.Pan(point-m_prev);newline.Draw(pDC); </span><br><span class="line">	&#125;</span><br><span class="line">    if(m_tool==2)</span><br><span class="line">	&#123; CCircle oldcircle(*m_pCircle);</span><br><span class="line">	  oldcircle.Pan(m_ep-m_prev); oldcircle.Draw(pDC);</span><br><span class="line">      CCircle newcircle(*m_pCircle);</span><br><span class="line">	  newcircle.Pan(point-m_prev);newcircle.Draw(pDC); </span><br><span class="line">	&#125;</span><br><span class="line">	m_ep=point;</span><br><span class="line">	CView::OnMouseMove(nFlags, point);</span><br><span class="line">&#125;</span><br><span class="line">void CEx1View::OnLButtonUp(UINT nFlags, CPoint point) </span><br><span class="line">&#123;</span><br><span class="line">	CView::OnLButtonUp(nFlags, point);</span><br><span class="line">    if(m_tool==1) m_pLine-&gt;Pan(point-m_prev); </span><br><span class="line">    if(m_tool==2) m_pCircle-&gt;Pan(point-m_prev); </span><br><span class="line">	ReleaseCapture();</span><br><span class="line">	Invalidate(true);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#17 </p>
+<p>绘图软件中，图形对象的点选择，是如何实现的？请写出相关的类中的方法接口。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">项目存在于：0000讲义\09 二维图形项目\3 图形对象的选择技术\1 点选择图形</span><br></pre></td></tr></table></figure></p>
+<p>下面是经过我筛选的代码图<br><img src="http://static.zybuluo.com/rg070836rg/o77kb5xmqxu7y2dsbfpgdx46/1.png" alt="1.png-49.9kB"></p>
+<p>经过代码分析，关系图如上所示，结论如下：</p>
+<blockquote>
+<ul>
+<li>基类clsElem里面定义了必须重写的纯需函数SelectBypoint();</li>
+<li>clsElems类是面向窗体，管理所有元素的类，其中的SelectBypoint()调用元素的函数：elems(i).SelectByPoint(p)，只要有一个为真，判断终止，返回元素编号，否则返回-1</li>
+<li>clsLine继承clsElem，重写了SelectBypoint，并设有同名的共享函数，用于计算是否选中(判断过程是，看选中点是否在起点到终点的直线段上，运行存在delta的误差)，同时也方便其他类的调用</li>
+<li>clsRectangle继承clsElem，重写了SelectBypoint方法，在其中构造4组起点终点，调用clsLine中的共享函数，只要有一组为真，就被选中</li>
+<li>clsPolygon继承clsElem，重写了SelectBypoint,从它的KeyPoints数组中，依次抽出两点，判断并迭代更新，只要有一个为真，就被选中</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">类接口：</span><br><span class="line">SelectBypoint();</span><br></pre></td></tr></table></figure>
+<hr>
+<p>#18<br>    绘图软件和图像处理中，都存在线性变换，请写出平移、变比、旋转的变换矩阵。</p>
+<p><strong>平移</strong>：相对坐标原点平移$(Tx,Ty)$<br>\begin{equation}<br>T_t=<br>\left[<br>\begin{array}{ccc}<br>1 &amp; 0 &amp; 0  \<br>0 &amp; 1 &amp; 0  \<br>Tx &amp; Ty &amp; 1<br>\end{array}<br>\right]<br>\end{equation}</p>
+<p><strong>变比</strong>：相对坐标原点，沿x方向缩放Sx倍，沿y方向缩放Sy倍：<br>\begin{equation}<br>T_s=<br>\left[<br>\begin{array}{ccc}<br>Sx &amp; 0 &amp; 0  \<br>0 &amp; Sy &amp; 0  \<br>0 &amp; 0 &amp; 1<br>\end{array}<br>\right]<br>\end{equation}</p>
+<p><strong>旋转</strong>：转过$θ$角</p>
+<p>\begin{equation}<br>T_r=<br>\left[<br>\begin{array}{ccc}<br>cosθ &amp; sinθ &amp; 0  \<br>-sinθ &amp; cosθ  &amp; 0  \<br>0 &amp; 0 &amp; 1<br>\end{array}<br>\right]<br>\end{equation}</p>
+<hr>
+<p>#19<br>    良好的绘图软件，应该支持层次化的图形对象结构。请写出自定义块类和块插入对象的类定义。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">项目存在于：0000讲义\二位图形项目1-5\5 层次化的对象结构\2 自定义块的管理</span><br></pre></td></tr></table></figure></p>
+<p><strong>自定义块类</strong><br><img src="http://static.zybuluo.com/rg070836rg/tukh8g9m5fianmhpizdgja9g/03.png" alt="03.png-24.2kB"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Public Class clsBlock</span><br><span class="line">    Private Elems As List(Of clsElem)</span><br><span class="line">    Private BasePoint As PointF</span><br><span class="line">    Public Sub New(ByVal Elems As clsSelection, ByVal BasePoint As PointF)</span><br><span class="line">    Public Function Count() As Integer</span><br><span class="line">    Public Function Item(ByVal index As Integer) As clsElem</span><br><span class="line">    Public Function GetBasePoint() As PointF</span><br><span class="line">End Class</span><br><span class="line">``` </span><br><span class="line">&gt;+ 属性：</span><br><span class="line">&gt; 1. **Elems**  </span><br><span class="line">存储当前被选中的元素集合，来源于clsSelection.clone()</span><br><span class="line">&gt; 2. **BasePoint** </span><br><span class="line">基点(0,0) 可以是其他点</span><br><span class="line">&gt;+ 函数</span><br><span class="line">&gt;1. **New(ByVal Elems As clsSelection, ByVal BasePoint As PointF)** </span><br><span class="line">构造函数</span><br><span class="line">&gt;2. **Count()** </span><br><span class="line">返回块对象中基本元素个数</span><br><span class="line">&gt;3. **Item(ByVal index As Integer)**  </span><br><span class="line">返回块对象中第index个个基本元素的引用</span><br><span class="line">&gt;4. **GetBasePoint()** </span><br><span class="line">返回基点位置</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">**块插入对象的类定义**</span><br><span class="line">![04.png-41.8kB][5]</span><br></pre></td></tr></table></figure></p>
+<p>Public Class clsBlockInsert<br>    Inherits clsElem<br>    Private Block As clsBlock<br>    Private M As clsMatrix3   对Block中所有图形对象的变换矩阵<br>    Public Sub New(ByVal Block As clsBlock, ByVal InsertPoint As PointF, ByVal scaleX As Single, ByVal scaleY As Single, ByVal angle As Single)<br>    Public Sub New(ByVal Block As clsBlock, ByVal M As clsMatrix3)<br>    Public Overrides Function Clone() As clsElem<br>    Public Overrides Function ToString() As String<br>    Public Overrides Sub Transform(ByVal m As clsMatrix3)<br>End Class</p>
+<p><code>`</code></p>
+<p>这个类本身继承与clsElem，所以可以被当成基本元素操作</p>
+<blockquote>
+<ul>
+<li>属性：</li>
+</ul>
+<ol>
+<li><strong>Block</strong><br>被定义的块</li>
+<li><strong>M</strong><br>对Block中所有图形对象的变换矩阵</li>
+</ol>
+<ul>
+<li>函数</li>
+</ul>
+<ol>
+<li><strong>New(ByVal Block As clsBlock, ByVal InsertPoint As PointF, ByVal     scaleX As Single, ByVal scaleY As Single, ByVal angle As Single)</strong><br>构造函数，根据参数构造变换矩阵</li>
+<li><strong>New(ByVal Block As clsBlock, ByVal M As clsMatrix3)</strong><br>构造函数，直接配置矩阵</li>
+<li><strong>Clone()</strong><br>构造一个对象返回，值相同</li>
+<li><strong>ToString()</strong><br>ToString表明位置</li>
+<li><strong>Transform(ByVal m As clsMatrix3)</strong><br>根据矩阵变换</li>
+</ol>
+</blockquote>
+<hr>
+<p>#20<br>    在绘图软件中，图形对象的属性包括什么？如何实现属性的共性、个性管理？<br>???</p>
+<hr>
+<p>#21<br>    在本学期的学习中，你了解了不少软件项目，请写出10个名称及简单功能。</p>
+<blockquote>
+<ul>
+<li>1 资源管理器：用控件显示文件资源，并有简单的操作</li>
+<li>2 扫雷软件：扫雷游戏，创建button，并集成用户控件</li>
+<li>3 表达式计算器：输入表达式，按步骤求结果</li>
+<li>4 多线程,并行计算填图:利用多线程技术，进行并行运算</li>
+<li>5 智能输入：利用键树，达到智能提示的效果</li>
+<li>6 绘图软件：绘制图形，选中，变换图形</li>
+<li>7 积木摆放：较好的摆放积木块，三维</li>
+<li>8 朗读文章：可以朗读英文单词</li>
+<li>9 图像变化：可以做到图像的效果变换</li>
+<li>10 图像拟合图形：可以提取边界，进行边界重组等</li>
+</ul>
+</blockquote>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/人工智能考题/数电试卷/" rel="next" title="数电试卷">
+                <i class="fa fa-chevron-left"></i> 数电试卷
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/人流量/POI 相关论文/" rel="prev" title="POI 相关论文">
+                POI 相关论文 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="##历史 2-30年前, 一想到神经网络, 我们就会想到生物神经系统中数以万计的细胞联结, 将感官和反射器联系在一起的系统. 但是今天, 你可能的第一反应却是.. 电脑 和电脑程序当中的人工神经网络. 昔日复杂的动神经网络系统居然神奇地放入了计算机? 而且人类正在将这种人工神经网络系统推向更高的境界. 今天的世界早已布满了人工神经网络的身影. 比如 Google 的收索引擎. 股票价格预测, 机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/机器学习/机器学习/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="##历史 2-30年前, 一想到神经网络, 我们就会想到生物神经系统中数以万计的细胞联结, 将感官和反射器联系在一起的系统. 但是今天, 你可能的第一反应却是.. 电脑 和电脑程序当中的人工神经网络. 昔日复杂的动神经网络系统居然神奇地放入了计算机? 而且人类正在将这种人工神经网络系统推向更高的境界. 今天的世界早已布满了人工神经网络的身影. 比如 Google 的收索引擎. 股票价格预测, 机">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://morvanzhou.github.io/static/results/ML-intro/ann1.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/zrqqf71fl9715a904zuilpn2/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/jpkingo5pr4ciretc0jxug93/image.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.871Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习">
+<meta name="twitter:description" content="##历史 2-30年前, 一想到神经网络, 我们就会想到生物神经系统中数以万计的细胞联结, 将感官和反射器联系在一起的系统. 但是今天, 你可能的第一反应却是.. 电脑 和电脑程序当中的人工神经网络. 昔日复杂的动神经网络系统居然神奇地放入了计算机? 而且人类正在将这种人工神经网络系统推向更高的境界. 今天的世界早已布满了人工神经网络的身影. 比如 Google 的收索引擎. 股票价格预测, 机">
+<meta name="twitter:image" content="https://morvanzhou.github.io/static/results/ML-intro/ann1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/机器学习/机器学习/">
+
+
+
+
+
+  <title>机器学习 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/机器学习/机器学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>##历史<br><img src="https://morvanzhou.github.io/static/results/ML-intro/ann1.png" alt="1"></p>
+<p>2-30年前, 一想到神经网络, 我们就会想到生物神经系统中数以万计的细胞联结, 将感官和反射器联系在一起的系统. 但是今天, 你可能的第一反应却是.. 电脑 和电脑程序当中的人工神经网络. 昔日复杂的动神经网络系统居然神奇地放入了计算机? 而且人类正在将这种人工神经网络系统推向更高的境界. 今天的世界早已布满了人工神经网络的身影.</p>
+<p>比如 Google 的收索引擎. 股票价格预测, 机器人学习, 围棋, 家庭助手, 等等等等,<br>从金融到仿生样样都能运用. 看起来人工神经网络的确很强大. 但, 是不是有这么一个问题一直在你脑海中环绕, 没有答案. “计算机领域的神经网络和我们自己身体里的神经网络究竟是一样的吗?”</p>
+<p>科学家们通过长久的探索, 想让计算机像人一样思考, 所以研发了人工神经网络, 究竟和我们的神经网络有多像? 那我们就先来看看人的神经网络到底是什么.</p>
+<p>##你的神经网络系统 </p>
+<p>9百亿神经细胞组成了我们复杂的神经网络系统, 这个数量甚至可以和宇宙中的星球数相比较.<br>如果仅仅靠单个的神经元, 是永远没有办法让我们像今天一样, 完成各种任务, 处理各种复杂的问题. 那我们是如何靠这些神经元来解决问题的呢?</p>
+<p>首先需要知道的是我们的记忆是如何产生的. 想象我们还是婴儿,那时候我们什么都不知道, 神经元并没有形成系统和网络.</p>
+<p>可能只是一些分散的细胞而已, 一端连着嘴巴的味觉感受器, 一端连着手部的肌肉.<br>小时候, 当我们第一次品尝糖果的时候, 美妙的感觉, 让我们发现这个是多么的好吃. 这时候神经元开始产生联结, 记忆形成, 但是形成的新联结怎么样变成记忆, 仍然是科学界的一个迷.</p>
+<p>不过现在, 我们的手和嘴产生了某种特定的搭配. 每次发现有糖果的时候, 某种生物信号就会从我们的嘴,通过之前形成的神经联结, 传递到手上, 让手的动作变得有意义, 比如这样, 然后爸妈就会再给我们一颗糖果啦~ 哈哈, 吃糖的目的达成. 现在我们来看看人工神经网络要怎样达到这个目的.</p>
+<p>首先, 替代掉生物神经网络的, 就是已经成体系的人工神经网络. 所有神经元之间的连接都是固定不可更换的, 这也就是说, 在人工神经网络里, 没有凭空产生新联结这回事. </p>
+<p>人工神经网络典型的一种学习方式就是, 我已经知道吃到糖果时, 手会如何动, 但是我想让神经网络学着帮我做这件动动手的事情.</p>
+<p>所以我预先准备好非常多吃糖的学习数据, 然后将这些数据一次次放入这套人工神经网络系统中, 糖的信号会通过这套系统传递到手.</p>
+<p>然后通过对比这次信号传递后, 手的动作是不是”讨糖”动作, 来修改人工神经网络当中的神经元强度.</p>
+<p>这种修改在专业术语中叫做”误差反向传递”, 也可以看作是再一次将传过来的信号传回去, 看看这个负责传递信号神经元对于”讨糖”的动作到底有没有贡献, 让它好好反思与改正, 争取下次做出更好的贡献. 这样看来, 人工神经网络和生物神经网络的确不是一回事.</p>
+<p>##两者区别总结 </p>
+<p>人工神经网络靠的是正向和反向传播来更新神经元, 从而形成一个好的神经系统, 本质上, 这是一个能让计算机处理和优化的数学模型. 而生物神经网络是通过刺激, 产生新的联结, 让信号能够通过新的联结传递而形成反馈.</p>
+<p>虽然现在的计算机技术越来越高超, 不过我们身体里的神经系统经过了数千万年的进化, 还是独一无二的, 迄今为止, 再复杂, 再庞大的人工神经网络系统也不能替代我们的小脑袋. 我们应该感到自豪, 也应该珍惜上天的这份礼物.<br><img src="http://static.zybuluo.com/rg070836rg/zrqqf71fl9715a904zuilpn2/image.png" alt="image.png-291.4kB"></p>
+<h2 id="什么是神经网络"><a href="#什么是神经网络" class="headerlink" title="什么是神经网络"></a>什么是神经网络</h2><p><strong>神经网络</strong>是一种数学模型，是存在于计算机的神经系统，由大量的神经元相连接并进行计算，在外界信息的基础上，改变内部的结构，常用来对输入和输出间复杂的关系进行建模。</p>
+<p>神经网络由大量的节点和之间的联系构成，负责传递信息和加工信息，神经元也可以通过训练而被强化。</p>
+<p>这个图就是一个神经网络系统，它由很多层构成。输入层就是负责接收信息，比如说一只猫的图片。输出层就是计算机对这个输入信息的认知，它是不是猫。隐藏层就是对输入信息的加工处理。</p>
+<p>##神经网络是如何被训练的<br>首先它需要很多数据。比如他要判断一张图片是不是猫。就要输入上千万张的带有标签的猫猫狗狗的图片，然后再训练上千万次。</p>
+<p>神经网络训练的结果有对的也有错的，如果是错误的结果，将被当做非常宝贵的经验，那么是如何从经验中学习的呢？就是对比正确答案和错误答案之间的区别，然后把这个区别反向的传递回去，对每个相应的神经元进行一点点的改变。那么下一次在训练的时候就可以用已经改进一点点的神经元去得到稍微准确一点的结果。</p>
+<p>##神经网络是如何训练的呢<br>每个神经元都有属于它的激活函数，用这些函数给计算机一个刺激行为。</p>
+<p>  <img src="http://static.zybuluo.com/rg070836rg/jpkingo5pr4ciretc0jxug93/image.png" alt="image.png-237kB"></p>
+<p>在第一次给计算机看猫的图片的时候，只有部分的神经元被激活，被激活的神经元所传递的信息是对输出结果最有价值的信息。如果输出的结果被判定为是狗，也就是说是错误的了，那么就会修改神经元，一些容易被激活的神经元会变得迟钝，另外一些神经元会变得敏感。这样一次次的训练下去，所有神经元的参数都在被改变，它们变得对真正重要的信息更为敏感。</p>
+<p>##神经网络 梯度下降<br>神经网络是当今为止最流行的一种深度学习框架, 他的基本原理也很简单, 就是一种梯度下降机制. 我们今天就来看看这神奇的优化模式吧.</p>
+<p>学习机器学习的同学们常会遇到这样的图像, 我了个天, 看上去好复杂, 哈哈, 不过还挺好看的. 这些和我们说的梯度下降又有什么关系呢? 原来这些图片展示出来了一个家族的历史, 这个家族的名字就是-”optimization” (优化问题). 优化能力是人类历史上的重大突破, 他解决了很多实际生活中的问题. 从而渐渐演化成了一个庞大的家族.</p>
+<p>比如说牛顿法 (Newton’s method), 最小二乘法(Least Squares method), 梯度下降法 (Gradient Descent) 等等. 而我们的神经网络就是属于梯度下降法这个分支中的一个. 提到梯度下降, 我们不得不说说大学里面学习过的求导求微分. 因为这就是传说中”梯度下降”里面的”梯度” (gradient)啦. 听到求导微分可别后怕, 因为这个短视频只是让你有一个直观上的理解, 并不会涉及太过复杂的东西.</p>
+<p>初学神经网络的时候, 我们通常会遇到这样一个方程, 叫做误差方程 (Cost Function). 用来计算预测出来的和我们实际中的值有多大差别. 在预测数值的问题中, 我们常用平方差 (Mean Squared Error) 来代替. 我们简化一下这个方程, W是我们神经网络中的参数, x, y 都是我们的数据, 因为 xy 都是实实在在的数据点, 在这个假设情况中, 是多少都无所谓, 然后我们再厚颜无耻地像这样继续简化一下, (注意, 这个过程在在数学中并不正确, 不过我们只是为了看效果), 所以现在误差值曲线就成了这样. 假设我们初始化的 W 在这个位置. 而这个位置的斜率是这条线, 这也就是梯度下降中的梯度啦. 我们从图中可以看出, Cost 误差最小的时候正是这条 cost 曲线最低的地方, 不过在蓝点的 W 却不知道这件事情, 他目前所知道的就是梯度线为自己在这个位置指出的一个下降方向, 我们就要朝着这个蓝色梯度的方向下降一点点. 在做一条切线, 发现我还能下降, 那我就朝着梯度的方向继续下降, 这时, 再展示出现在的梯度, 因为梯度线已经躺平了, 我们已经指不出哪边是下降的方向了, 所以这时我们就找到了 W 参数的最理想值. 简而言之, 就是找到梯度线躺平的点. 可是神经网络的梯度下降可没这么简单.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/大创/集群消化/" rel="next" title="集群消化">
+                <i class="fa fa-chevron-left"></i> 集群消化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/计算机图形学/论文/" rel="prev" title="论文">
+                论文 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是神经网络"><span class="nav-number">1.</span> <span class="nav-text">什么是神经网络</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

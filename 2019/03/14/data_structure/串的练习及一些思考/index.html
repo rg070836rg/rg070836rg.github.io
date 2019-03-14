@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、strstr###1、题目概述  不调用C/C++的字符串函数，完成StrStr函数：把主串中子串及以后的字符全部返回。例如：主串是“12345678”，子串是“234”，那么函数的返回值就是“2345678”。  ###2、想法刚看到这个题目，不由自主的想到了模式匹配，bf以及kmp。与模式匹配的区别，就在于一个返回的是位置，一个返回的后面的串内容。还是很好下手的。 由于在匹配里面需要用到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="串的练习及一些思考">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/data_structure/串的练习及一些思考/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="一、strstr###1、题目概述  不调用C/C++的字符串函数，完成StrStr函数：把主串中子串及以后的字符全部返回。例如：主串是“12345678”，子串是“234”，那么函数的返回值就是“2345678”。  ###2、想法刚看到这个题目，不由自主的想到了模式匹配，bf以及kmp。与模式匹配的区别，就在于一个返回的是位置，一个返回的后面的串内容。还是很好下手的。 由于在匹配里面需要用到">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E4%B8%B2%E8%A1%A5%E5%85%8501.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E4%B8%B2%E8%A1%A5%E5%85%8502.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E4%B8%B2%E8%A1%A5%E5%85%8503.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E4%B8%B2%E8%A1%A5%E5%85%8504.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.437Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="串的练习及一些思考">
+<meta name="twitter:description" content="一、strstr###1、题目概述  不调用C/C++的字符串函数，完成StrStr函数：把主串中子串及以后的字符全部返回。例如：主串是“12345678”，子串是“234”，那么函数的返回值就是“2345678”。  ###2、想法刚看到这个题目，不由自主的想到了模式匹配，bf以及kmp。与模式匹配的区别，就在于一个返回的是位置，一个返回的后面的串内容。还是很好下手的。 由于在匹配里面需要用到">
+<meta name="twitter:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E4%B8%B2%E8%A1%A5%E5%85%8501.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/data_structure/串的练习及一些思考/">
+
+
+
+
+
+  <title>串的练习及一些思考 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/data_structure/串的练习及一些思考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">串的练习及一些思考</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-structure/" itemprop="url" rel="index">
+                    <span itemprop="name">data_structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h2 id="一、strstr"><a href="#一、strstr" class="headerlink" title="一、strstr"></a>一、strstr</h2><p>###1、题目概述</p>
+<blockquote>
+<p>不调用C/C++的字符串函数，完成StrStr函数：把主串中子串及以后的字符全部返回。例如：主串是“12345678”，子串是“234”，那么函数的返回值就是“2345678”。</p>
+</blockquote>
+<p>###2、想法<br>刚看到这个题目，不由自主的想到了模式匹配，bf以及kmp。<br>与模式匹配的区别，就在于一个返回的是位置，一个返回的后面的串内容。<br>还是很好下手的。</p>
+<p>由于在匹配里面需要用到字符串长度，先写了strlen函数,返回’/0’之前的数目<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//函数返回字符串str 的长度( 即空值结束符之前字符数目)。</span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">strlen</span><span class="params">(<span class="keyword">char</span> *str)</span></span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>,num=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (str[i++])</span><br><span class="line">		num++;</span><br><span class="line">	<span class="keyword">return</span> num;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>最初的想法，通过BF算法找到匹配的位置，生成新的字符串，拷贝过去，并返回。如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这是我最初的思想，通过bf算法找到匹配的位置，新生成字符串拷贝过去，并返回</span></span><br><span class="line"><span class="function"><span class="keyword">char</span>* <span class="title">strstr</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *str1, <span class="keyword">const</span> <span class="keyword">char</span> *str2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> m=<span class="built_in">strlen</span>(str1);</span><br><span class="line">	<span class="keyword">int</span> n=<span class="built_in">strlen</span>(str2);</span><br><span class="line">	<span class="keyword">char</span> *a=<span class="keyword">new</span> <span class="keyword">char</span>[m]; </span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (i&lt;m&amp;&amp;j&lt;n)	</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(str1[i++]==str2[j++]);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			j=<span class="number">0</span>;</span><br><span class="line">			i=i-j+<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (j&gt;=n)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> t=i-j;</span><br><span class="line">		<span class="keyword">while</span> (str1[t])</span><br><span class="line">			a[k++]=str1[t++];</span><br><span class="line">		a[k]=<span class="string">'\0'</span>;</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="string">"不匹配"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但后来想，没有必要拷贝新的空间，就在原始的字符串修改指针位置即可，如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//函数返回一个指针，它指向字符串str2 首次出现于字符串str1中的位置，如果没有找到，返回提示。</span></span><br><span class="line"><span class="comment">//当然还是基于BF算法</span></span><br><span class="line"><span class="function"><span class="keyword">char</span>* <span class="title">strstr_1</span><span class="params">( <span class="keyword">char</span> *str1,  <span class="keyword">char</span> *str2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> m=<span class="built_in">strlen</span>(str1);</span><br><span class="line">	<span class="keyword">int</span> n=<span class="built_in">strlen</span>(str2);</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (i&lt;m&amp;&amp;j&lt;n)	</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(str1[i++]==str2[j++]);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			j=<span class="number">0</span>;</span><br><span class="line">			i=i-j+<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (j&gt;=n)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> &amp;str1[i-j];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="string">"不匹配"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样，就更加方便。测试一下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> a[<span class="number">20</span>]=<span class="string">"qweqwewqhello"</span>;</span><br><span class="line"><span class="keyword">char</span> b[<span class="number">10</span>]=<span class="string">"he"</span>;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;strstr_1(a,b)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="built_in">strstr</span>(a,b)&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure></p>
+<p>截图如下：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E4%B8%B2%E8%A1%A5%E5%85%8501.png" alt="此处输入图片的描述"></p>
+<p>###3、c实现<br>起始对于c语言的函数是怎么实现还是比较感兴趣的，于是搜索了下:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span>* <span class="title">strstr</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>*s1,<span class="keyword">const</span> <span class="keyword">char</span>*s2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span>*p=s1;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">size_t</span> len=<span class="built_in">strlen</span>(s2);</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">for</span>(;(p=<span class="built_in">strchr</span>(p,*s2))!=<span class="number">0</span>;p++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">strncmp</span>(p,s2,len)==<span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span>(<span class="keyword">char</span>*)p;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这段代码中strchr的作用是查找字符串s中首次出现字符c的位置，strncmp之多比较n个字符，和strcmp类似</p>
+<hr>
+<p>##二、删除特定字符<br>用C语言编写一个高效率的函数来删除字符串里的给定字符。这个函数的调用模型如下所示：<br>void RemoveChars(char str[],char remove[]);<br>请对设计思路作出解释，并对你解决方案的执行效率进行评估</p>
+<p>###1、思路<br>一看到这个题目，第一个想法，就是暴力做，遍历第一个字符串，每次遍历时查找当前字符是否在第二个字符串中出现过</p>
+<blockquote>
+<ul>
+<li>出现：删除该字符</li>
+<li>没有出现过，保留该字符</li>
+</ul>
+</blockquote>
+<p>那么按照这个思路，假设主串长m，子串长n，那么光遍历的时间复杂度就是O(mn);同时如果还需要删除，那么，需要把后面的全部都往前面移动，复杂度为O(m)级别,当然这个效率也还是很高的，特别是在子串长度不大的时候，效率接近线性。</p>
+<p>恰巧，前几天在网上看了一篇有意思的文章，内容大概讲的就是，<a href="http://7xi4ge.com1.z0.glb.clouddn.com/%E4%B8%B2%E8%A1%A5%E5%85%85020.glb.clouddn.com/%E4%B8%B2%E8%A1%A5%E5%85%8501.png" target="_blank" rel="noopener">从武侠小说到程序员面试</a>。这篇文章从武侠小说举例，讲述了程序员的几种境界，围绕使用C语言把字母转换成大写，不能使用库函数这个问题展开讨论，其中有这样的一段，很适合我们这里。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> <span class="title">to_upper</span><span class="params">(<span class="keyword">char</span> input)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">char</span> convert_table[] = &#123; ... &#125;;</span><br><span class="line">  <span class="keyword">return</span> convert_table[input];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样会调高程序的效率，在我们这边使用，效果会更加明显，我们预先把26个字母的结果存在数组里面，访问的时候，如果是1，则表明需要去除，否则不需要去除，这样这块就由O(n)变成了O(1)；</p>
+<p>然后对于删除，我们可以用以前老师提到过的双指针，一个自始至终记录最后的结果，另一个遍历整个数组，这样，没有额外的开销。</p>
+<p>###2、实现<br>代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> judge_table[<span class="number">128</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">RemoveChars</span><span class="params">(<span class="keyword">char</span> *str,<span class="keyword">char</span> *remove)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(judge_table,<span class="literal">false</span>,<span class="keyword">sizeof</span>(judge_table));</span><br><span class="line">	<span class="keyword">while</span>(*remove)</span><br><span class="line">        judge_table[*(remove++)]=<span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">char</span>* current;<span class="comment">//遍历指针</span></span><br><span class="line">	<span class="keyword">char</span>* result;<span class="comment">//结果指针</span></span><br><span class="line">	current=result=str;</span><br><span class="line">	<span class="keyword">while</span> (*current)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (judge_table[*current]==<span class="literal">false</span>)<span class="comment">//说明这个字符不需要被删除，那么结果指针保存这个字符，并后移，遍历指针也后移</span></span><br><span class="line">		&#123;</span><br><span class="line">			*result=*current;</span><br><span class="line">			current++;</span><br><span class="line">			result++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span><span class="comment">//需要被删除，遍历指针后移。</span></span><br><span class="line">		&#123;</span><br><span class="line">			current++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	*result=<span class="string">'\0'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样，效率控制在O(n)线性级别。</p>
+<p>测试结果：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E4%B8%B2%E8%A1%A5%E5%85%8502.png" alt="此处输入图片的描述"></p>
+<hr>
+<p>##三、颠倒单词的顺序</p>
+<p>###1、思路<br>由题目看得到，整体句子被翻转了，而个体单词没有被翻转，如果是java中，用string类型的split方法，分离空格，倒序输出就好了，但是c++没有提供这样的方法。</p>
+<p>那么，我们可以先整体倒序，包括各个单词的顺序，然后只需要找准空格，把空格之间的再次调用函数倒序即可，实现思想不难，但码代码的时候，要注意细节。。</p>
+<p>###2、实现<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reverse</span><span class="params">(<span class="keyword">char</span> *start,<span class="keyword">char</span> *end)</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">	<span class="keyword">char</span> temp;</span><br><span class="line">	<span class="keyword">while</span>(start&lt;=end)</span><br><span class="line">	&#123;</span><br><span class="line">		temp=*start;</span><br><span class="line">		*start=*end;</span><br><span class="line">		*end=temp;</span><br><span class="line">		start++;</span><br><span class="line">		end--;        </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reverseAll</span><span class="params">(<span class="keyword">char</span> *str)</span></span></span><br><span class="line"><span class="function"></span>&#123;     </span><br><span class="line">	<span class="keyword">char</span> *start=str;</span><br><span class="line">	<span class="keyword">char</span> *end=str+<span class="built_in">strlen</span>(str)<span class="number">-1</span>;</span><br><span class="line">	reverse(start,end);	<span class="comment">//逆置整个句子</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//当没有到句子的末尾，找到空格，记录每个单词，逆置</span></span><br><span class="line">	<span class="keyword">char</span> *tmp=str;</span><br><span class="line">	<span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span> (*tmp!=<span class="string">' '</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			tmp++;</span><br><span class="line">			<span class="keyword">if</span> (*tmp==<span class="number">0</span>)<span class="comment">//扫描到末尾，退出函数</span></span><br><span class="line">			&#123;</span><br><span class="line">				end=tmp<span class="number">-1</span>;</span><br><span class="line">				reverse(start,end);</span><br><span class="line">				<span class="keyword">return</span> ;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		end=tmp<span class="number">-1</span>;</span><br><span class="line">		reverse(start,end);</span><br><span class="line">		start=++tmp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E4%B8%B2%E8%A1%A5%E5%85%8503.png" alt="此处输入图片的描述"></p>
+<hr>
+<h2 id="四、查找包含个数"><a href="#四、查找包含个数" class="headerlink" title="四、查找包含个数"></a>四、查找包含个数</h2><p>统计s中包含t的个数</p>
+<p>###1、分析<br>这个和模式匹配差不多，就是比模式匹配多了个找个数的过程，所以，我想到了，查到一个后，把剩下的传入继续查找，同时计数器加1，如果传进去的没有找到匹配的字符，那么说明，已经找完了，返回个数就可以了，实现也很简单，和模式匹配算法差不多。</p>
+<p>###2、代码实现<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countnum</span><span class="params">(<span class="keyword">char</span> *str1,<span class="keyword">char</span> *str2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> m=<span class="built_in">strlen</span>(str1);</span><br><span class="line">	<span class="keyword">int</span> n=<span class="built_in">strlen</span>(str2);</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (i&lt;m&amp;&amp;j&lt;n)	</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(str1[i]==str2[j])</span><br><span class="line">		&#123;</span><br><span class="line">			i++;</span><br><span class="line">			j++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			j=<span class="number">0</span>;</span><br><span class="line">			i=i-j+<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (j&gt;=n)</span><br><span class="line">	&#123;</span><br><span class="line">		num++;</span><br><span class="line">		countnum(&amp;str1[i-j+n],str2);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试截图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E4%B8%B2%E8%A1%A5%E5%85%8504.png" alt="此处输入图片的描述"></p>
+<p>###3、缺陷<br>但是有个明显的缺陷，比如主串是”aaaa”,字串是”aa”,这种情况很难界定。或许为了这种，可以把每次规模只缩小1，应该可以解决这个问题。。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/data_structure/三元组/" rel="next" title="三元组">
+                <i class="fa fa-chevron-left"></i> 三元组
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/data_structure/书上串的基本操作以及BF算法/" rel="prev" title="书上串的基本操作以及BF算法">
+                书上串的基本操作以及BF算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、strstr"><span class="nav-number">1.</span> <span class="nav-text">一、strstr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、查找包含个数"><span class="nav-number">2.</span> <span class="nav-text">四、查找包含个数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

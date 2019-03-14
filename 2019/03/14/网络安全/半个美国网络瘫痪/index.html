@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="#一 事件回顾10.22日（美国当地时间21日），大半个美国互联网都瘫痪了。 因为这件事情，各大美国知名网站都收到了影响，Twitter、Spotify、Netflix、Github、Airbnb、Visa等网站一度出现无法登陆的现象。 #二 网络评价程序员： 网红：  看起来Twitter是又挂了，现在有 1 亿人没法知道我今天早餐吃的啥了。  美国群众：  爆炸新闻：俄罗斯和中国的黑客又特么">
+<meta property="og:type" content="article">
+<meta property="og:title" content="半个美国网络瘫痪">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/网络安全/半个美国网络瘫痪/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="#一 事件回顾10.22日（美国当地时间21日），大半个美国互联网都瘫痪了。 因为这件事情，各大美国知名网站都收到了影响，Twitter、Spotify、Netflix、Github、Airbnb、Visa等网站一度出现无法登陆的现象。 #二 网络评价程序员： 网红：  看起来Twitter是又挂了，现在有 1 亿人没法知道我今天早餐吃的啥了。  美国群众：  爆炸新闻：俄罗斯和中国的黑客又特么">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/6r799vllkbquqhw8lf2xl48s/image_1b0eq9ptr43m9u91emikk713mc9.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/zslbqi2rkhgc33kdn3i0mxkt/image_1b0eqbaju1fd4856ofmd2u15d6m.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/a6p9ro1g7k1v3ipwiyj2hxhd/image_1b0eqdnk2a0d135m15uo1j4cfqc13.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/kxberkxwqdcjj9x455gljdgu/image_1b0eqehs0e8tm3le75bq120a1g.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/vvln9a75512bmhok0rbixthp/image_1b0eqjokfid81j810lku3o1m8a1t.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/btoltkt5sm4d25v171xzo201/image_1b0er772ipk81fj9vfmn4e1aq12a.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/hy1ur2cssuwb7mw5u9u3mcme/image_1b0er89a312pprm81g6qht1om437.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/vjsqha10jmit2z5ist0fs2xy/image_1b0ergf231fdkn8r2rk1hq919s73k.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/co1hzct48ww88lpgx3il8kgz/image_1b0ermusj11bj117hvorhshbd241.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/xbzpojfz7jwuuqfcdaqjgg3y/image_1b0ero3b5u606droa13qe11h64e.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/hygnnzyao8itiu1tpu1liiy4/image_1b0erv4l01lsk1j491nqufknvjh4r.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/z4qee7t843f4p4aqzdzh4s9b/image_1b0ervmqu1en6iutd471c11nof58.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:30.031Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="半个美国网络瘫痪">
+<meta name="twitter:description" content="#一 事件回顾10.22日（美国当地时间21日），大半个美国互联网都瘫痪了。 因为这件事情，各大美国知名网站都收到了影响，Twitter、Spotify、Netflix、Github、Airbnb、Visa等网站一度出现无法登陆的现象。 #二 网络评价程序员： 网红：  看起来Twitter是又挂了，现在有 1 亿人没法知道我今天早餐吃的啥了。  美国群众：  爆炸新闻：俄罗斯和中国的黑客又特么">
+<meta name="twitter:image" content="http://static.zybuluo.com/rg070836rg/6r799vllkbquqhw8lf2xl48s/image_1b0eq9ptr43m9u91emikk713mc9.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/网络安全/半个美国网络瘫痪/">
+
+
+
+
+
+  <title>半个美国网络瘫痪 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/网络安全/半个美国网络瘫痪/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">半个美国网络瘫痪</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:21+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>#一 事件回顾<br>10.22日（美国当地时间21日），大半个美国互联网都瘫痪了。<br><img src="http://static.zybuluo.com/rg070836rg/6r799vllkbquqhw8lf2xl48s/image_1b0eq9ptr43m9u91emikk713mc9.png" alt="image_1b0eq9ptr43m9u91emikk713mc9.png-400kB"></p>
+<p>因为这件事情，各大美国知名网站都收到了影响，Twitter、Spotify、Netflix、Github、Airbnb、Visa等网站一度出现无法登陆的现象。<br><img src="http://static.zybuluo.com/rg070836rg/zslbqi2rkhgc33kdn3i0mxkt/image_1b0eqbaju1fd4856ofmd2u15d6m.png" alt="image_1b0eqbaju1fd4856ofmd2u15d6m.png-220.6kB"></p>
+<p>#二 网络评价<br>程序员：<br><img src="http://static.zybuluo.com/rg070836rg/a6p9ro1g7k1v3ipwiyj2hxhd/image_1b0eqdnk2a0d135m15uo1j4cfqc13.png" alt="image_1b0eqdnk2a0d135m15uo1j4cfqc13.png-99.1kB"></p>
+<p>网红：<br><img src="http://static.zybuluo.com/rg070836rg/kxberkxwqdcjj9x455gljdgu/image_1b0eqehs0e8tm3le75bq120a1g.png" alt="image_1b0eqehs0e8tm3le75bq120a1g.png-56.4kB"></p>
+<blockquote>
+<p>看起来Twitter是又挂了，现在有 1 亿人没法知道我今天早餐吃的啥了。</p>
+</blockquote>
+<p>美国群众：<br><img src="http://static.zybuluo.com/rg070836rg/vvln9a75512bmhok0rbixthp/image_1b0eqjokfid81j810lku3o1m8a1t.png" alt="image_1b0eqjokfid81j810lku3o1m8a1t.png-115kB"></p>
+<blockquote>
+<p>爆炸新闻：俄罗斯和中国的黑客又特么对我大美帝发动不友好的DDOS攻击了！今天早晨我们的网络断了好几个小时啊！不少特别特别重要的网站都挂了！</p>
+</blockquote>
+<p>#三 事件分析</p>
+<p>##3.1 访问网站的原理<br>在上网的时候，我们的电脑需要访问想要上的网站的地址，被叫做 IP 地址，这个地址一般是一串数字，比如 <strong>123.125.114.144</strong> 这一长串数字。</p>
+<p>但是，如果需要记忆这些，比较麻烦，所以为了方便人们来记，就给这些地址命了名，比如 <strong>baidu.com</strong> 对应的地址就是 <strong>123.125.114.144</strong>，我们只要记baidu.com(百度的域名)。</p>
+<p>那么问题来了，怎么知道哪个域名对应哪个 IP 地址呢？</p>
+<p>这就需要一个叫做 DNS（Domain Name System）的东西了，中文名字是域名系统。<br><img src="http://static.zybuluo.com/rg070836rg/btoltkt5sm4d25v171xzo201/image_1b0er772ipk81fj9vfmn4e1aq12a.png" alt="image_1b0er772ipk81fj9vfmn4e1aq12a.png-15kB"><br>在这个系统下，你想访问那个网站，你的电脑就会访问 DNS 服务器，DNS 服务器就会给你回执这个网站的 IP 地址，这个过程叫做域名解析。</p>
+<p>不过这么多人上网，全去问一个 DNS 服务器，服务器会吃不消，所以人们把 DNS 服务器分级，平时就近访问，如果就近的服务器里没有存储相关的域名和 IP 信息，就逐层向上级服务器查询，直到找到为止。</p>
+<p><img src="http://static.zybuluo.com/rg070836rg/hy1ur2cssuwb7mw5u9u3mcme/image_1b0er89a312pprm81g6qht1om437.png" alt="image_1b0er89a312pprm81g6qht1om437.png-133.4kB"></p>
+<h2 id="3-2罪魁祸首"><a href="#3-2罪魁祸首" class="headerlink" title="3.2罪魁祸首"></a>3.2罪魁祸首</h2><p>知道了 DNS 的基本原理，下面说说这次美国互联网瘫痪的罪魁祸首—— <strong>DDOS 攻击</strong>。</p>
+<p>每次我们用电脑访问网站的时候，都会跟网站的服务器有交流，这样会产生上传和下载，并且服务器那边对应的 CPU 也会处理一些事情。如果<strong>恶意的，很高频率</strong>的访问这个服务器，就会让<strong>服务器的宽带不够用，CPU处理不过来</strong>，造成服务器瘫痪。</p>
+<p><img src="http://static.zybuluo.com/rg070836rg/vjsqha10jmit2z5ist0fs2xy/image_1b0ergf231fdkn8r2rk1hq919s73k.png" alt="image_1b0ergf231fdkn8r2rk1hq919s73k.png-238kB"><br><a href="http://www.freebuf.com/sectool/36545.html" target="_blank" rel="noopener">DDOS 攻击软件</a></p>
+<p>比如一到春运的时候，去 12306 买票的人特别多，而且还要频繁的刷新网页（每次刷新都会重新访问一下服务器），这样 12306 的服务器就会吃不消，最后大家会发现网站巨卡，甚至没有办法买票 。</p>
+<p>那么DDOS 可以攻击某一网站，让某网站的服务器崩溃，从而无法工作。</p>
+<p>##3.3 Dyn<br>DDOS虽然很强大，可以让任一网站的服务器奔溃，但又是怎么让大半个美国的网站都上不去的呢？</p>
+<p>发动攻击的人很聪明，知道自己攻击1个网站没啥用，所以他们选择攻击DNS 服务器！</p>
+<p>所以，知名域名解析服务提供商 Dyn 就这样的被攻击了。</p>
+<p><img src="http://static.zybuluo.com/rg070836rg/co1hzct48ww88lpgx3il8kgz/image_1b0ermusj11bj117hvorhshbd241.png" alt="image_1b0ermusj11bj117hvorhshbd241.png-17.9kB"></p>
+<p>这个 Dyn 是美国最重要的的域名解析服务提供商之一，他为亚马逊、Netflix和Twitter等知名科技公司的网站提供域名解析服务。</p>
+<p>黑客攻击了 Dyn 管理的 DNS 服务器，导致 DNS 服务器瘫痪，没法解析各大网站的 IP 地址。</p>
+<p>就这样，用户们想去哪个网站都找不到 IP 地址，这就造成了美国近半个国家的网络大瘫痪 </p>
+<p><img src="http://static.zybuluo.com/rg070836rg/xbzpojfz7jwuuqfcdaqjgg3y/image_1b0ero3b5u606droa13qe11h64e.png" alt="image_1b0ero3b5u606droa13qe11h64e.png-147.5kB"></p>
+<p>##3.4 攻击技术<br>按照常理，这种大型 DNS 服务器都是有很大吞吐量的，能承受住很大的访问，一般不会挂掉。</p>
+<p>但这次美国瘫痪，黑客用了很常规但是很丧心病狂的方法。</p>
+<p>黑客通过木马病毒可以悄悄控制联网设备，叫做 “ <strong>抓肉鸡</strong> ” ，如果控制的多了起来，就有成百上千的设备被控制，组成了任凭黑客指挥的 “ <strong>僵尸网络</strong> ”。</p>
+<p>僵尸网络的设备可能遍布世界各地，只要黑客在控制端发布命令，所有僵尸网络中的肉鸡都会同时攻击 DNS 服务器。</p>
+<p>只要黑客抓的肉鸡足够多，同时的攻击就足够多，再优秀的服务器也是会挂掉的。</p>
+<p>##3.5 调查结果<br>美国网络瘫痪事故的调查有了初步结果，是摄像头。</p>
+<p>根据美国网络基础设施提供商 Level 3 刚刚公布了一项结果，这次发动网络攻击的黑客利用了一个由150万台设备组成的僵尸网络，这些设备大部分是<strong>中国大华（DAHUA）</strong>公司生产的网络摄像头。</p>
+<p>然而另一家公司 Flash Point 的调查发现，这些僵尸网络里的设备，还有另一部分是来自<strong>中国杭州的雄迈科技</strong>生产的<strong>监控摄像头</strong>。<br><img src="http://static.zybuluo.com/rg070836rg/hygnnzyao8itiu1tpu1liiy4/image_1b0erv4l01lsk1j491nqufknvjh4r.png" alt="image_1b0erv4l01lsk1j491nqufknvjh4r.png-71.9kB"></p>
+<p>为什么黑客会选择摄像头呢？</p>
+<p>现在电脑的手机的操作系统越来越完善，安全系数也越来越高，黑客想控制那么多设备也不是很容易，所以他们打上了现在很火爆的物联网设备的主意。</p>
+<p>物联网是个新兴产业，物联网设备的厂商也都在处于开拓阶段，没什么太完善的行业安全标准，系统漏洞比较好找，黑客控制起来容易一点。</p>
+<p>所以，应用数量多，还能联网的监控摄像头，就成了最好的选择。</p>
+<p><img src="http://static.zybuluo.com/rg070836rg/z4qee7t843f4p4aqzdzh4s9b/image_1b0ervmqu1en6iutd471c11nof58.png" alt="image_1b0ervmqu1en6iutd471c11nof58.png-232.2kB"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/网络安全/MIRACL/" rel="next" title="MIRACL">
+                <i class="fa fa-chevron-left"></i> MIRACL
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/网络安全/在此处输入标题/" rel="prev" title="在此处输入标题">
+                在此处输入标题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2罪魁祸首"><span class="nav-number">1.</span> <span class="nav-text">3.2罪魁祸首</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

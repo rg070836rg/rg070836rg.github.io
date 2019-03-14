@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、简答题 记号O、Ω、Θ 的意义？   O：表示若存在f(n)=O(g(n))时，则f(n)当n充分大时有上界，且g(n)为它的一个上界 Ω：表示若存在f(n)=Ω(g(n))时，则f(n)当n充分大时有下界，且g(n)为它的一个下界 Θ：表示当且仅当f(n)=O(g(n))且f(n)=Ω(g(n))时，称f(n)与g(n)同阶   分治法的基本步骤？   分解(Divide)：将要解决的问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法概论复习提纲">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/算法概论/算法概论复习提纲/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="一、简答题 记号O、Ω、Θ 的意义？   O：表示若存在f(n)=O(g(n))时，则f(n)当n充分大时有上界，且g(n)为它的一个上界 Ω：表示若存在f(n)=Ω(g(n))时，则f(n)当n充分大时有下界，且g(n)为它的一个下界 Θ：表示当且仅当f(n)=O(g(n))且f(n)=Ω(g(n))时，称f(n)与g(n)同阶   分治法的基本步骤？   分解(Divide)：将要解决的问题">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i.imgur.com/0qvfgi5.png">
+<meta property="og:image" content="http://i.imgur.com/GwGWhHy.png">
+<meta property="og:image" content="http://i.imgur.com/azL6cnh.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.929Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法概论复习提纲">
+<meta name="twitter:description" content="一、简答题 记号O、Ω、Θ 的意义？   O：表示若存在f(n)=O(g(n))时，则f(n)当n充分大时有上界，且g(n)为它的一个上界 Ω：表示若存在f(n)=Ω(g(n))时，则f(n)当n充分大时有下界，且g(n)为它的一个下界 Θ：表示当且仅当f(n)=O(g(n))且f(n)=Ω(g(n))时，称f(n)与g(n)同阶   分治法的基本步骤？   分解(Divide)：将要解决的问题">
+<meta name="twitter:image" content="http://i.imgur.com/0qvfgi5.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/算法概论/算法概论复习提纲/">
+
+
+
+
+
+  <title>算法概论复习提纲 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/算法概论/算法概论复习提纲/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法概论复习提纲</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Chai/" itemprop="url" rel="index">
+                    <span itemprop="name">Chai</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Chai/算法概论/" itemprop="url" rel="index">
+                    <span itemprop="name">算法概论</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h2 id="一、简答题"><a href="#一、简答题" class="headerlink" title="一、简答题"></a>一、简答题</h2><blockquote>
+<p>记号O、Ω、Θ 的意义？</p>
+</blockquote>
+<ul>
+<li>O：表示若存在f(n)=O(g(n))时，则f(n)当n充分大时有上界，且g(n)为它的一个上界</li>
+<li>Ω：表示若存在f(n)=Ω(g(n))时，则f(n)当n充分大时有下界，且g(n)为它的一个下界</li>
+<li>Θ：表示当且仅当f(n)=O(g(n))且f(n)=Ω(g(n))时，称f(n)与g(n)同阶</li>
+</ul>
+<blockquote>
+<p>分治法的基本步骤？</p>
+</blockquote>
+<ol>
+<li>分解(Divide)：将要解决的问题分解成若干规模较小的同类子问题 </li>
+<li>解决(Conquer)：递归求解子问题</li>
+<li>合并(Combine)：将子问题的求解结果恰当合并，得到原问题的解</li>
+</ol>
+<blockquote>
+<p>动态规划算法的两个基本要素？</p>
+</blockquote>
+<ol>
+<li>最优子结构性质  </li>
+<li>重叠子问题性质</li>
+</ol>
+<blockquote>
+<p>设计动态规划算法的步骤？</p>
+</blockquote>
+<ol>
+<li>找出最优解的性质，并刻画其结构特征； </li>
+<li>递归地定义最优值； </li>
+<li>以自底向上的方式计算出最优值；</li>
+<li>根据计算最优值时得到的信息，得到最优解。</li>
+</ol>
+<blockquote>
+<p>分治法与动态规划两种算法策略的异同点？</p>
+</blockquote>
+<p>同：将待求解的问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解；<br>异：适用于动态规划法求解的问题，经分解得到的子问题往往不是互相独立的而用分治法求解的问题，经分解得到的子问题往往是互相独立的。</p>
+<blockquote>
+<p>贪心法的两个基本要素？</p>
+</blockquote>
+<ol>
+<li>贪心选择性质 </li>
+<li>最优子结构性质</li>
+</ol>
+<blockquote>
+<p>贪心法的算法正确性证明的基本策略？</p>
+</blockquote>
+<p>贪心算法的正确性证明虽然不容易，但一些常见的方法还是值得总结的。  </p>
+<ul>
+<li>构造法<br>根据描述的算法，用贪心的策略，依次构造出一个解，可证明一定是合法的解，即用贪心法找可行解。 如有N个士兵(1≤N≤26)，编号依次为A，B，C，…。队列训练时，指挥官要把一些士兵从高到矮依次排成一行，但现在指挥官不能直接获得每个人的身高信息，只能获得“P1比P2高”这样的比较结果(P1，P2∈A，B，C，…，Z，记为P1&gt;P2)，如“A&gt;B”表示A比B高。 请编一程序，根据所得到的比较结果求出一种符合条件的排队方案。 注：比较结果中没有涉及到的士兵不参加排队。 </li>
+</ul>
+<ul>
+<li><p>反证法<br>用贪心的策略，依次构造出一个解S1。假设最优解S2不同与S1，可以证明是矛盾的。从而S1就是最优解。如在一个超市，有N个人排队到一个柜台付款，已知每个人需要处理的时间为Ti（0&lt;i≤N），请你找一种排列次序，使每个人排队的时间总和最小。  </p>
+</li>
+<li><p>调整法<br>用贪心的策略，依次构造出一个解S1。假设最优解S2不同与S1，找出不同之处，在不破坏最优性的前提下，逐步调整S2，最终使其变为S1。从而S1也是最优解。</p>
+</li>
+</ul>
+<blockquote>
+<p>贪心法与动态规划两种算法策略的异同点？</p>
+</blockquote>
+<p>同：都要求问题具有最优子结构性质<br>异：动态规划算法为自底向上的方式解各子问题，贪心法为自顶向下的方式进行，以迭代的方式作出相继的贪心选择，每一次贪心选择问题就转换为规模更小的子问题。</p>
+<blockquote>
+<p>最大流的概念、流通（circulation）的概念？</p>
+</blockquote>
+<p>最大流：最大流量的问题涉及发现通过单一来源，单汇流网络，它是一个最大可行流。<br>流通（circulation）：<br><img src="http://i.imgur.com/0qvfgi5.png" alt></p>
+<blockquote>
+<p>最大流最小割定理的内容及其证明方法？</p>
+</blockquote>
+<p>最大流最小割定理(Maximum Flow, Minimum Cut Theorem):网络的最大流等于最小割<br><strong>具体的证明分三部分：</strong></p>
+<ol>
+<li>任意一个流都小于等于任意一个割<br>这个很好理解 自来水公司随便给你家通点水 构成一个流<br>恐怖分子随便砍几刀 砍出一个割<br>由于容量限制 每一根的被砍的水管子流出的水流量都小于管子的容量<br>每一根被砍的水管的水本来都要到你家的 现在流到外面 加起来得到的流量还是等于原来的流<br>管子的容量加起来就是割 所以流小于等于割<br>由于上面的流和割都是任意构造的 所以任意一个流小于任意一个割</li>
+<li>构造出一个流等于一个割<br>当达到最大流时 根据增广路定理<br>残留网络中s到t已经没有通路了 否则还能继续增广<br>我们把s能到的的点集设为S 不能到的点集为T<br>构造出一个割集C[S,T] S到T的边必然满流 否则就能继续增广<br>这些满流边的流量和就是当前的流即最大流<br>把这些满流边作为割 就构造出了一个和最大流相等的割</li>
+<li>最大流等于最小割<br>设相等的流和割分别为Fm和Cm<br>则因为任意一个流小于等于任意一个割<br>任意F≤Fm=Cm≤任意C<br>定理说明完成</li>
+</ol>
+<p><a href="http://blog.csdn.net/xzz_hust/article/details/22041173" target="_blank" rel="noopener">网络流：最大流，最小割 基本概念及算法</a></p>
+<blockquote>
+<p>多项式归约（reduction）的概念与用途？</p>
+</blockquote>
+<p>可归约意指对每个问题L，总有一个多项式时间多对一变换，即一个决定性的算法可以将实例l ∈ L 转化成实例c ∈ C，并让c回答Yes当且仅当此答案对l也是Yes。为了证明某个NP问题A实际上是NPC问题，证明者必须找出一个已知的NPC问题可以变换成A。</p>
+<blockquote>
+<p>P 问题、NP问题、NP完全问题、NP困难问题（NP-hardproblem）的概念？</p>
+</blockquote>
+<p><strong>P问题</strong>：如果一个问题可以找到一个能在多项式的时间里解决它的算法，那么这个问题就属于P问题。<br><strong>NP问题</strong>：NP问题不是非P类问题。NP问题是指可以在多项式的时间里验证一个解的问题。NP问题的另一个定义是，可以在多项式的时间里猜出一个解的问题。<br><strong>NP完全问题</strong>：同时满足下面两个条件的问题就是NPC问题。首先，它得是一个NP问题；然后，所有的NP问题都可以约化到它。(即只要解决这个问题，所有的NP问题都可以得到解决)<br><strong>NP困难问题</strong>：它满足NPC问题定义的第二条但不一定要满足第一条（就是说，NP-Hard问题要比NPC问题的范围广）。</p>
+<p><a href="http://blog.csdn.net/dongwq/article/details/4305435" target="_blank" rel="noopener">概念详述</a></p>
+<blockquote>
+<p>NP完全问题的实际证明方法？</p>
+</blockquote>
+<p>目前为止，所有已知解NPC问题的算法需要依照数据数量而定的<strong>超多项式</strong>（superpolynomial）时间，目前也不知道是否有任何更快的算法存在。因此要在输入数据量大的时候解决一个NPC问题，通常我们使用下列的手段来解：</p>
+<ul>
+<li>近似算法：这类算法可以快速发现离最佳解在一定差距内的次佳解。</li>
+<li>乱数算法：此类算法可提供一乱数产生的输入数据，让本质上解答分布均匀的受测程序可以有良好的求解效率。对于解答分布不均匀的程序，则可以降低乱数程度以改变输入数据。</li>
+<li>特例：此算法可以在题目呈献某些特殊情况时快速得解。参数化复杂度（Parameterized complexity）可视为广义的此类算法。</li>
+<li>启发式算法：这种算法在许多时候可以产生理性解答（即运用评比或线索找出解），但无法保证它效率的良莠与解答的好坏程度。一个启发式算法的例子是用在图着色问题以O（n log n）的贪婪算法找次佳解，用在某些编译器的寄存器配置阶段上，此技术又叫图着色全域寄存器配置（graph-coloring global register allocation）。每顶点视为一变数，每边代表两变数同时使用的情况，颜色则代表配置给每一变数的寄存器编号。由于大多数的RISC机器拥有大量通用寄存器，因此启发式算法很适合用来解这类题目。</li>
+</ul>
+<p><a href="https://zh.wikipedia.org/wiki/NP%E5%AE%8C%E5%85%A8" title="NP完全-wiki" target="_blank" rel="noopener">NP完全-wiki百科</a></p>
+<blockquote>
+<p>常见的NP完全问题？</p>
+</blockquote>
+<ul>
+<li>图着色问题 </li>
+<li>哈密顿回路问题 </li>
+<li>TSP问题</li>
+</ul>
+<p><a href="http://wenku.baidu.com/link？url=QqgJf4s7sFW0TlIDTqKp9p5oX5gTXED2WpYF-lBfAxA__9xIXkRaUTOfhMNLy4TEFakEMRWhotL-Yi7yWQnZYwtoRiXruuzTSaWm8IRCqIC" target="_blank" rel="noopener">NP问题例子详述</a></p>
+<blockquote>
+<p>递归方程的求解方法？</p>
+</blockquote>
+<ol>
+<li>递推法</li>
+<li>公式法</li>
+<li>生成函数法</li>
+</ol>
+<p><a href="http://wenku.baidu.com/view/835ed26ab84ae45c3b358c4b.html" title="递归方程求解方法综述-百度文库" target="_blank" rel="noopener">递归方程求解方法综述-百度文库</a></p>
+<h2 id="二、应用题"><a href="#二、应用题" class="headerlink" title="二、应用题"></a>二、应用题</h2><blockquote>
+<p>多段图上的最短路径动态规划推导</p>
+</blockquote>
+<p>阶段：将图中的顶点划分5个阶段，k<br>状态：每个阶段有几种供选择的点s<br>决策：当前状态应在前一个状态的基础上获得。决策需要满足规划方程<br>规划方程：f(k)表示状态k到终点状态的最短距离。<br>初始条件：f(k)=0;<br>方程：f(k-1)=min{f(k)+W(k-1,k)}其中W(k-1,k)表示状态k-1到状态k的距离</p>
+<blockquote>
+<p>最大流最小割问题的求解算法Ford-Fulkerson及应用</p>
+</blockquote>
+<p>Ford-Fulkerson方法依赖于三种重要思想：残留网络，增广路径和割。Ford-Fulkerson是一种迭代的方法。开始时，对所有的u,v属于V，f(u,v)=0(这里f(u,v)代表u到v的边当前流量)，即初始状态时流的值为0。在每次迭代中，可以通过寻找一个“增广路径”来增加流值。增广路径可以看做是从源点s到汇点t之间的一条路径，沿该路径可以压入更多的流，从而增加流的值。反复进行这一过程，直到增广路径都被找出为止。<br><a href="http://blog.csdn.net/smartxxyx/article/details/9293665" title="最大流问题Ford-Fulkerson方法" target="_blank" rel="noopener">最大流问题Ford-Fulkerson方法</a><br><a href="https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm" title="Ford–Fulkerson algorithm-wiki" target="_blank" rel="noopener">Ford–Fulkerson algorithm-wiki</a></p>
+<blockquote>
+<p>强连通分量的划分算法</p>
+</blockquote>
+<p>Kosaraju算法、Tarjan算法、Gabow算法皆为寻找有向图强连通分量的有效算法。但是在Tarjan 算法和 Gabow 算法的过程中，只需要进行一次的深度优先搜索，而Kosaraju算法需要两次DFS，因而相对 Kosaraju 算法较有效率。这些算法可简称为SSC(strongly connected components)算法。<br>Kosaraju 算法即为算法导论一书给出的算法，比较直观和易懂。这个算法可以说是最容易理解，最通用的算法，其比较关键的部分是同时应用了原图G和反图GT。 它利用了有向图的这样一个性质，一个图和他的transpose graph(边全部反向)具有相同的强连通分量！<br><strong>算法思路：</strong></p>
+<ol>
+<li>DFS遍历原图，对每个访问到的节点标记时间戳（访问完成时间）。</li>
+<li>按照时间戳的降序DFS遍历反向图，得到的每个连通块就是一个强连通分量。<br><strong>算法步骤如下：</strong></li>
+<li>创建一个空的栈 ‘S’ ，然后对图做DFS遍历. 在顶点访问完成后加入栈中。访问完成是说回溯返回时，而不是第一次发现该节点时。fillOrder()函数</li>
+<li>得到图转置，即将所有边反向。</li>
+<li>从S中依次弹出每个顶点，设为 ‘v’. 将v看做遍历的源点 (调用 DFSUtil(v)). 做第二次DFS遍历，可以找到以v为起点的强连通分量，打印出即可。<br><strong>时间复杂度</strong><br>DFS遍历的时间复杂度为O(V+E) ，图的转置也为O(V+E) 。因此总的时间复杂度为O(V+E)。<br>从渐进分析来说，这个复杂度是最好的，但是用到了两次DFS遍历，还有一个常见的更高效的算法 Tarjan’s algorithm ，后面再做讨论。<br><strong>应用</strong><br>在社交网络上，有些群体可能是强连通的(例如一个班级的学生)，这些群体中的人一般会有一些共同感兴趣的页面或游戏，可以使用SSC算法来找到这样的群体，然后推荐相关的页面或游戏。<br><a href="http://www.acmerblog.com/strongly-connected-components-6099.html" title="求强连通分量-Kosaraju算法" target="_blank" rel="noopener">求强连通分量-Kosaraju算法</a><blockquote>
+<p>图的深度优先搜索算法的扩展及应用</p>
+</blockquote>
+</li>
+</ol>
+<p><a href="http://baike.baidu.com/view/288277.htm" title="深度优先搜索-百度百科" target="_blank" rel="noopener">深度优先搜索-百度百科</a></p>
+<blockquote>
+<p>Bellman-Ford算法的基本思想及应用</p>
+</blockquote>
+<p><img src="http://i.imgur.com/GwGWhHy.png" alt><br><img src="http://i.imgur.com/azL6cnh.png" alt></p>
+<blockquote>
+<p>递归方程的求解方法</p>
+</blockquote>
+<p><a href="http://wenku.baidu.com/view/835ed26ab84ae45c3b358c4b.html" title="递归方程求解方法综述-百度文库" target="_blank" rel="noopener">递归方程求解方法综述-百度文库</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/算法2015/算法2015/" rel="next" title="算法2015">
+                <i class="fa fa-chevron-left"></i> 算法2015
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/算法概论实验/算法概论实验一/" rel="prev" title="算法概论实验一">
+                算法概论实验一 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、简答题"><span class="nav-number">1.</span> <span class="nav-text">一、简答题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、应用题"><span class="nav-number">2.</span> <span class="nav-text">二、应用题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

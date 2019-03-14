@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="#一、实验目的   （1）巩固基于输入域的测试技术，能熟练、灵活地应用多种基于输入域的测试方法设计测试用例； （2）学习测试用例的书写。    #二、实验内容 ##判断三角形类型1输入三个整数a、b、c，分别作为三角形的三条边，通过程序判断这三条边是否能构成三角形？如果能构成三角形，则判断三角形的类型（等边三角形、等腰三角形、一般三角形）。要求输入三个整数a、b、c，必须满足以下条件：1≤a≤2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于输入域的测试实验报告——三角形程序">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/软件分析与测试/基于输入域的测试实验报告——三角形程序/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="#一、实验目的   （1）巩固基于输入域的测试技术，能熟练、灵活地应用多种基于输入域的测试方法设计测试用例； （2）学习测试用例的书写。    #二、实验内容 ##判断三角形类型1输入三个整数a、b、c，分别作为三角形的三条边，通过程序判断这三条边是否能构成三角形？如果能构成三角形，则判断三角形的类型（等边三角形、等腰三角形、一般三角形）。要求输入三个整数a、b、c，必须满足以下条件：1≤a≤2">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-14T08:30:30.076Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于输入域的测试实验报告——三角形程序">
+<meta name="twitter:description" content="#一、实验目的   （1）巩固基于输入域的测试技术，能熟练、灵活地应用多种基于输入域的测试方法设计测试用例； （2）学习测试用例的书写。    #二、实验内容 ##判断三角形类型1输入三个整数a、b、c，分别作为三角形的三条边，通过程序判断这三条边是否能构成三角形？如果能构成三角形，则判断三角形的类型（等边三角形、等腰三角形、一般三角形）。要求输入三个整数a、b、c，必须满足以下条件：1≤a≤2">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/软件分析与测试/基于输入域的测试实验报告——三角形程序/">
+
+
+
+
+
+  <title>基于输入域的测试实验报告——三角形程序 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/软件分析与测试/基于输入域的测试实验报告——三角形程序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">基于输入域的测试实验报告——三角形程序</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件分析与测试/" itemprop="url" rel="index">
+                    <span itemprop="name">软件分析与测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>#一、实验目的</p>
+<blockquote>
+<ul>
+<li>（1）巩固基于输入域的测试技术，能熟练、灵活地应用多种基于输入域的测试方法设计测试用例；</li>
+<li>（2）学习测试用例的书写。</li>
+</ul>
+</blockquote>
+<hr>
+<p>#二、实验内容</p>
+<p>##判断三角形类型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入三个整数a、b、c，分别作为三角形的三条边，通过程序判断这三条边是否能构成三角形？如果能构成三角形，则判断三角形的类型（等边三角形、等腰三角形、一般三角形）。要求输入三个整数a、b、c，必须满足以下条件：1≤a≤200；1≤b≤200；1≤c≤200。</span><br></pre></td></tr></table></figure></p>
+<p>要求：</p>
+<blockquote>
+<ul>
+<li>（1）    尝试使用随机测试的方法，随机生成5~8个测试用例；</li>
+<li>（2）    分析程序输入域，结合程序输出结果，进行等价类划分，并给出详细测试用例；</li>
+<li>（3）    结合（2）所划分的等价类，进行边界值分析（适当考虑程序的健壮性），并给出具体的测试用例；</li>
+<li>（4）  利用因果图描述程序各输入、输出分量之间的因果关系以及约束； </li>
+<li>（5）  采用决策表的方法，为程序设计完备且无冗余的测试用例</li>
+<li>（6）  通过你的测试，请简单比较、总结你所使用的不同测试方法的特点。 </li>
+</ul>
+</blockquote>
+<hr>
+<p>#三、实验要求</p>
+<blockquote>
+<ul>
+<li>（1）根据题目要求编写测试用例 </li>
+<li>（2）撰写实验报告</li>
+<li>（3）实验报告命名规则：学号后两位+姓名</li>
+</ul>
+</blockquote>
+<hr>
+<p>#四、实验报告</p>
+<p>##（1）随机测试<br>![10.png-58.8kB][1]</p>
+<hr>
+<p>##（2）等价类划分<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">①分析程序的规格说明，列出输入变量a、 b、 c的有效等价类、无效等价类； </span><br><span class="line">②给出等价类表（每个等价类编号）</span><br><span class="line">③覆盖等价类表中的所有等价类，编写测试用例</span><br></pre></td></tr></table></figure></p>
+<p>###2.1.等价类划分</p>
+<p>####2.1.1.给定的输入条件要求<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">数量要求：3个数</span><br><span class="line">大小范围：1-200之间</span><br><span class="line">类型要求：整数</span><br><span class="line">功能要求：a+b&gt;c；a+c&gt;b；c+b&gt;a</span><br></pre></td></tr></table></figure></p>
+<p>####2.1.2.给出等价类表<br>![01.png-37.7kB][2]</p>
+<p>####2.1.3设计测试用例<br>覆盖上表的等价类，如下表所示：</p>
+<p>#####2.1.3.1无效等价类<br>![02.png-181.6kB][3]</p>
+<p>#####2.1.3.2有效等价类<br>![03.PNG-25.4kB][4]</p>
+<hr>
+<p>##（3）边界值分析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">①根据（2）中所获得的等价类，分析输入变量的边界，给出边界测试用例</span><br><span class="line">②考虑程序的健壮性，适当补充健壮性测试用例</span><br></pre></td></tr></table></figure>
+<p>###3.1边界值分析测试用例表<br>![04.png-58.2kB][5]</p>
+<hr>
+<p>##（4）因果图<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">①分析程序的规格说明，列出原因和结果</span><br><span class="line">②标明原因间、结果间的约束</span><br><span class="line">③适当增加中间节点，绘制因果图</span><br></pre></td></tr></table></figure></p>
+<p>###4.1.原因和结果<br>![05.png-21.8kB][6]</p>
+<p>###4.2.标明原因间、结果间的约束<br>原因间无明显约束，结果间，等腰与等边之间有着M约束关系。</p>
+<p>###4.3.绘制因果图<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">编号为 10， 11， 12 的中间节点是导出结果的进一步原因</span><br><span class="line">10:可以构成三角形</span><br><span class="line">11:任意两条边相等</span><br><span class="line">12：三条边两两相等</span><br></pre></td></tr></table></figure></p>
+<p>![09.png-156.3kB][7]</p>
+<hr>
+<p>##（5）决策表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">①分析程序的规格说明，列出条件桩、动作桩</span><br><span class="line">②分析条件项、动作项之间的约束，剔除无效或无意义的条件项</span><br><span class="line">③给出决策表（简化）</span><br><span class="line">④根据决策表，给出详细测试用例</span><br></pre></td></tr></table></figure></p>
+<p>###5.1列出所有条件桩和动作桩<br>![06.png-16.6kB][8]</p>
+<p>###5.2计算规则数<br>共6个条件，每个条件取值$y/n$，因此有$2^6=64$条规则  </p>
+<p>###5.3填入条件项,填入动作项<br>        由于条件数目太多，把互斥的条件作简化</p>
+<p>###5.4化简合并后的决策表<br>![07.png-26.8kB][9]</p>
+<p>###5.5依照决策表生成测试用例<br>![08.png-25.3kB][10]</p>
+<hr>
+<p>##（6） 通过你的测试，请简单比较、总结你所使用的不同测试方法的特点。</p>
+<blockquote>
+<ul>
+<li>①随机测试：<strong>随机</strong>选取用例，检测正确性</li>
+<li>②等价类划分：等价类划分就是解决<strong>如何选择适当的数据子集</strong>来代表<strong>整</strong>个数据集的问题，通过<strong>降低测试的数目</strong>去实现“合理的”覆盖，覆盖了更多的可能数据，以发现更多的软件缺陷。</li>
+<li>③边界值分析；边界分析是指对输入或输出的边界值进行的一种方法。所说的<strong>边界值是指输入等价类和输出等价类的边界值</strong>。经验证明大量的程序<strong>错误</strong>是<strong>发生</strong>在输入或输出范围的<strong>边界</strong>上，而不是发生在输入输出范围的内部。因此针对各种边界情况设计测试用例，可以查出更多的错误。</li>
+<li>④因果图；从用自然语言书写的程序规格说明的描述中找出因（<strong>输入条件</strong>）和果（<strong>输出或程序状态的改变</strong>），可以通过因果图转换为判定表。其将质量问题与原因之间的关系表示出来，是分析影响产品质量的诸因素之间关系的一种工具。</li>
+<li>⑤决策表；决策表又称判断表，是一种呈表格状的图形工具，适用于描述<strong>处理判断条件较多</strong>，各条件又相互组合、有多种决策方案的情况。</li>
+</ul>
+</blockquote>
+<p>完成时间：2015年11月26日<br>  [1]: <a href="http://static.zybuluo.com/rg070836rg/ko02lafsgm5ineholwwjusew/10.png" target="_blank" rel="noopener">http://static.zybuluo.com/rg070836rg/ko02lafsgm5ineholwwjusew/10.png</a><br>  [2]: <a href="http://static.zybuluo.com/rg070836rg/8ncpbj67rtivxpub23fhs7ni/01.png" target="_blank" rel="noopener">http://static.zybuluo.com/rg070836rg/8ncpbj67rtivxpub23fhs7ni/01.png</a><br>  [3]: <a href="http://static.zybuluo.com/rg070836rg/3y4dksvyxoiw1mpqwoh1vaje/02.png" target="_blank" rel="noopener">http://static.zybuluo.com/rg070836rg/3y4dksvyxoiw1mpqwoh1vaje/02.png</a><br>  [4]: <a href="http://static.zybuluo.com/rg070836rg/d9m30d08z7ett21t4op7ekn2/03.PNG" target="_blank" rel="noopener">http://static.zybuluo.com/rg070836rg/d9m30d08z7ett21t4op7ekn2/03.PNG</a><br>  [5]: <a href="http://static.zybuluo.com/rg070836rg/2zueg610bjqvpk6qvhgx8qgh/04.png" target="_blank" rel="noopener">http://static.zybuluo.com/rg070836rg/2zueg610bjqvpk6qvhgx8qgh/04.png</a><br>  [6]: <a href="http://static.zybuluo.com/rg070836rg/pouij8ygjb4ggpvudt16hyu1/05.png" target="_blank" rel="noopener">http://static.zybuluo.com/rg070836rg/pouij8ygjb4ggpvudt16hyu1/05.png</a><br>  [7]: <a href="http://static.zybuluo.com/rg070836rg/l48c6o04t8xxdr8cnnjjqfkw/09.png" target="_blank" rel="noopener">http://static.zybuluo.com/rg070836rg/l48c6o04t8xxdr8cnnjjqfkw/09.png</a><br>  [8]: <a href="http://static.zybuluo.com/rg070836rg/x7kczecuywgmo1etlca1u9af/06.png" target="_blank" rel="noopener">http://static.zybuluo.com/rg070836rg/x7kczecuywgmo1etlca1u9af/06.png</a><br>  [9]: <a href="http://static.zybuluo.com/rg070836rg/90hz8zlygvuwhs70c884mwzl/07.png" target="_blank" rel="noopener">http://static.zybuluo.com/rg070836rg/90hz8zlygvuwhs70c884mwzl/07.png</a><br>  [10]: <a href="http://static.zybuluo.com/rg070836rg/zkfs4dzfxwaorrfxks6e4sv7/08.png" target="_blank" rel="noopener">http://static.zybuluo.com/rg070836rg/zkfs4dzfxwaorrfxks6e4sv7/08.png</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/软件分析与测试/基于组合与优化的测试方法——正交表测试示例/" rel="next" title="基于组合与优化的测试方法——正交表测试示例">
+                <i class="fa fa-chevron-left"></i> 基于组合与优化的测试方法——正交表测试示例
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/软件分析与测试/第一次作业/" rel="prev" title="第一次作业">
+                第一次作业 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

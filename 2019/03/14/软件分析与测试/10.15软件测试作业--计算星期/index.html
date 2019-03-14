@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="#基于代码的测试实验报告——计算星期   ##一、实验目的12（1）巩固基于代码的测试技术，能熟练应用控制流覆盖方法、逻辑覆盖方法等设计测试用例；（2）学习测试用例的书写。  ##二、实验内容 ###计算日期是星期几1已知公元1年1月1日是星期一。请编写一个程序，只要输入年月日，就能自动回答当天是星期几。  1234567要求：为测试该程序的方便，请将计算星期的算法尽量放入一个函数中，输入和输出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10.15软件测试作业--计算星期">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/软件分析与测试/10.15软件测试作业--计算星期/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="#基于代码的测试实验报告——计算星期   ##一、实验目的12（1）巩固基于代码的测试技术，能熟练应用控制流覆盖方法、逻辑覆盖方法等设计测试用例；（2）学习测试用例的书写。  ##二、实验内容 ###计算日期是星期几1已知公元1年1月1日是星期一。请编写一个程序，只要输入年月日，就能自动回答当天是星期几。  1234567要求：为测试该程序的方便，请将计算星期的算法尽量放入一个函数中，输入和输出">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-14T08:30:30.072Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="10.15软件测试作业--计算星期">
+<meta name="twitter:description" content="#基于代码的测试实验报告——计算星期   ##一、实验目的12（1）巩固基于代码的测试技术，能熟练应用控制流覆盖方法、逻辑覆盖方法等设计测试用例；（2）学习测试用例的书写。  ##二、实验内容 ###计算日期是星期几1已知公元1年1月1日是星期一。请编写一个程序，只要输入年月日，就能自动回答当天是星期几。  1234567要求：为测试该程序的方便，请将计算星期的算法尽量放入一个函数中，输入和输出">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/软件分析与测试/10.15软件测试作业--计算星期/">
+
+
+
+
+
+  <title>10.15软件测试作业--计算星期 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/软件分析与测试/10.15软件测试作业--计算星期/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">10.15软件测试作业--计算星期</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件分析与测试/" itemprop="url" rel="index">
+                    <span itemprop="name">软件分析与测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>#<strong>基于代码的测试实验报告——计算星期</strong> </p>
+<hr>
+<p>##<strong>一、实验目的</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（1）巩固基于代码的测试技术，能熟练应用控制流覆盖方法、逻辑覆盖方法等设计测试用例；</span><br><span class="line">（2）学习测试用例的书写。</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>##<strong>二、实验内容</strong></p>
+<p>###计算日期是星期几<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">已知公元1年1月1日是星期一。请编写一个程序，只要输入年月日，就能自动回答当天是星期几。</span><br></pre></td></tr></table></figure></p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">要求：</span><br><span class="line">为测试该程序的方便，请将计算星期的算法尽量放入一个函数中，输入和输出检查可用其它函数来处理。为简单起见，不考虑公元前的日期。</span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line">（a）	解答思路：计算输入日期与公元1年1月1日所相差的天数，具体如下：</span><br><span class="line">总天数=公元1年到输入日期上一年年底天数+输入年份的1月到上月月底天数+输入日期的天数</span><br><span class="line">（b）	闰年满足条件：(year%4==0)&amp;&amp;(year%100!=0)||(year%400==0)</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">（1）画出程序的流图；</span><br><span class="line">（2）分别以判定覆盖、条件覆盖、MC/DC覆盖标准设计测试用例，并写出每个测试用例的执行路径；</span><br><span class="line">（3）请采用基本路径覆盖（兼顾循环）、数据流覆盖标准对程序进行测试，并给出具体测试用例信息。</span><br><span class="line">（4）请采用变异测试的方法对你的原程序进行适当变异，获得3~4个变异体，执行上述（2）~（3）中的测试用例集，分析变异体的存活率，评估测试用例集的故障敏感度。</span><br><span class="line">（5）通过你的测试，请总结你所使用测试方法发现的Bug。</span><br><span class="line">要求：设计测试用例时，每种覆盖方法的覆盖率尽可能达到100%</span><br></pre></td></tr></table></figure>
+<hr>
+<p>##<strong>三、实验要求</strong></p>
+<blockquote>
+<ul>
+<li>（1）根据题目要求编写测试用例 </li>
+<li>（2）撰写实验报告</li>
+<li>（3）有关的实现程序请附到实验报告中</li>
+<li>（4）实验报告命名规则：学号后两位+姓名_基于代码的测试（计算星期）¬</li>
+</ul>
+</blockquote>
+<hr>
+<p>##<strong>四、实验报告</strong></p>
+<p>###<strong>（1）程序代码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">bool leapYear(int year);</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	cout &lt;&lt; &quot;请输入年月日:&quot; &lt;&lt; endl;</span><br><span class="line">	int a, b, c;</span><br><span class="line">	string day;</span><br><span class="line">	cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;</span><br><span class="line">	int i, result = 0;</span><br><span class="line">	for(i=1;i&lt;=a-1;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		result+=(leapYear(i)+365)%7;</span><br><span class="line">	&#125;</span><br><span class="line">	for(i=1;i&lt;=b-1;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(i==1||i==3||i==5||i==7||i==8||i==10||i==12)</span><br><span class="line">			result+=31;</span><br><span class="line">		else if(i==4||i==6||i==9||i==11)</span><br><span class="line">			result+=30;</span><br><span class="line">		else if(i==2)</span><br><span class="line">			result+=(28+leapYear(a));</span><br><span class="line">	&#125;</span><br><span class="line">	result+=c;</span><br><span class="line">	result%=7;</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt;a&lt;&lt;&quot;年&quot;&lt;&lt;b&lt;&lt;&quot;月&quot;&lt;&lt;c&lt;&lt;&quot;日是星期&quot; &lt;&lt; result &lt;&lt; endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool leapYear(int year)</span><br><span class="line">&#123;</span><br><span class="line">	return year%400==0 || year%100!=0 &amp;&amp; year%4==0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>###<strong>（2）程序控制流图</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">重要节点对应代码</span><br><span class="line">Node2   for(i=1;i&lt;=a-1;i++)</span><br><span class="line">Node4   for(i=1;i&lt;=b-1;i++)</span><br><span class="line">Node5   if(i==1||i==3||i==5||i==7||i==8||i==10||i==12)</span><br><span class="line">Node7   if(i==4||i==6||i==9||i==11)</span><br><span class="line">Node9   if(i==2)</span><br><span class="line">Node11  year%400==0 || year%100!=0 &amp;&amp; year%4==0;</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start:  start</span><br><span class="line">op_00=&gt;operation: 1 </span><br><span class="line">cond_for_0=&gt;condition: 2 </span><br><span class="line">op_for_0=&gt;operation: 3 </span><br><span class="line"></span><br><span class="line">cond_for_1=&gt;condition: 4 </span><br><span class="line"></span><br><span class="line">cond_if_1=&gt;condition: 5</span><br><span class="line">cond_if_2=&gt;condition: 7 </span><br><span class="line">cond_if_3=&gt;condition: 9</span><br><span class="line"></span><br><span class="line">op_0=&gt;operation: 6</span><br><span class="line">op_1=&gt;operation: 8</span><br><span class="line">op_2=&gt;operation: 10</span><br><span class="line">op_3=&gt;operation: For</span><br><span class="line"></span><br><span class="line">op_4=&gt;operation: 12</span><br><span class="line">op_5=&gt;operation: 11 leap</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">st-&gt;op_00-&gt;cond_for_0</span><br><span class="line">cond_for_0(yes)-&gt;op_for_0-&gt;cond_for_0</span><br><span class="line">cond_for_0(no)-&gt;cond_for_1</span><br><span class="line">cond_for_1(yes)-&gt;cond_if_1</span><br><span class="line">cond_for_1(no)-&gt;op_4</span><br><span class="line">cond_if_1(yes)-&gt;op_0-&gt;op_3</span><br><span class="line">cond_if_1(no)-&gt;cond_if_2</span><br><span class="line">cond_if_2(yes)-&gt;op_1-&gt;op_3</span><br><span class="line">cond_if_2(no)-&gt;cond_if_3</span><br><span class="line">cond_if_3(yes)-&gt;op_2-&gt;op_5-&gt;op_3</span><br><span class="line">cond_if_3(no)-&gt;op_3-&gt;cond_for_1</span><br></pre></td></tr></table></figure>
+<hr>
+<p>###<strong>（3）判定覆盖</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">P1  year%400==0 || year%100!=0 &amp;&amp; year%4==0;    闰年判定</span><br><span class="line">注释:由于for循环的不确定性，在此，执行路径省略</span><br></pre></td></tr></table></figure></p>
+<hr>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>测试用例</th>
+<th>覆盖判定</th>
+<th>输出结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2008 8 8</td>
+<td>P1</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2007 7 8</td>
+<td>-P1</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>测试用例</th>
+<th>闰年判定</th>
+<th>输出结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2008 8 8</td>
+<td>True</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2007 7 8</td>
+<td>False</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>###<strong>（4）条件覆盖</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">T3 year%400==0 </span><br><span class="line">T2 year%100!=0 </span><br><span class="line">T3 year%4==0;    闰年判定</span><br><span class="line">注释:由于for循环的不确定性，在此，执行路径省略</span><br></pre></td></tr></table></figure></p>
+<hr>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>测试用例</th>
+<th>条件覆盖</th>
+<th>输出结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2000 8 8</td>
+<td>T1 -T2 T3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2008 8 8</td>
+<td>-T1 T2 T3</td>
+<td>5</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2001 8 8</td>
+<td>-T1 T2 -T3</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>测试用例</th>
+<th>year%400==0</th>
+<th>year%100!=0</th>
+<th>year%4==0</th>
+<th>输出结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2000 8 8</td>
+<td>True</td>
+<td>False</td>
+<td>True</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2008 8 8</td>
+<td>False</td>
+<td>True</td>
+<td>True</td>
+<td>5</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2001 8 8</td>
+<td>False</td>
+<td>True</td>
+<td>False</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>###<strong>（5）MC/DC覆盖</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">P1 year%400==0 || year%100!=0 &amp;&amp; year%4==0;    闰年判定</span><br><span class="line">T1 year%400==0 </span><br><span class="line">T2 year%100!=0 </span><br><span class="line">T3 year%4==0   </span><br><span class="line"></span><br><span class="line">注释:由于for循环的不确定性，在此，执行路径省略</span><br><span class="line">根据MC/DC特性，编写下述用例</span><br></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>测试用例</th>
+<th>T1</th>
+<th>T2</th>
+<th>T3</th>
+<th>闰年判定</th>
+<th>输出结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1900 8 8</td>
+<td>F</td>
+<td>F</td>
+<td>T</td>
+<td>F</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2001 8 8</td>
+<td>F</td>
+<td>T</td>
+<td>F</td>
+<td>F</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2008 8 8</td>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+<td>5</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2000 8 8</td>
+<td>T</td>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>###<strong>（6）基本路径覆盖</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start:  start</span><br><span class="line">op_00=&gt;operation: 1 </span><br><span class="line">cond_for_0=&gt;condition: 2 </span><br><span class="line">op_for_0=&gt;operation: 3 </span><br><span class="line"></span><br><span class="line">cond_for_1=&gt;condition: 4 </span><br><span class="line"></span><br><span class="line">cond_if_1=&gt;condition: 5</span><br><span class="line">cond_if_2=&gt;condition: 7 </span><br><span class="line">cond_if_3=&gt;condition: 9</span><br><span class="line"></span><br><span class="line">op_0=&gt;operation: 6</span><br><span class="line">op_1=&gt;operation: 8</span><br><span class="line">op_2=&gt;operation: 10</span><br><span class="line">op_3=&gt;operation: For</span><br><span class="line"></span><br><span class="line">op_4=&gt;operation: 12</span><br><span class="line">op_5=&gt;operation: 11 leap</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">st-&gt;op_00-&gt;cond_for_0</span><br><span class="line">cond_for_0(yes)-&gt;op_for_0-&gt;cond_for_0</span><br><span class="line">cond_for_0(no)-&gt;cond_for_1</span><br><span class="line">cond_for_1(yes)-&gt;cond_if_1</span><br><span class="line">cond_for_1(no)-&gt;op_4</span><br><span class="line">cond_if_1(yes)-&gt;op_0-&gt;op_3</span><br><span class="line">cond_if_1(no)-&gt;cond_if_2</span><br><span class="line">cond_if_2(yes)-&gt;op_1-&gt;op_3</span><br><span class="line">cond_if_2(no)-&gt;cond_if_3</span><br><span class="line">cond_if_3(yes)-&gt;op_2-&gt;op_5-&gt;op_3</span><br><span class="line">cond_if_3(no)-&gt;op_3-&gt;cond_for_1</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">圈复杂度：18（条边）-14（个节点）+ 2 = 6</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">基本路径集</span><br><span class="line">若测试年份大于1，那么所有路径都会被走过一遍，所以基本路径的长度与输入年份成正比，下罗列一种路径：</span><br><span class="line">S-1-2-3-2-4-5-6-4-5-7-8-4-5-7-9-10-11-4-5-7-9-4-12-E</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设计测试用例</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>测试用例</th>
+<th>输出结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2000 8 8</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>###<strong>（7）数据流覆盖</strong></p>
+<h4 id="程序的控制流图"><a href="#程序的控制流图" class="headerlink" title="程序的控制流图"></a><strong>程序的控制流图</strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start:  start</span><br><span class="line">op_00=&gt;operation: 1 </span><br><span class="line">cond_for_0=&gt;condition: 2 </span><br><span class="line">op_for_0=&gt;operation: 3 </span><br><span class="line"></span><br><span class="line">cond_for_1=&gt;condition: 4 </span><br><span class="line"></span><br><span class="line">cond_if_1=&gt;condition: 5</span><br><span class="line">cond_if_2=&gt;condition: 7 </span><br><span class="line">cond_if_3=&gt;condition: 9</span><br><span class="line"></span><br><span class="line">op_0=&gt;operation: 6</span><br><span class="line">op_1=&gt;operation: 8</span><br><span class="line">op_2=&gt;operation: 10</span><br><span class="line">op_3=&gt;operation: For</span><br><span class="line"></span><br><span class="line">op_4=&gt;operation: 12</span><br><span class="line">op_5=&gt;operation: 11 leap</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">st-&gt;op_00-&gt;cond_for_0</span><br><span class="line">cond_for_0(yes)-&gt;op_for_0-&gt;cond_for_0</span><br><span class="line">cond_for_0(no)-&gt;cond_for_1</span><br><span class="line">cond_for_1(yes)-&gt;cond_if_1</span><br><span class="line">cond_for_1(no)-&gt;op_4</span><br><span class="line">cond_if_1(yes)-&gt;op_0-&gt;op_3</span><br><span class="line">cond_if_1(no)-&gt;cond_if_2</span><br><span class="line">cond_if_2(yes)-&gt;op_1-&gt;op_3</span><br><span class="line">cond_if_2(no)-&gt;cond_if_3</span><br><span class="line">cond_if_3(yes)-&gt;op_2-&gt;op_5-&gt;op_3</span><br><span class="line">cond_if_3(no)-&gt;op_3-&gt;cond_for_1</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="计算相关定义、引用集合、DU-定义-引用-路径"><a href="#计算相关定义、引用集合、DU-定义-引用-路径" class="headerlink" title="计算相关定义、引用集合、DU(定义/引用)路径"></a><strong>计算相关定义、引用集合、DU(定义/引用)路径</strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">结点的定义、引用变量</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Def</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>{a,b,c,i,result}</td>
+</tr>
+<tr>
+<td>2</td>
+<td>{i}</td>
+<td>{a}</td>
+</tr>
+<tr>
+<td>3</td>
+<td>{result}</td>
+<td>{i}</td>
+</tr>
+<tr>
+<td>4</td>
+<td>{i}</td>
+<td>{b}</td>
+</tr>
+<tr>
+<td>5</td>
+<td>{i}</td>
+</tr>
+<tr>
+<td>6</td>
+<td></td>
+<td>{result}</td>
+</tr>
+<tr>
+<td>7</td>
+<td>{i}</td>
+</tr>
+<tr>
+<td>8</td>
+<td></td>
+<td>{result}</td>
+</tr>
+<tr>
+<td>9</td>
+<td>{i}</td>
+</tr>
+<tr>
+<td>10</td>
+<td></td>
+<td>{result,a}</td>
+</tr>
+<tr>
+<td>11</td>
+<td>{year}</td>
+<td>{year}</td>
+</tr>
+<tr>
+<td>12</td>
+<td>{result}</td>
+<td>{a,b,c,result}</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">边的引用变量</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>Edge</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(1,2)</td>
+<td>{a,i}</td>
+</tr>
+<tr>
+<td>(2,3)</td>
+<td>{i}</td>
+</tr>
+<tr>
+<td>(3,2)</td>
+</tr>
+<tr>
+<td>(2,4)</td>
+</tr>
+<tr>
+<td>(4,5)</td>
+<td>{i,b}</td>
+</tr>
+<tr>
+<td>(5,7)</td>
+<td>{i}</td>
+</tr>
+<tr>
+<td>(7,9)</td>
+<td>{i}</td>
+</tr>
+<tr>
+<td>(5,6)</td>
+<td>{result}</td>
+</tr>
+<tr>
+<td>(7,8)</td>
+<td>{result}</td>
+</tr>
+<tr>
+<td>(9,10)</td>
+<td>{result}</td>
+</tr>
+<tr>
+<td>(10,11)</td>
+<td>{a}</td>
+</tr>
+<tr>
+<td>(4,12)</td>
+<td>{a,b,c,result}</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DU(定义/引用)路径</span><br></pre></td></tr></table></figure>
+<p><table><br>  <tr><br>    <th colspan="3">DU(定义/引用)路径</th><br>  </tr><br>  <tr><br>        <th>Variable</th><br>        <th>DU Pairs</th><br>        <th>DU Paths</th><br>    </tr></table></p>
+  <tr><br>    <td rowspan="3">a</td><br>    <td>(1,2)</td><br>    <td>[1,2]</td><br>  </tr><br>  <tr><br>    <td>(1,10)<br></td><br>    <td>[1,2,4,5,7,9,10]</td><br>  </tr><br>  <tr><br>    <td>(1,12)</td><br>    <td>[1,2,4,5,7,9,10,11,12]</td><br>  </tr>
+
+
+   <tr><br>    <td rowspan="2">b</td><br>    <td>(1,4)</td><br>    <td>[1,2]</td><br>  </tr><br>    <tr><br>    <td>(1,12)<br></td><br>    <td>[1,2,4,5,7,9,10,11,12]</td><br>  </tr>
+
+   <tr><br>    <td rowspan="1">c</td><br>    <td>(1,12)</td><br>    <td>[1,2,4,5,7,9,10,11,12]</td><br>  </tr>
+
+<p>   <tr><br>    <td rowspan="5">result<br>    </td><br>    <td>(3,6)</td><br>    <td>[3,2,4,5,6]</td><br>  </tr><br>    <tr><br>    <td>(3,8)<br></td><br>    <td>[3,2,4,5,7,8]</td><br>  </tr><br>  <tr><br>    <td>(3,10)</td><br>    <td>[3,2,4,5,7,9,10]</td><br>  </tr><br>  <tr><br>    <td>(3,12)</td><br>    <td>[3,2,4,5,7,9,10,11,4,12]</td><br>  </tr><br>  <tr><br>    <td>(12,12)</td><br>    <td>[12]</td><br>  </tr></p>
+<h2 id><a href="#" class="headerlink" title></a></h2><h4 id="基于代码的覆盖——数据流覆盖"><a href="#基于代码的覆盖——数据流覆盖" class="headerlink" title="基于代码的覆盖——数据流覆盖"></a><strong>基于代码的覆盖——数据流覆盖</strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">共11条DU路径，8条唯一</span><br><span class="line">[1,2]</span><br><span class="line">[1,2,4,5,7,9,10]</span><br><span class="line">[1,2,4,5,7,9,10,11,12]</span><br><span class="line">[3,2,4,5,6]</span><br><span class="line">[3,2,4,5,7,8]</span><br><span class="line">[3,2,4,5,7,9,10]</span><br><span class="line">[3,2,4,5,7,9,10,11,4,12]</span><br><span class="line">[12]</span><br></pre></td></tr></table></figure>
+<hr>
+<p>###<strong>（8）变异测试</strong></p>
+<p>####<strong>变异体一</strong>：<br>与源代码相比改变闰年判定条件中的常数值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bool leapYear_1(int year)</span><br><span class="line">&#123;</span><br><span class="line">    return year%40==0 || year%100!=0 &amp;&amp; year%4==0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>####<strong>变异体二</strong>：<br>与源代码相比改变闰年判定条件中的或条件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bool leapYear_2(int year)</span><br><span class="line">&#123;</span><br><span class="line">    return year%400==0 &amp;&amp; year%100!=0 &amp;&amp; year%4==0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>####<strong>变异体三</strong>：<br>与源代码相比，改变闰年判定条件中的等式判定条件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bool leapYear_3(int year)</span><br><span class="line">&#123;</span><br><span class="line">    return year%400==0 &amp;&amp; year%100==0 &amp;&amp; year%4==0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>####<strong>变异体四</strong>：</p>
+<p>与源代码相比，省略闰年判定中的某个条件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bool leapYear_4(int year)</span><br><span class="line">&#123;</span><br><span class="line">    return year%400==0 || year%100!=0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>####<strong>变异体改变汇总</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">P:return year%400==0 || year%100!=0 &amp;&amp; year%4==0;</span><br><span class="line">M1:return year%40==0 || year%100!=0 &amp;&amp; year%4==0;</span><br><span class="line">M2:return year%400==0 &amp;&amp; year%100!=0 &amp;&amp; year%4==0;</span><br><span class="line">M3:return year%400==0 &amp;&amp; year%100==0 &amp;&amp; year%4==0;</span><br><span class="line">M4:return year%400==0 || year%100!=0;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>#####<strong>测试用例集</strong><br>| 编号 |  a |b |c<br>|—| —– | —- | —- |<br>|t1|2008|8|8<br>|t2|2007|7|8<br>|t3|2000 |8| 8<br>|t4|2001| 8| 8<br>|t5|1900| 8| 8</p>
+<hr>
+<p>#####<strong>测试执行结果</strong><br>| 测试编号 | P |M1|M2|M3|M4|杀死的变异体<br>|— | —– | —- | —- | —- | —- |—-|<br>|t1|5|5|4|4|5|M2 M3<br>|t2|7|7|7|7|1|M4<br>|t3|2|2|1|2|2|M2<br>|t4|3|3|3|3|4|M4<br>|t5|3|3|3|3|3|无</p>
+<hr>
+<p>#####<strong>测试用例集的充分性</strong><br>| 测试用例| 测试用例集的充分性|<br>|——-| —- |— | —– |<br>|t1|50%|<br>|t2|25%|<br>|t3|25%|<br>|t4|25%|<br>|t5|0%|</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/软件分析与测试/10.15软件测试作业--三角形/" rel="next" title="10.15软件测试作业--三角形">
+                <i class="fa fa-chevron-left"></i> 10.15软件测试作业--三角形
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/软件分析与测试/9.17 软件测试作业/" rel="prev" title="9.17 软件测试作业">
+                9.17 软件测试作业 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#程序的控制流图"><span class="nav-number">1.</span> <span class="nav-text">程序的控制流图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算相关定义、引用集合、DU-定义-引用-路径"><span class="nav-number">2.</span> <span class="nav-text">计算相关定义、引用集合、DU(定义/引用)路径</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于代码的覆盖——数据流覆盖"><span class="nav-number">1.</span> <span class="nav-text">基于代码的覆盖——数据流覆盖</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

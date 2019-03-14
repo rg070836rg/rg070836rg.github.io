@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="返回目录  本文目的在于，对线性表实现的描述，以及代码的简单实现 线性表概况描述下面是函数的头文件部分12345678910111213141516171819202122232425262728template &amp;lt;class dataType, int MaxSize&amp;gt;class SeqList &amp;#123;	dataType *data;						//用于存放数据元素的数组	i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性表的实现及其功能的拓展">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/data_structure/线性表的实现及其功能的拓展/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="返回目录  本文目的在于，对线性表实现的描述，以及代码的简单实现 线性表概况描述下面是函数的头文件部分12345678910111213141516171819202122232425262728template &amp;lt;class dataType, int MaxSize&amp;gt;class SeqList &amp;#123;	dataType *data;						//用于存放数据元素的数组	i">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/1.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.486Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="线性表的实现及其功能的拓展">
+<meta name="twitter:description" content="返回目录  本文目的在于，对线性表实现的描述，以及代码的简单实现 线性表概况描述下面是函数的头文件部分12345678910111213141516171819202122232425262728template &amp;lt;class dataType, int MaxSize&amp;gt;class SeqList &amp;#123;	dataType *data;						//用于存放数据元素的数组	i">
+<meta name="twitter:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/data_structure/线性表的实现及其功能的拓展/">
+
+
+
+
+
+  <title>线性表的实现及其功能的拓展 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/data_structure/线性表的实现及其功能的拓展/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">线性表的实现及其功能的拓展</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-structure/" itemprop="url" rel="index">
+                    <span itemprop="name">data_structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p><a href="https://www.zybuluo.com/rg070836rg/note/83692" target="_blank" rel="noopener">返回目录</a></p>
+<hr>
+<p>本文目的在于，对线性表实现的描述，以及代码的简单实现</p>
+<h2 id="线性表概况描述"><a href="#线性表概况描述" class="headerlink" title="线性表概况描述"></a>线性表概况描述</h2><p>下面是函数的头文件部分<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">dataType</span>, <span class="title">int</span> <span class="title">MaxSize</span>&gt;<span class="title">class</span> <span class="title">SeqList</span> &#123;</span></span><br><span class="line">	dataType *data;						<span class="comment">//用于存放数据元素的数组</span></span><br><span class="line">	<span class="keyword">int</span> length;							<span class="comment">//顺序表中的元素个数</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	SeqList();							<span class="comment">//无参构造函数</span></span><br><span class="line">	SeqList(dataType a[], <span class="keyword">int</span> n);		<span class="comment">//有参构造函数</span></span><br><span class="line">	~SeqList();</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">ListLength</span><span class="params">()</span></span>;					<span class="comment">//求线性表的长度</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">SetLength</span><span class="params">(<span class="keyword">int</span> length)</span></span>;</span><br><span class="line">	<span class="function">dataType <span class="title">Get</span><span class="params">(<span class="keyword">int</span> pos)</span></span>;				<span class="comment">//按位查找，取顺序表的第pos个元素</span></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">Locate</span><span class="params">(dataType item)</span></span>;			<span class="comment">//按值查找，求顺序表中值为item的元素序号</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">PrintSeqList</span><span class="params">()</span></span>;				<span class="comment">//遍历顺序表，按序号一次输出各元素</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Insert</span><span class="params">(<span class="keyword">int</span> i, dataType item)</span></span>;	<span class="comment">//在顺序表第i个位置插入值为item的元素</span></span><br><span class="line">	<span class="function">dataType <span class="title">Delete</span><span class="params">(<span class="keyword">int</span> i)</span></span>;				<span class="comment">//删除顺序表的第i个元素‘</span></span><br><span class="line">	*****</span><br><span class="line">	扩展部分</span><br><span class="line">	*****</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;first, <span class="keyword">const</span> <span class="keyword">int</span> &amp;last )</span></span>;<span class="comment">//快速排序</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Merge</span><span class="params">(SeqList &amp; LA, SeqList &amp; LB)</span></span>;			  <span class="comment">//合并有序表</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">IsOrder</span><span class="params">()</span></span>;									 <span class="comment">//判断表是否有序</span></span><br><span class="line">	<span class="function">dataType <span class="title">DeleteMinData</span><span class="params">()</span></span>;						<span class="comment">//删除最小元素，空位后值填补</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">DeleteStoT</span><span class="params">(dataType S,dataType T)</span></span>;			<span class="comment">//删除S-T的元素</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">DeleteXitem</span><span class="params">(dataType X)</span></span>;					<span class="comment">//删除元素X</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Deleterepeated</span><span class="params">()</span></span>;							<span class="comment">//删除重复元素</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">IsExited</span><span class="params">(dataType &amp;x,dataType *record,<span class="keyword">int</span> length)</span></span>;<span class="comment">//查看元素是否已存在</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">DevidedBya_1</span><span class="params">()</span></span>;							<span class="comment">//按照键值A1分开数组</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">const</span> dataType&amp;, <span class="keyword">const</span> dataType&amp;)</span></span>;		<span class="comment">//用于比较</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="一、基本功能"><a href="#一、基本功能" class="headerlink" title="一、基本功能"></a>一、基本功能</h2><h3 id="1-1无参构造函数"><a href="#1-1无参构造函数" class="headerlink" title="1.1无参构造函数"></a>1.1无参构造函数</h3><p>这个函数，适用于无参的构造函数，实现对空间的申请，以及长度置0；<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 无参数构造函数</span></span><br><span class="line"><span class="comment">* 仅设置长度为0</span></span><br><span class="line"><span class="comment">* @param[in] 无</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">dataType</span>, <span class="title">int</span> <span class="title">MaxSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">SeqList</span>&lt;dataType, MaxSize&gt;:</span>:SeqList()</span><br><span class="line">&#123;</span><br><span class="line">	data=<span class="keyword">new</span> dataType[MaxSize];</span><br><span class="line">	length = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="1-2有参构造函数"><a href="#1-2有参构造函数" class="headerlink" title="1.2有参构造函数"></a>1.2有参构造函数</h3><p>此函数用来，带有参数的赋值,做合法性检查，申请空间，置线性表长度。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 构造函数</span></span><br><span class="line"><span class="comment">* 设置线性表的初始值，长度</span></span><br><span class="line"><span class="comment">* @param[in] 数据源a，数量n</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">dataType</span>, <span class="title">int</span> <span class="title">MaxSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">SeqList</span>&lt;dataType, MaxSize&gt;:</span>:SeqList(dataType *a, <span class="keyword">int</span> n)</span><br><span class="line">&#123;	</span><br><span class="line">	data=<span class="keyword">new</span> dataType[MaxSize];</span><br><span class="line">	<span class="keyword">if</span> (n &gt; MaxSize)			<span class="comment">//数据合法性检查</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cerr</span> &lt;&lt; <span class="string">"error"</span>;</span><br><span class="line">		system(<span class="string">"pause"</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i &lt;n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		data[i] = a[i];				<span class="comment">//需要重载运算符‘=’</span></span><br><span class="line">	&#125;</span><br><span class="line">	length = n;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"\ncreate list success,length is "</span> &lt;&lt; length &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-3析构函数"><a href="#1-3析构函数" class="headerlink" title="1.3析构函数"></a>1.3析构函数</h3><p>用于在程序结束后，对申请空间进行销毁，做后续处理。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">* 析构函数</span><br><span class="line">* @param[in] 无</span><br><span class="line">*/</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">dataType</span>, <span class="title">int</span> <span class="title">MaxSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">SeqList</span>&lt;dataType, MaxSize&gt;:</span>:~SeqList()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(data) <span class="keyword">delete</span>[]data;</span><br><span class="line">	data=<span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-4求表长"><a href="#1-4求表长" class="headerlink" title="1.4求表长"></a>1.4求表长</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 返回线性表返回当前元素个数</span></span><br><span class="line"><span class="comment">* @param[out] 表长length</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">dataType</span>, <span class="title">int</span> <span class="title">MaxSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">int</span> <span class="title">SeqList</span>&lt;dataType, MaxSize&gt;:</span>:ListLength()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-5其他基本功能"><a href="#1-5其他基本功能" class="headerlink" title="1.5其他基本功能"></a>1.5其他基本功能</h3><p>还有一些基本功能，不在此贴出，详细请见源程序</p>
+<h2 id="二、扩展功能"><a href="#二、扩展功能" class="headerlink" title="二、扩展功能"></a>二、扩展功能</h2><h3 id="2-1快速排序"><a href="#2-1快速排序" class="headerlink" title="2.1快速排序"></a>2.1快速排序</h3><p>本函数采用快速排序的方法，对成员进行排序，目前采用的是运用cmp函数，以后可考虑用‘&lt;’重载<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 按照CMP的方式进行快速排序</span></span><br><span class="line"><span class="comment">* @param[in] 起始位置first，终止位置last，比较函数cmp</span></span><br><span class="line"><span class="comment">* 位置从0开始。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">dataType</span>, <span class="title">int</span> <span class="title">MaxSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">SeqList</span>&lt;dataType, MaxSize&gt;:</span>:quicksort(<span class="keyword">const</span> <span class="keyword">int</span> &amp;first, <span class="keyword">const</span> <span class="keyword">int</span> &amp;last)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> i = first, j = last;</span><br><span class="line">	<span class="keyword">const</span> dataType m = *(data + ((first + last) &gt;&gt; <span class="number">1</span>));</span><br><span class="line">	dataType temp;</span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span> (cmp(data[i], m)) i++;</span><br><span class="line">		<span class="keyword">while</span> (cmp(m, data[j])) j--;</span><br><span class="line">		<span class="keyword">if</span> (i &lt;= j)</span><br><span class="line">		&#123;</span><br><span class="line">			temp = data[i]; </span><br><span class="line">			data[i] = data[j]; </span><br><span class="line">			data[j] = temp;</span><br><span class="line">			i++; j--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">while</span> (i &lt; j);</span><br><span class="line">	<span class="keyword">if</span> (i &lt; last) quicksort( i, last);</span><br><span class="line">	<span class="keyword">if</span> (first &lt; j) quicksort(first, j);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-2归并有序表"><a href="#2-2归并有序表" class="headerlink" title="2.2归并有序表"></a>2.2归并有序表</h3><p>通过比较方法，取各数组较大值，最后把多余的附载在后面即可<br>其中，做了关于合法性的检测，还包含了先判断所给的数据是否有序的操作。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 合并两个有序表，并存在第一个中，</span></span><br><span class="line"><span class="comment">* @param[in] 表1LA，表2LB， 比较方法，cmp</span></span><br><span class="line"><span class="comment">* 位置从0开始。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">dataType</span>, <span class="title">int</span> <span class="title">MaxSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">SeqList</span>&lt;dataType, MaxSize&gt;:</span>:Merge(SeqList &amp;LA,SeqList &amp;LB)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>; <span class="keyword">int</span>  j = <span class="number">0</span>;<span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">	SeqList C;</span><br><span class="line">	<span class="keyword">if</span> (LA.ListLength() + LB.ListLength() &gt; MaxSize) &#123;</span><br><span class="line">		<span class="built_in">cerr</span> &lt;&lt; <span class="string">"溢出"</span>;</span><br><span class="line">		system(<span class="string">"pause"</span>);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	C.length = LA.ListLength() + LB.ListLength();</span><br><span class="line">	<span class="keyword">if</span>(!LA.IsOrder(cmp))&#123;LA.quicksort(<span class="number">0</span>,LA.ListLength()<span class="number">-1</span>,cmp);&#125;<span class="comment">//若A无序，先排序</span></span><br><span class="line">	<span class="keyword">if</span>(!LB.IsOrder(cmp))&#123;LA.quicksort(<span class="number">0</span>,LB.ListLength()<span class="number">-1</span>,cmp);&#125;</span><br><span class="line">	<span class="keyword">while</span> (i&lt;LA.ListLength() &amp;&amp; j&lt;LB.ListLength()) &#123;</span><br><span class="line">		<span class="comment">//循环，两两比较，小者存入结果表</span></span><br><span class="line">		<span class="keyword">if</span> (LA.data[i]&lt;=LB.data[j])</span><br><span class="line">			C.data[k++] = LA.data[i++];</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			C.data[k++] = LB.data[j++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(i==LA.ListLength()) &#123;</span><br><span class="line">		<span class="keyword">while</span> (j&lt; LB.ListLength()) &#123;</span><br><span class="line">			C.data[k++] = LB.data[j++];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">while</span> (i&lt;LA.ListLength()) &#123;</span><br><span class="line">			C.data[k++] = LA.data[i++];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;C.ListLength();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		LA.data[i]=C.data[i];</span><br><span class="line">	&#125;</span><br><span class="line">	LA.SetLength(C.ListLength());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">*检查元素是否有序</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">dataType</span>, <span class="title">int</span> <span class="title">MaxSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">SeqList</span>&lt;dataType, MaxSize&gt;:</span>:IsOrder()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;ListLength()  ; j++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (cmp(data[j], data[j + <span class="number">1</span>])) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-3删除S-T之间元素"><a href="#2-3删除S-T之间元素" class="headerlink" title="2.3删除S-T之间元素"></a>2.3删除S-T之间元素</h3><p>本函数比较复杂，目前版本没有实现完全功能，原因是没有重载运算符，对边界的处理不好。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 删除顺序表S-T之间元素，若S&lt;T报错，</span></span><br><span class="line"><span class="comment">* @param[in] S,T,</span></span><br><span class="line"><span class="comment">* @param[out] </span></span><br><span class="line"><span class="comment">* 位置从0开始。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">dataType</span>, <span class="title">int</span> <span class="title">MaxSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">SeqList</span>&lt;dataType, MaxSize&gt;:</span>:DeleteStoT(dataType S,dataType T)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(!cmp(S,T))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"输入有误，删除失败。。"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (IsOrder())&#123;</span><br><span class="line">		quicksort(<span class="number">0</span>,ListLength()<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;ListLength();i++)&#123;	<span class="comment">//找到S所在的位置i</span></span><br><span class="line">		<span class="keyword">bool</span> flag = !cmp(data[i],S);</span><br><span class="line">		<span class="keyword">if</span>(flag)&#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;ListLength();j++)&#123;	<span class="comment">//	找到T所在的位置j</span></span><br><span class="line">		<span class="keyword">bool</span> flag = !cmp(data[j],T);</span><br><span class="line">		<span class="keyword">if</span>(flag)&#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(i&gt;=<span class="number">0</span>&amp;&amp;j&lt;ListLength())&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k=j<span class="number">-1</span>;k&gt;=i;k--)&#123;</span><br><span class="line">			Delete(k+<span class="number">1</span>);	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-3删除X元素"><a href="#2-3删除X元素" class="headerlink" title="2.3删除X元素"></a>2.3删除X元素</h3><p>本函数用于删除顺序表中的X元素，未找到，提示消息。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">dataType</span>, <span class="title">int</span> <span class="title">MaxSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">SeqList</span>&lt;dataType, MaxSize&gt;:</span>:DeleteXitem(dataType X)&#123;</span><br><span class="line">	<span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;ListLength();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (X==data[i])</span><br><span class="line">		&#123;</span><br><span class="line">			Delete(i+<span class="number">1</span>);	</span><br><span class="line">			i=i<span class="number">-1</span>;</span><br><span class="line">			k++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (k==<span class="number">0</span>)<span class="built_in">cout</span>&lt;&lt;<span class="string">"Not Found!"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-4删除重复元素"><a href="#2-4删除重复元素" class="headerlink" title="2.4删除重复元素"></a>2.4删除重复元素</h3><p>本函数用于删除重复元素，编写时遍历表，找到第一次出现的元素，放在record数组中，后接受record的值<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 删除重复元素</span></span><br><span class="line"><span class="comment">* @param[in] </span></span><br><span class="line"><span class="comment">* @param[out] </span></span><br><span class="line"><span class="comment">* 位置从0开始。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">dataType</span>, <span class="title">int</span> <span class="title">MaxSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">SeqList</span>&lt;dataType, MaxSize&gt;:</span>:Deleterepeated()&#123;</span><br><span class="line">	dataType *record=<span class="keyword">new</span> <span class="keyword">int</span>[MaxSize];</span><br><span class="line">	<span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;ListLength();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (!IsExited(data[i],record,k))</span><br><span class="line">		&#123;</span><br><span class="line">			record[k++]=data[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">delete</span> []data;</span><br><span class="line">	data=record;</span><br><span class="line">	SetLength(k);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中用了一个辅助函数，判定是否第一次出现。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 判定元素是否出现过，辅助函数</span></span><br><span class="line"><span class="comment">* @param[in] 元素X，数组record，长度length</span></span><br><span class="line"><span class="comment">* @param[out] bool flag</span></span><br><span class="line"><span class="comment">* 位置从0开始。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">dataType</span>, <span class="title">int</span> <span class="title">MaxSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">SeqList</span>&lt;dataType, MaxSize&gt;:</span>:IsExited(dataType &amp;x,dataType *record,<span class="keyword">int</span> length)&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;length;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(x==record[i]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###2.5 划分元素<br>按照A[0]值，划分数组，要求复杂度为O（n）<br>思路如下：先遍历一遍，找到小于键值的，放到前面（交换），从这个位置继续开始继续遍历，找到等于的元素放到中间即可。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 按照a0的值划分，要求时间复杂度为O（N）</span></span><br><span class="line"><span class="comment">* @param[in] </span></span><br><span class="line"><span class="comment">* @param[out] </span></span><br><span class="line"><span class="comment">* 位置从1开始。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">dataType</span>, <span class="title">int</span> <span class="title">MaxSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">SeqList</span>&lt;dataType, MaxSize&gt;:</span>:DevidedBya_1()&#123;</span><br><span class="line">	dataType v=data[<span class="number">0</span>];<span class="comment">//键值V</span></span><br><span class="line">	<span class="keyword">int</span> k=<span class="number">0</span>;<span class="comment">//递进下标</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;ListLength();i++)		<span class="comment">//小于v的值归于左侧</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (data[i]&lt;v)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> tmp=data[i];</span><br><span class="line">			data[i]=data[k];</span><br><span class="line">			data[k]=tmp;</span><br><span class="line">			k++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (i=k;i&lt;ListLength();i++)		<span class="comment">//等于v的值继续归于中间，剩下的自然是大于v的值</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (data[i]==v)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> tmp=data[i];</span><br><span class="line">			data[i]=data[k];</span><br><span class="line">			data[k]=tmp;</span><br><span class="line">			k++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="三、测试（test-cpp）"><a href="#三、测试（test-cpp）" class="headerlink" title="三、测试（test.cpp）"></a>三、测试（test.cpp）</h2><p>下面是完整代码<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"SeqList.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"SeqList.cpp"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> MaxSize=<span class="number">100</span>;</span><br><span class="line">	<span class="keyword">int</span> number;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入数据个数\n"</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; number;</span><br><span class="line">	<span class="keyword">int</span> *a = <span class="keyword">new</span> <span class="keyword">int</span>[number];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span>  i = <span class="number">0</span>; i &lt; number; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	SeqList&lt;<span class="keyword">int</span>, <span class="number">100</span>&gt; lista(a, number);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt;<span class="string">"当前元素个数是："</span>&lt;&lt; lista.ListLength()&lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	lista.quicksort(<span class="number">0</span>,lista.ListLength() - <span class="number">1</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"排序后遍历打印："</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	lista.PrintSeqList();</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	lista.DeleteStoT(<span class="number">70</span>,<span class="number">90</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"删除S-T后遍历打印："</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	lista.PrintSeqList();</span><br><span class="line">	lista.Insert(<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"插入后遍历打印："</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	lista.PrintSeqList();</span><br><span class="line">	lista.DeleteXitem(<span class="number">100</span>);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span> &lt;&lt; <span class="string">"删除元素X后遍历打印："</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	lista.PrintSeqList();</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt;<span class="built_in">endl</span>&lt;&lt; <span class="string">"按照a0划分遍历打印："</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	lista.DevidedBya_1();</span><br><span class="line">	lista.PrintSeqList();</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt;<span class="built_in">endl</span>&lt;&lt; <span class="string">"删除重复元素后遍历打印："</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	lista.Deleterepeated();</span><br><span class="line">	lista.PrintSeqList();</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">if</span> (a) <span class="keyword">delete</span> []a;<span class="comment">//扫尾</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-1测试结果"><a href="#3-1测试结果" class="headerlink" title="3.1测试结果"></a>3.1测试结果</h3><p><img src="http://7xi4ge.com1.z0.glb.clouddn.com/1.png" alt="alt text" title="Title"></p>
+<h2 id="4、总结"><a href="#4、总结" class="headerlink" title="4、总结"></a>4、总结</h2><p>这次编程，还算顺利，但是对于引用对象还是不是很清楚，感谢老师刚刚发的文件，会去仔细看看的。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/data_structure/树/" rel="next" title="树">
+                <i class="fa fa-chevron-left"></i> 树
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/data_structure/线索二叉树/" rel="prev" title="线索二叉树">
+                线索二叉树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性表概况描述"><span class="nav-number">1.</span> <span class="nav-text">线性表概况描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、基本功能"><span class="nav-number">2.</span> <span class="nav-text">一、基本功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1无参构造函数"><span class="nav-number">2.1.</span> <span class="nav-text">1.1无参构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2有参构造函数"><span class="nav-number">2.2.</span> <span class="nav-text">1.2有参构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3析构函数"><span class="nav-number">2.3.</span> <span class="nav-text">1.3析构函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4求表长"><span class="nav-number">2.4.</span> <span class="nav-text">1.4求表长</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5其他基本功能"><span class="nav-number">2.5.</span> <span class="nav-text">1.5其他基本功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、扩展功能"><span class="nav-number">3.</span> <span class="nav-text">二、扩展功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1快速排序"><span class="nav-number">3.1.</span> <span class="nav-text">2.1快速排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2归并有序表"><span class="nav-number">3.2.</span> <span class="nav-text">2.2归并有序表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3删除S-T之间元素"><span class="nav-number">3.3.</span> <span class="nav-text">2.3删除S-T之间元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3删除X元素"><span class="nav-number">3.4.</span> <span class="nav-text">2.3删除X元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4删除重复元素"><span class="nav-number">3.5.</span> <span class="nav-text">2.4删除重复元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、测试（test-cpp）"><span class="nav-number">4.</span> <span class="nav-text">三、测试（test.cpp）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1测试结果"><span class="nav-number">4.1.</span> <span class="nav-text">3.1测试结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、总结"><span class="nav-number">5.</span> <span class="nav-text">4、总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

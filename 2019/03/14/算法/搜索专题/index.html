@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1234567891011121314151617181920212223242526272829       搜索与回溯是计算机解题中常用的算法，很多问题无法根据某种确定的计算法则来求解，可以利用搜索与回溯的技术求解。回溯是搜索算法中的一种控制策略。它的基本思想是：为了求得问题的解，先选择某一种可能情况向前探索，在探索过程中，一旦发现原来的选择是错误的，就退回一步重新选择，继续向前探索，如此反">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搜索专题">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/算法/搜索专题/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="1234567891011121314151617181920212223242526272829       搜索与回溯是计算机解题中常用的算法，很多问题无法根据某种确定的计算法则来求解，可以利用搜索与回溯的技术求解。回溯是搜索算法中的一种控制策略。它的基本思想是：为了求得问题的解，先选择某一种可能情况向前探索，在探索过程中，一旦发现原来的选择是错误的，就退回一步重新选择，继续向前探索，如此反">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/2sxyifuqo32aajz86sx7bnht/image_1c9lv6vuo1bb41oipkdd3hd1opk9.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/qfbvywfrmxgkqtlct5ypokw5/image_1c9m74k2n19i412kc1cm01bj81pu19.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/pxeziap5mwb9djdtxvh7gdxv/1.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.913Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搜索专题">
+<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829       搜索与回溯是计算机解题中常用的算法，很多问题无法根据某种确定的计算法则来求解，可以利用搜索与回溯的技术求解。回溯是搜索算法中的一种控制策略。它的基本思想是：为了求得问题的解，先选择某一种可能情况向前探索，在探索过程中，一旦发现原来的选择是错误的，就退回一步重新选择，继续向前探索，如此反">
+<meta name="twitter:image" content="http://static.zybuluo.com/rg070836rg/2sxyifuqo32aajz86sx7bnht/image_1c9lv6vuo1bb41oipkdd3hd1opk9.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/算法/搜索专题/">
+
+
+
+
+
+  <title>搜索专题 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/算法/搜索专题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">搜索专题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">       搜索与回溯是计算机解题中常用的算法，很多问题无法根据某种确定的计算法则来求解，可以利用搜索与回溯的技术求解。回溯是搜索算法中的一种控制策略。它的基本思想是：为了求得问题的解，先选择某一种可能情况向前探索，在探索过程中，一旦发现原来的选择是错误的，就退回一步重新选择，继续向前探索，如此反复进行，直至得到解或证明无解。</span><br><span class="line">       如迷宫问题：进入迷宫后，先随意选择一个前进方向，一步步向前试探前进,如果碰到死胡同，说明前进方向已无路可走，这时，首先看其它方向是否还有路可走，如果有路可走，则沿该方向再向前试探；如果已无路可走，则返回一步，再看其它方向是否还有路可走；如果有路可走，则沿该方向再向前试探。按此原则不断搜索回溯再搜索，直到找到新的出路或从原路返回入口处无解为止。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">递归回溯法算法框架[一]</span><br><span class="line">int Search(int k)</span><br><span class="line">　&#123;</span><br><span class="line">　for (i=1;i&lt;=算符种数;i++)</span><br><span class="line">　　if (满足条件)</span><br><span class="line">　　   &#123;</span><br><span class="line">　　　　保存结果</span><br><span class="line">　　　　if (到目的地) 输出解;</span><br><span class="line">　　　           else Search(k+1);</span><br><span class="line">　　　　恢复：保存结果之前的状态&#123;回溯一步&#125;</span><br><span class="line">　 　  &#125;</span><br><span class="line">　&#125;</span><br><span class="line">递归回溯法算法框架[二]</span><br><span class="line">int Search(int k)</span><br><span class="line">　&#123;</span><br><span class="line">　  if  (到目的地) 输出解;</span><br><span class="line">　　　else</span><br><span class="line">　　　　for (i=1;i&lt;=算符种数;i++)</span><br><span class="line">　　　　　if  (满足条件) </span><br><span class="line">　　　　　　　&#123;</span><br><span class="line">　　　　　　　　保存结果;</span><br><span class="line">　　　                  Search(k+1);</span><br><span class="line">　　　　　　　　恢复：保存结果之前的状态&#123;回溯一步&#125;</span><br><span class="line">　　　　　　　&#125;</span><br><span class="line">　&#125;</span><br></pre></td></tr></table></figure>
+<p>问题：</p>
+<p>##1 全排列<br>编写一个输出1，2，3…n，n个数字所组成的所有排列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define N 3</span><br><span class="line">//回溯写全排列</span><br><span class="line"> </span><br><span class="line">bool b[N+1]=&#123;0&#125;;</span><br><span class="line">int a[N+1]=&#123;0&#125;; </span><br><span class="line"></span><br><span class="line">void print_elems()  </span><br><span class="line">&#123;  </span><br><span class="line">    for (int i=1;i&lt;=N;i++)  </span><br><span class="line">    &#123;  </span><br><span class="line">        cout&lt;&lt;a[i]&lt;&lt;&quot; &quot;;  </span><br><span class="line">    &#125; </span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line">	if (t==N+1)  </span><br><span class="line">    &#123;  </span><br><span class="line">    	//到达目的地，输出解 </span><br><span class="line">        print_elems();  </span><br><span class="line">        return ;  </span><br><span class="line">    &#125;          </span><br><span class="line">    </span><br><span class="line">    for(int i=1;i&lt;=N;i++) </span><br><span class="line">    &#123;</span><br><span class="line">    	if(b[i]==false)//条件即数字还没被用过 </span><br><span class="line">    	&#123;                </span><br><span class="line">    		b[i]=true;</span><br><span class="line">    		a[t]=i;//</span><br><span class="line">			dfs(t+1);               </span><br><span class="line">			b[i]=false;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void dfs2(int t)</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">    </span><br><span class="line">    for(int i=1;i&lt;=N;i++) </span><br><span class="line">    &#123;</span><br><span class="line">    	if(b[i]==false)//条件即数字还没被用过 </span><br><span class="line">    	&#123;                </span><br><span class="line">    		b[i]=true;</span><br><span class="line">    		a[t]=i;//</span><br><span class="line">    		if(t&lt;N) </span><br><span class="line">				dfs2(t+1);</span><br><span class="line">    		else </span><br><span class="line">				print_elems(); </span><br><span class="line">			b[i]=false;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	//dfs(1);</span><br><span class="line">	dfs2(1);</span><br><span class="line">    return 0;//结束 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##2 字母全排列<br>输出字母a、b、c、d，4个元素全排列的每一种排列。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define N 3</span><br><span class="line">//回溯写全排列</span><br><span class="line"> </span><br><span class="line">bool b[N+1]=&#123;0&#125;;</span><br><span class="line">char a[N+1]; </span><br><span class="line">char c[N+1]; </span><br><span class="line">void print_elems()  </span><br><span class="line">&#123;  </span><br><span class="line">    for (int i=1;i&lt;=N;i++)  </span><br><span class="line">    &#123;  </span><br><span class="line">        cout&lt;&lt;a[i]&lt;&lt;&quot; &quot;;  </span><br><span class="line">    &#125; </span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line">	if (t==N+1)  </span><br><span class="line">    &#123;  </span><br><span class="line">    	//到达目的地，输出解 </span><br><span class="line">        print_elems();  </span><br><span class="line">        return ;  </span><br><span class="line">    &#125;          </span><br><span class="line">    </span><br><span class="line">    for(int i=1;i&lt;=N;i++) </span><br><span class="line">    &#123;</span><br><span class="line">    	if(b[i]==false)//条件即数字还没被用过 </span><br><span class="line">    	&#123;                </span><br><span class="line">    		b[i]=true;</span><br><span class="line">    		a[t]=c[i];//</span><br><span class="line">			dfs(t+1);               </span><br><span class="line">			b[i]=false;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	for(int i=1;i&lt;=N;i++) </span><br><span class="line">		c[i]=&apos;a&apos;+i-1;</span><br><span class="line">	dfs(1);</span><br><span class="line">    return 0;//结束 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##3 素数环<br>输入<br>有多组测试数据，每组输入一个n(0&lt;n&lt;20)，n=0表示输入结束。<br>输出<br>每组第一行输出对应的Case序号，从1开始。<br>如果存在满足题意叙述的素数环，从小到大输出。<br>否则输出No Answer。<br>样例输入<br>6<br>8<br>3<br>0<br>样例输出<br>Case 1:<br>1 4 3 2 5 6<br>1 6 5 2 3 4<br>Case 2:<br>1 2 3 8 5 6 7 4<br>1 2 5 8 3 4 7 6<br>1 4 7 6 5 8 3 2<br>1 6 7 4 3 8 5 2<br>Case 3:<br>No Answer</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">/* </span><br><span class="line">   素数环:给定n，1~n组成一个素数环，相邻两个数的和为素数。</span><br><span class="line">    首先偶数(2例外，但是本题不会出现两个数的和为2)不是素数，</span><br><span class="line">    所以素数环里奇偶间隔。如果n是奇数，必定有两个奇数相邻的情况。</span><br><span class="line">    所以当n为奇数时，输出“No Answer”。</span><br><span class="line">    当n == 1时只1个数，算作自环，输出1</span><br><span class="line">    所有n为偶数的情况都能变成奇偶间隔的环-----所以都有结果。</span><br><span class="line">*/</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int prime[40]=&#123;1,1,0,0,1,0,1,0,1,1,1,0,1,0,1,1,1,0,1,0,1,1,1,0,1,1,1,1,1,0,1,0,1,1,01,1,1,0,1,1&#125;;</span><br><span class="line">int b[21]=&#123;0&#125;;</span><br><span class="line">int a[21];</span><br><span class="line">int n;</span><br><span class="line"></span><br><span class="line">bool Is_prime(int x)</span><br><span class="line">&#123;</span><br><span class="line">    for (int i = 2; i &lt; x; i++)//也可用n/2，不过计算量要比sqrt大一些  </span><br><span class="line">    &#123;  </span><br><span class="line">        if (n%i == 0)  </span><br><span class="line">            return false;  </span><br><span class="line">    &#125;  </span><br><span class="line">    return true;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void DFS(int k)</span><br><span class="line">&#123;</span><br><span class="line">    //if(k==n+1 &amp;&amp; prime[a[n]+a[1]]==0)</span><br><span class="line">    if(k==n+1 &amp;&amp; Is_prime(a[n]+a[1])==0)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        for(int i=1;i&lt;=n;i++)</span><br><span class="line">            cout&lt;&lt;a[i];</span><br><span class="line">        cout&lt;&lt;endl;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i=2;i&lt;=n;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        if(!b[i]&amp;&amp;!prime[i+a[k-1]])</span><br><span class="line">        &#123;</span><br><span class="line">            b[i]=1;</span><br><span class="line">            a[k]=i;</span><br><span class="line">            DFS(k+1);</span><br><span class="line">            b[i]=0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    b[1]=a[1]=1;</span><br><span class="line">    DFS(2);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##4 r排列<br>设有n个整数的集合｛1,2,…,n｝，从中取出任意r个数进行排列（r&lt;n），试列出所有的排列!</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n,r;</span><br><span class="line">int a[1001]=&#123;0&#125;;</span><br><span class="line">int b[1001]=&#123;0&#125;;</span><br><span class="line">int cnt=0; </span><br><span class="line">void pr()</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=1;i&lt;=r;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[i]&lt;&lt;&quot; &quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void dfs(int t) </span><br><span class="line">&#123;</span><br><span class="line">	if(t==r+1)</span><br><span class="line">	&#123;</span><br><span class="line">		pr();</span><br><span class="line">		cnt++;</span><br><span class="line">		return ;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(b[i]==0)</span><br><span class="line">		&#123;</span><br><span class="line">			b[i]=1;</span><br><span class="line">			a[t]=i;</span><br><span class="line">			dfs(t+1);</span><br><span class="line">			b[i]=0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;r;</span><br><span class="line">	dfs(1);</span><br><span class="line">	cout&lt;&lt;cnt; </span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##5 分拆数<br>任何一个大于1的自然数n，总可以拆分成若干个小于n的自然数之和。<br>当n=7共14种拆分方法：<br>7=1+1+1+1+1+1+1<br>7=1+1+1+1+1+2<br>7=1+1+1+1+3<br>7=1+1+1+2+2<br>7=1+1+1+4<br>7=1+1+2+3<br>7=1+1+5<br>7=1+2+2+2<br>7=1+2+4<br>7=1+3+3<br>7=1+6<br>7=2+2+3<br>7=2+5<br>7=3+4<br>total=14</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">// ConsoleApplication1.cpp: 定义控制台应用程序的入口点。</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#include &quot;stdafx.h&quot;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n;</span><br><span class="line">int a[1001] = &#123; 1 &#125;;</span><br><span class="line">int res = 0;</span><br><span class="line">void pr(int x)</span><br><span class="line">&#123;</span><br><span class="line">	res++;</span><br><span class="line">	for (int i = 1; i &lt;= x; i++)</span><br><span class="line">		cout &lt;&lt; a[i] &lt;&lt; &quot; &quot;;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void dfs(int n, int q)</span><br><span class="line">&#123;</span><br><span class="line">	if (n == 0)</span><br><span class="line">	&#123;</span><br><span class="line">		if (q - 1&gt;1)</span><br><span class="line">			pr(q - 1);</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	else</span><br><span class="line">	&#123;</span><br><span class="line">		for (int i = a[q - 1]; i &lt;= n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			if (n &gt;= i)</span><br><span class="line">			&#123;</span><br><span class="line">				a[q] = i;</span><br><span class="line">				n -= i;</span><br><span class="line">				dfs(n, q + 1);</span><br><span class="line">				n += i;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void dfs2(int p, int q)</span><br><span class="line">&#123;</span><br><span class="line">	int i;</span><br><span class="line">	for (i = a[q - 1]; i &lt;= p; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if (i&lt;n)</span><br><span class="line">		&#123;</span><br><span class="line">			a[q] = i;</span><br><span class="line">			p -= i;</span><br><span class="line">			if (p == 0)pr(q);</span><br><span class="line">			else dfs2(p, q + 1);</span><br><span class="line">			p += i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	dfs2(n, 1);</span><br><span class="line">	cout &lt;&lt; res;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##6 八皇后<br>问题：要在国际象棋棋盘中放八个皇后，使任意两个皇后都不能互相吃。（提示：皇后能吃同一行、同一列、同一对角线的任意棋子。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n;</span><br><span class="line">int a[1001]=&#123;0&#125;;//a[1]=2 表示第一行皇后在第二列</span><br><span class="line">int b[1001]=&#123;0&#125;; </span><br><span class="line">int c[1001]=&#123;0&#125;; </span><br><span class="line">int d[1001]=&#123;0&#125;; </span><br><span class="line">int res=0;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line">	if(t==n+1)</span><br><span class="line">	&#123;</span><br><span class="line">		res++;</span><br><span class="line">		return ;</span><br><span class="line">		//输出结果 </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(b[i]==0 &amp;&amp; c[t+i]==0 &amp;&amp; d[t-i+n-1]==0)</span><br><span class="line">		&#123;</span><br><span class="line">			a[t]=i;</span><br><span class="line">			b[i]=1;//占领列</span><br><span class="line">			c[t+i]=1; </span><br><span class="line">			d[t-i+n-1]=1;</span><br><span class="line">			</span><br><span class="line">			dfs(t+1);</span><br><span class="line"></span><br><span class="line">			b[i]=0;</span><br><span class="line">			c[t+i]=0; </span><br><span class="line">			d[t-i+n-1]=0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	dfs(1);</span><br><span class="line">	cout&lt;&lt;res;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n;</span><br><span class="line">int a[1001]=&#123;0&#125;;//a[1]=2 表示第一行皇后在第二列</span><br><span class="line">int b[1001]=&#123;0&#125;; </span><br><span class="line">int c[1001]=&#123;0&#125;; </span><br><span class="line">int d[1001]=&#123;0&#125;; </span><br><span class="line">int res=0;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(b[i]==0 &amp;&amp; c[t+i]==0 &amp;&amp; d[t-i+n-1]==0)</span><br><span class="line">		&#123;</span><br><span class="line">			a[t]=i;</span><br><span class="line">			b[i]=1;//占领列</span><br><span class="line">			c[t+i]=1; </span><br><span class="line">			d[t-i+n-1]=1;</span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">			if(t==n)</span><br><span class="line">			&#123;</span><br><span class="line">				res++;</span><br><span class="line">			//输出结果 </span><br><span class="line">			&#125;</span><br><span class="line">			else dfs(t+1);</span><br><span class="line"></span><br><span class="line">			b[i]=0;</span><br><span class="line">			c[t+i]=0; </span><br><span class="line">			d[t-i+n-1]=0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	dfs(1);</span><br><span class="line">	cout&lt;&lt;res;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##7 马的遍历<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int a[1001][1] = &#123; 0 &#125;;//用来存储每一步对应的xy </span><br><span class="line"></span><br><span class="line">int res = 0;</span><br><span class="line">int x[5] = &#123; 0,2,1,-1,-2 &#125;;</span><br><span class="line">int y[5] = &#123; 0,1,2,2,1 &#125;;</span><br><span class="line">//(0,0)--&gt;(8,4)</span><br><span class="line"></span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	for (int i = 1; i &lt;= 4; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if (a[t - 1][0] + x[i] &gt;= 0 &amp;&amp; a[t - 1][0] + x[i] &lt;= 4 &amp;&amp;</span><br><span class="line">			a[t - 1][2] + y[i] &gt;= 0 &amp;&amp; a[t - 1][3] + y[i] &lt;= 8)//如果不出格子 </span><br><span class="line">		&#123;</span><br><span class="line">			a[t][0] = a[t - 1][0] + x[i];</span><br><span class="line">			a[t][4] = a[t - 1][5] + y[i];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			if (a[t][0] == 4 &amp;&amp; a[t][6] == 8)</span><br><span class="line">			&#123;</span><br><span class="line">				res++;</span><br><span class="line">				return;</span><br><span class="line">			&#125;</span><br><span class="line">			dfs(t + 1);</span><br><span class="line"></span><br><span class="line">			//a[t][0] = 0;</span><br><span class="line">			//a[t][7] = 0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void dfs2(int t)</span><br><span class="line">&#123;</span><br><span class="line">	if (a[t-1][0] == 4 &amp;&amp; a[t-1][8] == 8)</span><br><span class="line">	&#123;</span><br><span class="line">		res++;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i = 1; i &lt;= 4; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if (a[t - 1][0] + x[i] &gt;= 0 &amp;&amp; a[t - 1][0] + x[i] &lt;= 4 &amp;&amp;</span><br><span class="line">			a[t - 1][9] + y[i] &gt;= 0 &amp;&amp; a[t - 1][10] + y[i] &lt;= 8)//如果不出格子 </span><br><span class="line">		&#123;</span><br><span class="line">			a[t][0] = a[t - 1][0] + x[i];</span><br><span class="line">			a[t][11] = a[t - 1][12] + y[i];</span><br><span class="line"></span><br><span class="line">			dfs(t + 1);</span><br><span class="line"></span><br><span class="line">			//a[t][0] = 0;</span><br><span class="line">			//a[t][13] = 0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	dfs(1);</span><br><span class="line">	cout &lt;&lt; res;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##8 工作安排<br>设有A，B，C，D，E五人从事J1，J2，J3，J4，J5五项工作，每人只能从事一项，他们的效益如下。</p>
+<p><img src="http://static.zybuluo.com/rg070836rg/2sxyifuqo32aajz86sx7bnht/image_1c9lv6vuo1bb41oipkdd3hd1opk9.png" alt="image_1c9lv6vuo1bb41oipkdd3hd1opk9.png-24.8kB"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int a[6]=&#123;0&#125;;</span><br><span class="line">int b[6]=&#123;0&#125;;</span><br><span class="line">int c[6]=&#123;0&#125;;</span><br><span class="line">int job[6][15] =&#123;</span><br><span class="line">&#123;0,0,0,0,0,0&#125;,</span><br><span class="line">&#123;0,13,11,10,4,7&#125;,</span><br><span class="line">&#123;0,13,10,10,8,5&#125;,</span><br><span class="line">&#123;0,5,9,7,7,4&#125;,</span><br><span class="line">&#123;0,15,12,10,11,5&#125;,</span><br><span class="line">&#123;0,10,11,8,8,4&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//job[1][16] </span><br><span class="line">int v=0;</span><br><span class="line">int maxv=-1;</span><br><span class="line"></span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	if(t==6)</span><br><span class="line">	&#123;</span><br><span class="line">		if(maxv&lt;v)</span><br><span class="line">		&#123;</span><br><span class="line">			maxv=v;</span><br><span class="line">			for(int i=1;i&lt;=5;i++)</span><br><span class="line">				c[i]=a[i];</span><br><span class="line">		&#125;</span><br><span class="line">		//比较价值最大 </span><br><span class="line">		return ;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	for(int i=1;i&lt;=5;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(b[i]==0)</span><br><span class="line">		&#123;</span><br><span class="line">			//保存结果</span><br><span class="line">			a[t]=i;</span><br><span class="line">			b[i]=1;</span><br><span class="line">			v+=job[t][i];</span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">			dfs(t+1);</span><br><span class="line">			</span><br><span class="line">			//a[t]=0;</span><br><span class="line">			b[i]=0;</span><br><span class="line">			v-=job[t][i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void dfs2(int t)</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=1;i&lt;=5;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(b[i]==0)</span><br><span class="line">		&#123;</span><br><span class="line">			//保存结果</span><br><span class="line">			a[t]=i;</span><br><span class="line">			b[i]=1;</span><br><span class="line">			v+=job[t][i];</span><br><span class="line">			</span><br><span class="line">			if(t==5)</span><br><span class="line">			&#123;</span><br><span class="line">				if(maxv&lt;v)</span><br><span class="line">				&#123;</span><br><span class="line">					maxv=v;</span><br><span class="line">					for(int i=1;i&lt;=5;i++)</span><br><span class="line">						c[i]=a[i];</span><br><span class="line">				&#125;</span><br><span class="line">				//比较价值最大 </span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				dfs(t+1);</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			//a[t]=0;</span><br><span class="line">			b[i]=0;</span><br><span class="line">			v-=job[t][i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	//cout&lt;&lt;job[1][17];</span><br><span class="line">	dfs(1);</span><br><span class="line">	for(int i=1;i&lt;=5;i++)</span><br><span class="line">		cout&lt;&lt;c[i] &lt;&lt;&quot; &quot;;</span><br><span class="line">	cout&lt;&lt;endl&lt;&lt;maxv&lt;&lt;endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##9 选书问题<br>学校放寒假时，信息学竞赛辅导老师有A，B，C，D，E五本书，要分给参加培训的张、王、刘、孙、李五位同学，每人只能选一本书。老师事先让每个人将自己喜欢的书填写在如下的表格中。然后根据他们填写的表来分配书本，希望设计一个程序帮助老师求出所有可能的分配方案，使每个学生都满意。</p>
+<p><img src="http://static.zybuluo.com/rg070836rg/qfbvywfrmxgkqtlct5ypokw5/image_1c9m74k2n19i412kc1cm01bj81pu19.png" alt="image_1c9m74k2n19i412kc1cm01bj81pu19.png-34.9kB"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std; </span><br><span class="line"></span><br><span class="line">int like[6][19]=&#123;</span><br><span class="line">	&#123;0,0,0,0,0,0&#125;,</span><br><span class="line">	&#123;0,0,0,1,1,1&#125;,</span><br><span class="line">	&#123;0,1,0,1,1,1&#125;,</span><br><span class="line">	&#123;0,1,1,1,1,1&#125;,</span><br><span class="line">	&#123;0,1,1,0,0,1&#125;,</span><br><span class="line">	&#123;0,1,1,1,0,0&#125;,</span><br><span class="line">&#125;;</span><br><span class="line">int a[6] =&#123;0&#125;;</span><br><span class="line">int b[6] =&#123;0&#125;;</span><br><span class="line">int res=0;</span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=1;i&lt;=5;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(b[i]==0 &amp;&amp; like[t][i]==1)</span><br><span class="line">		&#123;</span><br><span class="line">			//a[t]=i;</span><br><span class="line">			b[i]=1;</span><br><span class="line">			</span><br><span class="line">			if(t==5)</span><br><span class="line">			&#123;</span><br><span class="line">				res++;</span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				dfs(t+1); </span><br><span class="line">			&#125;</span><br><span class="line">			//a[t]=0;</span><br><span class="line">			b[i]=0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	dfs(1);</span><br><span class="line">	cout&lt;&lt;res;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="10-马踏棋盘"><a href="#10-马踏棋盘" class="headerlink" title="10 马踏棋盘"></a>10 马踏棋盘</h2><p><img src="http://static.zybuluo.com/rg070836rg/pxeziap5mwb9djdtxvh7gdxv/1.png" alt="1.png-430.5kB"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int a[6][6] =&#123;0&#125;;</span><br><span class="line">int b[6][6] =&#123;0&#125;;</span><br><span class="line">int x[9]=&#123;0,1,2,2,1,-1,-2,-2,-1&#125;;</span><br><span class="line">int y[9]=&#123;0,-2,-1,1,2,2,1,-1,-2&#125;;</span><br><span class="line">int c[26][2] = &#123;0&#125;; //c[t][0]:x c[t][1]:y</span><br><span class="line"></span><br><span class="line">int res=0;</span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=1;i&lt;=8;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int X=c[t-1][0]+x[i];</span><br><span class="line">		int Y=c[t-1][1]+y[i]; </span><br><span class="line">		if( X&gt;=1 &amp;&amp; X&lt;=5 </span><br><span class="line">		&amp;&amp;  Y&gt;=1 &amp;&amp; Y&lt;=5</span><br><span class="line">		&amp;&amp; b[X][Y]==0)</span><br><span class="line">		&#123;</span><br><span class="line">			</span><br><span class="line">			b[X][Y]=1;//保存状态</span><br><span class="line">			a[X][Y]=t;//记录值 </span><br><span class="line">			c[t][0]=X;</span><br><span class="line">			c[t][1]=Y;</span><br><span class="line">			</span><br><span class="line">			//搜索下一层 </span><br><span class="line">			if(t==25)&#123;</span><br><span class="line">				res++;</span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				dfs(t+1);</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			//恢复状态 </span><br><span class="line">			b[X][Y]=0;</span><br><span class="line">			a[X][Y]=0;</span><br><span class="line">			c[t][0]=0;</span><br><span class="line">			c[t][1]=0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	b[1][1]=1;//初始条件！！</span><br><span class="line">	c[1][0]=1;c[1][1]=1;</span><br><span class="line">	dfs(2);</span><br><span class="line">	cout&lt;&lt;res;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##11 李白打酒</p>
+<pre><code>话说大诗人李白，一生好饮。幸好他从不开车。
+
+一天，他提着酒壶，从家里出来，酒壶中有酒2斗。他边走边唱：
+
+无事街上走，提壶去打酒。
+逢店加一倍，遇花喝一斗。
+
+这一路上，他一共遇到店5次，遇到花10次，已知最后一次遇到的是花，他正好把酒喝光了。 
+
+请你计算李白遇到店和花的次序，可以把遇店记为a，遇花记为b。则：babaabbabbabbbb 就是合理的次序。像这样的答案一共有多少呢？请你计算出所有可能方案的个数（包含题目给出的）。
+
+注意：通过浏览器提交答案。答案是个整数。不要书写任何多余的内容。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int res;</span><br><span class="line">void dfs(int dian,int hua,int jiu) </span><br><span class="line">&#123;</span><br><span class="line">	if(dian&gt;0)</span><br><span class="line">	&#123;</span><br><span class="line">		dfs(dian-1,hua,jiu*2);</span><br><span class="line">	&#125;</span><br><span class="line">	if(hua&gt;1)</span><br><span class="line">	&#123;</span><br><span class="line">		dfs(dian,hua-1,jiu-1);</span><br><span class="line">	&#125; </span><br><span class="line">	//结束条件 </span><br><span class="line">	if(dian==0 &amp;&amp; hua==1 &amp;&amp; jiu==1)</span><br><span class="line">		res++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	dfs(5,10,2);</span><br><span class="line">	cout&lt;&lt;res;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##12 凑数字<br>看这个算式：<br>☆☆☆ + ☆☆☆ = ☆☆☆<br>如果每个五角星代表 1 ~ 9 的不同的数字。<br>这个算式有多少种可能的正确填写方法？<br>173 + 286 = 459<br>295 + 173 = 468<br>173 + 295 = 468<br>183 + 492 = 675<br>以上都是正确的填写法！<br>注意：<br>111 + 222 = 333 是错误的填写法！<br>因为每个数字必须是不同的！<br>也就是说：1~9中的所有数字，每个必须出现且仅出现一次！<br>注意：<br>不包括数字“0”！<br>注意：<br>满足加法交换率的式子算两种不同的答案。<br>所以答案肯定是个偶数！</p>
+<p>注意：<br>只要求计算不同的填法的数目<br>不要求列出所有填写法<br>更不要求填写源代码！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">//思路  全排列，加判断等式</span><br><span class="line"></span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int res[10000];</span><br><span class="line">int b[10000]=&#123;0&#125;;</span><br><span class="line">int n;</span><br><span class="line">int resnum=0;</span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(b[i]==0)   //剪枝 </span><br><span class="line">		&#123;</span><br><span class="line">			b[i]=1; </span><br><span class="line">			res[t]=i;</span><br><span class="line">			if(t==n)</span><br><span class="line">			&#123;</span><br><span class="line">				//123456789</span><br><span class="line">				int num1 = res[1]*100+res[2]*10+res[3];</span><br><span class="line">				int num2 = res[4]*100+res[5]*10+res[6];</span><br><span class="line">				int num3 = res[7]*100+res[8]*10+res[9];</span><br><span class="line">				if(num1+num2==num3)</span><br><span class="line">				&#123;</span><br><span class="line">					cout&lt;&lt;num1&lt;&lt;&quot;+&quot;&lt;&lt;num2&lt;&lt;&quot;=&quot;&lt;&lt;num3&lt;&lt;endl;</span><br><span class="line">					resnum++;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">				dfs(t+1);</span><br><span class="line">				</span><br><span class="line">			b[i]=0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	n=9; </span><br><span class="line">	dfs(1);</span><br><span class="line">	cout&lt;&lt;resnum;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/数据库作业/数据库作业12.24/" rel="next" title="数据库作业12.24">
+                <i class="fa fa-chevron-left"></i> 数据库作业12.24
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/算法/算法概论复习提纲/" rel="prev" title="算法概论复习提纲">
+                算法概论复习提纲 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-马踏棋盘"><span class="nav-number">1.</span> <span class="nav-text">10 马踏棋盘</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

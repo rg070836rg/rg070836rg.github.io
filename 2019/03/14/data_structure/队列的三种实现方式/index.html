@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="##简介三种实现方式，其实就是指，循环队列如何实现判空判满，区别就在这一块，原因是，如果不修改普通队列，会出现二义性，因为空满的状态其实是同一种状态。 下面介绍这三种方式。 ##方式一通过空出一个位置，解决判空/满的冲突，这是第一次介绍循环队列，附上全部实现：1234567891011121314151617//模板头文件template&amp;lt;class T,int MAXSIZE&amp;gt;		/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="队列的三种实现方式">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/data_structure/队列的三种实现方式/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="##简介三种实现方式，其实就是指，循环队列如何实现判空判满，区别就在这一块，原因是，如果不修改普通队列，会出现二义性，因为空满的状态其实是同一种状态。 下面介绍这三种方式。 ##方式一通过空出一个位置，解决判空/满的冲突，这是第一次介绍循环队列，附上全部实现：1234567891011121314151617//模板头文件template&amp;lt;class T,int MAXSIZE&amp;gt;		/">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%9701.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%9702.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.511Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="队列的三种实现方式">
+<meta name="twitter:description" content="##简介三种实现方式，其实就是指，循环队列如何实现判空判满，区别就在这一块，原因是，如果不修改普通队列，会出现二义性，因为空满的状态其实是同一种状态。 下面介绍这三种方式。 ##方式一通过空出一个位置，解决判空/满的冲突，这是第一次介绍循环队列，附上全部实现：1234567891011121314151617//模板头文件template&amp;lt;class T,int MAXSIZE&amp;gt;		/">
+<meta name="twitter:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%9701.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/data_structure/队列的三种实现方式/">
+
+
+
+
+
+  <title>队列的三种实现方式 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/data_structure/队列的三种实现方式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">队列的三种实现方式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-structure/" itemprop="url" rel="index">
+                    <span itemprop="name">data_structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>##简介<br>三种实现方式，其实就是指，循环队列如何实现判空判满，区别就在这一块，原因是，如果不修改普通队列，会出现二义性，因为空满的状态其实是同一种状态。 下面介绍这三种方式。</p>
+<p>##方式一<br>通过空出一个位置，解决判空/满的冲突，这是第一次介绍循环队列，附上全部实现：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//模板头文件</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">int</span> <span class="title">MAXSIZE</span>&gt;		//定义类模板<span class="title">CirQueue</span></span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">CirQueue</span>  </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	CirQueue();</span><br><span class="line">	~CirQueue();</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">EnQueue</span><span class="params">(T x)</span></span>;<span class="comment">//入栈操作，将元素x入栈</span></span><br><span class="line">	<span class="function">T <span class="title">DeQueue</span><span class="params">()</span></span>;	<span class="comment">//出栈操作，将队头元素出队</span></span><br><span class="line">	<span class="function">T <span class="title">GetQueue</span><span class="params">()</span></span>;	<span class="comment">//取队头元素</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">IsFull</span><span class="params">()</span></span>;	<span class="comment">//判断队列是否为满</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">Empty</span><span class="params">()</span></span>;	<span class="comment">//判断队列是否为空</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	T data[MAXSIZE];	<span class="comment">//元素域</span></span><br><span class="line">	<span class="keyword">int</span> front,rear;		<span class="comment">//队头和队尾的指针</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>队列，其实很简单，他是只允许在一端进行插入，而在另一端进行删除的运算受限的线性表，所以比较容易掌握。</p>
+<p>下面附上具体函数的实现：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">*	无参构造函数，</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">int</span> <span class="title">MAXSIZE</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">CirQueue</span>&lt;T,MAXSIZE&gt;:</span>:CirQueue()</span><br><span class="line">&#123;</span><br><span class="line">	front=rear=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">*	入队函数，因为要求在队尾增加元素，</span></span><br><span class="line"><span class="comment">*   所以，如果线性表未满</span></span><br><span class="line"><span class="comment">*	让尾指针向后移，为了不出现假溢出，充分利用空间，</span></span><br><span class="line"><span class="comment">*   所以有取模操作，当到达尾部最大值，则回到0，重新开始。</span></span><br><span class="line"><span class="comment">*   插入时先移动指针，后插入</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">int</span> <span class="title">QueueSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">CirQueue</span>&lt;T,QueueSize&gt;:</span>:EnQueue(T x)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(IsFull())	<span class="comment">//判满</span></span><br><span class="line">	&#123;	</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"上溢"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	rear = (rear+<span class="number">1</span>) % QueueSize;			<span class="comment">//队尾指针在循环意义上加1</span></span><br><span class="line">	data[rear] = x;							<span class="comment">//在队尾处插入元素</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">*	出队函数，在队头弹出元素，</span></span><br><span class="line"><span class="comment">*   所以，如果线性表不空</span></span><br><span class="line"><span class="comment">*	头指针后移，指向当前的第一个元素，如果当前头指针指向最后一个格子</span></span><br><span class="line"><span class="comment">*   那么进行取模操作，回到0位置。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">int</span> <span class="title">QueueSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">CirQueue</span>&lt;T,QueueSize&gt;:</span>:DeQueue()</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(Empty())	<span class="comment">//判空</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cerr</span>&lt;&lt;<span class="string">"下溢"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	front = (front+<span class="number">1</span>) % QueueSize;			<span class="comment">//队头指针在循环意义上加1</span></span><br><span class="line">	<span class="keyword">return</span> data[front];						<span class="comment">//读取并返回出队前的队头元素</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 取队头元素，不出队伍。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">int</span> <span class="title">QueueSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">CirQueue</span>&lt;T,QueueSize&gt;:</span>:GetQueue()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(Empty())	<span class="comment">//判空</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cerr</span>&lt;&lt;<span class="string">"下溢"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> i = (front+<span class="number">1</span>) % QueueSize;		<span class="comment">//队头指针在循环意义上加1</span></span><br><span class="line">	<span class="keyword">return</span> data[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 判空函数</span></span><br><span class="line"><span class="comment">* 如果当两指针重合，队列为空</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">int</span> <span class="title">QueueSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">CirQueue</span>&lt;T,QueueSize&gt;:</span>:Empty()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> front == rear;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 判满函数</span></span><br><span class="line"><span class="comment">* 如果尾指针逻辑后一格为头指针</span></span><br><span class="line"><span class="comment">* 表示空间满</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">int</span> <span class="title">QueueSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">CirQueue</span>&lt;T,QueueSize&gt;:</span>:IsFull()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>( (rear+<span class="number">1</span>) % QueueSize == front) </span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>下面对这个函数做个基本的测试。。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	CirQueue&lt;<span class="keyword">int</span>,<span class="number">5</span>&gt; Q;</span><br><span class="line">	<span class="comment">//塞满整个队列</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"塞满队列。。。"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (!Q.IsFull())</span><br><span class="line">		&#123;</span><br><span class="line">			Q.EnQueue(<span class="built_in">pow</span>(<span class="number">2</span>,i));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//测试访问头元素</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"取出头元素："</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;Q.GetQueue()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//依次出列</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"依次出列："</span>;</span><br><span class="line">	<span class="keyword">while</span> (!Q.Empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;Q.DeQueue()&lt;&lt;<span class="string">"  "</span>;<span class="comment">//因为这个函数写了返回值。。</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试结果如图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%9701.png" alt="此处输入图片的描述"></p>
+<p>##方式二<br>为了不浪费一个元素空间，加上一个布尔变量，在入队操作时候把他变为true，如果flag为真，并且front==rear，那么表明队伍满了；在出队的时候，把他设为false，如果最后一个操作为出队，那么又遇到了front==rear，那么表明，这个时候队伍是空的。代码实现如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//与上一方式，在这边，仅加了一个bool的控制量</span></span><br><span class="line"><span class="keyword">private</span>：</span><br><span class="line">    <span class="keyword">bool</span> flag;</span><br></pre></td></tr></table></figure>
+<p>下面列出实现时候，与第一种的区别之处：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">int</span> <span class="title">MAXSIZE</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">CirQueue</span>&lt;T,MAXSIZE&gt;:</span>:~CirQueue()</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">*	无参构造函数，设置flag为假，保证，初始判断让程序判断为空</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">int</span> <span class="title">MAXSIZE</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">CirQueue</span>&lt;T,MAXSIZE&gt;:</span>:CirQueue()</span><br><span class="line">&#123;</span><br><span class="line">	front=rear=<span class="number">0</span>;</span><br><span class="line">	flag=<span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">*	入队函数，因为要求在队尾增加元素，</span></span><br><span class="line"><span class="comment">*   所以，如果线性表未满</span></span><br><span class="line"><span class="comment">*	让尾指针向后移，为了不出现假溢出，充分利用空间，</span></span><br><span class="line"><span class="comment">*   所以有取模操作，当到达尾部最大值，则回到0，重新开始。</span></span><br><span class="line"><span class="comment">*   插入时先移动指针，后插入</span></span><br><span class="line"><span class="comment">*   同时，让flag置为true</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">int</span> <span class="title">QueueSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">CirQueue</span>&lt;T,QueueSize&gt;:</span>:EnQueue(T x)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(IsFull())	<span class="comment">//判满</span></span><br><span class="line">	&#123;	</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"上溢"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	rear = (rear+<span class="number">1</span>) % QueueSize;			<span class="comment">//队尾指针在循环意义上加1</span></span><br><span class="line">	data[rear] = x;							<span class="comment">//在队尾处插入元素</span></span><br><span class="line">	flag=<span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">*	出队函数，在队头弹出元素，</span></span><br><span class="line"><span class="comment">*   所以，如果线性表不空</span></span><br><span class="line"><span class="comment">*	头指针后移，指向当前的第一个元素，如果当前头指针指向最后一个格子，</span></span><br><span class="line"><span class="comment">*   那么进行取模操作，回到0位置。</span></span><br><span class="line"><span class="comment">*   所以队头所指的空间是么有元素的。</span></span><br><span class="line"><span class="comment">*   同时置flag为false</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">int</span> <span class="title">QueueSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">CirQueue</span>&lt;T,QueueSize&gt;:</span>:DeQueue()</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(Empty())	<span class="comment">//判空</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cerr</span>&lt;&lt;<span class="string">"下溢"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	front = (front+<span class="number">1</span>) % QueueSize;			<span class="comment">//队头指针在循环意义上加1</span></span><br><span class="line">	flag=<span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">return</span> data[front];						<span class="comment">//读取并返回出队前的队头元素</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 取队头元素，不出队伍。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">int</span> <span class="title">QueueSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">CirQueue</span>&lt;T,QueueSize&gt;:</span>:GetQueue()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(Empty())	<span class="comment">//判空</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cerr</span>&lt;&lt;<span class="string">"下溢"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> i = (front+<span class="number">1</span>) % QueueSize;		<span class="comment">//队头指针在循环意义上加1</span></span><br><span class="line">	<span class="keyword">return</span> data[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 判空函数</span></span><br><span class="line"><span class="comment">* 如果当两指针重合，队列为空</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">int</span> <span class="title">QueueSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">CirQueue</span>&lt;T,QueueSize&gt;:</span>:Empty()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> ( flag==<span class="literal">false</span> &amp;&amp; front == rear )</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 判满函数</span></span><br><span class="line"><span class="comment">* 如果尾指针逻辑后一格为头指针</span></span><br><span class="line"><span class="comment">* 表示空间满</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">int</span> <span class="title">QueueSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">CirQueue</span>&lt;T,QueueSize&gt;:</span>:IsFull()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> ( flag==<span class="literal">true</span> &amp;&amp; front == rear )</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试函数不做变动，测试结果如下：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%9702.png" alt="此处输入图片的描述"></p>
+<p>##方式三<br>用计数器来存储个数，当计数器等于0的时候，空；当计数器等于MAXSIZE的时候，满！<br>程序很简单，不多说。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 判空函数</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">int</span> <span class="title">QueueSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">CirQueue</span>&lt;T,QueueSize&gt;:</span>:Empty()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> count==<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 判满函数</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">int</span> <span class="title">QueueSize</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">CirQueue</span>&lt;T,QueueSize&gt;:</span>:IsFull()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> count==QueueSize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试结果和方法二同。</p>
+<p>##总结：<br>三种方法</p>
+<blockquote>
+<ul>
+<li>空出一个格子</li>
+</ul>
+<ul>
+<li>加上flag判定</li>
+<li>加上计数器</li>
+</ul>
+</blockquote>
+<p> 还要注意一点:为了实现循环计数，要掌握下面的语句</p>
+<blockquote>
+<ul>
+<li>raer=(rear+1)%MAXSIZE</li>
+<li>front=(front+1)%MAXSIZE</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/data_structure/递归调用的详细过程/" rel="next" title="递归调用的详细过程">
+                <i class="fa fa-chevron-left"></i> 递归调用的详细过程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/data_structure/顺序查找以及折半查找/" rel="prev" title="顺序查找以及折半查找">
+                顺序查找以及折半查找 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

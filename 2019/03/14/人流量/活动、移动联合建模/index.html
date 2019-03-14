@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Who, Where, When and What: Discover Spatio-Temporal Topics for Twitter UsersKDD’13, August 11–14, 2013, Chicago, Illinois, USA.Quan Yuan, Gao Cong, Zongyang Ma, Aixin Sun, Nadia Magnenat-Thalmann 模型与方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="活动、移动联合建模">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/人流量/活动、移动联合建模/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="Who, Where, When and What: Discover Spatio-Temporal Topics for Twitter UsersKDD’13, August 11–14, 2013, Chicago, Illinois, USA.Quan Yuan, Gao Cong, Zongyang Ma, Aixin Sun, Nadia Magnenat-Thalmann 模型与方">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.637Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="活动、移动联合建模">
+<meta name="twitter:description" content="Who, Where, When and What: Discover Spatio-Temporal Topics for Twitter UsersKDD’13, August 11–14, 2013, Chicago, Illinois, USA.Quan Yuan, Gao Cong, Zongyang Ma, Aixin Sun, Nadia Magnenat-Thalmann 模型与方">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/人流量/活动、移动联合建模/">
+
+
+
+
+
+  <title>活动、移动联合建模 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/人流量/活动、移动联合建模/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">活动、移动联合建模</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人流量/" itemprop="url" rel="index">
+                    <span itemprop="name">人流量</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Who-Where-When-and-What-Discover-Spatio-Temporal-Topics-for-Twitter-Users"><a href="#Who-Where-When-and-What-Discover-Spatio-Temporal-Topics-for-Twitter-Users" class="headerlink" title="Who, Where, When and What: Discover Spatio-Temporal Topics for Twitter Users"></a>Who, Where, When and What: Discover Spatio-Temporal Topics for Twitter Users</h3><p><em>KDD’13, August 11–14, 2013, Chicago, Illinois, USA.</em><br><em>Quan Yuan, Gao Cong, Zongyang Ma, Aixin Sun, Nadia Magnenat-Thalmann</em></p>
+<h4 id="模型与方法："><a href="#模型与方法：" class="headerlink" title="模型与方法："></a><strong>模型与方法：</strong></h4><ul>
+<li><p>四个直觉想法：</p>
+<ul>
+<li>(1)人的移动可以被区分在不同的区域，比如生活区域和工作区域，在不同时间段会待在不同区域</li>
+<li>(2)用户在一个区域的目的收到用户个人兴趣和位置区域功能类型的双重影响 </li>
+<li>(3)当用户选择去什么地方的时候，自己的兴趣需求和当前所处的位置会被综合考虑 </li>
+<li>(4)用户推特中的文字信息会随着地理区域和兴趣主题的不同而变化</li>
+</ul>
+</li>
+<li><p>特征选取与生成过程：</p>
+<ul>
+<li>日期状态s，$p(s|u)$ 服从工作日和休息日两个状态的二项分布</li>
+<li>时间t，$p(t|u,s)$ 服从均匀分布/高斯混合分布</li>
+<li>区域r，$p(r|u,s,t)$ 服从多项分布</li>
+<li>活动主题z，$p(z|u,r)$ 服从多项分布</li>
+<li>具体位置l，$p(l|r,z)=κp(l|z)+(1-κ)p(l|r)$ ，其中p(l|r)是经过转换后的高斯分布</li>
+<li>推特单词w，$p(w|r,z)=λp(w|z)+(1-λ)p(w|r)$ </li>
+</ul>
+</li>
+<li><p>推特的联合概率分布$$p(u,r,z,s,t,l,w)  \=p(u)p(s|u)p(t|u,s)p(r|u,s,t)p(z|u,r)p(l|r,z)p(w|r,z)\=p(u)p(s|u)p(r|u,s)p(t|u,s,r)p(z|u,r)p(l|r,z)p(w|r,z) $$  </p>
+<p>其中$p(r|u,s)$、$p(z|u,r)$等参数用EM算法根据历史数据进行对数似然估计</p>
+</li>
+<li><p>有了联合概率分布，就可以预测其中的任何一项条件概率</p>
+</li>
+</ul>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>语义信息用关键词表示，语义信息和位置信息联合建模</li>
+<li>只考虑随时间变化</li>
+<li>都采用了常见的概率分布</li>
+</ul>
+<h3 id="What’s-Your-Next-Move-User-Activity-Prediction-in-Location-based-Social-Networks"><a href="#What’s-Your-Next-Move-User-Activity-Prediction-in-Location-based-Social-Networks" class="headerlink" title="What’s Your Next Move: User Activity Prediction in Location-based Social Networks"></a>What’s Your Next Move: User Activity Prediction in Location-based Social Networks</h3><p><em>Proceedings of the 2013 SIAM International Conference on Data Mining</em><br><em>Jihang Ye, Zhe Zhu, Hong Cheng</em></p>
+<h4 id="模型与方法：-1"><a href="#模型与方法：-1" class="headerlink" title="模型与方法："></a><strong>模型与方法：</strong></h4><ul>
+<li>用HMM刻画用户在位置类型间的转移来代表活动规律，将活动信息视为观察变量</li>
+<li>考虑到用户的活动规律依赖于当时的情景，添加了时间-位置协同变量，将HMM变成了Mixed HMM</li>
+<li>对相似用户做了聚类，用HMM刻画了用户类在位置类型上的转移规律</li>
+<li>预测到下一步用户要去的位置类型后，再预测具体位置，提出4种给位置排序的方法，分别是基于总签到次数，用户数，用户数*签到数，用户最大签到数。</li>
+</ul>
+<h4 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h4><ul>
+<li>活动信息用POI的类型来表示，对活动信息进行独立建模</li>
+<li>在活动的转移规律的基础上，考虑了时间-位置协同作用</li>
+<li>对具体位置预测直接采用排序方式</li>
+</ul>
+<h3 id="Lifting-the-Predictability-of-Human-Mobility-on-Activity-Trajectories"><a href="#Lifting-the-Predictability-of-Human-Mobility-on-Activity-Trajectories" class="headerlink" title="Lifting the Predictability of Human Mobility on Activity Trajectories"></a>Lifting the Predictability of Human Mobility on Activity Trajectories</h3><p><em>2015 IEEE 15th International Conference on Data Mining Workshops</em><br><em>Xianming Li, Defu Lian, Xing Xie and Guangzhong Sun</em></p>
+<h4 id="模型与方法：-2"><a href="#模型与方法：-2" class="headerlink" title="模型与方法："></a><strong>模型与方法：</strong></h4><ul>
+<li>假设用户下一个访问的位置只取决于之前访问的位置序列$Г$以及下一次访问时间和准备要进行的活动:$$P(l_{n+1},t_{n+1},a_{n+1}|Г<em>u) = P(l</em>{n+1}|l_{1:n},t_{n+1},a_{n+1})*P(t_{n+1},a_{n+1}|Г_u)$$（1）</li>
+<li>不同时间的不同活动之间是有内在联系的，并且这种潜在的联系在不同用户之间是共享的，同时用户有各自的属性，相似属性的用户很可能有相似的移动规律。选用主题模型来对活动的规律进行建模。</li>
+<li>将时间-活动元组当作单词，将活动轨迹当作文档，用户的属性为文档的元数据。</li>
+<li>使用随机EM算法和吉布森采样来估计主体模型相关参数，包括每个用户的活动主题分布$p(k|u)$，每个主题上的单词分布$φ_{k,w}$，前后状态的依赖$p(z_i|z_{i-1})$</li>
+<li>使用隐马尔科夫模型来建立活动间的转移模型，即可得出(1)式右端第二项$P(t_{n+1},a_{n+1}|Г<em>u)$，活动主题作为隐变量，用户的活动作为观测值，初始状态是$p(k|u)$，发射概率是$φ</em>{k,w}$，状态转移概率是$p(z_i|z_{i-1})$</li>
+<li>(1)式右端第一项不容易直接估计，可以将其转换成3个条件概率的混合$$P(l_{n+1}|l_{1:n},t_{n+1},a_{n+1}) = λ<em>lP(l</em>{n+1}|l_{1:n}) + λ<em>tP(l</em>{n+1}|t_{n+1}) + λ<em>aP(l</em>{n+1}|a_{n+1})$$</li>
+<li>$P(l_{n+1}|l_{1:n})$可以使用马尔科夫模型来估计</li>
+<li>另外两项可以使用EM算法做极大似然估计</li>
+</ul>
+<h4 id="特点：-1"><a href="#特点：-1" class="headerlink" title="特点："></a>特点：</h4><ul>
+<li>活动信息用词汇向量表示，活动规律单独建模</li>
+<li>用户和活动的关系用主题模型建模，转移规律用隐马模型建模，把时间也当作预测的输出之一</li>
+<li>移动规律转化成3个条件概率的混合</li>
+</ul>
+<h3 id="Personalized-Point-of-Interest-Recommendation-by-Mining-Users’-Preference-Transition"><a href="#Personalized-Point-of-Interest-Recommendation-by-Mining-Users’-Preference-Transition" class="headerlink" title="Personalized Point-of-Interest Recommendation by Mining Users’ Preference Transition"></a>Personalized Point-of-Interest Recommendation by Mining Users’ Preference Transition</h3><p><em>CIKM’13， Xin Liu, Yong Liu and Karl Aberer</em></p>
+<h4 id="模型与方法：-3"><a href="#模型与方法：-3" class="headerlink" title="模型与方法："></a>模型与方法：</h4><ul>
+<li>将相隔时间在一定范围内的活动组成一个序列，称为story，认为story内的活动是相关的，关注与story内的活动转移规律；</li>
+<li>根据用户签到相似性，对用户进行聚类，减轻数据稀疏的影响。抽取了用户在每种类型的POI上签到的时间片分布，用k-means进行聚类；</li>
+<li>用协同过滤的方法对用户组在POI类型上的转移做预测，通过对用户-转移概率矩阵做分解，得到用户特征向量和转移概率特征向量。在矩阵分解时采用了正则化方法；</li>
+<li>得到了POI类型转移规律，综合考虑用户的活动目的和地理空间的影响。利用前面得到的结果得出活动的概率分布，假设地理空间的影响服从幂律分布，最终选择一个POI的概率为类型概率*地理空间影响。</li>
+</ul>
+<h4 id="特点：-2"><a href="#特点：-2" class="headerlink" title="特点："></a>特点：</h4><ul>
+<li>活动目的用POI的类型表示，活动规律单独建模</li>
+<li>不考虑时间因素，只考虑转移概率，对位置预测考虑了地理空间影响</li>
+<li>活动规律建模时，考虑了用户行为的相似性，进行了聚类和协同过滤</li>
+</ul>
+<h3 id="Location-Recommendation-Based-on-Periodicity-of-Human-Activities-and-Location-Categories"><a href="#Location-Recommendation-Based-on-Periodicity-of-Human-Activities-and-Location-Categories" class="headerlink" title="Location Recommendation Based on Periodicity of Human Activities and Location Categories"></a>Location Recommendation Based on Periodicity of Human Activities and Location Categories</h3><p><em>PAKDD 2013, Seyyed Mohammadreza Rahimi and Xin Wang</em></p>
+<h4 id="模型与方法：-4"><a href="#模型与方法：-4" class="headerlink" title="模型与方法："></a>模型与方法：</h4><ul>
+<li>将用户在同一时间窗口内访问相同类型位置的行为划分到一个子集</li>
+<li>利用每个子集内用户签到的平均时刻来估计用户活动的时间分布，建立起以时间为随机变量，用户进行各种类型活动的概率分布</li>
+<li>在此基础上，进行位置推荐时，综合考虑该时刻用户活动目的，以及位置因素影响，具体由该位置和用户家所在地的距离相关</li>
+</ul>
+<h4 id="特点：-3"><a href="#特点：-3" class="headerlink" title="特点："></a>特点：</h4><ul>
+<li>活动目的用POI的类型表示，活动规律单独建模</li>
+<li>只考虑时间因素，不考虑转移概率，对位置预测考虑了地理空间影响</li>
+</ul>
+<h3 id="Collaborative-Filtering-Meets-Mobile-Recommendation-A-User-centered-Approach"><a href="#Collaborative-Filtering-Meets-Mobile-Recommendation-A-User-centered-Approach" class="headerlink" title="Collaborative Filtering Meets Mobile Recommendation: A User-centered Approach"></a>Collaborative Filtering Meets Mobile Recommendation: A User-centered Approach</h3><p><em>AAAI 2010, Vincent W. Zheng, Bin Cao, Yu Zheng, Xing Xie and Qiang Yang</em></p>
+<h4 id="模型与方法：-5"><a href="#模型与方法：-5" class="headerlink" title="模型与方法："></a>模型与方法：</h4><ul>
+<li>将用户-位置-活动三个维度构成一个张量，通过张量分解，分解出用户特征向量、位置特征向量和活动特征向量</li>
+<li>用协同过滤的方式进行位置推荐</li>
+</ul>
+<h4 id="特点：-4"><a href="#特点：-4" class="headerlink" title="特点："></a>特点：</h4><ul>
+<li>活动目的用POI的类型表示，活动规律和位置规律联合建模</li>
+<li>没有考虑地理空间的因素，也没有考虑时间特征影响</li>
+</ul>
+<h4 id="Inferring-and-Exploiting-Categories-for-Next-Location-Prediction"><a href="#Inferring-and-Exploiting-Categories-for-Next-Location-Prediction" class="headerlink" title="Inferring and Exploiting Categories for Next Location Prediction"></a>Inferring and Exploiting Categories for Next Location Prediction</h4><p><em>Www’15 Companion: Proceedings of the 24th International Conference on World Wide Web</em> </p>
+<p><em>Likhyani A. ,  Padmanabhan D. , Bedathur S. , Mehta, S.</em></p>
+<h4 id="模型与方法：-6"><a href="#模型与方法：-6" class="headerlink" title="模型与方法："></a>模型与方法：</h4><ul>
+<li>将用户下一步进行的活动概率用用户自己的活动转移概率和所有用户的活动转移概率线性结合表示</li>
+<li>由用户的活动目的再得到他下一步到访位置的概率</li>
+<li>将活动目的的概率结合一个现有的考虑了时间、历史记录和社交关系的模型线性结合</li>
+</ul>
+<h4 id="特点：-5"><a href="#特点：-5" class="headerlink" title="特点："></a>特点：</h4><ul>
+<li>活动目的用POI的类型表示，类型和位置不需要一一对应</li>
+<li>活动规律和位置规律分别建模</li>
+<li>最后和其它因素线性结合考虑</li>
+</ul>
+<h4 id="TOPTRAC-Topical-Trajectory-Pattern-Mining"><a href="#TOPTRAC-Topical-Trajectory-Pattern-Mining" class="headerlink" title="TOPTRAC: Topical Trajectory Pattern Mining"></a>TOPTRAC: Topical Trajectory Pattern Mining</h4><p><em>2015, Proceedings of the 21th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em></p>
+<p><em>Kim Younghoon, Han  Jiawei, Yuan Cangzhou</em></p>
+<p><strong>模型与方法:</strong></p>
+<ul>
+<li>生成模型，位置生成主题，主题生成关键词，生成推文和位置的主体是否相关</li>
+<li>位置间的转移pattern由频繁模式挖掘来发现？</li>
+</ul>
+<p><strong>特点：</strong></p>
+<ul>
+<li>活动信息由推文表示，位置和语义联合建模</li>
+<li>只挖掘2阶的频繁区域转移</li>
+<li>不考虑时间因素</li>
+</ul>
+<p>[16]</p>
+<h3 id="Spatial-topic-modeling-in-online-social-media-for-location-recommendation"><a href="#Spatial-topic-modeling-in-online-social-media-for-location-recommendation" class="headerlink" title="Spatial topic modeling in online social media for location recommendation"></a>Spatial topic modeling in online social media for location recommendation</h3><p><em>RecSys’13, Hu Bo, Ester Martin</em></p>
+<p><strong>模型与方法：</strong></p>
+<ul>
+<li>生成模型，区域生成主题，区域主题生成位置，主题生成推文</li>
+</ul>
+<p><strong>特点：</strong></p>
+<ul>
+<li>活动信息由推文表示，位置和语义联合建模</li>
+<li>只根据当前背景状态生成用户最感兴趣的位置，因此不用考虑时间因素</li>
+</ul>
+<h3 id="GeoSoCa-Exploiting-Geographical-Social-and-Categorical-Correlations-for-Point-of-Interest-Recommendations"><a href="#GeoSoCa-Exploiting-Geographical-Social-and-Categorical-Correlations-for-Point-of-Interest-Recommendations" class="headerlink" title="GeoSoCa: Exploiting Geographical, Social and Categorical Correlations for Point-of-Interest Recommendations"></a>GeoSoCa: Exploiting Geographical, Social and Categorical Correlations for Point-of-Interest Recommendations</h3><p><em>SIGIR’15 , Zhang Jia-Dong , Chow Chi-Yin</em></p>
+<h4 id="模型与方法：-7"><a href="#模型与方法：-7" class="headerlink" title="模型与方法："></a>模型与方法：</h4><ul>
+<li>综合考虑了地理距离、社交关系和POI的类型，采用计分的方法，分别对三个方面打分</li>
+<li>用核密度估计来估计地理距离的影响</li>
+<li>朋友对POI的影响用幂律分布来刻画</li>
+<li>同时考虑用户对POI类型的爱好和位置的流行度</li>
+</ul>
+<h4 id="特点：-6"><a href="#特点：-6" class="headerlink" title="特点："></a>特点：</h4><ul>
+<li>活动信息由POI类型表示，一个POI可能对应几个类型</li>
+<li>位置和语义分别建模</li>
+<li>综合考虑了多种影响</li>
+</ul>
+<h4 id="参考内容："><a href="#参考内容：" class="headerlink" title="参考内容："></a>参考内容：</h4><p>Related work</p>
+<h1 id="位置预测研究总结"><a href="#位置预测研究总结" class="headerlink" title="位置预测研究总结"></a>位置预测研究总结</h1><p>标签（空格分隔）： References</p>
+<hr>
+<h2 id="What’s-Your-Next-Move-User-Activity-Prediction-in-Location-based-Social-Networks-1"><a href="#What’s-Your-Next-Move-User-Activity-Prediction-in-Location-based-Social-Networks-1" class="headerlink" title="What’s Your Next Move: User Activity Prediction in Location-based Social Networks"></a>What’s Your Next Move: User Activity Prediction in Location-based Social Networks</h2><p><em>Proceedings of the 2013 SIAM International Conference on Data Mining</em><br><em>Jihang Ye, Zhe Zhu, Hong Cheng</em></p>
+<h4 id="模型与方法：-8"><a href="#模型与方法：-8" class="headerlink" title="模型与方法："></a><strong>模型与方法：</strong></h4><ul>
+<li>位置用POI表示（name,longitude,latitude,category）</li>
+<li>用HMM刻画用户在位置类型间的转移来代表活动规律</li>
+<li>考虑到用户的活动规律依赖于当时的情景，添加了时间-位置协同变量</li>
+<li>对相似用户做了聚类，用HMM刻画了用户类在位置类型上的转移规律</li>
+<li>预测到下一步用户要去的位置类型后，再预测具体位置，提出4种给位置排序的方法，分别是基于总签到次数，用户数，用户数*签到数，用户最大签到数。</li>
+</ul>
+<h4 id="存在的问题："><a href="#存在的问题：" class="headerlink" title="存在的问题："></a><strong>存在的问题：</strong></h4><ul>
+<li>没有利用到地理空间的任何信息，时间段作为输入</li>
+<li>对没有历史记录的场所，在预测好位置类型后，无法给出排名</li>
+</ul>
+<p>##Who, Where, When and What: Discover Spatio-Temporal Topics for Twitter Users<br><em>KDD’13, August 11–14, 2013, Chicago, Illinois, USA.</em><br><em>Quan Yuan, Gao Cong, Zongyang Ma, Aixin Sun, Nadia Magnenat-Thalmann</em></p>
+<h4 id="模型与方法：-9"><a href="#模型与方法：-9" class="headerlink" title="模型与方法："></a><strong>模型与方法：</strong></h4><ul>
+<li>四个直觉想法：<ul>
+<li>(1)人的移动可以被区分在不同的区域，比如生活区域和工作区域，在不同时间段会待在不同区域</li>
+<li>(2)用户在一个区域的目的收到用户个人兴趣和位置区域功能类型的双重影响 </li>
+<li>(3)当用户选择去什么地方的时候，自己的兴趣需求和当前所处的位置会被综合考虑 </li>
+<li>(4)用户推特中的文字信息会随着地理区域和兴趣主题的不同而变化</li>
+</ul>
+</li>
+<li><p>特征选取与生成过程：</p>
+<ul>
+<li>日期状态s，p(s|u)服从工作日和休息日两个状态的二项分布</li>
+<li>时间t，p(t|u,s)服从均匀分布/高斯混合分布</li>
+<li>区域r，p(r|u,s,t)服从多项分布</li>
+<li>活动主题z，p(z|u,r)服从多项分布</li>
+<li>具体位置l，p(l|r,z)=κp(l|z)+(1-κ)p(l|r)，其中p(l|r)是经过转换后的高斯分布</li>
+<li>推特单词w，p(w|r,z)=λp(w|z)+(1-λ)p(w|r)</li>
+</ul>
+</li>
+<li><p>推特的联合概率分布 $$p(u,r,z,s,t,l,w)  \= p(u)p(s|u)p(t|u,s)p(r|u,s,t)p(z|u,r)p(l|r,z)p(w|r,z)\<br>=p(u)p(s|u)p(r|u,s)p(t|u,s,r)p(z|u,r)p(l|r,z)p(w|r,z)$$其中p(r|u,s)、p(z|u,r)等参数用EM算法根据历史数据进行对数似然估计</p>
+</li>
+<li>有了联合概率分布，就可以预测其中的任何一项条件概率</li>
+</ul>
+<p>####<strong>存在的问题：</strong></p>
+<ul>
+<li>没有利用人移动和活动的转移关系，只利用了时间特征</li>
+<li>对于没有历史记录的位置，无法估计p(l|z)，p(l|r)按高斯分布估计</li>
+</ul>
+<h2 id="When-and-Where-Predicting-Human-Movements-Based-on-Social-Spatial-Temporal-Events"><a href="#When-and-Where-Predicting-Human-Movements-Based-on-Social-Spatial-Temporal-Events" class="headerlink" title="When and Where: Predicting Human Movements Based on Social Spatial-Temporal Events"></a>When and Where: Predicting Human Movements Based on Social Spatial-Temporal Events</h2><p><em>N Yang, X Kong, F Wang, SY Philip - SDM, 2014</em></p>
+<h4 id="模型与方法：-10"><a href="#模型与方法：-10" class="headerlink" title="模型与方法："></a><strong>模型与方法：</strong></h4><ul>
+<li>用SSTE来建模用户的社交关系，用户SSTE是用户社交关系网络的子图，带有时间-位置属性，表示该社交互动发生的时间和位置。SSTE的规律性可以用来表示用户移动规律背后的社交行为规律。</li>
+<li>用ARMA模型刻画SSTE的变化，用卡尔曼过滤来动态更新ARMA参数</li>
+<li>利用ARMA模型预测两次SSTE间的时间间隔，进而得到下一次SSTE发生的时间</li>
+<li>在预测出的时间，预测用户所处的位置。首先用用户历史记录中，该时间段所处位置的频率分布得出P(L<sub>u</sub>=λ|T<sub>u</sub>=τ)，然后考虑用户的社交关系影响，用户的朋友曾经在这个时间出现过的位置的频率分布，然后线性相加得出最终的概率公式。</li>
+</ul>
+<h4 id="存在的问题：-1"><a href="#存在的问题：-1" class="headerlink" title="存在的问题："></a><strong>存在的问题：</strong></h4><ul>
+<li>没有利用人移动和活动的转移关系，也没有利用地理位置和活动信息</li>
+<li>引入社交关系将预测方法只局限于check-in</li>
+<li>对于没有历史记录的位置，无法预测</li>
+</ul>
+<p>##Regularity and Conformity: Location Prediction Using Heterogeneous Mobility Data<br><em>KDD’15, August 10-13, 2015, Sydney, NSW, Australia.</em><br><em>YingziWang,Xing Xie, Nicholas Jing Yuan, Enhong Chen, Defu Lian, Yong Rui</em></p>
+<h4 id="模型与方法：-11"><a href="#模型与方法：-11" class="headerlink" title="模型与方法："></a><strong>模型与方法：</strong></h4><ul>
+<li>用户移动规律既有规律性又有相似性，两者应该被综合考虑</li>
+<li>用户u<sub>i</sub>在t时刻到访场所v<sub>j</sub>的概率由规律项和相似项组成：$P_{ij} (t) = R_{ij}(t) + C_{ij}(t)$  (1)</li>
+<li>规律项$R_{ij}(t)$<ul>
+<li>将地理空间划分为大小相同的格子，每个格子用其中心点的坐标表示，假设v<sub>j</sub>属于格子$d_{k_j}$，假设用户在地理网格间的转移具有马尔科夫性，则用户u<sub>i</sub>从d<sub>k</sub>到v<sub>j</sub>的概率$Pr(v_j|d_k) = Pr(d_{k_j}|d_k)Pr(v_j|d_{k_j})$(2) ，整合从所有格子到v<sub>j</sub>的概率即可得到用户u<sub>i</sub>到访场所v<sub>j</sub>的概率$Pr(v_j|u_i)$</li>
+<li>(2)式右端第一项可以用其它的移动数据集使用重力模型来估计，设地理网格$d_i$的出度为$O_i$，$d_j$的入度为$I_j$，$d_i$和$d_j$的距离为$dis_{i,j}$，则$d_i$和$d_j$间的流动性与$O_i$$I_j$成正比，与e的$dis_{i,j}$次方成反比。采用多变量回回归的方法来估计重力模型中的参数。</li>
+<li>(2)式右端第二项可以通过统计在$d_{k_j}$中$v_j$的频率来计算。$Pr(d_k|u_i)$可以通过统计用户在格子$d_k$出现的频率来估计</li>
+<li>由于用户访问位置的记录有多中心化的特点，将网格集合C聚类为G，用户签到主要集中在一些大热区和小热区，不论是大小热区在地理空间上的分布都很稀疏，采用了一个稀疏组的Lasso-based模型来约束规律项</li>
+</ul>
+</li>
+<li>相似项$C_{ij}(t)$:<ul>
+<li>将协同过滤的方式，预测用户对新奇位置的寻找情况。采用矩阵分解的方式，将用户的位置偏好分解成两个低维潜在因素的矩阵U和V，分别表示用户和POI，并且为用户矩阵添加了潜在的时间影响因子U(t)</li>
+</ul>
+</li>
+<li>模型添加了正则项来提高泛化性能，用交替最小化的方法来学习未知的参数</li>
+</ul>
+<p>####<strong>存在的问题：</strong></p>
+<ul>
+<li>没有利用活动信息，对位置间的转移采用的是一阶马尔科夫模型</li>
+<li>对没有历史记录的位置，$Pr(v_j|d_{k_j})$为0，无法给出预测</li>
+</ul>
+<h2 id="CEPR-A-Collaborative-Exploration-and-Periodically-Returning-Model-for-Location-Prediction"><a href="#CEPR-A-Collaborative-Exploration-and-Periodically-Returning-Model-for-Location-Prediction" class="headerlink" title="CEPR: A Collaborative Exploration and Periodically Returning Model for Location Prediction"></a>CEPR: A Collaborative Exploration and Periodically Returning Model for Location Prediction</h2><p><em>ACM Transactions on Intelligent Systems and Technology 2015</em><br><em>Lian Defu, Xie Xing, Zheng Vincent W., Yuan Nicholas Jing, Zhang Fuzheng, Chen Enhong</em></p>
+<h4 id="模型与方法"><a href="#模型与方法" class="headerlink" title="模型与方法:"></a><strong>模型与方法:</strong></h4><ul>
+<li>通过对数据集的分析得出：(1)位置转移上的序列性并不显著，在访问过的地点序列中找下一个位置，有30-50个可能的位置，而在基站的定位数据中，只有2个左右(2)在常规位置的签到有很强的天周期性，但是比基站定位的轨迹数据还是弱很多，(3)新颖率在0.25-0.4左右。</li>
+<li>通过对位置推荐和位置预测模型的评估，得出优质的位置推荐算法很难刻画移动模式中的规律性行为，而专门刻画规律性的推荐算法则会在推荐的性能上有所衰退。</li>
+<li>探索预测$Pr(Explore)$：给定用户u的位置历史C，关于她的探索预测问题是预测下一个签到位置是否是新颖的。用来进行探索预测的特征分为用户历史特征、位置空间特征和时间特征：<ul>
+<li>用户历史特征：不同地点的个数（对94%用户而言，随着地点个数增多，探索概率下降趋势减弱）、用户的地点访问频率分布熵（具有更高熵的用户更倾向于在新颖位置签到）、新颖率（当前以探索的位置）、签到天数（用户签到时间越长、探索概率越低）、上一个状态的新颖性（当前处于探索状态更有可能继续探索）</li>
+<li>位置空间特征：距离其它签到位置的平均距离、位置熵（即在该位置附近签到的频率的熵）、访问率（该位置周围被访问过的位置数量）</li>
+<li>时间特征：Hour of day，Day of week，Hour of week，距离上一次签到的时间间隔</li>
+</ul>
+</li>
+<li>探索预测模型的训练：采用逻辑回归和分类回归树两个监督模型，分别得出连续概率值和二分类结果</li>
+<li>常规位置预测$P_r(l)$：用一阶隐式马尔科夫模型来预测序列性，把位置当作隐状态，把时间信息当作观测值，可以将马尔科夫模型和时间规律性模型在一个模型中同时出现。<ul>
+<li>发射概率估计$P(h|l)$和$P(d|l)$：这里的d、h和l分别是一周中的第d天，一天中的的第h小时以及位置l。这两个概率可以用极大似然估计。由于训练数据稀疏，我们用高斯核函数进行平滑，并且要考虑到小时和天数是循环相接的</li>
+<li>隐状态的初始概率估计：用户在地点l签到频率的极大似然估计</li>
+<li>隐状态的转移概率估计：同样由于训练数据稀疏，使用Kneser-Ney平滑技术来估计，该方法可以和马尔科夫模型的全贝叶斯相对应。</li>
+</ul>
+</li>
+<li>新颖位置的预测$P_n(l)$：基于用户相似性来建立协同过滤模型，并结合地理特征进行预测<ul>
+<li>用户相似性：访问位置的相似性和社交网络的相似性</li>
+<li>地理特征：对每个人的空间位置分布进行二维核密度估计</li>
+</ul>
+</li>
+<li>综合模型：协同探索周期回归模型的概率输出$P(l) = Pr(Explore)P_n(l)+(1-Pr(Explore))P_r(l)$.</li>
+<li>实验评测：(1)离散的分类模型更适合做探索预测 (2)常规位置预测问题上，文中使用的发射概率单独的预测结果比单独状态转移概率的各类马尔科夫模型都要好，两者综合起来的隐式马尔科夫模型效果比发射概率稍有提升 (3)所有位置的预测上，利用$Pr(Explore)$的两种模型都比线性组合获得的结果更好，其中离散模型效果最好，相比只有$P_r(l)$的方法提升准确率达30%</li>
+</ul>
+<h4 id="存在的问题：-2"><a href="#存在的问题：-2" class="headerlink" title="存在的问题："></a><strong>存在的问题：</strong></h4><ul>
+<li>常规位置和新颖位置的预测均未考虑活动信息，考虑了地理位置上的序列规律和周期规律、地理空间的特征以及用户相似性特征</li>
+<li>对于完全没有历史记录的位置，用户相似性特征也无法利用</li>
+</ul>
+<h2 id="Lifting-the-Predictability-of-Human-Mobility-on-Activity-Trajectories-1"><a href="#Lifting-the-Predictability-of-Human-Mobility-on-Activity-Trajectories-1" class="headerlink" title="Lifting the Predictability of Human Mobility on Activity Trajectories"></a>Lifting the Predictability of Human Mobility on Activity Trajectories</h2><p><em>2015 IEEE 15th International Conference on Data Mining Workshops</em><br><em>Xianming Li, Defu Lian, Xing Xie and Guangzhong Sun</em></p>
+<h4 id="模型与方法：-12"><a href="#模型与方法：-12" class="headerlink" title="模型与方法："></a><strong>模型与方法：</strong></h4><ul>
+<li>假设用户下一个访问的位置只取决于之前访问的位置序列$Г$以及下一次访问时间和准备要进行的活动:$$P(l_{n+1},t_{n+1},a_{n+1}|Г<em>u) = P(l</em>{n+1}|l_{1:n},t_{n+1},a_{n+1})*P(t_{n+1},a_{n+1}|Г_u)$$（1）</li>
+<li>不同时间的不同活动之间是有内在联系的，并且这种潜在的联系在不同用户之间是共享的，同时用户有各自的属性，相似属性的用户很可能有相似的移动规律。选用主题模型来对活动的规律进行建模。<ul>
+<li>将时间-活动元组当作单词，将活动轨迹当作文档，用户的属性为文档的元数据。</li>
+<li>使用随机EM算法和吉布森采样来估计主体模型相关参数，包括每个用户的活动主题分布$p(k|u)$，每个主题上的单词分布$φ_{k,w}$，前后状态的依赖$p(z_i|z_{i-1})$</li>
+<li>使用隐马尔科夫模型来建立活动间的转移模型，即可得出(1)式右端第二项$P(t_{n+1},a_{n+1}|Г<em>u)$，活动主题作为隐变量，用户的活动作为观测值，初始状态是$p(k|u)$，发射概率是$φ</em>{k,w}$，状态转移概率是$p(z_i|z_{i-1})$</li>
+</ul>
+</li>
+<li>(1)式右端第一项不容易直接估计，可以将其转换成3个条件概率的混合$$P(l_{n+1}|l_{1:n},t_{n+1},a_{n+1}) = λ<em>lP(l</em>{n+1}|l_{1:n}) + λ<em>tP(l</em>{n+1}|t_{n+1}) + λ<em>aP(l</em>{n+1}|a_{n+1})$$<ul>
+<li>$P(l_{n+1}|l_{1:n})$可以使用马尔科夫模型来估计</li>
+<li>另外两项可以使用EM算法做极大似然估计</li>
+</ul>
+</li>
+</ul>
+<h4 id="存在的问题：-3"><a href="#存在的问题：-3" class="headerlink" title="存在的问题："></a><strong>存在的问题：</strong></h4><ul>
+<li>没有利用地理空间的特征，将时间-活动两个维度绑定在了一起用HMM模型刻画，对于周期性有损失</li>
+<li>对于没有历史记录的位置，无法预测</li>
+</ul>
+<h2 id="WhereNext-a-Location-Predictor-on-Trajectory-Pattern-Mining"><a href="#WhereNext-a-Location-Predictor-on-Trajectory-Pattern-Mining" class="headerlink" title="WhereNext: a Location Predictor on Trajectory Pattern Mining"></a>WhereNext: a Location Predictor on Trajectory Pattern Mining</h2><p><em>KDD’09, June 28–July 1, 2009, Paris, France.</em><br><em>Anna Monreale, Fabio Pinelli, Roberto Trasarti</em></p>
+<p>####<strong>模型与方法：</strong></p>
+<ul>
+<li>Trajectory Pattern算法将地理空间划分为统一大小的网格区域，计算经过各区域的轨迹密度，将密度大于阈值σ的区域作为轨迹的模式中的位置，将两个区域间的转移时间作为T-pattern序列中的时间属性。即一个T-pattern是由一对$(S,A)$定义，$S=&lt;R_0,R_1,…,R_n&gt;$是区域的序列，A是区域间转移时间$A=&lt;t_1,t_2,…,t_n&gt;$</li>
+<li>通过需要的时空查询选出一组在特定时间限制下经过特定地点的轨迹，为这组轨迹建立相应T-pattern，然后用当前轨迹去匹配构造出来的T-pattern</li>
+<li>匹配时T-pattern时需要指定规则来解决冲突，建立一个前缀树T-pattern Tree来实现：$PT = (N,E,Root(PT))$，E是带时间标签的边，时间标签为父节点到子节点的时间间隔范围$[time_min,time_max]$，节点属性为$&lt;id,region,support,children&gt;$</li>
+<li>预测策略就是在PT中查找跟当前轨迹最匹配的T-pattern，通过计算所有可能路径上每个可达节点的得分，选出一个最佳的位置。精确得分(Punctual Score)衡量一个已经到达r-1区域的轨迹T到达r区域的可能性，<ul>
+<li>定义$WhereNext_{r-1}$来表示经过与r-1到r相应的时间标签[time_min,time_max]后，可能到达的位置[begin,end]，$WhereNext_{r-1}$和r的关系可能有3种:</li>
+<li>(1)正好和r相交，则此时的精确得分就是r节点的support值</li>
+<li>(2)尚未到达r，需要放大时间间隔$d_t$才能和r相交，这时的精确得分是r节点的$r.support/d_t$</li>
+<li>(3)时间间隔放大$d_t$后仍然不能和r相交，还需要放大$WhereNext_{r-1}$的地理覆盖范围$s_t$，此时得分为$r.support/(d_t+s_t)$</li>
+</ul>
+</li>
+<li>T-pattern集合的有效性关系到预测的性能，用空间覆盖率、数据集覆盖率和空间区分度三个指标来评价T-pattern集合的选择</li>
+</ul>
+<h4 id="存在的问题：-4"><a href="#存在的问题：-4" class="headerlink" title="存在的问题："></a><strong>存在的问题：</strong></h4><ul>
+<li>没有活动信息的引入，对当前轨迹完整程度要求高，没有利用马尔科夫性</li>
+</ul>
+<h2 id="Mining-User-Mobility-Feature-for-next-place-prediction-in-location-based-services"><a href="#Mining-User-Mobility-Feature-for-next-place-prediction-in-location-based-services" class="headerlink" title="Mining User Mobility Feature for next place prediction in location-based services"></a>Mining User Mobility Feature for next place prediction in location-based services</h2><p><em>In ICDM, pages 1038–1043. Citeseer, 2012</em><br><em>A. Noulas, S. Scellato, N. Lathia, and C. Mascolo.</em></p>
+<p>####<strong>模型与方法</strong></p>
+<ul>
+<li>评估了影响个体移动的特征，选择其中最优影响力的几个用正则化的线性模型和M5决策树来预测下一个位置</li>
+<li>个人移动特征<ul>
+<li>历史访问次数： $\hat{r_k}(u)=|{(l,t)∈C_u:t&lt;t’∧l=k}|$</li>
+<li>位置类型的偏好： $\hat{r_k}(u)=|{(l,t)∈C_u:t&lt;t’∧z_l=z_k}|$</li>
+<li>社交影响： $Γ_u$是用户$u$的朋友集合， $$\hat{r_k}(u)=\sum_{v\inΓ_u}|{(l,t)∈C_v:t&lt;t’∧l=k}|$$</li>
+</ul>
+</li>
+<li>群体移动特征<ul>
+<li>位置流行度：$$\hat{r_k}(U)=\sum_{u\in U}|{(l,t)∈C_u:t&lt;t’∧l=k}|$$</li>
+<li>地理距离：$\hat{r_k}(l’)=dist(l’,k)$</li>
+<li>距离排名：$\hat{r_k}(l’)=|{w \in L:dist(l’,w)&lt;dist(l’,k)}|$</li>
+<li>活动转移：连续两个访问记录的类型为$(m,n)$，$\hat{r_k}(l’)=|{(m,n)∈L_c:z_m=z_{l’}∧z_n=z_k}|$</li>
+<li>位置转移：$\hat{r_k}(l’)=|{(m,n)\in L_c:m={l’}∧n=k}|$</li>
+</ul>
+</li>
+<li>时间特征：位置类型和具体位置在一天的每个小时和一周的每个小时中的出现次数</li>
+<li>对特征评估结论：<ul>
+<li>APR：位置类型偏好可以达到0.84，地理流行度可以达到0.86，具体位置的每小时的时间特征可以达到0.79，每天的时间影响为0.76，地理距离和距离排名为0.78，历史到访次数、社交影响和转移规律影响较低，分别为0.68，0.61和0.60. 相比之下，随机访问可以达到0.5的APR。</li>
+<li>Acc@K：在K值比较小（小于50）时，历史访问次数正确率最高，紧接着是社交影响和位置转移。超过50以后，历史访问次数仍然保持最高，同时时间特征、地理距离和流行度开始追平并超过社交影响和位置转移，单纯使用位置的偏好、时间特征和转移特征效果最差。</li>
+</ul>
+</li>
+<li>预测模型：M5树准确率高于正规化线性模型<br>####<strong>存在的问题</strong></li>
+<li>没有考虑地理区域特征，每一种特征都刻画的太简单</li>
+</ul>
+<h2 id="Modelling-Heterogeneous-Location-Habits-in-Human-Populations-for-Location-Prediction-Under-Data-Sparsity"><a href="#Modelling-Heterogeneous-Location-Habits-in-Human-Populations-for-Location-Prediction-Under-Data-Sparsity" class="headerlink" title="Modelling Heterogeneous Location Habits in Human Populations for Location Prediction Under Data Sparsity"></a>Modelling Heterogeneous Location Habits in Human Populations for Location Prediction Under Data Sparsity</h2><p><em>UbiComp’13, September 8–12, 2013, Zurich, Switzerland</em><br><em>James McInerney1, Jiangchuan Zheng2, Alex Rogers1, Nicholas R. Jennings1</em></p>
+<h4 id="模型与方法-1"><a href="#模型与方法-1" class="headerlink" title="模型与方法"></a><strong>模型与方法</strong></h4><p>- </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/人流量/地理位置分析/" rel="next" title="地理位置分析">
+                <i class="fa fa-chevron-left"></i> 地理位置分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/软件安全/软件安全复习/" rel="prev" title="软件安全复习">
+                软件安全复习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Who-Where-When-and-What-Discover-Spatio-Temporal-Topics-for-Twitter-Users"><span class="nav-number">1.</span> <span class="nav-text">Who, Where, When and What: Discover Spatio-Temporal Topics for Twitter Users</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法："><span class="nav-number">1.1.</span> <span class="nav-text">模型与方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特点"><span class="nav-number">1.2.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What’s-Your-Next-Move-User-Activity-Prediction-in-Location-based-Social-Networks"><span class="nav-number">2.</span> <span class="nav-text">What’s Your Next Move: User Activity Prediction in Location-based Social Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-1"><span class="nav-number">2.1.</span> <span class="nav-text">模型与方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特点："><span class="nav-number">2.2.</span> <span class="nav-text">特点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lifting-the-Predictability-of-Human-Mobility-on-Activity-Trajectories"><span class="nav-number">3.</span> <span class="nav-text">Lifting the Predictability of Human Mobility on Activity Trajectories</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-2"><span class="nav-number">3.1.</span> <span class="nav-text">模型与方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特点：-1"><span class="nav-number">3.2.</span> <span class="nav-text">特点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Personalized-Point-of-Interest-Recommendation-by-Mining-Users’-Preference-Transition"><span class="nav-number">4.</span> <span class="nav-text">Personalized Point-of-Interest Recommendation by Mining Users’ Preference Transition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-3"><span class="nav-number">4.1.</span> <span class="nav-text">模型与方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特点：-2"><span class="nav-number">4.2.</span> <span class="nav-text">特点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Location-Recommendation-Based-on-Periodicity-of-Human-Activities-and-Location-Categories"><span class="nav-number">5.</span> <span class="nav-text">Location Recommendation Based on Periodicity of Human Activities and Location Categories</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-4"><span class="nav-number">5.1.</span> <span class="nav-text">模型与方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特点：-3"><span class="nav-number">5.2.</span> <span class="nav-text">特点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Collaborative-Filtering-Meets-Mobile-Recommendation-A-User-centered-Approach"><span class="nav-number">6.</span> <span class="nav-text">Collaborative Filtering Meets Mobile Recommendation: A User-centered Approach</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-5"><span class="nav-number">6.1.</span> <span class="nav-text">模型与方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特点：-4"><span class="nav-number">6.2.</span> <span class="nav-text">特点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Inferring-and-Exploiting-Categories-for-Next-Location-Prediction"><span class="nav-number">6.3.</span> <span class="nav-text">Inferring and Exploiting Categories for Next Location Prediction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-6"><span class="nav-number">6.4.</span> <span class="nav-text">模型与方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特点：-5"><span class="nav-number">6.5.</span> <span class="nav-text">特点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TOPTRAC-Topical-Trajectory-Pattern-Mining"><span class="nav-number">6.6.</span> <span class="nav-text">TOPTRAC: Topical Trajectory Pattern Mining</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spatial-topic-modeling-in-online-social-media-for-location-recommendation"><span class="nav-number">7.</span> <span class="nav-text">Spatial topic modeling in online social media for location recommendation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GeoSoCa-Exploiting-Geographical-Social-and-Categorical-Correlations-for-Point-of-Interest-Recommendations"><span class="nav-number">8.</span> <span class="nav-text">GeoSoCa: Exploiting Geographical, Social and Categorical Correlations for Point-of-Interest Recommendations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-7"><span class="nav-number">8.1.</span> <span class="nav-text">模型与方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特点：-6"><span class="nav-number">8.2.</span> <span class="nav-text">特点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考内容："><span class="nav-number">8.3.</span> <span class="nav-text">参考内容：</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#位置预测研究总结"><span class="nav-number"></span> <span class="nav-text">位置预测研究总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What’s-Your-Next-Move-User-Activity-Prediction-in-Location-based-Social-Networks-1"><span class="nav-number"></span> <span class="nav-text">What’s Your Next Move: User Activity Prediction in Location-based Social Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-8"><span class="nav-number">0.1.</span> <span class="nav-text">模型与方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存在的问题："><span class="nav-number">0.2.</span> <span class="nav-text">存在的问题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-9"><span class="nav-number">0.3.</span> <span class="nav-text">模型与方法：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#When-and-Where-Predicting-Human-Movements-Based-on-Social-Spatial-Temporal-Events"><span class="nav-number"></span> <span class="nav-text">When and Where: Predicting Human Movements Based on Social Spatial-Temporal Events</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-10"><span class="nav-number">0.1.</span> <span class="nav-text">模型与方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存在的问题：-1"><span class="nav-number">0.2.</span> <span class="nav-text">存在的问题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-11"><span class="nav-number">0.3.</span> <span class="nav-text">模型与方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CEPR-A-Collaborative-Exploration-and-Periodically-Returning-Model-for-Location-Prediction"><span class="nav-number"></span> <span class="nav-text">CEPR: A Collaborative Exploration and Periodically Returning Model for Location Prediction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法"><span class="nav-number">0.1.</span> <span class="nav-text">模型与方法:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存在的问题：-2"><span class="nav-number">0.2.</span> <span class="nav-text">存在的问题：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lifting-the-Predictability-of-Human-Mobility-on-Activity-Trajectories-1"><span class="nav-number"></span> <span class="nav-text">Lifting the Predictability of Human Mobility on Activity Trajectories</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法：-12"><span class="nav-number">0.1.</span> <span class="nav-text">模型与方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存在的问题：-3"><span class="nav-number">0.2.</span> <span class="nav-text">存在的问题：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WhereNext-a-Location-Predictor-on-Trajectory-Pattern-Mining"><span class="nav-number"></span> <span class="nav-text">WhereNext: a Location Predictor on Trajectory Pattern Mining</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#存在的问题：-4"><span class="nav-number">0.1.</span> <span class="nav-text">存在的问题：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mining-User-Mobility-Feature-for-next-place-prediction-in-location-based-services"><span class="nav-number"></span> <span class="nav-text">Mining User Mobility Feature for next place prediction in location-based services</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modelling-Heterogeneous-Location-Habits-in-Human-Populations-for-Location-Prediction-Under-Data-Sparsity"><span class="nav-number"></span> <span class="nav-text">Modelling Heterogeneous Location Habits in Human Populations for Location Prediction Under Data Sparsity</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型与方法-1"><span class="nav-number">0.1.</span> <span class="nav-text">模型与方法</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

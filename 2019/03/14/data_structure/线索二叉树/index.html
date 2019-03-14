@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="##一、简介线索二叉树是在二叉树的基础上，把空指针加以利用，通过左右type域来标记类型。生成方法是先构造二叉树，再把二叉树线索化，线索化的过程稍候会介绍。 ##二、线索二叉树的节点构造先贴代码：123456789enum BiThrNodeType&amp;#123;LINK,THREAD&amp;#125;;template&amp;lt;class T&amp;gt;struct BiThrNode&amp;#123;	BiTh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线索二叉树">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/data_structure/线索二叉树/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="##一、简介线索二叉树是在二叉树的基础上，把空指针加以利用，通过左右type域来标记类型。生成方法是先构造二叉树，再把二叉树线索化，线索化的过程稍候会介绍。 ##二、线索二叉树的节点构造先贴代码：123456789enum BiThrNodeType&amp;#123;LINK,THREAD&amp;#125;;template&amp;lt;class T&amp;gt;struct BiThrNode&amp;#123;	BiTh">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%91%E6%A0%9101.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%91%E6%A0%9102.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%91%E6%A0%9102.png">
+<meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/w.jpg">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.492Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="线索二叉树">
+<meta name="twitter:description" content="##一、简介线索二叉树是在二叉树的基础上，把空指针加以利用，通过左右type域来标记类型。生成方法是先构造二叉树，再把二叉树线索化，线索化的过程稍候会介绍。 ##二、线索二叉树的节点构造先贴代码：123456789enum BiThrNodeType&amp;#123;LINK,THREAD&amp;#125;;template&amp;lt;class T&amp;gt;struct BiThrNode&amp;#123;	BiTh">
+<meta name="twitter:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%91%E6%A0%9101.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/data_structure/线索二叉树/">
+
+
+
+
+
+  <title>线索二叉树 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/data_structure/线索二叉树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">线索二叉树</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-structure/" itemprop="url" rel="index">
+                    <span itemprop="name">data_structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>##一、简介<br>线索二叉树是在二叉树的基础上，把空指针加以利用，通过左右type域来标记类型。生成方法是先构造二叉树，再把二叉树线索化，线索化的过程稍候会介绍。</p>
+<p>##二、线索二叉树的节点构造<br>先贴代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> BiThrNodeType&#123;LINK,THREAD&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">BiThrNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	BiThrNodeType ltype, rtype;</span><br><span class="line">	T data;</span><br><span class="line">	BiThrNode&lt;T&gt; *lchild, *rchild;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>明显，与二叉树相比，只是多了两个枚举类型的数据成员，通俗的解释，</p>
+<blockquote>
+<ul>
+<li><strong>LINK</strong>标志表示接下来的是他的孩子，</li>
+<li><strong>THREAD</strong>表示接下来的前驱或者后继。</li>
+</ul>
+</blockquote>
+<p>同时贴上InBiThrTree的头文件，里面的函数，会在下面介绍。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">InBiThrTree</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	BiThrNode&lt;T&gt; *root;<span class="comment">//根节点</span></span><br><span class="line">	BiThrNode&lt;T&gt; *prenode;<span class="comment">//前置点</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">InThreaded</span><span class="params">(BiThrNode&lt;T&gt; *&amp;p)</span></span>;</span><br><span class="line">	BiThrNode&lt;T&gt; *CreateByPre(<span class="built_in">vector</span>&lt;T&gt; &amp;pre, <span class="keyword">int</span> &amp;i);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	InBiThrTree()&#123; root = <span class="literal">NULL</span>; &#125;</span><br><span class="line">	InBiThrTree(<span class="built_in">vector</span>&lt;T&gt; &amp;pre);				<span class="comment">//根据先序序列创建二叉树</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">InThreaded</span><span class="params">()</span></span>;							<span class="comment">//中序线索化</span></span><br><span class="line">	<span class="comment">//~InBiThrTree();								//析构函数</span></span><br><span class="line">	BiThrNode&lt;T&gt; *GetNext(BiThrNode&lt;T&gt; *p);		<span class="comment">//求中序遍历中的后继结点</span></span><br><span class="line">	BiThrNode&lt;T&gt; *GetPrev(BiThrNode&lt;T&gt; *p);		<span class="comment">//求中序遍历中的前驱结点</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Travese</span><span class="params">()</span></span>;								<span class="comment">//利用线索进行中序遍历</span></span><br><span class="line">	BiThrNode&lt;T&gt;* GetParent(BiThrNode&lt;T&gt; *p);	<span class="comment">//求父结点地址</span></span><br><span class="line">	BiThrNode&lt;T&gt;* GetRoot()&#123; <span class="keyword">return</span> root; &#125;		<span class="comment">//求根结点</span></span><br><span class="line">	BiThrNode&lt;T&gt;* Search(T e);			<span class="comment">//根据值e查找结点1</span></span><br><span class="line">	BiThrNode&lt;T&gt;* Search(BiThrNode&lt;T&gt; *p,T e); <span class="comment">//在以p为根的树查找1</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setPre</span><span class="params">()</span></span>&#123;prenode=<span class="literal">NULL</span>;&#125;		<span class="comment">//置空前置点		</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>##三、函数介绍</p>
+<p>###3.1、根据先序序列创建二叉树<br>说明一下，这一块和前面的树基本没有差异，只是在其中多了个对枚举类型的置空，即默认所有标志位均为孩子位。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据先序序列创建二叉树</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">InBiThrTree</span>&lt;T&gt;:</span>:InBiThrTree(<span class="built_in">vector</span>&lt;T&gt; &amp;pre)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;		<span class="comment">//向量pre的下标变量</span></span><br><span class="line">	root = CreateByPre(pre, i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">BiThrNode</span>&lt;T&gt; *<span class="title">InBiThrTree</span>&lt;T&gt;:</span>:CreateByPre(<span class="built_in">vector</span>&lt;T&gt; &amp;pre, <span class="keyword">int</span> &amp;i)</span><br><span class="line">&#123;</span><br><span class="line">	T e = pre[i]; i++;<span class="comment">//提取当前数据</span></span><br><span class="line">	<span class="keyword">if</span> (e == <span class="string">'*'</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">NULL</span>;<span class="comment">//若是特殊数据，返回空指针</span></span><br><span class="line">	BiThrNode&lt;T&gt; *p = <span class="keyword">new</span> BiThrNode&lt;T&gt;;<span class="comment">//创建新结点</span></span><br><span class="line">	p-&gt;data = e;</span><br><span class="line">	p-&gt;ltype = LINK;</span><br><span class="line">	p-&gt;rtype = LINK;</span><br><span class="line">	p-&gt;lchild = CreateByPre(pre, i);<span class="comment">//创建左子树</span></span><br><span class="line">	p-&gt;rchild = CreateByPre(pre, i);<span class="comment">//创建右子树</span></span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###3.2， 二叉树的线索化<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//二叉树的中序线索化算法</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">InBiThrTree</span>&lt;T&gt;:</span>:InThreaded()</span><br><span class="line">&#123;</span><br><span class="line">	InThreaded(root);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">InBiThrTree</span>&lt;T&gt;:</span>:InThreaded(BiThrNode&lt;T&gt; *&amp;p)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (p == <span class="literal">NULL</span>)							<span class="comment">//如果二叉链表p为空，则空操作返回</span></span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	InThreaded(p-&gt;lchild);					<span class="comment">//对p的左子树建立线索</span></span><br><span class="line">	<span class="comment">//对p所指结点建立线索</span></span><br><span class="line">	<span class="keyword">if</span> (p-&gt;lchild == <span class="literal">NULL</span>)					<span class="comment">//对p的左指针处理</span></span><br><span class="line">	&#123;</span><br><span class="line">		p-&gt;ltype = THREAD;</span><br><span class="line">		p-&gt;lchild = prenode;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (p-&gt;rchild == <span class="literal">NULL</span>)					<span class="comment">//对p的右指针处理</span></span><br><span class="line">		p-&gt;rtype = THREAD;</span><br><span class="line">	<span class="keyword">if</span> (prenode != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (prenode-&gt;rtype == THREAD)		<span class="comment">//设置prenode的后续线索</span></span><br><span class="line">			prenode-&gt;rchild = p;</span><br><span class="line">	&#125;</span><br><span class="line">	prenode = p;</span><br><span class="line">	InThreaded(p-&gt;rchild);					<span class="comment">//对p的右子树建立线索</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这边是比较关键的算法，书上是这么说的</p>
+<blockquote>
+<ul>
+<li>如果二叉链表p为空，则空操作返回</li>
+<li>对p的左子树建立线索</li>
+<li>对p所指结点建立线索<blockquote>
+<p>若p没有左孩子，则为p加上前驱线索<br>若p没有右孩子，则将p右标志置为1<br>若结点prenode右标志为1，则为prenode加上后继线索<br>令prenode指向刚刚访问的结点p</p>
+</blockquote>
+</li>
+<li>对p的右子树建立线索</li>
+</ul>
+</blockquote>
+<p>下面，就是这棵树线索化前后的图片：<br>线索前：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%91%E6%A0%9101.png" alt="此处输入图片的描述"><br>线索后：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%91%E6%A0%9102.png" alt="此处输入图片的描述"></p>
+<p>###3.3、一些查找函数<br>由于时间关系，下面这些函数不做详细介绍，都挺简单的。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在中序线索二叉树中求结点的后继指针的算法</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">BiThrNode</span>&lt;T&gt; *<span class="title">InBiThrTree</span>&lt;T&gt;:</span>:GetNext(BiThrNode&lt;T&gt; *p)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (p-&gt;rtype == THREAD)</span><br><span class="line">		<span class="keyword">return</span> p-&gt;rchild;</span><br><span class="line">	p = p-&gt;rchild;</span><br><span class="line">	<span class="keyword">while</span> (p-&gt;ltype == LINK)</span><br><span class="line">		p = p-&gt;lchild;</span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在中序线索二叉树中求结点的前驱指针的算法</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">BiThrNode</span>&lt;T&gt; *<span class="title">InBiThrTree</span>&lt;T&gt;:</span>:GetPrev(BiThrNode&lt;T&gt; *p)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (p-&gt;ltype == THREAD)</span><br><span class="line">		<span class="keyword">return</span> p-&gt;lchild;</span><br><span class="line">	p = p-&gt;lchild;</span><br><span class="line">	<span class="keyword">while</span> (p-&gt;rtype == LINK)</span><br><span class="line">		p = p-&gt;rchild;</span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//中序遍历中序线索二叉树</span></span><br><span class="line"><span class="built_in">string</span> result;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">InBiThrTree</span>&lt;T&gt;:</span>:Travese()</span><br><span class="line">&#123;</span><br><span class="line">	BiThrNode&lt;T&gt; *p = root;</span><br><span class="line">	<span class="keyword">while</span> (p-&gt;ltype == LINK)			<span class="comment">//找到中序遍历的起点</span></span><br><span class="line">		p = p-&gt;lchild;</span><br><span class="line">	<span class="keyword">while</span> (p != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		result+=p-&gt;data;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; p-&gt;data;</span><br><span class="line">		p = GetNext(p);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在中序线索化树中，查找结点的父结点</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">BiThrNode</span>&lt;T&gt; *<span class="title">InBiThrTree</span>&lt;T&gt;:</span>:GetParent(BiThrNode&lt;T&gt; *p)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (p == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">	BiThrNode&lt;T&gt; *parent;</span><br><span class="line">	parent = p;</span><br><span class="line">	<span class="keyword">while</span> (parent-&gt;rtype == LINK)</span><br><span class="line">		parent = parent-&gt;rchild;</span><br><span class="line">	parent = parent-&gt;rchild;			<span class="comment">//parent是*p的最右下方结点的后继指针</span></span><br><span class="line">	<span class="keyword">if</span> (parent &amp;&amp; parent-&gt;lchild == p)</span><br><span class="line">		<span class="keyword">return</span> parent;					<span class="comment">//猜测*p是否是*parent的左孩子</span></span><br><span class="line">	parent = p;</span><br><span class="line">	<span class="keyword">while</span> (parent-&gt;ltype == LINK)</span><br><span class="line">		parent = parent-&gt;lchild;</span><br><span class="line">	parent = parent-&gt;lchild;			<span class="comment">//parent是*p的最左下方结点的前驱指针</span></span><br><span class="line">	<span class="keyword">return</span> parent;						<span class="comment">//parent一定是*p的父指针</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*根据值e查找结点*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">BiThrNode</span>&lt;T&gt;* <span class="title">InBiThrTree</span>&lt;T&gt;:</span>:Search(T e)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> Search(root,e);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">BiThrNode</span>&lt;T&gt;* <span class="title">InBiThrTree</span>&lt;T&gt;:</span>:Search(BiThrNode&lt;T&gt; *p,T e)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(p==<span class="literal">NULL</span>)			<span class="comment">//整棵树空。查找失败，返回上一层</span></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">if</span>(p-&gt;data==e)		<span class="comment">//当前节点值正确，返回当前节点</span></span><br><span class="line">		<span class="keyword">return</span> p;</span><br><span class="line">	BiThrNode &lt;T&gt; *q=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">if</span> (p-&gt;ltype!=THREAD)</span><br><span class="line">		q=Search(p-&gt;lchild,e);	<span class="comment">//若此节点不空，并且此节点数据不匹配，找左子树</span></span><br><span class="line">	<span class="keyword">if</span>(q!=<span class="literal">NULL</span>)			<span class="comment">//若左边找到了，返回找到的节点给上一层。</span></span><br><span class="line">		<span class="keyword">return</span> q;</span><br><span class="line">	<span class="keyword">if</span> (p-&gt;rtype!=THREAD)</span><br><span class="line">		<span class="keyword">return</span> Search(p-&gt;rchild,e); <span class="comment">//若左边没找到，返回右子树找到的结果，可以为NULL,可以为节点、</span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>需要注意一点，不能把按值查找直接搬过来，需要改下判断条件就可以了，其他的函数，书本上都有，不做过多解释。</p>
+<p>##四、测试函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; a;</span><br><span class="line">	<span class="comment">//char c[20]="ab*c**de**f**";</span></span><br><span class="line">	<span class="comment">//char c[20]="abd**e**cf***";</span></span><br><span class="line">	<span class="keyword">char</span> c[<span class="number">20</span>]=<span class="string">"abd**e**cf***"</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"树的前序向量："</span>&lt;&lt;c&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="built_in">strlen</span>(c); i++)</span><br><span class="line">	&#123;</span><br><span class="line">		a.push_back(c[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	InBiThrTree &lt;<span class="keyword">char</span>&gt; A(a);</span><br><span class="line">	A.setPre();<span class="comment">//置空</span></span><br><span class="line">	A.InThreaded();</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"中序遍历打印："</span>;</span><br><span class="line">	A.Travese();	<span class="comment">//	</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;result.length();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">char</span> c=result.at(i);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"查找的值"</span>&lt;&lt;c&lt;&lt;<span class="string">"所在节点并输出地址:"</span>;</span><br><span class="line">		BiThrNode&lt;<span class="keyword">char</span>&gt; *tmp = A.Search(c);</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;tmp&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;tmp-&gt;data&lt;&lt;<span class="string">"节点的前驱:"</span>;</span><br><span class="line">		<span class="keyword">if</span> (A.GetPrev(tmp)!=<span class="literal">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;A.GetPrev(tmp)&lt;&lt;<span class="string">" 值为："</span>&lt;&lt;A.GetPrev(tmp)-&gt;data&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="literal">NULL</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;tmp-&gt;data&lt;&lt;<span class="string">"节点的后继:"</span>;</span><br><span class="line">		<span class="keyword">if</span> (A.GetNext(tmp)!=<span class="literal">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;A.GetNext(tmp)&lt;&lt;<span class="string">" 值为："</span>&lt;&lt;A.GetNext(tmp)-&gt;data&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="literal">NULL</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;tmp-&gt;data&lt;&lt;<span class="string">"节点的父节点:"</span>;</span><br><span class="line">		<span class="keyword">if</span> (A.GetParent(tmp)!=<span class="literal">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;A.GetParent(tmp)&lt;&lt;<span class="string">" 值为："</span>&lt;&lt;A.GetParent(tmp)-&gt;data&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="literal">NULL</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这边需要注意一下，在线索化之前，需要把PreNode置空，便于第一个THREAD节点的操作。</p>
+<p>测试树是这棵：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%A0%91%E6%A0%9102.png" alt="此处输入图片的描述"><br>测试结果如下：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/w.jpg" alt="此处输入图片的描述"></p>
+<p>2015年5月4日晚</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/data_structure/线性表的实现及其功能的拓展/" rel="next" title="线性表的实现及其功能的拓展">
+                <i class="fa fa-chevron-left"></i> 线性表的实现及其功能的拓展
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/data_structure/编写链表结构遇到的问题/" rel="prev" title="编写链表结构遇到的问题">
+                编写链表结构遇到的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

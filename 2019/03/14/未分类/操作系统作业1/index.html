@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Ex.2.5 若后备作业队列中同时等待运行的有三个作业$Job_1$、$Job_2$、$Job_3$，已知其各自的运行时间为$a、b、c$，且满足$a&amp;lt;b&amp;lt;c$，试证明采用短作业优先调度算法能获得最小的平均作业周转时间。 　 　 　 　 　 　 　 　  Ex.2.6若有一组作业$J_1，J_2，…，J_n$，其执行时间依次为$S_1，S_2，…，S_n$。这些作业同时到达系统，并在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统作业1">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/未分类/操作系统作业1/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="Ex.2.5 若后备作业队列中同时等待运行的有三个作业$Job_1$、$Job_2$、$Job_3$，已知其各自的运行时间为$a、b、c$，且满足$a&amp;lt;b&amp;lt;c$，试证明采用短作业优先调度算法能获得最小的平均作业周转时间。 　 　 　 　 　 　 　 　  Ex.2.6若有一组作业$J_1，J_2，…，J_n$，其执行时间依次为$S_1，S_2，…，S_n$。这些作业同时到达系统，并在">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.846Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="操作系统作业1">
+<meta name="twitter:description" content="Ex.2.5 若后备作业队列中同时等待运行的有三个作业$Job_1$、$Job_2$、$Job_3$，已知其各自的运行时间为$a、b、c$，且满足$a&amp;lt;b&amp;lt;c$，试证明采用短作业优先调度算法能获得最小的平均作业周转时间。 　 　 　 　 　 　 　 　  Ex.2.6若有一组作业$J_1，J_2，…，J_n$，其执行时间依次为$S_1，S_2，…，S_n$。这些作业同时到达系统，并在">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/未分类/操作系统作业1/">
+
+
+
+
+
+  <title>操作系统作业1 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/未分类/操作系统作业1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">操作系统作业1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:21+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h2 id="Ex-2-5"><a href="#Ex-2-5" class="headerlink" title="Ex.2.5"></a>Ex.2.5</h2><p> 若后备作业队列中同时等待运行的有三个作业$Job_1$、$Job_2$、$Job_3$，已知其各自的运行时间为$a、b、c$，且满足$a&lt;b&lt;c$，试证明采用短作业优先调度算法能获得最小的平均作业周转时间。
+　
+　
+　
+　
+　
+　
+　
+　</p>
+<hr>
+<h2 id="Ex-2-6"><a href="#Ex-2-6" class="headerlink" title="Ex.2.6"></a>Ex.2.6</h2><p>若有一组作业$J_1，J_2，…，J_n$，其执行时间依次为$S_1，S_2，…，S_n$。这些作业同时到达系统，并在单处理器上按照单道方式执行。试找出一种作业调度算法，使得平均作业周转时间最短。
+　
+　
+　
+　
+　
+　</p>
+<h2 id><a href="#" class="headerlink" title="　"></a>　</h2><h2 id="Ex-2-8"><a href="#Ex-2-8" class="headerlink" title="Ex.2.8"></a>Ex.2.8</h2><p>在道数不受限制的多道程序系统中，作业进入系统的后备队列时立即进行作业调度。现有4个作业进入系统，有关信息为</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">作业名</th>
+<th style="text-align:center">进入后备队列的时刻</th>
+<th style="text-align:center">执行时间/min</th>
+<th style="text-align:center">优先数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$Job_1$</td>
+<td style="text-align:center">$8:00$</td>
+<td style="text-align:center">$ 60$</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">$Job_2$</td>
+<td style="text-align:center">$ 8:30$</td>
+<td style="text-align:center">$50$</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">$Job_3$</td>
+<td style="text-align:center">$8:40$</td>
+<td style="text-align:center">$30$</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">$Job_4$</td>
+<td style="text-align:center">$8:50$</td>
+<td style="text-align:center">$10$</td>
+<td style="text-align:center">3</td>
+</tr>
+</tbody>
+</table>
+<p>作业调度和进程调度均采用高优先级算法（规定数值越大则优先级越高）。试填充下表。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">序号</th>
+<th style="text-align:center">作业名</th>
+<th style="text-align:center">进入后备队列的时刻</th>
+<th style="text-align:center">执行时间/min</th>
+<th style="text-align:center">开始执行时刻</th>
+<th style="text-align:center">结束执行时刻</th>
+<th style="text-align:center">周转时间/min</th>
+<th>带权周转时间/min</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">　</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">　</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">　</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">　</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><strong>平均周转时间 <em>T</em>=</strong>  </p>
+</li>
+<li><p><strong>平均带权周转时间 <em>W</em>=</strong></p>
+</li>
+</ul>
+<hr>
+<h2 id="Ex-2-9"><a href="#Ex-2-9" class="headerlink" title="Ex.2.9"></a>Ex.2.9</h2><p>对某系统进行监测后表明，每个进程在I/O阻塞之前的平均运行时间为<em>T</em> 。一次进程切换的系统开销时间为<em>S</em>。若采用时间片长度为<em>Q</em>的时间片轮转法，对下列各种情况计算CPU利用率。<br>(1)$Q = ∞;$<br>(2)$Q &gt; T;$<br>(3)$S &lt; Q &lt; T;$<br>(4)$Q = S;$<br>(5)$Q$ 接近于0。
+　
+　
+　
+　
+　
+　　
+　
+　
+　　
+　　
+　
+　
+　</p>
+<hr>
+<h2 id="Ex-2-17"><a href="#Ex-2-17" class="headerlink" title="Ex.2.17"></a>Ex.2.17</h2><p>如果在限制为两道的多道程序系统中，有4个作业进入系统，其进入系统时刻、估计运行时间为</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">作业</th>
+<th style="text-align:center">进入系统时刻</th>
+<th style="text-align:center">估计运行时间/min</th>
+<th style="text-align:center">开始运行时刻</th>
+<th style="text-align:center">结束运行时刻</th>
+<th style="text-align:center">周转时间/min</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$Job_1$</td>
+<td style="text-align:center">$10:00$</td>
+<td style="text-align:center">$30$</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">$Job_2$</td>
+<td style="text-align:center">$10:05$</td>
+<td style="text-align:center">$20$</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">$Job_3$</td>
+<td style="text-align:center">$10:10$</td>
+<td style="text-align:center">$5$</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">$Job_4$</td>
+<td style="text-align:center">$10:20$</td>
+<td style="text-align:center">$10$</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><strong>平均周转时间 <em>T</em>=</strong>         </p>
+</li>
+<li><p><strong>平均带权周转时间 <em>W</em>=</strong></p>
+</li>
+</ul>
+<p>系统采用SJF作业调度算法，采用SRTF进程调度算法，请填充上表。</p>
+<hr>
+<h2 id="Ex-2-20"><a href="#Ex-2-20" class="headerlink" title="Ex.2.20"></a>Ex.2.20</h2><p>有一个4道作业的操作系统，若在一段时间内先后到达6个作业，其提交时刻和估计运行时间为</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">作业</th>
+<th style="text-align:center">提交时刻</th>
+<th style="text-align:center">估计运行时间/min</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$8:00$</td>
+<td style="text-align:center">60</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">$8:20$</td>
+<td style="text-align:center">35</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">$8:25$</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">$8:30$</td>
+<td style="text-align:center">25</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">$8:35$</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">$8:40$</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<p>系统采用剩余<strong>SJF</strong>调度算法，作业被调度进入系统后中途不会退出，但作业运行时可被剩余时间更短的作业所抢占。<br>(1)分别给出6个作业的执行时间序列，即开始执行时间、作业完成时间、作业周转时间。<br>(2)计算平均作业周转时间。
+　
+　
+　
+　
+　
+　
+　
+　
+　
+　</p>
+<p>　
+　
+　
+　
+　
+　
+　
+　
+　
+　</p>
+<hr>
+<h2 id="Ex-2-21"><a href="#Ex-2-21" class="headerlink" title="Ex.2.21"></a>Ex.2.21</h2><p>有一个具有三道作业的多道批处理系统，作业调度采用短作业优先调度算法，进程调度采用以优先数为基础的抢占式调度算法。在下表所示的作业序列中，作业优先数即为进程优先数，优先数越小优先级越高。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">作业名</th>
+<th style="text-align:center">到达时刻</th>
+<th style="text-align:center">估计运行时间/min</th>
+<th style="text-align:center">优先数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">10:00</td>
+<td style="text-align:center">40</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center">10:20</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">10:30</td>
+<td style="text-align:center">60</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">D</td>
+<td style="text-align:center">10:50</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">E</td>
+<td style="text-align:center">11:00</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">F</td>
+<td style="text-align:center">11:10</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<p>试填充下表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">作业</th>
+<th style="text-align:center">进入内存时刻</th>
+<th style="text-align:center">运行结束时刻</th>
+<th style="text-align:center">作业周转时间/min</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">D</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">E</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">F</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>平均作业周转时间 =</strong>         </li>
+</ul>
+<hr>
+<h2 id="Ex-2-27"><a href="#Ex-2-27" class="headerlink" title="Ex.2.27"></a>Ex.2.27</h2><p>某多道程序系统供用户使用的内存空间为100KB，磁带机2台，打印机1台。采用可变分区内存管理，采用静态方式分配外部设备，忽略用户作业I/O操作时间。现有作业序列如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">作业号</th>
+<th style="text-align:center">进入输入井时刻</th>
+<th style="text-align:center">运行时间/min</th>
+<th style="text-align:center">内存需求量/KB</th>
+<th style="text-align:center">磁带机需求/台</th>
+<th style="text-align:center">打印机需求/台</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">8:00</td>
+<td style="text-align:center">25</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">8:20</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">8:20</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">60</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">8:30</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">8:35</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<p>作业调度采用$FCFS$策略，优先分配内存低地址区且不准移动已在内存中的作业，内存中的各作业平分$CPU$时间。现求：<br>(1)作业调度的先后次序；<br>(2)全部作业运行结束的时刻；<br>(3)作业平均周转时间；<br>(4)最大作业周转时间。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/未分类/建表/" rel="next" title="建表">
+                <i class="fa fa-chevron-left"></i> 建表
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/未分类/杭电OJ/" rel="prev" title="杭电OJ">
+                杭电OJ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ex-2-5"><span class="nav-number">1.</span> <span class="nav-text">Ex.2.5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ex-2-6"><span class="nav-number">2.</span> <span class="nav-text">Ex.2.6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">3.</span> <span class="nav-text">　</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ex-2-8"><span class="nav-number">4.</span> <span class="nav-text">Ex.2.8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ex-2-9"><span class="nav-number">5.</span> <span class="nav-text">Ex.2.9</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ex-2-17"><span class="nav-number">6.</span> <span class="nav-text">Ex.2.17</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ex-2-20"><span class="nav-number">7.</span> <span class="nav-text">Ex.2.20</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ex-2-21"><span class="nav-number">8.</span> <span class="nav-text">Ex.2.21</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ex-2-27"><span class="nav-number">9.</span> <span class="nav-text">Ex.2.27</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="0.由于对centos不熟悉，以及超算中心的centos版本比较低，实在没法装有些库，于是先换成了ubuntu16.04server。 #一 创建用户1.1 创建用户adduser dluser01passwd xxxxxxxxdluser01~10 1.2 增加root权限 vim /etc/sudoers Allow root to run any commands anywhereroot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装cuda8+cudnn5.1+tensorflowgpu+keras">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/毕业设计/安装cuda8+cudnn5.1+tensorflowgpu+keras/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="0.由于对centos不熟悉，以及超算中心的centos版本比较低，实在没法装有些库，于是先换成了ubuntu16.04server。 #一 创建用户1.1 创建用户adduser dluser01passwd xxxxxxxxdluser01~10 1.2 增加root权限 vim /etc/sudoers Allow root to run any commands anywhereroot">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/pzpz63r9z0753nge9os5ko1w/1490615001%281%29.jpg">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/ofnp5xhve2dca6oe888cbsl1/image_1bc7pgehh1u1kv99iidh5518mel.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.886Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安装cuda8+cudnn5.1+tensorflowgpu+keras">
+<meta name="twitter:description" content="0.由于对centos不熟悉，以及超算中心的centos版本比较低，实在没法装有些库，于是先换成了ubuntu16.04server。 #一 创建用户1.1 创建用户adduser dluser01passwd xxxxxxxxdluser01~10 1.2 增加root权限 vim /etc/sudoers Allow root to run any commands anywhereroot">
+<meta name="twitter:image" content="http://static.zybuluo.com/rg070836rg/pzpz63r9z0753nge9os5ko1w/1490615001%281%29.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/毕业设计/安装cuda8+cudnn5.1+tensorflowgpu+keras/">
+
+
+
+
+
+  <title>安装cuda8+cudnn5.1+tensorflowgpu+keras | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/毕业设计/安装cuda8+cudnn5.1+tensorflowgpu+keras/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">安装cuda8+cudnn5.1+tensorflowgpu+keras</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/配置/" itemprop="url" rel="index">
+                    <span itemprop="name">配置</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/配置/GPU并行计算课程实验与报告/" itemprop="url" rel="index">
+                    <span itemprop="name">GPU并行计算课程实验与报告</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/配置/GPU并行计算课程实验与报告/毕业设计/" itemprop="url" rel="index">
+                    <span itemprop="name">毕业设计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>0.由于对centos不熟悉，以及超算中心的centos版本比较低，实在没法装有些库，于是先换成了ubuntu16.04server。</p>
+<p>#一 创建用户<br>1.1 创建用户<br>adduser dluser01<br>passwd xxxxxxxx<br>dluser01~10</p>
+<p>1.2 增加root权限<br> vim /etc/sudoers</p>
+<h2 id="Allow-root-to-run-any-commands-anywhere"><a href="#Allow-root-to-run-any-commands-anywhere" class="headerlink" title="Allow root to run any commands anywhere"></a>Allow root to run any commands anywhere</h2><p>root    ALL=(ALL)     ALL<br>ubuntu    ALL=(ALL)     ALL<br>dluser01   ALL=(ALL)     ALL<br>dluser02   ALL=(ALL)     ALL</p>
+<p>#二 修改源<br>参见 <a href="http://mirrors.ustc.edu.cn/help/ubuntu.html" target="_blank" rel="noopener">http://mirrors.ustc.edu.cn/help/ubuntu.html</a></p>
+<p>#三 安装python2.7<br>换成ubuntu16.04后自带</p>
+<h1 id="四-安装pip"><a href="#四-安装pip" class="headerlink" title="四 安装pip"></a>四 安装pip</h1><p>4.0 网速够，ubuntu16.04下 直接sudo apt-get install python-pip python-dev </p>
+<p>4.1 安装easyinstall<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -q http://peak.telecommunity.com/dist/ez_setup.py</span><br><span class="line">python ez_setup.py</span><br></pre></td></tr></table></figure></p>
+<p>4.2 编译安装python<br>下载 <a href="https://github.com/pypa/pip/releases" target="_blank" rel="noopener">https://github.com/pypa/pip/releases</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar zvxf pip-9.0.1.tar.gz    #解压文件</span><br><span class="line">cd pip-9.0.1/</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure></p>
+<p>4.3 修改pip源（阿里源）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">mkdir .pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br><span class="line"></span><br><span class="line">[global] </span><br><span class="line">index-url = http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install] </span><br><span class="line">trusted-host=mirrors.aliyun.com</span><br></pre></td></tr></table></figure></p>
+<h1 id="五-安装NVIDIA驱动"><a href="#五-安装NVIDIA驱动" class="headerlink" title="五 安装NVIDIA驱动"></a>五 安装NVIDIA驱动</h1><p>5.1 <a href="http://www.nvidia.cn/Download/index.aspx?lang=cn" target="_blank" rel="noopener">查找对应驱动</a><br>下载并传至服务器，进入root<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo init 3</span><br><span class="line">sudo sh NVIDIA-Linux-x86_64-375.39.run</span><br><span class="line">sudo reboot</span><br></pre></td></tr></table></figure></p>
+<p>装好了用nvidia-smi，检查一下：<br><img src="http://static.zybuluo.com/rg070836rg/pzpz63r9z0753nge9os5ko1w/1490615001%281%29.jpg" alt="1490615001(1).jpg-20.6kB"></p>
+<h1 id="六-安装cuda"><a href="#六-安装cuda" class="headerlink" title="六 安装cuda"></a>六 安装cuda</h1><p>6.1 下载<br><a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="noopener">下载地址</a><br><img src="http://static.zybuluo.com/rg070836rg/ofnp5xhve2dca6oe888cbsl1/image_1bc7pgehh1u1kv99iidh5518mel.png" alt="image_1bc7pgehh1u1kv99iidh5518mel.png-65.7kB"><br>下载runfile。。</p>
+<p>6.2安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">sudo sh xxxxx.run</span><br><span class="line">刷屏漫长的EULA条文，接下来这么选：</span><br><span class="line">accept/decline/quit: accept</span><br><span class="line"></span><br><span class="line">Install NVIDIA Accelerated Graphics Driver for Linux-x86_64 367.48?</span><br><span class="line">(y)es/(n)o/(q)uit: y</span><br><span class="line"></span><br><span class="line">Do you want to install the OpenGL libraries?</span><br><span class="line">(y)es/(n)o/(q)uit [ default is yes ]: y</span><br><span class="line"></span><br><span class="line">Do you want to run nvidia-xconfig?</span><br><span class="line">This will update the system X configuration file so that the NVIDIA X driver</span><br><span class="line">is used. The pre-existing X configuration file will be backed up.</span><br><span class="line">This option should not be used on systems that require a custom</span><br><span class="line">X configuration, such as systems with multiple GPU vendors.</span><br><span class="line">(y)es/(n)o/(q)uit [ default is no ]: n</span><br><span class="line"></span><br><span class="line">Install the CUDA 8.0 Toolkit?</span><br><span class="line">(y)es/(n)o/(q)uit: y</span><br><span class="line"></span><br><span class="line">Enter Toolkit Location</span><br><span class="line"> [ default is /usr/local/cuda-8.0 ]: </span><br><span class="line"></span><br><span class="line">Do you want to install a symbolic link at /usr/local/cuda?</span><br><span class="line">(y)es/(n)o/(q)uit: y</span><br><span class="line"></span><br><span class="line">Install the CUDA 8.0 Samples?</span><br><span class="line">(y)es/(n)o/(q)uit: y</span><br><span class="line"></span><br><span class="line">Enter CUDA Samples Location</span><br><span class="line"> [ default is /home/ubuntu ]: </span><br><span class="line"> </span><br><span class="line">Installing the NVIDIA display driver...</span><br><span class="line">Installing the CUDA Toolkit in /usr/local/cuda-8.0 ...</span><br><span class="line">Missing recommended library: libGLU.so</span><br><span class="line">Missing recommended library: libX11.so</span><br><span class="line">Missing recommended library: libXi.so</span><br><span class="line">Missing recommended library: libXmu.so</span><br><span class="line"></span><br><span class="line">Installing the CUDA Samples in /home/ubuntu ...</span><br><span class="line">Copying samples to /home/ubuntu/NVIDIA_CUDA-8.0_Samples now...</span><br><span class="line">Finished copying samples.</span><br><span class="line"></span><br><span class="line">===========</span><br><span class="line">= Summary =</span><br><span class="line">===========</span><br><span class="line"></span><br><span class="line">Driver:   Installed</span><br><span class="line">Toolkit:  Installed in /usr/local/cuda-8.0</span><br><span class="line">Samples:  Installed in /home/ubuntu, but missing recommended libraries</span><br><span class="line"></span><br><span class="line">Please make sure that</span><br><span class="line"> -   PATH includes /usr/local/cuda-8.0/bin</span><br><span class="line"> -   LD_LIBRARY_PATH includes /usr/local/cuda-8.0/lib64, or, add /usr/local/cuda-8.0/lib64 to /etc/ld.so.conf and run ldconfig as root</span><br><span class="line"></span><br><span class="line">To uninstall the CUDA Toolkit, run the uninstall script in /usr/local/cuda-8.0/bin</span><br><span class="line">To uninstall the NVIDIA Driver, run nvidia-uninstall</span><br><span class="line"></span><br><span class="line">Please see CUDA_Installation_Guide_Linux.pdf in /usr/local/cuda-8.0/doc/pdf for detailed information on setting up CUDA.</span><br></pre></td></tr></table></figure></p>
+<p>6.3 配置环境变量（当前用户）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo vim ~/.bashrc</span><br><span class="line"></span><br><span class="line">最后加入</span><br><span class="line">export LD_LIBRARY_PATH=&quot;$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64:/usr/local/cuda-8.0/extras/CUPTI/lib64&quot;</span><br><span class="line">export CUDA_HOME=/usr/local/cuda-8.0</span><br><span class="line"></span><br><span class="line">source ~/.bashrc   刷新文件</span><br></pre></td></tr></table></figure></p>
+<h1 id="七-安装cudnn"><a href="#七-安装cudnn" class="headerlink" title="七 安装cudnn"></a>七 安装cudnn</h1><p>与8匹配的是cudnn5.1，<a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank" rel="noopener">下载地址</a><br>首先需要注册,填一个问卷。<br>然后下载这个cuDNN v5.1 Runtime Library for Ubuntu14.04 (Deb)<br>16.06的那个不是amd64平台的。。下载14.04的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i libcudnn5_5.1.10-1+cuda8.0_amd64.deb</span><br></pre></td></tr></table></figure></p>
+<h1 id="八-安装tensorflow-gpu"><a href="#八-安装tensorflow-gpu" class="headerlink" title="八 安装tensorflow gpu"></a>八 安装tensorflow gpu</h1><p>为了保证稳定，不在root配置tensorflow，转而在各个用户下配置，所以需要每个用户配置下pip源(参照上文)，配置好之后，执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install tensorflow-gpu</span><br></pre></td></tr></table></figure></p>
+<p>注意，环境变量也是随着用户的，所以每增加一个用户，需要重新配一下这个用户的环境变量，打开python测试一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dluser02@ubuntu:~$ python</span><br><span class="line">Python 2.7.12 (default, Nov 19 2016, 06:48:10) </span><br><span class="line">[GCC 5.4.0 20160609] on linux2</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line">&gt;&gt;&gt; import tensorflow</span><br><span class="line">I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcublas.so.8.0 locally</span><br><span class="line">I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcudnn.so.5 locally</span><br><span class="line">I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcufft.so.8.0 locally</span><br><span class="line">I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcuda.so.1 locally</span><br><span class="line">I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcurand.so.8.0 locally</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意，安装版本过低</strong>，建议按照<a href="https://www.tensorflow.org/install/install_linux" target="_blank" rel="noopener">官网</a>推荐的方法，找到gpu字样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.0.1-cp27-none-linux_x86_64.whl</span><br></pre></td></tr></table></figure></p>
+<h1 id="九-安装keras"><a href="#九-安装keras" class="headerlink" title="九 安装keras"></a>九 安装keras</h1><p>装好前面的前提下，直接pip install keras,等待安装好即可,测试如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">dluser02@ubuntu:~$ python</span><br><span class="line">Python 2.7.12 (default, Nov 19 2016, 06:48:10) </span><br><span class="line">[GCC 5.4.0 20160609] on linux2</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line">&gt;&gt;&gt; import keras</span><br><span class="line">Using TensorFlow backend.</span><br><span class="line">I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcublas.so.8.0 locally</span><br><span class="line">I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcudnn.so.5 locally</span><br><span class="line">I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcufft.so.8.0 locally</span><br><span class="line">I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcuda.so.1 locally</span><br><span class="line">I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcurand.so.8.0 locally</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意如果版本过低</strong>，去github上面下载源码安装</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/毕业设计/Pandas/" rel="next" title="Pandas">
+                <i class="fa fa-chevron-left"></i> Pandas
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/毕业设计/强化学习小例子/" rel="prev" title="强化学习小例子">
+                强化学习小例子 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Allow-root-to-run-any-commands-anywhere"><span class="nav-number">1.</span> <span class="nav-text">Allow root to run any commands anywhere</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#四-安装pip"><span class="nav-number"></span> <span class="nav-text">四 安装pip</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-安装NVIDIA驱动"><span class="nav-number"></span> <span class="nav-text">五 安装NVIDIA驱动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六-安装cuda"><span class="nav-number"></span> <span class="nav-text">六 安装cuda</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七-安装cudnn"><span class="nav-number"></span> <span class="nav-text">七 安装cudnn</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#八-安装tensorflow-gpu"><span class="nav-number"></span> <span class="nav-text">八 安装tensorflow gpu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#九-安装keras"><span class="nav-number"></span> <span class="nav-text">九 安装keras</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

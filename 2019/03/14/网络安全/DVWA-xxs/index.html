@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="#一 测试环境DVWA部署位置 #二 简单介绍 ##2.1 什么是XSS？Cross Site Script英文缩写：CSS又叫XSS，中文意思：跨站脚本攻击。它指的是恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行。 XSS的攻击目标是为了盗取客户端的cookie或者其他网站用于识别客户端身份的敏感信息。获取到合法用户的信息后，攻击者甚">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DVWA-xxs">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/网络安全/DVWA-xxs/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="#一 测试环境DVWA部署位置 #二 简单介绍 ##2.1 什么是XSS？Cross Site Script英文缩写：CSS又叫XSS，中文意思：跨站脚本攻击。它指的是恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行。 XSS的攻击目标是为了盗取客户端的cookie或者其他网站用于识别客户端身份的敏感信息。获取到合法用户的信息后，攻击者甚">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/03/14/网络安全/DVWA-xxs/x">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/ce549x4cxvfd3c2vkunnvplb/image_1b2lfctlj1ep62g81fir6041g5b3u.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/d76vrkba43aujplqagfyvuy5/image_1b2lfdbbt1tei4t1414124ttr49.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/kbhyykfa9xr4qa6skj1nl9p7/image_1b2lg43no1voq1kkfm921lag13aq1g.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/7a26wml4xz814v22itios5am/image_1b2lg25nt1brbaqepga1qtu1b8hm.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/ovymvylwtucnyi7zzm0dscsf/image_1b2lgslt01oihc0n14j71m8fhlj1t.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/20kobf1uswuyzce0dfxyjkpp/image_1b2lhdvkglf419og1jii1sc72ol2a.png">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/ommzt4lxs7x1knxx2asqf0x9/image_1b2lheso9pf9mt7176gv121qhg2n.png">
+<meta property="og:updated_time" content="2019-03-14T08:30:30.019Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DVWA-xxs">
+<meta name="twitter:description" content="#一 测试环境DVWA部署位置 #二 简单介绍 ##2.1 什么是XSS？Cross Site Script英文缩写：CSS又叫XSS，中文意思：跨站脚本攻击。它指的是恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行。 XSS的攻击目标是为了盗取客户端的cookie或者其他网站用于识别客户端身份的敏感信息。获取到合法用户的信息后，攻击者甚">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/14/网络安全/DVWA-xxs/x">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/网络安全/DVWA-xxs/">
+
+
+
+
+
+  <title>DVWA-xxs | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/网络安全/DVWA-xxs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DVWA-xxs</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:21+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>#一 测试环境<br><a href="http://115.159.87.218/DVWA/" target="_blank" rel="noopener">DVWA部署位置</a></p>
+<p>#二 简单介绍</p>
+<p>##2.1 什么是XSS？<br><strong>Cross Site Script</strong>英文缩写：CSS又叫<strong>XSS</strong>，中文意思：<strong>跨站脚本攻击</strong>。它指的是恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行。</p>
+<p>XSS的攻击目标是为了<strong>盗取客户端的cookie</strong>或者其他网站<strong>用于识别客户端身份的敏感信息</strong>。获取到合法用户的信息后，攻击者甚至可以<strong>假冒最终用户</strong>与网站进行交互。</p>
+<p>XSS攻击是目前所有漏洞中所占<strong>比例最大</strong>的一类，防不胜防。</p>
+<p>##2.2 XSS的原理是什么？<br>XSS的原理也就是<strong>往HTML中注入脚本</strong>，HTML指定了脚本标记<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">在没有过滤字符的情况下，只需要保持完整无错的脚本标记,即可触发XSS。</span><br><span class="line"></span><br><span class="line">##2.3 XSS分类</span><br><span class="line"></span><br><span class="line"> **- XSS reflected </span><br><span class="line"> - XSS stored**</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#三 DVWA实验</span><br><span class="line">##3.1 Reflected Cross Site Scripting（low）</span><br><span class="line">①首先页面如下：</span><br><span class="line"></span><br><span class="line">![image_1b1hgn0fvvv81jsasva14sr1j4t9.png-42.7kB][2]</span><br><span class="line"></span><br><span class="line">②在文本框中随意输入一个用户名，提交之后就会在页面上显示。</span><br><span class="line"></span><br><span class="line">![image_1b1hgnq031o1m2l519el19h1frkm.png-10.7kB][3]</span><br><span class="line"></span><br><span class="line">③从URL中可以看出，用户名是通过name参数以**GET**方式提交的。</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://115.159.87.218/DVWA/vulnerabilities/xss_r/?name=hello#" target="_blank" rel="noopener">http://115.159.87.218/DVWA/vulnerabilities/xss_r/?name=hello#</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">④这时候，我们尝试往里面**输入XSS攻击命令**，比如下面这一行，最简单的：</span><br></pre></td></tr></table></figure></p>
+<p><script> alert(“helllo”) </script><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">并提交，这时候，我们观察**url**如下：</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://115.159.87.218/DVWA/vulnerabilities/xss_r/?name=%3Cscript%3E+alert%28%22helllo%22%29+%3C%2Fscript%3E" target="_blank" rel="noopener">http://115.159.87.218/DVWA/vulnerabilities/xss_r/?name=%3Cscript%3E+alert%28%22helllo%22%29+%3C%2Fscript%3E</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">网页效果如下：</span><br><span class="line"></span><br><span class="line">![image_1b2l9d43h157h1f3914pa1plv1jcr9.png-9.1kB][4]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">⑤这时候，我们通过F12开发者工具**查看网页源码**，我们发现，服务器给我们返回的是：</span><br><span class="line"></span><br><span class="line">![image_1b2l9g44sqgk1eds1o3k1dfq1h0nm.png-7.6kB][5]</span><br><span class="line"></span><br><span class="line">⑥可以看到我们所输入的**脚本**被**嵌入**到了网页中。</span><br><span class="line"></span><br><span class="line">⑦那我们可以通过这个方式，来**植入一些恶意脚本**，就能够获取到本地的数据了，如：</span><br></pre></td></tr></table></figure></p>
+<p><script>alert(document.cookie)</script><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">![image_1b2l9jhdi1a1an9gviurpd1cft13.png-8.1kB][6]</span><br><span class="line"></span><br><span class="line">网页源码如下:</span><br><span class="line"></span><br><span class="line">![image_1b2l9js51lthvf665igch1seb1g.png-6.6kB][7]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">⑧了cookies，我们可以直接使用这个cookies伪造登录。</span><br><span class="line"></span><br><span class="line">⑨当然，这样做没有啥意思，因为有人运行了，我们又看不到，到了这，可以利用javascript代码，将获取到的cookies发送到其他地方，那这样，我们就能利用获取到的cookies伪造登录了。</span><br><span class="line"></span><br><span class="line">⑩那攻击者，利用这样的漏洞，就可以获得用户的session，并伪造登录。当然，直接用alert未免太蠢太明显，所以，有一些事件可以被用来写xss攻击，这边不去加以分析。</span><br><span class="line"></span><br><span class="line">##3.2 Reflected Cross Site Scripting（medium）</span><br><span class="line">①乍一看，页面没有什么区别，我们去试一下，原来的代码，是否还能继续使用：</span><br><span class="line"></span><br><span class="line">![image_1b2lbdkcq1q401ptj8lfl7n1k4i1t.png-3.8kB][8]</span><br><span class="line"></span><br><span class="line">②我们发现，我们的提交url并没有发生变化：</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://115.159.87.218/DVWA/vulnerabilities/xss_r/?name=%3Cscript%3E+alert%28%22helllo%22%29+%3C%2Fscript%3E" target="_blank" rel="noopener">http://115.159.87.218/DVWA/vulnerabilities/xss_r/?name=%3Cscript%3E+alert%28%22helllo%22%29+%3C%2Fscript%3E</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">但是却没有继续弹出窗口，这时候，我们利用开发者工具查看一下源码，发现：</span><br><span class="line"></span><br><span class="line">![image_1b2lbg07fhng1f1u1ldie4r17302n.png-6.3kB][9]</span><br><span class="line"></span><br><span class="line">&lt;script&gt;这一对标签不见了，我们往回倒，查看源码，发现</span><br><span class="line"></span><br><span class="line">![image_1b2lbi8po19fg134s1phvj0j18d534.png-4.6kB][10]</span><br><span class="line"></span><br><span class="line">那这段源码，很明显就是将我们的标签给过滤掉了</span><br><span class="line"></span><br><span class="line">③应对方法：我们只要使用大写的就可以绕过：</span><br></pre></td></tr></table></figure></p>
+<p><script> alert(“helllo”) </script><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">其次XSS也并非只能使用JavaScript，通过HTML语句也可以跨站比如</span><br></pre></td></tr></table></figure></p>
+<p><img onerror="s=createElement('script');body.appendChild(s);s.src='…………';" src="x"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">是html中的图片标记，这条语句表示在网页中插入一张图片，“src=x”指定了图片文件的URL，如果图片不存在（这里肯定是不存在了），那么将会弹出错误提示框，从而实现弹框的效果。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">##3.3 Reflected Cross Site Scripting（high）</span><br><span class="line">①通过查看源码我们发现：</span><br><span class="line">![image_1b2lccnbk1as61qc0evgdmnlnl3h.png-4kB][11]</span><br><span class="line">他使用了这样一个函数：</span><br></pre></td></tr></table></figure></p>
+<p>htmlspecialchars($_GET[‘name’]);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">②这个函数可以把&amp; （和号）、&quot;（双引号）、&apos;（单引号）、（大于）这些敏感符号都进行转义，所有的跨站语句中基本都离不开这些符号，因而只需要这一个函数就阻止了XSS漏洞。</span><br><span class="line"></span><br><span class="line">③那么有没有方法，能够饶过这个函数呢?</span><br><span class="line">&gt;绕不过。所谓绕过就是挑程序员忘记正确转码的地方下手。只需要注意，并非htmlspecialchars就万事大吉，不同的地方需要不同的转码。所以所谓绕过htmlspecialchars也可能指那个漏洞点用htmlspecialchars转码压根不正确。</span><br><span class="line"></span><br><span class="line">④所以，一般来说，这个函数，足够安全了。</span><br><span class="line"></span><br><span class="line">##3.4 Stored Cross Site Scripting ( low )</span><br><span class="line">①存储型跨站可以将XSS语句直接写入到数据库中，因而相比反射型跨站的利用价值要更大。存储型XSS，持久化，代码是存储在服务器中的，如在个人信息或发表文章等地方，加入代码，如果没有过滤或过滤不严，那么这些代码将储存到服务器中，用户访问该页面的时候触发代码执行。</span><br><span class="line"></span><br><span class="line">②我们首先查看low级别的代码</span><br></pre></td></tr></table></figure></p>
+<p>&lt;?php<br>if(isset($_POST[‘btnSign’]))<br>{<br>   $message = trim($_POST[‘mtxMessage’]);<br>   $name    = trim($_POST[‘txtName’]); </p>
+<p>   // Sanitize message input<br>   $message = stripslashes($message);<br>   $message = mysql_real_escape_string($message); </p>
+<p>   // Sanitize name input<br>   $name = mysql_real_escape_string($name);<br>   $query = “INSERT INTO guestbook (comment,name) VALUES (‘$message’,’$name’);”;<br>   $result = mysql_query($query) or die(‘<pre>‘ . mysql_error() . ‘</pre>‘ );<br>}<br>?&gt;<br><code>`</code></p>
+<p>③   这里提供了<code>$message</code>和<code>$name</code>两个变量，分别用于接收用户在Message和Name框中所提交的数据。对这两个变量都通过<code>mysql_real_escape_string()</code>函数进行了过滤，但是这只能阻止SQL注入漏洞。</p>
+<p>④   可以看出，在low级别下，Name和Message这两个文本框都存在跨站漏洞，但是由于DVWA对name框的长度进行了限制，最多只允许输入10个字符，所以我们这里在Message框输入跨站语句“alert(‘hi’)”，以后任何人只要访问这个留言页面，就可以触发跨站语句，实现弹框。<br><img src="http://static.zybuluo.com/rg070836rg/ce549x4cxvfd3c2vkunnvplb/image_1b2lfctlj1ep62g81fir6041g5b3u.png" alt="image_1b2lfctlj1ep62g81fir6041g5b3u.png-22kB"><br><img src="http://static.zybuluo.com/rg070836rg/d76vrkba43aujplqagfyvuy5/image_1b2lfdbbt1tei4t1414124ttr49.png" alt="image_1b2lfdbbt1tei4t1414124ttr49.png-4.5kB"><br>⑤   当然，弹框并不是目的，XSS的主要用途之一是盗取cookie，也就是将用户的cookie自动发送操作者的电脑中。方法和反射式差不多，不过会更加容易被触发。</p>
+<p>##3.5 Stored Cross Site Scripting ( medium )<br>①我们观察源码：</p>
+<p><img src="http://static.zybuluo.com/rg070836rg/kbhyykfa9xr4qa6skj1nl9p7/image_1b2lg43no1voq1kkfm921lag13aq1g.png" alt="image_1b2lg43no1voq1kkfm921lag13aq1g.png-2.2kB"><br>可以看到对变量<code>$message</code>用htmlspecialchars()函数进行了过滤，这样Message输入框就不存在XSS漏洞了，但是Name框仍有漏洞。</p>
+<p>②我们尝试输入之前的漏洞，发现没有起到效果：<br><img src="http://static.zybuluo.com/rg070836rg/7a26wml4xz814v22itios5am/image_1b2lg25nt1brbaqepga1qtu1b8hm.png" alt="image_1b2lg25nt1brbaqepga1qtu1b8hm.png-17.8kB"></p>
+<p>③但由于name只限定输入10个字符，所以，漏洞很难利用。</p>
+<p>##3.6 Stored Cross Site Scripting ( high )<br>毫无疑问地对<code>$message</code>和<code>$name</code>都进行了过滤，这样跨站漏洞也就被彻底阻止了。</p>
+<p>#四 第一个 XSS 蠕虫: Samy<br>2005 年 10 月 4 日，Samy 蠕虫，同类中第一个重大的蠕虫病毒，利用一个在 MySpace.com 的个人资料页面模板的持续的跨站点脚本漏洞进行传播。Samy，也是作者，用漏洞的 JavaScript 攻击代码的第一个副本更新了他的个人资料页面当一个通过身份验证 MySpace 的用户观看 Samy的个人资料，该蠕虫病毒的 payload<br>使用 XHR，使得用户的网页浏览器发送请求，增加 Samy 为朋友，包括加 Samy 为他英雄，并用恶意代码的副本改变用户的个人资料。当用户访问 Samy 或<br>者其他受感染用户的个人资料页，他们基本上在打开浏览器时就受到攻击。<br><img src="http://static.zybuluo.com/rg070836rg/ovymvylwtucnyi7zzm0dscsf/image_1b2lgslt01oihc0n14j71m8fhlj1t.png" alt="image_1b2lgslt01oihc0n14j71m8fhlj1t.png-356.5kB"><br>从单一访客，然后随着在社交网络上的每一个新的不知情的朋友，Samy 蠕虫感染呈几何级数增长，受感染的用户资料页面超过 1,000,000。MySpace 是被迫关闭其网站，以阻止感染，修复漏洞，并进行清理</p>
+<p>#五 防御方式<br>①小心并测试，常见的xss攻击方式<br>②注意敏感的html标签<br>③对文本输入进行转码替换，能够非常有效的进行防御</p>
+<p>#六 工具&amp;平台<br>xssnow：<a href="http://xssnow.com/index.php" target="_blank" rel="noopener">http://xssnow.com/index.php</a><br>很好的一个网站，有很多xss</p>
+<p>优点：<br>①无需自己搭建XSSer环境，利用平台，可以很快部署好。<br>②有很多预设的代码，也可以自己设计代码<br>③植入简单</p>
+<p>示例：<br>植入：<br><img src="http://static.zybuluo.com/rg070836rg/20kobf1uswuyzce0dfxyjkpp/image_1b2lhdvkglf419og1jii1sc72ol2a.png" alt="image_1b2lhdvkglf419og1jii1sc72ol2a.png-9.1kB"><br>访问效果：<br><img src="http://static.zybuluo.com/rg070836rg/ommzt4lxs7x1knxx2asqf0x9/image_1b2lheso9pf9mt7176gv121qhg2n.png" alt="image_1b2lheso9pf9mt7176gv121qhg2n.png-51.2kB"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/同步/同步文档/" rel="next" title="同步文档">
+                <i class="fa fa-chevron-left"></i> 同步文档
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/网络安全/DVWA测试报告/" rel="prev" title="DVWA测试报告">
+                DVWA测试报告 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

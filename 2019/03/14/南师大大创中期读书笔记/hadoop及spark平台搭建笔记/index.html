@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="##一、创建hadoop用户并赋予权限 ###①创建hadoop用户组1sudo addgroup hadoop ###②创建hadoop用户1sudo adduser -ingroup hadoop hadoop ###③密码设为admin ###④增加权限1sudo gedit /etc/sudoers 在文件内上述修改以下代码并保存123# User privilege specifica">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hadoop及spark平台搭建笔记">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/南师大大创中期读书笔记/hadoop及spark平台搭建笔记/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="##一、创建hadoop用户并赋予权限 ###①创建hadoop用户组1sudo addgroup hadoop ###②创建hadoop用户1sudo adduser -ingroup hadoop hadoop ###③密码设为admin ###④增加权限1sudo gedit /etc/sudoers 在文件内上述修改以下代码并保存123# User privilege specifica">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://images.cnitblog.com/blog/386955/201303/01121915-7c8f4be1052949cb9dd4425d3daa0793.gif">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.650Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hadoop及spark平台搭建笔记">
+<meta name="twitter:description" content="##一、创建hadoop用户并赋予权限 ###①创建hadoop用户组1sudo addgroup hadoop ###②创建hadoop用户1sudo adduser -ingroup hadoop hadoop ###③密码设为admin ###④增加权限1sudo gedit /etc/sudoers 在文件内上述修改以下代码并保存123# User privilege specifica">
+<meta name="twitter:image" content="http://images.cnitblog.com/blog/386955/201303/01121915-7c8f4be1052949cb9dd4425d3daa0793.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/南师大大创中期读书笔记/hadoop及spark平台搭建笔记/">
+
+
+
+
+
+  <title>hadoop及spark平台搭建笔记 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/南师大大创中期读书笔记/hadoop及spark平台搭建笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">hadoop及spark平台搭建笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/南师大大创中期读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">南师大大创中期读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>##一、创建hadoop用户并赋予权限</p>
+<p>###①创建hadoop用户组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo addgroup hadoop</span><br></pre></td></tr></table></figure></p>
+<p>###②创建hadoop用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser -ingroup hadoop hadoop</span><br></pre></td></tr></table></figure></p>
+<p>###③密码设为admin</p>
+<p>###④增加权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /etc/sudoers</span><br></pre></td></tr></table></figure></p>
+<p>在文件内上述修改以下代码并保存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># User privilege specification</span><br><span class="line">root	ALL=(ALL:ALL) ALL</span><br><span class="line">hadoop  ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>##二、安装jdk</p>
+<p>###①创建目录  usr/lib/jvm<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd usr/lib    </span><br><span class="line">sudo mkdir jvm</span><br></pre></td></tr></table></figure></p>
+<p>###②下载安装包并解压，移动<br>假设安装文件在下载目录<br>回到主目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd 下载</span><br></pre></td></tr></table></figure></p>
+<p>执行下述代码（注意修改对应版本号）</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar zxvf ./jdk-<span class="number">8</span>u45-linux-x64.tar.gz  -C ../../../usr/lib/jvm</span><br></pre></td></tr></table></figure>
+<p>进入到该目录下，并进行移动操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd usr/lib/jvm</span><br><span class="line"></span><br><span class="line">sudo mv jdk1.8.0_45/    java-8u45-sun</span><br><span class="line">//注意版本号</span><br></pre></td></tr></table></figure></p>
+<p>###③配置环境变量<br><strong>注意！！：这种方式是为当前用户配置的所以，切换到hadoop之后，还需要在配置一遍</strong><br>使用vim ~/.bashrc命令编辑<br>在底部加入命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#######java-8u45-sun</span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/java-8u45-sun</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br><span class="line">//更新文件</span><br></pre></td></tr></table></figure>
+<p>使用java -version检查是否成功</p>
+<hr>
+<p>##三、修改机器名（不必要）</p>
+<p>sudo gedit /etc/hostname</p>
+<p>编辑名字即可（随意，只是为了方便区分）</p>
+<hr>
+<p>##四、安装ssh服务</p>
+<p>###①安装openssh-server<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure></p>
+<p>###②若报错为：“Ubuntu无法锁定管理目录（/var/lib/dpkg/），是否有其他进程占用它？“<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /var/lib/dpkg/lock</span><br><span class="line">sudo rm /var/cache/apt/archives/lock</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>##五、 建立ssh无密码登录本机</p>
+<p>###①按照rsa方式生成密钥<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;751440280@qq.com&quot;</span><br><span class="line">//邮箱输入自己的，仅作为标识</span><br></pre></td></tr></table></figure></p>
+<p>###②输入存储目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/home/hadoop/.ssh/id_rsa</span><br></pre></td></tr></table></figure></p>
+<p>成功后如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The key fingerprint is:</span><br><span class="line">2f:bb:13:23:66:09:34:29:be:57:db:93:69:f0:71:2a 751440280@qq.com</span><br><span class="line">The key&apos;s randomart image is:</span><br></pre></td></tr></table></figure></p>
+<p>###③将id_rsa.pub追加到authorized_keys授权文件中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /home/hadoop/.ssh/</span><br><span class="line">//默认文件夹</span><br><span class="line"></span><br><span class="line">cat id_rsa.pub  &gt;&gt; authorized_keys</span><br></pre></td></tr></table></figure></p>
+<p>###④测试是否能够登陆<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh localhost</span><br><span class="line">//输入yes 测试能否登陆。</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>##六、安装hadoop</p>
+<p>###①下载hadoop<br><a href="http://hadoop.apache.org/releases.html" target="_blank" rel="noopener">hadoop下载地址</a></p>
+<p>###②安装过程</p>
+<p>####2.1、复制文件到/usr/local/下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp hadoop-2.5.2.tar.gz  /usr/local/</span><br></pre></td></tr></table></figure></p>
+<p>####2.2、解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxf hadoop-2.5.2.tar.gz</span><br></pre></td></tr></table></figure></p>
+<p>####2.3、改名字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv hadoop-2.5.2 hadoop</span><br></pre></td></tr></table></figure></p>
+<p>####2.4、将该hadoop文件夹的属主用户设为hadoop<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod -R 775 /usr/local/hadoop  </span><br><span class="line">sudo chown -R hadoop:hadoop /usr/local/hadoop</span><br></pre></td></tr></table></figure></p>
+<p>####2.5、修改bashrc的配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit ~/.bashrc</span><br></pre></td></tr></table></figure></p>
+<p>在最后增加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#HADOOP VARIABLES START  </span><br><span class="line">  </span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/？？？？</span><br><span class="line">#（看jdk配置//上一行需要保留并设置成本机的路径）</span><br><span class="line">  </span><br><span class="line">export HADOOP_INSTALL=/usr/local/hadoop  </span><br><span class="line">  </span><br><span class="line">export PATH=$PATH:$HADOOP_INSTALL/bin  </span><br><span class="line">  </span><br><span class="line">export PATH=$PATH:$HADOOP_INSTALL/sbin  </span><br><span class="line">  </span><br><span class="line">export HADOOP_MAPRED_HOME=$HADOOP_INSTALL  </span><br><span class="line">  </span><br><span class="line">export HADOOP_COMMON_HOME=$HADOOP_INSTALL  </span><br><span class="line">  </span><br><span class="line">export HADOOP_HDFS_HOME=$HADOOP_INSTALL  </span><br><span class="line">  </span><br><span class="line">export YARN_HOME=$HADOOP_INSTALL  </span><br><span class="line">  </span><br><span class="line">export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_INSTALL/lib/native  </span><br><span class="line">  </span><br><span class="line">export HADOOP_OPTS=&quot;-Djava.library.path=$HADOOP_INSTALL/lib&quot;  </span><br><span class="line">  </span><br><span class="line">#HADOOP VARIABLES END</span><br></pre></td></tr></table></figure></p>
+<p>然后更新生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure></p>
+<p>####2.6、修改hadoop-env.sh的配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /usr/local/hadoop/etc/hadoop/hadoop-env.sh</span><br></pre></td></tr></table></figure></p>
+<p>找到JAVA_HOME改为上面的值,如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#export JAVA_HOME=$&#123;JAVA_HOME&#125;</span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/java-8u45-sun</span><br></pre></td></tr></table></figure></p>
+<p>####2.7、修改core-site.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /usr/local/hadoop/etc/hadoop/core-site.xml</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;  </span><br><span class="line">    &lt;property&gt;  </span><br><span class="line">        &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;  </span><br><span class="line">        &lt;value&gt;/usr/local/hadoop/tmp&lt;/value&gt;  </span><br><span class="line">        &lt;description&gt;Abase for other temporary directories.&lt;/description&gt;  </span><br><span class="line">    &lt;/property&gt;  </span><br><span class="line">    &lt;property&gt;  </span><br><span class="line">        &lt;name&gt;fs.defaultFS&lt;/name&gt;  </span><br><span class="line">        &lt;value&gt;hdfs://localhost:9000&lt;/value&gt;  </span><br><span class="line">    &lt;/property&gt;  </span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>####2.8、修改mapred-site.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /usr/local/hadoop/etc/hadoop/mapred-site.xml //此项不必要</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;  </span><br><span class="line"> &lt;property&gt;     </span><br><span class="line">      &lt;name&gt;mapred.job.tracker&lt;/name&gt;    </span><br><span class="line">      &lt;value&gt;localhost:9001&lt;/value&gt;     </span><br><span class="line">     &lt;/property&gt;     </span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>####2.9、修改yarn-site.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /usr/local/hadoop/etc/hadoop/yarn-site.xml</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;  </span><br><span class="line">&lt;property&gt;  </span><br><span class="line">&lt;name&gt;mapreduce.framework.name&lt;/name&gt;  </span><br><span class="line">&lt;value&gt;yarn&lt;/value&gt;  </span><br><span class="line">&lt;/property&gt;  </span><br><span class="line">  </span><br><span class="line">&lt;property&gt;  </span><br><span class="line">&lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;  </span><br><span class="line">&lt;value&gt;mapreduce_shuffle&lt;/value&gt;  </span><br><span class="line">&lt;/property&gt;  </span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>####2.10、修改hdfs-site.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /usr/local/hadoop/etc/hadoop/hdfs-site.xml</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;  </span><br><span class="line">&lt;property&gt;  </span><br><span class="line">        &lt;name&gt;dfs.replication&lt;/name&gt;  </span><br><span class="line">        &lt;value&gt;1&lt;/value&gt;  </span><br><span class="line">    &lt;/property&gt;  </span><br><span class="line">    &lt;property&gt;  </span><br><span class="line">        &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;  </span><br><span class="line">        &lt;value&gt;file:/usr/local/hadoop/dfs/name&lt;/value&gt;  </span><br><span class="line">    &lt;/property&gt;  </span><br><span class="line">    &lt;property&gt;  </span><br><span class="line">        &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;  </span><br><span class="line">        &lt;value&gt;file:/usr/local/hadoop/dfs/data&lt;/value&gt;  </span><br><span class="line">    &lt;/property&gt;  </span><br><span class="line">    &lt;property&gt;                 </span><br><span class="line">            &lt;name&gt;dfs.permissions&lt;/name&gt;  </span><br><span class="line">            &lt;value&gt;false&lt;/value&gt;  </span><br><span class="line">     &lt;/property&gt;  </span><br><span class="line"> &lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>####2.11、修改master与slaves<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /usr/local/hadoop/etc/hadoop/masters </span><br><span class="line"></span><br><span class="line">sudo gedit /usr/local/hadoop/etc/hadoop/slaves</span><br><span class="line"></span><br><span class="line">添加：localhost</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>##七、运行hadoop</p>
+<p>###①首先在 Hadoop 目录下创建所需的临时目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop  </span><br><span class="line">mkdir tmp dfs dfs/name dfs/data</span><br></pre></td></tr></table></figure></p>
+<p>###②格式化hdfs文件系统，初次运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop/</span><br><span class="line">bin/hdfs namenode -format</span><br></pre></td></tr></table></figure></p>
+<p>###③最后开启服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sbin/start-dfs.sh  </span><br><span class="line">sbin/start-yarn.sh</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>##八、状态查看<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Namenode information:</span><br><span class="line">http://localhost:50070</span><br><span class="line">来查看Hadoop的信息。</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">All Applications：</span><br><span class="line">http://localhost:8088/，</span><br></pre></td></tr></table></figure>
+<hr>
+<p>##九、安装Eclipse</p>
+<p>###①下载地址<br><a href="http://www.eclipse.org/downloads/?osType=linux&amp;release=undefinedrelease=undefined" target="_blank" rel="noopener">eclipse官方下载</a></p>
+<p>###②解压到/opt<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/ &amp;&amp; sudo tar -zxvf ~/下载/eclipse（根据下载的版本号填写）</span><br></pre></td></tr></table></figure></p>
+<p>###③创建快捷方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gksudo gedit /usr/share/applications/eclipse.desktop</span><br></pre></td></tr></table></figure></p>
+<p>录入下述内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Name=Eclipse 4</span><br><span class="line">Type=Application</span><br><span class="line">Exec=/opt/eclipse/eclipse</span><br><span class="line">Terminal=false</span><br><span class="line">Icon=/opt/eclipse/icon.xpm</span><br><span class="line">Comment=Integrated Development Environment</span><br><span class="line">NoDisplay=false</span><br><span class="line">Categories=Development;IDE;</span><br><span class="line">Name[en]=Eclipse</span><br></pre></td></tr></table></figure></p>
+<p>###④作jre的软链接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/eclipse</span><br><span class="line">ln -sf /usr/lib/jvm/java-8u45-sun/jre</span><br></pre></td></tr></table></figure></p>
+<p>###⑤、使用方式<br>用搜索栏搜索到eclipse，打开即可，可以选择拖拽到左侧快速启动栏</p>
+<hr>
+<p>##十、安装Eclipse hadoop插件</p>
+<p>###①下载hadoop-eclipse-plugin-2.4.0.jar<br>版本号无所谓，把这个文件拷贝到opt/eclipse/plugins中，这里介绍<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nautilus</span><br></pre></td></tr></table></figure></p>
+<p>这个命令会给你一个最高权限的资源管理器，可以进行复制<br>拷贝完之后，打开eclipse</p>
+<p>###②添加Hadoop的安装目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在Window-&gt;Preferences-&gt;Hadoop Map/Reduce中添加Hadoop的安装目录</span><br></pre></td></tr></table></figure></p>
+<p>###③配置Map/Reduce Locations<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在Window--&gt;Show View-&gt;other，</span><br><span class="line">在MapReduce Tools中选择Map/Reduce Locations</span><br></pre></td></tr></table></figure></p>
+<p>配置如下:<br><img src="http://images.cnitblog.com/blog/386955/201303/01121915-7c8f4be1052949cb9dd4425d3daa0793.gif" alt="此处输入图片的描述"></p>
+<hr>
+<h1 id="scala配置-spark安装"><a href="#scala配置-spark安装" class="headerlink" title="scala配置+spark安装"></a>scala配置+spark安装</h1><p>##一.安装 Scala<br>Scala 官网地址为 <a href="http://www.scala-lang.org/。" target="_blank" rel="noopener">http://www.scala-lang.org/。</a></p>
+<p>####1)下载 <a href="http://www.scala-lang.org/download/" target="_blank" rel="noopener">scala-2.11.7.tgz</a>。</p>
+<p>####2)进入目录下解压,并移动到合适的位置(比如opt目录下):<br>    tar -xzvf scala-2.11.7.tgz</p>
+<p>####3)配置环境变量,编辑~/.bashrc,添加下面的内容。<br> <code>sudo gedit  ~/.bashrc</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#scala envir</span><br><span class="line">export SCALA_HOME=/xxxxxxxx  //写上你的目录比如/opt/scala-2.11.7</span><br><span class="line">export PATH=$&#123;SCALA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure></p>
+<p>####4)使 bashrc 文件更新生效。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure></p>
+<p>####5)在终端输入scala测试是否安装成功</p>
+<p>###注:<br>不能使用apt-get install scala 这样安装是基于openjdk,问题很多. </p>
+<hr>
+<p>##二.安装 Spark<br>进入官网下载对应 Hadoop 版本的 Spark 程序包<br>官网地址为 <a href="http://spark.apache.org/downloads.html。" target="_blank" rel="noopener">http://spark.apache.org/downloads.html。</a><br>这边下载最新版本1.41,2015年08月15日</p>
+<p>####1)下载 <a href="http://spark.apache.org/downloads.html" target="_blank" rel="noopener">spark-1.4.1-bin-hadoop2.6.tgz</a>。</p>
+<p>####2)解压并移动到合适的位置(比如opt目录下):。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -xzvf spark-1.4.1-bin-hadoop2.6.tgz</span><br><span class="line">//为了方便,移动后改名为spark</span><br></pre></td></tr></table></figure></p>
+<p>####3)配置环境变量,编辑~/.bashrc,添加下面的内容。<br> <code>sudo gedit  ~/.bashrc</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#spark</span><br><span class="line">export SPARK_HOME=$HOME/opt/spark</span><br><span class="line">export PATH=$PATH:$SPARK_HOME/bin</span><br></pre></td></tr></table></figure></p>
+<p>####4)使 bashrc 文件更新生效。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure></p>
+<p>####5)配置 conf/spark-env.sh 文件\<br>加上   <code>export JAVA_HOME=/usr/lib/jvm/java-8u45-sun</code></p>
+<p>####6)若出现权限问题,修改组权限为读写</p>
+<p>####7)在sbin目录下,调用脚本start-all.sh开启服务</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/课程设计/数据结构课程设计报告/" rel="next" title="数据结构课程设计报告">
+                <i class="fa fa-chevron-left"></i> 数据结构课程设计报告
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/南师大人工智能论文/利用状态空间法解决八数码游戏问题/" rel="prev" title="利用状态空间法解决八数码游戏问题">
+                利用状态空间法解决八数码游戏问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#scala配置-spark安装"><span class="nav-number">1.</span> <span class="nav-text">scala配置+spark安装</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

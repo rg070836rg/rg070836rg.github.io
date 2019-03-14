@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="POI 相关论文###1. POI 流量相关 POI Recommendation: A Temporal Matching between POI Popularity and User RegularityZijun Yao, Yanjie Fu, Bin Liu, Yanchi Liu, Hui Xiong, ICDM 2016  Problem：给定用户签到历史，为用户推荐POI Mot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="POI 相关论文">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/人流量/POI 相关论文/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="POI 相关论文###1. POI 流量相关 POI Recommendation: A Temporal Matching between POI Popularity and User RegularityZijun Yao, Yanjie Fu, Bin Liu, Yanchi Liu, Hui Xiong, ICDM 2016  Problem：给定用户签到历史，为用户推荐POI Mot">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.616Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="POI 相关论文">
+<meta name="twitter:description" content="POI 相关论文###1. POI 流量相关 POI Recommendation: A Temporal Matching between POI Popularity and User RegularityZijun Yao, Yanjie Fu, Bin Liu, Yanchi Liu, Hui Xiong, ICDM 2016  Problem：给定用户签到历史，为用户推荐POI Mot">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/人流量/POI 相关论文/">
+
+
+
+
+
+  <title>POI 相关论文 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/人流量/POI 相关论文/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">POI 相关论文</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:20+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人流量/" itemprop="url" rel="index">
+                    <span itemprop="name">人流量</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h2 id="POI-相关论文"><a href="#POI-相关论文" class="headerlink" title="POI 相关论文"></a>POI 相关论文</h2><p>###1. POI 流量相关</p>
+<h4 id="POI-Recommendation-A-Temporal-Matching-between-POI-Popularity-and-User-Regularity"><a href="#POI-Recommendation-A-Temporal-Matching-between-POI-Popularity-and-User-Regularity" class="headerlink" title="POI Recommendation: A Temporal Matching between POI Popularity and User Regularity"></a>POI Recommendation: A Temporal Matching between POI Popularity and User Regularity</h4><p><em>Zijun Yao, Yanjie Fu, Bin Liu, Yanchi Liu, Hui Xiong, ICDM 2016</em></p>
+<ul>
+<li>Problem：给定用户签到历史，为用户推荐POI</li>
+<li>Motivation：<ul>
+<li>POI 流行度随时间变化</li>
+<li>用户活动兴趣随时间变化</li>
+<li>如何在推荐时将二者相匹配</li>
+</ul>
+</li>
+<li>Method：<ul>
+<li><strong>POI 热度</strong>：用 taxi 数据定义区域热度，用 check-in 数据定义类别热度，混合得到 POI 热度<ul>
+<li>统计 POI 附近100m内下客数 在时间片 $t$ 的分布占比作为区域热度 $D_{j,t}$</li>
+<li>统计 POI 类别所有访问数，时间片 $t$ 的分布作为类别热度 $C_{v,t}$</li>
+<li>POI 的时间统计热度为 $q_{j,t} = \varphi D_{j,t}i + \varphi C_{c{j},t}$，$\varphi$ 是超参，作者定义 0.6</li>
+<li>用 GMM 来平滑 POI 热度</li>
+</ul>
+</li>
+<li>计算用户活跃度的时间分布，跟 POI 分布进行匹配。</li>
+</ul>
+</li>
+<li>Experiment：</li>
+</ul>
+<h4 id="Experiments-with-a-Venue-Centric-Model-for-Personalised-and-Time-Aware-Venue-Suggestion"><a href="#Experiments-with-a-Venue-Centric-Model-for-Personalised-and-Time-Aware-Venue-Suggestion" class="headerlink" title="Experiments with a Venue-Centric Model for Personalised and Time-Aware Venue Suggestion"></a>Experiments with a Venue-Centric Model for Personalised and Time-Aware Venue Suggestion</h4><p><em>Romain Deveaud, M-Dyaa Albakour, Craig Macdonald and Iadh Ounis, CIKM 2015</em></p>
+<ul>
+<li>Problem: POI 推荐</li>
+<li>Motivation：基于用户的POI推荐需要大量个体用户的信息和数据，因此提出基于POI的POI推荐。</li>
+<li>Method：<ul>
+<li>$P(v|u,l,t)=P(v|u)\cdot P(v|l,t)$</li>
+<li>$P(v|l,t) = P(v|l)\cdot P(v|t)$</li>
+<li>其中 $P(v|t)$ 是POI流行度，采用时序预测的方法</li>
+</ul>
+</li>
+<li>Experiment：<ul>
+<li>时序预测POI流行度方面，ARIMA，基于过去 21 天取得最好效果。</li>
+</ul>
+</li>
+</ul>
+<h4 id="CORALS-Who-are-My-Potential-New-Customers-Tapping-into-the-Wisdom-of-Customers’-Decisions"><a href="#CORALS-Who-are-My-Potential-New-Customers-Tapping-into-the-Wisdom-of-Customers’-Decisions" class="headerlink" title="CORALS: Who are My Potential New Customers? Tapping into the Wisdom of Customers’ Decisions"></a>CORALS: Who are My Potential New Customers? Tapping into the Wisdom of Customers’ Decisions</h4><p><em>Ruirui Li, Jyunyu Jiang, Chelsea J.-T. Ju, Wei Wang. CKIM 2017</em></p>
+<ul>
+<li>Problem: POI 推荐</li>
+<li>Motivation：用户选择POI的决策过程会考虑（1）自身兴趣（2）地理影响（3）POI 评价</li>
+<li>Method：</li>
+<li>Experiments：<strong>有新dataset</strong></li>
+</ul>
+<h4 id="Exploring-Student-Check-In-Behavior-for-Improved-Point-of-Interest-Prediction"><a href="#Exploring-Student-Check-In-Behavior-for-Improved-Point-of-Interest-Prediction" class="headerlink" title="Exploring Student Check-In Behavior for Improved Point-of-Interest Prediction"></a>Exploring Student Check-In Behavior for Improved Point-of-Interest Prediction</h4><p><em>KDD 2018</em></p>
+<ul>
+<li>Problem: 基于学生签到数据的位置预测</li>
+<li>Motivation: <ul>
+<li>基于LBSN的签到数据集中在娱乐活动上，不能反应用户活动全貌</li>
+<li>学校数据特点：更多活跃用户、更多类型日常活动、意义明确的范围</li>
+<li>在学校数据下，采用异构的图结构来做预测，比基于张量等方式更合适（WHY？）</li>
+</ul>
+</li>
+<li>Method：<ul>
+<li>Embedding for Dense Heterogeneous Graphs (EDHG)</li>
+<li>把个人兴趣、时间规律和活动类型建立成多种异构的图</li>
+<li>联合学习这些图的顶点embedding</li>
+<li>用得到的embedding来进行特定时间的推荐</li>
+</ul>
+</li>
+<li>Result</li>
+</ul>
+<h4 id="StepDeep-A-Novel-Spatial-temporal-Mobility-Event-Prediction-Framework-based-on-Deep-Neural-Network"><a href="#StepDeep-A-Novel-Spatial-temporal-Mobility-Event-Prediction-Framework-based-on-Deep-Neural-Network" class="headerlink" title="StepDeep A Novel Spatial-temporal Mobility Event Prediction Framework based on Deep Neural Network"></a>StepDeep A Novel Spatial-temporal Mobility Event Prediction Framework based on Deep Neural Network</h4><p><em>Bilong Shen，Xiaodan Liang，Yufeng Ouyang，Miaofeng Liu，Weimin Zheng，Kathleen M. Carley，KDD 2018</em> </p>
+<ul>
+<li>Problem: 预测打车数（Mobility Event）</li>
+<li>Motivation<ul>
+<li>Mobility Event 随时间动态变化、有空间依赖性，并且受许多其它因素影响</li>
+<li>人工设计的特征和应用场景相关并且需要很强的领域知识</li>
+</ul>
+</li>
+<li>Method<ul>
+<li>用深度神经网络来建模</li>
+<li>2维空间平面+时间维度，构成类似于“视频”的数据结构，因此该问题 变成是pixel-wised “视频”预测</li>
+<li>其它因素添加在隐藏层中</li>
+</ul>
+</li>
+<li>Result：</li>
+</ul>
+<h4 id="Predicting-new-venue-visitation-patterns-through-mobility-data"><a href="#Predicting-new-venue-visitation-patterns-through-mobility-data" class="headerlink" title="Predicting new venue visitation patterns through mobility data"></a>Predicting new venue visitation patterns through mobility data</h4><p><em>SIGSPATIAL 2017</em></p>
+<ul>
+<li>Problem: 预测新POI的访问量时间分布</li>
+<li>Motivation：新问题，商业价值</li>
+<li>Method：<ul>
+<li>统计区域分布，统计POI分布，统计区域内类别分布</li>
+<li>新 Venue 用K-NN：找到 N 个类别分布最相近的区域，这 N 个分布 用贝叶斯高斯平滑来拟合。</li>
+</ul>
+</li>
+</ul>
+<p>####POI Popularity Prediction via Hierarchical Fusion of multiple social clues</p>
+<p><em>Yaqian Duan, Xinze W3KM<br>ang, Yang Yang, Zi Huang, Ning Xie, Heng Tao Shen. SIGIR 2016</em></p>
+<ul>
+<li>Problem: 预测POI总的访问量（热度）</li>
+<li>Motivation：</li>
+<li>Method：</li>
+<li>Result：</li>
+</ul>
+<p>###2. 城市区域分析</p>
+<h4 id="Discovering-Urban-Travel-Demands-through-Dynamic-Zone-Correlation-in-Location-Based-Social-Networks"><a href="#Discovering-Urban-Travel-Demands-through-Dynamic-Zone-Correlation-in-Location-Based-Social-Networks" class="headerlink" title="Discovering Urban Travel Demands through Dynamic Zone Correlation in Location-Based Social Networks"></a>Discovering Urban Travel Demands through Dynamic Zone Correlation in Location-Based Social Networks</h4><p><em>Wangsu Hu, Zijun Yao, Sen Yang, Shuhong Chen, and Peter J. Jin, ECML-PKDD</em> 2018</p>
+<ul>
+<li>Problem: 根据用户签到数据，估计区域为单位的Origin-Destination Flow，即一个 Origin Zone， Destination Zone，Timeslot组成的张量，张量元素的值表示trip数量。</li>
+<li>Motivation:<ul>
+<li>在车辆GPS层面做的OD flow工作，GPS数据无语义</li>
+<li>在 check in 层面工作都是用户为单位的工作，没有区域层面的</li>
+</ul>
+</li>
+<li>Method:<ul>
+<li>根据 POI 类别划分，估计区域的 topic</li>
+<li>用 Hawkes Process-based State-Space 来估计（区域？）签到数</li>
+<li>用 Pearson Product-Moment Correlation Gravity Model 来估计任意区域对之间的人流关系</li>
+</ul>
+</li>
+<li>Result:</li>
+</ul>
+<h4 id="Representing-Urban-Functions-through-Zone-Embedding-with-Human-Mobility-Patterns"><a href="#Representing-Urban-Functions-through-Zone-Embedding-with-Human-Mobility-Patterns" class="headerlink" title="Representing Urban Functions through Zone Embedding with Human Mobility Patterns"></a>Representing Urban Functions through Zone Embedding with Human Mobility Patterns</h4><p><em>Zijun Yao, Yanjie Fu, Bin Liu, Wangsu Hu, Hui Xiong. IJCAI 2018</em></p>
+<ul>
+<li>Problem: 基于人类移动数据，将城市区域进行embedding，功能相近的区域embedding结果相近</li>
+<li>Motivation:<ul>
+<li>在人类移动数据中，城市区域的co-occur可以帮助学习embedding</li>
+<li>co-occur需要考虑时间因素，不同时间离开和到达某区域，代表该区域的功能不同</li>
+</ul>
+</li>
+<li>Method：<ul>
+<li>Time aware “word embedding”</li>
+<li>加入了重力因子来衡量co-occur的重要性</li>
+</ul>
+</li>
+<li>Result<ul>
+<li>根据embedding进行区域聚类，跟ground truth以及若干baseline比聚类性能</li>
+</ul>
+</li>
+</ul>
+<h4 id="Exploring-the-Urban-Region-of-Interest-through-the-Analysis-of-Online-Map-Search-Queries"><a href="#Exploring-the-Urban-Region-of-Interest-through-the-Analysis-of-Online-Map-Search-Queries" class="headerlink" title="Exploring the Urban Region-of-Interest through the Analysis of Online Map Search Queries"></a>Exploring the Urban Region-of-Interest through the Analysis of Online Map Search Queries</h4><p><em>Ying Sun, Hengshu Zhu, Fuzhen Zhuang, Jingjing Gu, Qing He. KDD 2018</em></p>
+<ul>
+<li>Problem：ROI 提取和画像</li>
+<li>Motivation：<ul>
+<li>ROI 提取和画像的问题还没有解决好</li>
+<li>利用地图的 query 数据来做是一个新的思路</li>
+<li>地图 query 带有时间戳，起终点，并且起终点可以用POI形式表示</li>
+</ul>
+</li>
+<li>Method：<ul>
+<li>ROI 提取<ul>
+<li>将城市划分格子，按格子统计转移矩阵</li>
+<li>用 PageRank 统计每个格子的流行度</li>
+<li>用一个基于密度的聚类，将格子聚类成 ROI</li>
+</ul>
+</li>
+<li>ROI 画像<ul>
+<li>提出一个时空隐变量模型来建模 ROI 访客的 topic</li>
+<li>将 ROI 视为document，以该ROI为终点的查询（包括时间、起点、POI标签）为word</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Experiment</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/人机交互技术复习/人机交互技术复习提纲（17-21）/" rel="next" title="人机交互技术复习提纲（17-21）">
+                <i class="fa fa-chevron-left"></i> 人机交互技术复习提纲（17-21）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/人流量/兴趣点推荐总结/" rel="prev" title="兴趣点推荐总结">
+                兴趣点推荐总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#POI-相关论文"><span class="nav-number">1.</span> <span class="nav-text">POI 相关论文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#POI-Recommendation-A-Temporal-Matching-between-POI-Popularity-and-User-Regularity"><span class="nav-number">1.0.1.</span> <span class="nav-text">POI Recommendation: A Temporal Matching between POI Popularity and User Regularity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Experiments-with-a-Venue-Centric-Model-for-Personalised-and-Time-Aware-Venue-Suggestion"><span class="nav-number">1.0.2.</span> <span class="nav-text">Experiments with a Venue-Centric Model for Personalised and Time-Aware Venue Suggestion</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CORALS-Who-are-My-Potential-New-Customers-Tapping-into-the-Wisdom-of-Customers’-Decisions"><span class="nav-number">1.0.3.</span> <span class="nav-text">CORALS: Who are My Potential New Customers? Tapping into the Wisdom of Customers’ Decisions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exploring-Student-Check-In-Behavior-for-Improved-Point-of-Interest-Prediction"><span class="nav-number">1.0.4.</span> <span class="nav-text">Exploring Student Check-In Behavior for Improved Point-of-Interest Prediction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#StepDeep-A-Novel-Spatial-temporal-Mobility-Event-Prediction-Framework-based-on-Deep-Neural-Network"><span class="nav-number">1.0.5.</span> <span class="nav-text">StepDeep A Novel Spatial-temporal Mobility Event Prediction Framework based on Deep Neural Network</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Predicting-new-venue-visitation-patterns-through-mobility-data"><span class="nav-number">1.0.6.</span> <span class="nav-text">Predicting new venue visitation patterns through mobility data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Discovering-Urban-Travel-Demands-through-Dynamic-Zone-Correlation-in-Location-Based-Social-Networks"><span class="nav-number">1.0.7.</span> <span class="nav-text">Discovering Urban Travel Demands through Dynamic Zone Correlation in Location-Based Social Networks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Representing-Urban-Functions-through-Zone-Embedding-with-Human-Mobility-Patterns"><span class="nav-number">1.0.8.</span> <span class="nav-text">Representing Urban Functions through Zone Embedding with Human Mobility Patterns</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exploring-the-Urban-Region-of-Interest-through-the-Analysis-of-Online-Map-Search-Queries"><span class="nav-number">1.0.9.</span> <span class="nav-text">Exploring the Urban Region-of-Interest through the Analysis of Online Map Search Queries</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

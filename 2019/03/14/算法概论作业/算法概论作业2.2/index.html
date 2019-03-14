@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="#2.3 ##(a)由题解，假定对于某个常数c,有$O(n)≤cn$且$T(n)=3T(n/2)+O(n)$那么有 \begin{eqnarray}T(n) &amp;amp; ≤ &amp;amp; 3T(n/2)+cn \     &amp;amp; ≤ &amp;amp; 3[3T(n/4)+cn/2]+cn = 9T(n/4)+3cn/2+cn \     &amp;amp; ≤ &amp;amp; 9[3T(n/8)+cn/4]+3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法概论作业2.2">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/算法概论作业/算法概论作业2.2/index.html">
+<meta property="og:site_name" content="Chens">
+<meta property="og:description" content="#2.3 ##(a)由题解，假定对于某个常数c,有$O(n)≤cn$且$T(n)=3T(n/2)+O(n)$那么有 \begin{eqnarray}T(n) &amp;amp; ≤ &amp;amp; 3T(n/2)+cn \     &amp;amp; ≤ &amp;amp; 3[3T(n/4)+cn/2]+cn = 9T(n/4)+3cn/2+cn \     &amp;amp; ≤ &amp;amp; 9[3T(n/8)+cn/4]+3">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.zybuluo.com/rg070836rg/udmfr1q3yqzuq96uuu7egxwl/1.gif">
+<meta property="og:updated_time" content="2019-03-14T08:30:29.943Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法概论作业2.2">
+<meta name="twitter:description" content="#2.3 ##(a)由题解，假定对于某个常数c,有$O(n)≤cn$且$T(n)=3T(n/2)+O(n)$那么有 \begin{eqnarray}T(n) &amp;amp; ≤ &amp;amp; 3T(n/2)+cn \     &amp;amp; ≤ &amp;amp; 3[3T(n/4)+cn/2]+cn = 9T(n/4)+3cn/2+cn \     &amp;amp; ≤ &amp;amp; 9[3T(n/8)+cn/4]+3">
+<meta name="twitter:image" content="http://static.zybuluo.com/rg070836rg/udmfr1q3yqzuq96uuu7egxwl/1.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/算法概论作业/算法概论作业2.2/">
+
+
+
+
+
+  <title>算法概论作业2.2 | Chens</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chens</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/算法概论作业/算法概论作业2.2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chens">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Vendetta.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chens">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法概论作业2.2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T16:31:21+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法概论作业/" itemprop="url" rel="index">
+                    <span itemprop="name">算法概论作业</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>#2.3</p>
+<p>##(a)<br>由题解，假定对于某个常数c,有$O(n)≤cn$<br>且$T(n)=3T(n/2)+O(n)$<br>那么有</p>
+<p>\begin{eqnarray<em>}<br>T(n) &amp; ≤ &amp; 3T(n/2)+cn \<br>     &amp; ≤ &amp; 3[3T(n/4)+cn/2]+cn = 9T(n/4)+3cn/2+cn \<br>     &amp; ≤ &amp; 9[3T(n/8)+cn/4]+3cn/2+cn=27T(n/8)+9cn/4+3cn/2+cn \<br>    &amp;    \ldots  &amp;<br>\end{eqnarray</em>}<br>从而，通项公式为：<br>$$T(n)≤3^kT(n/2^k)+\sum_{i=0}^{k-1} (3/2)^icn$$<br>很明显，$k=log_2n$</p>
+<hr>
+<p>##(b)<br>由题解，假定对于某个常数c,有$O(1)≤c$<br>且$T(n)=T(n-1)+O(1)$<br>那么有<br>\begin{eqnarray<em>}<br>T(n) &amp; ≤ &amp; T(n-1)+c \<br>     &amp; ≤ &amp; T(n-2)+2c \<br>     &amp; ≤ &amp; T(n-3)+3c \<br>    &amp;    \ldots  &amp;<br>\end{eqnarray</em>}<br>从而，通项公式为：<br>$$T(n)≤T(n-k)+kc$$<br>很明显，$k=n$<br>所以，$$T(n)=O(n)$$</p>
+<hr>
+<p>#2.4<br>首先，介绍求解递归式的几个方法：<br> 1 主方法<br><img src="http://static.zybuluo.com/rg070836rg/udmfr1q3yqzuq96uuu7egxwl/1.gif" alt="1.gif-28.5kB"><br> 2 替代法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">猜测解的形式。</span><br><span class="line">通过推导验证。</span><br><span class="line">解出常数。</span><br></pre></td></tr></table></figure></p>
+<p> 3 递归树方法<br>4  递推法</p>
+<hr>
+<p>##<strong>算法A:</strong><br>$T(n)=5T(n/2)+O(n)$<br>很明显，递归式满足主定理模式，a=5，b=2，$f(n)=n$<br>$log_ba=log_25$,<br>又$∵ log_25&gt;1$,<br>$∴T(n)=O(n^{log_25})$</p>
+<hr>
+<p>##<strong>算法B:</strong><br>$T(n)=2T(n-1)+O(1)$<br>采用递推法，<br>\begin{eqnarray<em>}<br>T(n) &amp; ≤ &amp; 2T(n-1)+c \<br>     &amp; ≤ &amp; 2^2T(n-2)+2c \<br>     &amp; ≤ &amp; 2^3T(n-3)+3c \<br>    &amp;    \ldots  &amp;\<br>    &amp; ≤ &amp; 2^nT(1)+nc \<br>\end{eqnarray</em>}<br>所以，$T(n)=O(2^n)$</p>
+<hr>
+<p>##<strong>算法C:</strong><br>$T(n)=9T(n/3)+O(n^3)$<br>很明显，递归式满足主定理模式，a=9，b=3，$f(n)=n^3$<br>$log_ba=log_39=2$,<br>又$∵ n^2&lt;n^3$,<br>$T(n)=O(n^3)$</p>
+<hr>
+<p>当n足够大时，很明显$T_a(n)&lt;T_c(n)&lt;T_b(n)$<br>所以算法A最优。</p>
+<hr>
+<p>#2.5</p>
+<p>a)用递推法很快可以求出<br>$$T(n) = O(n^{log_32})$$</p>
+<p>b)用主方法<br>$$T(n) = O(n^{log_45})$$<br>c)用主方法<br>$$T(n) = O(nlogn)$$<br>d)用主方法<br>$$T(n) = O(n^2logn)$$<br>e)用主方法<br>$$T(n) = O(n^3logn)$$<br>f)用替代法，由于前面是$log_{25},所以我们猜测大影响在后面 $$$T(n) = O(n^{3/2} log n)$$</p>
+<p>g)用递推法 $$T(n) = O(n)$$<br>h) 用递推法$$T(n) = O(n^c+1)$$<br>i) 用递推法$$T(n) = O(c^n)$$<br>j)用递推法<br>$$T(n) = O(2^n)$$<br>k)</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/算法概论作业/算法概论作业2.1/" rel="next" title="算法概论作业2.1">
+                <i class="fa fa-chevron-left"></i> 算法概论作业2.1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/算法概论作业/算法概论作业2.3/" rel="prev" title="算法概论作业2.3">
+                算法概论作业2.3 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Vendetta.jpg" alt="Chens">
+            
+              <p class="site-author-name" itemprop="name">Chens</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chens</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
