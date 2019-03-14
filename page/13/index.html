@@ -342,36 +342,24 @@
       
         
           
-            <hr>
-<p>[toc]</p>
-<h1 id="1-Pull同步服务器代码"><a href="#1-Pull同步服务器代码" class="headerlink" title="1. Pull同步服务器代码"></a>1. Pull同步服务器代码</h1><p>将服务器上最新代码同步到本地，进行merge的动作。</p>
-<p><img src="http://static.zybuluo.com/rg070836rg/vt77rjk8i2xu7tddh1lktvdz/image_1b4csi0ld120nene1cug11nv1b88n.png" alt="image_1b4csi0ld120nene1cug11nv1b88n.png-512.6kB"></p>
-<h1 id="2-Commit-amp-amp-push提交代码"><a href="#2-Commit-amp-amp-push提交代码" class="headerlink" title="2. Commit &amp;&amp; push提交代码"></a>2. Commit &amp;&amp; push提交代码</h1><p>代码提交分为两步，</p>
-<blockquote>
-<ul>
-<li>第一步是<strong>commit代码</strong>,为本地提交.</li>
-<li>第二步，<strong>push代码</strong>,将代码push到服务器上,以便于其他人下载.</li>
-<li>在push之前,可以进行多次的commit。</li>
-<li>每一次进行push动作之前，<strong>请先pull服务器代码</strong>，以便于代码的正确提交。</li>
-</ul>
-</blockquote>
-<hr>
-<p>① idea左下角，打开version control</p>
-<p><img src="http://static.zybuluo.com/rg070836rg/4mi0g13vtf8urfcrzivmntqt/1.png" alt="1.png-306kB"></p>
-<hr>
-<p>②在version Control框里选择好自己要提交的代码，先进行本地commit</p>
-<p><img src="http://static.zybuluo.com/rg070836rg/w525q9p65qhaxv0winv72k2r/2.png" alt="2.png-484kB"></p>
-<hr>
-<p>③在Commit Message中输入此次更新信息</p>
-<p><img src="http://static.zybuluo.com/rg070836rg/x9ql05nxi3vpsehjassy681s/3.png" alt="3.png-1431.2kB"></p>
-<hr>
-<p>④push代码，上传到服务器</p>
-<p><img src="http://static.zybuluo.com/rg070836rg/lrb5qld4nawspmvsxvpj167j/4.png" alt="4.png-613.8kB"></p>
-<hr>
-<p><img src="http://static.zybuluo.com/rg070836rg/wm15c5qdy1xlbtggvthmlujq/5.png" alt="5.png-133.3kB"></p>
-<p><img src="http://static.zybuluo.com/rg070836rg/vj79y9tqd326go1p6zkuateq/6.png" alt="6.png-26.4kB"></p>
-
           
+[toc]
+1. Pull同步服务器代码将服务器上最新代码同步到本地，进行merge的动作。
+
+2. Commit &amp;&amp; push提交代码代码提交分为两步，
+
+
+第一步是commit代码,为本地提交.
+第二步，push代码,将代码push到服务器上,以便于其他人下载.
+在push之
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/配置/HWCraft代码提交流程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -511,37 +499,18 @@
       
         
           
-            <hr>
-<h2 id="更换docker源"><a href="#更换docker源" class="headerlink" title="更换docker源"></a>更换docker源</h2><p>docker默认镜像拉取地址为国外仓库下载速度较慢，会超时，换成国内镜像。<br>sudo vim /etc/docker/daemon.json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/docker/daemon.json</span><br></pre></td></tr></table></figure></p>
-<p>重启服务<br>sudo service docker restart</p>
-<h2 id="拉取docker服务"><a href="#拉取docker服务" class="headerlink" title="拉取docker服务"></a>拉取docker服务</h2><p><a href="https://hub.docker.com" target="_blank" rel="noopener">https://hub.docker.com</a><br>在这边搜索，或者直接用 docker serach XXX<br>利用命令  nvidia-docker pull   名字:tag<br>拉取镜像</p>
-<p>删除docker实例<br>nvidia-docker rm c8a4bf012268</p>
-<p>停止docker实例<br>docker stop a004f2b5888a</p>
-<p>停止后再启动<br>docker start a004f2b5888a</p>
-<p>退出后重连<br>docker attach a004f2b5888a</p>
-<p>##使用docker<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docker run -it -v /raid/chenshi:/chen_data  --name chen_keras_tf nvcr.io/nvidia/tensorflow:18.03-py3 bash</span><br></pre></td></tr></table></figure></p>
-<p>nvidia-docker run<br>-it<br>-v /raid/chenshi:/chen_data    #映射主机磁盘到docker /源地址：docker地址<br>–name chen_keras_tf    #别名<br>nvcr.io/nvidia/tensorflow:18.03-py3    @镜像名:tag<br>bash</p>
-<p>如果需要隔离显卡，在run前面，加上对应代码即可<br>NV_GPU=0,1,4 nvidia-docker run…..</p>
-<p>这边使用时，请注意加上别名区分，如果环境有改变，可以考虑提交成镜像，共下次自己使用，方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docker commit 2b1a57a3cb4c chen_keras:v1.0</span><br><span class="line">其中2b1a57a3cb4c是容器id  chen_keras是镜像名字   v1.0是tag标签</span><br><span class="line"></span><br><span class="line">然后再save成镜像</span><br><span class="line">nvidia-docker chen_keras:v1.0 &gt; chen_keras.tar</span><br></pre></td></tr></table></figure></p>
-<p>##注意<br>1、run之前，先考虑好是否需要隔离显卡<br>2、注意磁盘的映射，建议在某个文件夹下面建议自己的文件夹，整体映射<br>3、建议利用names区分是谁的镜像，以防混乱</p>
-<p>##测试</p>
-<p>###测试1 plant_seedlings：keras<br>K80：单个Epoch 216s 2s/step<br>dgx：单个Epoch 36s 285ms/ste<br>加速比例:216/36=6  </p>
-<p>###测试2 neural-style-master<br>imagenet-vgg-verydeep-19.mat  做迭代<br><a href="https://github.com/anishathalye/neural-style" target="_blank" rel="noopener">https://github.com/anishathalye/neural-style</a><br>对同一张图片进行1000次迭代：<br>dgx:208s<br>k80:1451s<br>加速比例：1451/208=6.975962</p>
-<p>###测试3 mnist_mlp<br>dgx:<br>1：2s 26us/step<br>2: 2s 38us/step<br>4：3s 55us/step<br>8：6s 104us/step</p>
-<p>k80:<br>1：2s</p>
-<p>任务太小，近乎没有加速</p>
-<p>###测试4 Dog_breed_identification</p>
-<p>DGX：<br>InceptionV3：321.28376555<br>Xception：315.984331607<br>InceptionResNetV2：344.929951</p>
-<p>k80：<br>InceptionV3：737.23624<br>Xception：1092.263<br>InceptionResNetV2：1374.97</p>
-<p>加速比例：2~3倍</p>
-<p>###测试5 cifar-10<br>k80:<br>1：step 180, loss = 3.86 (4249.7 examples/sec; 0.030 sec/batch)<br>2：step 15560, loss = 0.72 (8375.4 examples/sec; 0.015 sec/batch)<br>4：step 180, loss = 3.72 (17076.5 examples/sec; 0.007 sec/batch)</p>
-<p>dgx:<br>1:step 880, loss = 2.52 (11222.9 examples/sec; 0.011 sec/batch)<br>2:step 1490, loss = 1.80 (15099.7 examples/sec; 0.008 sec/batch)<br>4:step 310, loss = 3.59 (15553.4 examples/sec; 0.008 sec/batch)<br>8:step 2760, loss = 1.17 (14002.3 examples/sec; 0.009 sec/batch)</p>
-<p>多卡加速效果不明显。单卡在三倍左右的效率。</p>
-<p>###测试6 强化学习任务<br>k80:<br>6ms/step<br>dgx:<br>2ms/step</p>
-<p>单卡效率3倍左右</p>
-<p>###总结<br>1 本次对比和k80服务器进行对比，从结果来看，单卡效率远超过k80，某些任务下，能达到k80的7倍左右。<br>2 在多卡协作对比时，k80服务器能较好的保持线性效率的增长，但是在dgx上，多卡协作，效率没有多大提升。猜测：①单卡本身能保持较快的计算速度，所以在多卡时，其他时延成为了瓶颈 ②有可能docker优化不够充分。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">% load the data</span><br><span class="line">trainLen = 3000;</span><br><span class="line">testLen = 1000;</span><br><span class="line">initLen = 100;</span><br><span class="line"></span><br><span class="line">data = load(&apos;MackeyGlass-t17.txt&apos;);</span><br><span class="line"></span><br><span class="line">% plot some of it</span><br><span class="line">% figure(10);</span><br><span class="line">% plot(data(1:1000));</span><br><span class="line">% title(&apos;A sample of data&apos;);</span><br><span class="line"></span><br><span class="line">% generate the ESN reservoir</span><br><span class="line">inSize = 1; outSize = 1;</span><br><span class="line">resSize = 500;</span><br><span class="line">a = 0.3; % leaking rate</span><br><span class="line"></span><br><span class="line">%rand( &apos;seed&apos;, 42 );</span><br><span class="line">% Win = (rand(resSize,1+inSize)-0.5) .* 1;</span><br><span class="line">% W = rand(resSize,resSize)-0.5;</span><br><span class="line">% Option 1 - direct scaling (quick&amp;dirty, reservoir-specific):</span><br><span class="line">% W = W .* 0.13;</span><br><span class="line">% Option 2 - normalizing and setting spectral radius (correct, slower):</span><br><span class="line">% disp &apos;Computing spectral radius...&apos;;</span><br><span class="line">% opt.disp = 0;</span><br><span class="line">% rhoW = abs(eigs(W,1,&apos;LM&apos;,opt));</span><br><span class="line">% disp &apos;done.&apos;</span><br><span class="line">% W = W .* ( 1.25 /rhoW);</span><br><span class="line"></span><br><span class="line">%%% the fourth question %%%</span><br><span class="line">r_i = .5;</span><br><span class="line">r_c = .8;</span><br><span class="line">r_j = .7;</span><br><span class="line">jump_l = 10;</span><br><span class="line">load(&apos;signv.mat&apos;);</span><br><span class="line"></span><br><span class="line">Win = ones(resSize,1+inSize) .* r_i;</span><br><span class="line">W = zeros(resSize, resSize);</span><br><span class="line"></span><br><span class="line">W(1, resSize) = r_c;</span><br><span class="line">for i = 1 : resSize</span><br><span class="line">    if(i + 1 &lt;= resSize)</span><br><span class="line">        W(i + 1, i) = r_c;</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">for i = 1 : jump_l : resSize</span><br><span class="line">    if(i + jump_l &lt; resSize)</span><br><span class="line">        W(i, i + jump_l) = r_j;</span><br><span class="line">        W(i + jump_l, i) = r_j;</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">% allocated memory for the design (collected states) matrix</span><br><span class="line">X = zeros(1+inSize+resSize,trainLen-initLen);</span><br><span class="line">% set the corresponding target matrix directly</span><br><span class="line">Yt = data(initLen+2:trainLen+1)&apos;;</span><br><span class="line"></span><br><span class="line">% run the reservoir with the data and collect X</span><br><span class="line">x = zeros(resSize,1);</span><br><span class="line">for t = 1:trainLen</span><br><span class="line">	u = data(t);</span><br><span class="line">	x = (1-a)*x + a*tanh( Win.*sign(:,1:2)*[1;u] + W*x );</span><br><span class="line">	if t &gt; initLen</span><br><span class="line">		X(:,t-initLen) = [1;u;x];</span><br><span class="line">	end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">% train the output</span><br><span class="line">reg = 1e-8;  % regularization coefficient</span><br><span class="line">X_T = X&apos;;</span><br><span class="line">% Wout = Yt*X_T * inv(X*X_T + reg*eye(1+inSize+resSize));</span><br><span class="line">Wout = Yt*X_T / (X*X_T + reg*eye(1+inSize+resSize));</span><br><span class="line">% Wout = Yt*pinv(X);</span><br><span class="line"></span><br><span class="line">% run the trained ESN in a generative mode. no need to initialize here, </span><br><span class="line">% because x is initialized with training data and we continue from there.</span><br><span class="line">Y = zeros(outSize,testLen);</span><br><span class="line">u = data(trainLen+1);</span><br><span class="line">for t = 1:testLen </span><br><span class="line">	x = (1-a)*x + a*tanh( Win.*sign(:,1:2)*[1;u] + W*x );</span><br><span class="line">	y = Wout*[1;u;x];</span><br><span class="line">	Y(:,t) = y;</span><br><span class="line">	% generative mode:</span><br><span class="line">	u = y;</span><br><span class="line">	% this would be a predictive mode:</span><br><span class="line">	%u = data(trainLen+t+1);</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">errorLen = 1000;</span><br><span class="line">mse = sum((data(trainLen+2:trainLen+errorLen+1)&apos;-Y(1,1:errorLen)).^2)./errorLen;</span><br><span class="line">disp( [&apos;MSE = &apos;, num2str( mse )] );</span><br></pre></td></tr></table></figure>
           
+更换docker源docker默认镜像拉取地址为国外仓库下载速度较慢，会超时，换成国内镜像。sudo vim /etc/docker/daemon.json1/etc/docker/daemon.json
+重启服务sudo service docker restart
+拉取docker服务http
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/配置/dgx性能测试/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -681,19 +650,17 @@
       
         
           
-            <hr>
-<p>#卸载</p>
-<p>查看已经安装的jdk<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon jre]# rpm -qa|grep jdk</span><br><span class="line">java-1.8.0-openjdk-headless-1.8.0.65-3.b17.el7.x86_64</span><br><span class="line">java-1.7.0-openjdk-1.7.0.91-2.6.2.3.el7.x86_64</span><br><span class="line">java-1.7.0-openjdk-headless-1.7.0.91-2.6.2.3.el7.x86_64</span><br><span class="line">java-1.8.0-openjdk-1.8.0.65-3.b17.el7.x86_64</span><br></pre></td></tr></table></figure></p>
-<p>卸载命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon jre]# yum -y remove java-1.8.0-openjdk-headless-1.8.0.65-3.b17.el7.x86_64</span><br></pre></td></tr></table></figure></p>
-<p>卸载完成之后Java命令不被识别<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon lib]# java -version</span><br><span class="line">bash: java: command not found...</span><br></pre></td></tr></table></figure></p>
-<p>#安装</p>
-<p>去官网下载jdk：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a><br>解压到安装目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon software]# tar -zxvf jdk-8u101-linux-x64.tar.gz -C /usr/local/java/</span><br></pre></td></tr></table></figure></p>
-<p>安装完毕之后在/etc/profile文件末尾添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon software]# vim /etc/profile</span><br><span class="line">export JAVA_HOME=/usr/local/java/jdk1.8.0_101</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure></p>
-<p>使/etc/profile生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon jdk1.8.0_101]# source /etc/profile</span><br></pre></td></tr></table></figure></p>
-<p>检测安装是否成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon jdk1.8.0_101]# java -version</span><br></pre></td></tr></table></figure></p>
-<p>mysql<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://blog.csdn.net/z13615480737/article/details/78906598</span><br></pre></td></tr></table></figure></p>
-
           
+#卸载
+查看已经安装的jdk12345[root@bogon jre]# rpm -qa|grep jdkjava-1.8.0-openjdk-headless-1.8.0.65-3.b17.el7.x86_64java-1.7.0-openjdk-1.7.0.91-2.6.2.3.el7.x86
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/配置/centos 安装jdk1.8  mysql/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -833,9 +800,16 @@
       
         
           
-            <hr>
+          
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/南师大人工智能论文/利用状态空间法解决八数码游戏问题old/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -975,162 +949,18 @@
       
         
           
-            <hr>
-<p>学号：   19130216<br>姓名：    陈实<br>完成时间：2015年11月24日</p>
-<hr>
-<p>#1.八数码游戏简介<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">八数码问题也称为九宫问题。在3×3的棋盘，摆有八个棋子，每个棋子上标有1至8的某一数字，不同棋子上标的数字不相同。棋盘上还有一个空格，与空格相邻的棋子可以移到空格中。</span><br><span class="line">要求解决的问题是：给出一个初始状态和一个目标状态，找出一种从初始转变成目标状态的移动棋子步数最少的移动步骤。</span><br><span class="line">所谓问题的一个状态就是棋子在棋盘上的一种摆法。解八数码问题实际上就是找出从初始状态到达目标状态所经过的一系列中间过渡状态。</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>#2.八数码游戏问题的状态空间法表示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（利用课程介绍的状态空间法来描述八数码游戏问题，需定义相应的状态与操作符）</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>##2.1.状态定义<br>利用<strong>矩阵</strong>存储每一步的状态，空位用0表示，例如：<br>初始状态为<br>\begin{equation}       %开始数学环境<br>\left(                 %左括号<br>  \begin{array}{ccc}   %该矩阵一共3列，每一列都居中放置<br>    2 &amp; 8 &amp; 3\  %第一行元素<br>    1 &amp; 0 &amp; 4\  %第二行元素<br>    7 &amp; 6 &amp; 5<br>  \end{array}<br>\right)                 %右括号<br>\end{equation}<br>目标状态为<br>\begin{equation}       %开始数学环境<br>\left(                 %左括号<br>  \begin{array}{ccc}   %该矩阵一共3列，每一列都居中放置<br>    1 &amp; 2 &amp; 3\  %第一行元素<br>    8 &amp; 0 &amp; 4\  %第二行元素<br>    7 &amp; 6 &amp; 5<br>  \end{array}<br>\right)                 %右括号<br>\end{equation}<br>将所有的中间生成状态列成图表，可以清晰的看出搜索的顺序，直观地理解算法。</p>
-<hr>
-<p>##2.2.定义算符</p>
-<blockquote>
-<ul>
-<li>空格的上、下、左、右移动</li>
-</ul>
-</blockquote>
-<p>并标记为四个方向的箭头如下图所示：<br><img src="http://static.zybuluo.com/rg070836rg/sjgrt24m1cjqnasq8ogeym53/03.png" alt="03.png-1.7kB"></p>
-<hr>
-<p>##2.3.从初始状态到目标状态的求解过程<br>例：下图为宽度优先搜索算法对应具体搜索路径：<br><img src="http://static.zybuluo.com/rg070836rg/bbznoee0gx4mfqm3vn8yhgn7/01.png" alt="01.png-46.3kB"></p>
-<hr>
-<p>#3.八数码游戏问题的盲目搜索技术概述<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（介绍宽度和深度优先搜索算法的基本原理和流程图）</span><br><span class="line">（算法复杂性分析：时间与空间复杂性（选做））</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>##3.1.宽度优先搜索算法</p>
-<p>###3.11.宽度优先搜索定义</p>
-<blockquote>
-<ul>
-<li><strong>宽度优先搜索</strong>：以接近起始节点的程度依次扩展节点的搜索技术（即：离起始节点近的节点先被扩展）</li>
-<li><strong>扩展节点的原则</strong>：先扩展出来的节点随后优先被扩展（生成其所有的后继节点）</li>
-</ul>
-</blockquote>
-<hr>
-<p>###3.12.宽度优先搜索算法步骤</p>
-<blockquote>
-<ul>
-<li>① 把起始节点放到 <strong>OPEN</strong> 表中(如果该起始节点为一目标节点，则得到解)</li>
-<li>② 如果 <strong>OPEN</strong> 是个空表，则无解，失败退出；否则继续下一步</li>
-<li>③  把第一个节点(记作节点 <strong>n</strong> )从 <strong>OPEN</strong> 表移出，并把它放入 <strong>CLOSED</strong> 的已扩展节点表中</li>
-<li>④ 扩展节点 <strong>n</strong> 。如果没有后继节点，则转向第②步</li>
-<li>⑤ 把 <strong>n</strong> 的所有后继节点放到OPEN表的<strong>末端</strong>，并提供从这些后继节点回到 <strong>n</strong> 的指针(<strong>记录每一个节点的父节点信息</strong>)</li>
-<li>⑥ 如果 <strong>n</strong> 的任一个后继节点是个目标节点，则找到一个解（<strong>反向追踪得到从目标节点到起始节点的路径</strong>），成功退出，否则转向第②步</li>
-</ul>
-</blockquote>
-<hr>
-<p>###3.13.宽度优先搜索算法的流程图<br><img src="http://static.zybuluo.com/rg070836rg/0isbjhp4af4bgbh20yisxi95/04.jpg" alt="04.jpg-22.2kB"></p>
-<hr>
-<p>##3.2.深度优先搜索算法</p>
-<p>###3.21.深度优先搜索定义<br>    深度优先搜索过程是沿着一条路径进行下去，直到深度界限为止，然后再考虑只有最后一步有差别的相同深度或较浅深度可供选择的路径，接着再考虑最后两步有差别的那些路径。</p>
-<blockquote>
-<ul>
-<li><strong>深度优先搜索策略</strong>是先扩展最新产生的(即最深的)节点 </li>
-<li><strong>深度优先搜索的基本思路</strong>：先扩展最深的节点。当出现没有后继节点时，换到旁边的次深节点</li>
-</ul>
-</blockquote>
-<hr>
-<p>###3.22.深度优先搜索算法步骤</p>
-<blockquote>
-<ul>
-<li>①    把起始节点 <strong>S</strong> 放到未扩展节点的 <strong>OPEN</strong> 表（此时OPEN表是一个<strong>堆栈</strong>，后进先出）中。如果此节点为一目标节点，则得到解</li>
-<li>② 如果 <strong>OPEN</strong> 为一空表，则无解、失败退出</li>
-<li>③ 把第一个节点(记作节点 <strong>n</strong> )从 <strong>OPEN</strong> 表移到 <strong>CLOSED</strong> 表</li>
-<li>④ 如果节点 <strong>n</strong> 的深度等于最大深度，则转向②</li>
-<li>⑤ 扩展节点 <strong>n</strong> ，产生其全部后继节点，并把它们放入 <strong>OPEN</strong> 表的<strong>前头</strong>。如果没有后继节点，则转向②</li>
-<li>⑥ 如果后继节点中有任一个节点为目标节点，则求得一个解（<strong>反向追踪从目标节点到起始节点的路径</strong>），成功退出；否则，转向②</li>
-</ul>
-</blockquote>
-<hr>
-<p>###3.23.深度优先搜索算法的流程图</p>
-<h2 id><a href="#" class="headerlink" title></a><img src="http://static.zybuluo.com/rg070836rg/om7xyyjvdzpj707jnlxupu23/05.png" alt="05.png-42.5kB"></h2><hr>
-<p>#4.八数码游戏问题的启发式搜索技术<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（给出你所采用估价函数，并介绍算法的基本原理和流程图）</span><br></pre></td></tr></table></figure></p>
-<p>##4.1.启发式搜索原理</p>
-<blockquote>
-<ul>
-<li><strong>启发信息</strong>：与具体问题特性有关的一些信息。（在具体的使用过程中，还与使用人、算法有关）</li>
-<li><strong>启发式搜索方法</strong>：利用启发信息的搜索方法 </li>
-</ul>
-</blockquote>
-<p>启发式搜索就是在状态空间中的搜索对每一个<strong>搜索的位置</strong>进行<strong>评估</strong>，得到<strong>最好</strong>的位置，再从这个位置进行搜索直到目标。这样可以<strong>省略</strong>大量无谓的搜索路径，提高了效率。在启发式搜索中，对位置的估价是十分重要的。采用了不同的估价可以有不同的效果。</p>
-<hr>
-<p>##4.2.估价函数<br>估价函是用来估算节点“ <strong>希望</strong> ”程度的函数</p>
-<blockquote>
-<ul>
-<li>一般情况下，估计函数值<strong>越大</strong>，希望程度就<strong>越低</strong></li>
-<li>根据搜索过程、问题的启发信息来定义的，对搜索效率会产生较大的影响</li>
-<li>用  f (n)  表示节点  n  的估价函数值，并且期望，它是从起始节点、通过节点 n 、到达目标节点的<strong>最小代价</strong>的一个估计值</li>
-</ul>
-</blockquote>
-<hr>
-<p>##4.3.估价函数的计算<br>计算一个节点的“ <strong>估价函数</strong> ” ，可以分成两个部分：</p>
-<blockquote>
-<ul>
-<li>①已经付出的代价（<strong>起始节点到当前节点</strong>）</li>
-<li>②将要付出的代价（<strong>当前节点到目标节点</strong>）</li>
-<li>节点  <strong>n</strong>  的估价函数  <strong>$f ( n )$</strong> 定义为从初始节点、经过 <strong>n</strong>到达目标节点的路径的最小代价的估计值，即$f(n)=g(n)+h(n)$</li>
-<li>$g ( n )$ 是从初始节点到达当前节点 <strong>n</strong> 的<strong>实际代价</strong></li>
-<li><strong>$h ( n )$</strong> 是从节点 <strong>n</strong> 到目标节点的最佳路径的<strong>估计代价</strong></li>
-</ul>
-</blockquote>
-<p>$h ( n )$ 体现出搜索过程中采用的启发式信息（背景知识），称之为<strong>启发函数</strong><br>$g ( n )$ 所占的比重越大，<strong>越趋向于宽度优先或等代价搜索</strong>；<br>$h ( n )$ 的比重越大，表示<strong>启发性能就越强</strong></p>
-<hr>
-<p>##4.4. 有序搜索算法<br>在搜索过程中，<strong>OPEN</strong>表中节点按照其估价函数值以递增顺序排列，选择<strong>OPEN</strong>表中具有<strong>最小</strong>估价函数值的节点作为下一个待扩展的节点，这种搜索方法称为<strong>有序搜索</strong>。</p>
-<hr>
-<p>##4.5. 算法描述</p>
-<blockquote>
-<ul>
-<li>①    把起始节点<strong>S</strong>放到<strong>OPEN</strong>表中，并计算节点<strong>S</strong>的<strong>$f (S)$</strong>；</li>
-<li>②    如果<strong>OPEN</strong>是空表，则失败退出（无解）；</li>
-<li>③    从<strong>OPEN</strong>表中选择一个<strong>f</strong>值最小的节点<strong>i</strong>。如果有几个节点值相同，当其中 有一个为目标节点时，则选择目标节点；否则就选择其中任一个节点作为节点<strong>i</strong>；</li>
-<li>④    把节点 <strong>i</strong> 从 <strong>OPEN</strong> 表中移出，并把它放入 <strong>CLOSED</strong> 的已扩展节点表中</li>
-<li>⑤    如果 <strong>i</strong> 是个目标节点，则成功退出（有解）</li>
-<li>⑥    扩展节点 <strong>i</strong> ，生成其全部后继节点。对于 <strong>i</strong> 的每一个后继节点  <strong>j</strong> ： </li>
-<li>⑦    转向②</li>
-</ul>
-</blockquote>
-<hr>
-<p>##4.6.算法流程图<br><img src="http://static.zybuluo.com/rg070836rg/u1mqxg2n66rd1qmy5syjjjkw/06.jpg" alt="06.jpg-18.3kB"></p>
-<hr>
-<p>#5.例子及分析<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">对于算法的运行过程，需要记录下列信息：</span><br><span class="line">起始状态、目标状态、所走的步数及其对应操作符、生成的状态总数（OPEN表和CLOSED表的大小）、搜索CPU时间（毫秒）等。</span><br></pre></td></tr></table></figure></p>
-<p>##5.1.测试例子1<br>初始状态：<br>\begin{equation}       %开始数学环境<br>\left(                 %左括号<br>  \begin{array}{ccc}   %该矩阵一共3列，每一列都居中放置<br>    2 &amp; 0 &amp; 3\  %第一行元素<br>    1 &amp; 8 &amp; 4\  %第二行元素<br>    7 &amp; 6 &amp; 5<br>  \end{array}<br>\right)                 %右括号<br>\end{equation}<br>目标状态：<br>\begin{equation}       %开始数学环境<br>\left(                 %左括号<br>  \begin{array}{ccc}   %该矩阵一共3列，每一列都居中放置<br>    1 &amp; 2 &amp; 3\  %第一行元素<br>    8 &amp; 0 &amp; 4\  %第二行元素<br>    7 &amp; 6 &amp; 5<br>  \end{array}<br>\right)                 %右括号<br>\end{equation}</p>
-<p>###<strong>运行截图</strong></p>
-<p>####<strong>宽度优先搜索</strong>：<br><img src="http://static.zybuluo.com/rg070836rg/o570i2hznodsw2fvqczji3wz/07.png" alt="07.png-7.3kB"></p>
-<p>####<strong>深度优先搜索</strong>：<br><img src="http://static.zybuluo.com/rg070836rg/i9vncv0wrrq39xxw2hc143v1/10.png" alt="10.png-5.9kB"></p>
-<p>####<strong>启发式搜索</strong>：<br><img src="http://static.zybuluo.com/rg070836rg/mexqozu9kg9h5ynlpsztgyxy/002.png" alt="002.png-4.2kB"><br>| 项目      | 宽度优先搜索   | 深度优先搜索|启发式搜索<br>|—| —– |<br>|起始状态|2 0 3 1 8 4 7 6 5|2 0 3 1 8 4 7 6 5|2 0 3 1 8 4 7 6 5|<br>|目标状态|1 2 3 8 0 4 7 6 5|1 2 3 8 0 4 7 6 5|1 2 3 8 0 4 7 6 5|<br>|所走的步数|3|3|3<br>|对应操作符|L D R|L D R|L D R<br>|生成的状态总数|10|20|3<br>|搜索CPU时间|8ms|3ms|0ms</p>
-<hr>
-<p>##5.2.测试例子2<br>初始状态：<br>\begin{equation}       %开始数学环境<br>\left(                 %左括号<br>  \begin{array}{ccc}   %该矩阵一共3列，每一列都居中放置<br>    2 &amp; 8 &amp; 3\  %第一行元素<br>    1 &amp; 6 &amp; 4\  %第二行元素<br>    7 &amp; 0 &amp; 5<br>  \end{array}<br>\right)                 %右括号<br>\end{equation}<br>目标状态：<br>\begin{equation}       %开始数学环境<br>\left(                 %左括号<br>  \begin{array}{ccc}   %该矩阵一共3列，每一列都居中放置<br>    1 &amp; 2 &amp; 3\  %第一行元素<br>    8 &amp; 0 &amp; 4\  %第二行元素<br>    7 &amp; 6 &amp; 5<br>  \end{array}<br>\right)                 %右括号<br>\end{equation}</p>
-<p>###<strong>运行截图</strong></p>
-<p>####<strong>宽度优先搜索</strong>：<br><img src="http://static.zybuluo.com/rg070836rg/01aob72tj3j3x6r3k1fo47it/08.png" alt="08.png-6.7kB"></p>
-<p>####<strong>深度优先搜索</strong>：<br><img src="http://static.zybuluo.com/rg070836rg/i4cog06v759b49k6fti5253p/9.png" alt="9.png-6.8kB"></p>
-<p>####<strong>启发式搜索</strong>:<br><img src="http://static.zybuluo.com/rg070836rg/dfecssrwdiimv1auj8vrpax5/001.png" alt="001.png-4.7kB"><br>| 项目      | 宽度优先搜索   | 深度优先搜索|启发式搜索<br>|—| —– |<br>|起始状态|2 8 3 1 6 4 7 0 5|2 8 3 1 6 4 7 0 5|2 8 3 1 6 4 7 0 5<br>|目标状态|1 2 3 8 0 4 7 6 5|1 2 3 8 0 4 7 6 5|1 2 3 8 0 4 7 6 5<br>|所走的步数|5|5|5<br>|对应操作符| U U L D R|U U L D R|U U L D R<br>|生成的状态总数|46|121|5<br>|搜索CPU时间|58ms|4ms|0ms</p>
-<hr>
-<p>#6．体会与致谢<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（说一说，做这一编程实验与书写报告的体会。如果求助过同学，请在此表示感谢）</span><br></pre></td></tr></table></figure></p>
-<p>通过本次试验，我对<strong>BFS、DFS以及启发式</strong>搜索有了更加深入的了解。同时感谢老师课上的指导，以及课程PPT的制作，对我作业的编写有很大的帮助。下面说说我的想法：</p>
-<blockquote>
-<ul>
-<li>在试验中，通过用不同的测试数据结果来看，宽度优先搜索方法能够保证在搜索树中找到一条通向目标节点的最短途径（所用操作符最少），只要结点间可以到达，就一定可以找到一个最优解。</li>
-<li>而深度优先搜索具有深度界限，当搜索深度达到深度界限时，停止搜索。所以，深度优先搜索有可能会得不到结果，是一种不安全的搜索方法。但是当结果在搜索界限内时，可以快速的得到结果，时间效率高。故对于深度优先搜索，如何去定义一个较好的搜索界限，是下一步需要继续改进的方面。</li>
-<li>相比之下，启发式搜索看来更加实用有效，能在较复杂情况下求得更加优质的解，但是对于估价函数的定义趋向多元化，如何更好地定义一个估价函数有待深入讨论。</li>
-</ul>
-</blockquote>
-<hr>
-<p>#7．实验程序简单说明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（简要地说明实验程序的使用方法，此处不用附源代码）</span><br></pre></td></tr></table></figure></p>
-<p>三段程序均仅需要输入<strong>初始状态</strong>和<strong>目标状态</strong>即可</p>
-<blockquote>
-<ul>
-<li>宽度优先会提供操作符的方向</li>
-<li>深度优先会输出第一个能够找到解的宽度</li>
-<li>启发式搜索具有更加实用的效率</li>
-</ul>
-</blockquote>
-<hr>
-<p>##代码介绍：</p>
-<p>###7.1.宽度优先搜索<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/*定义状态结构*/</span><br><span class="line">class NineNode&#123;……&#125;；</span><br><span class="line"></span><br><span class="line">/*判断两个节点是否相同，相同返回true，否则返回false*/</span><br><span class="line">bool match(NineNode node1, NineNode node2)  </span><br><span class="line"></span><br><span class="line">/*判断新节点是否已经存在，即判断是否存在于open队列和closed列表中*/</span><br><span class="line">bool ishave(deque&lt;NineNode&gt; openQueue, vector&lt;NineNode&gt; closedList, NineNode node)</span><br><span class="line"></span><br><span class="line">/*判断给定的八数码问题是否有解*/</span><br><span class="line">bool havesolution(NineNode start, NineNode end)</span><br><span class="line"></span><br><span class="line">/*用于状态的输入和状态的选择*/</span><br><span class="line">int main()</span><br></pre></td></tr></table></figure></p>
-<p>###7.2.深度优先搜索<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//定义结构</span><br><span class="line">struct Map&#123;……&#125;；</span><br><span class="line"></span><br><span class="line">//打印图</span><br><span class="line">void PrintMap(struct Map *map);</span><br><span class="line"></span><br><span class="line">//移动图</span><br><span class="line">struct Map * MoveMap(struct Map * map, Direction Direct, bool CreateNewMap);</span><br><span class="line"></span><br><span class="line">//初始化一个初始图,由目标图生成初始图，保证可以获得结果</span><br><span class="line">struct Map * RandomMap(const struct Map * map);</span><br><span class="line"></span><br><span class="line">//初始图的另种生成方式，随机生成各位置的数,此方式生成的图在有限次搜索中若深度超过5则多数无解</span><br><span class="line">struct Map * RandomMap();</span><br><span class="line"></span><br><span class="line">//判断是否搜索成功</span><br><span class="line">bool IsSuccess(struct Map * map, struct Map * Target);</span><br><span class="line"></span><br><span class="line">//深搜过程</span><br><span class="line">struct Map * DNF_Search(struct Map * begin, struct Map * Target, int dm)</span><br></pre></td></tr></table></figure></p>
-<p>###7.3.启发式搜索<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//定义存储结构</span><br><span class="line">struct node&#123;……&#125;;</span><br><span class="line"></span><br><span class="line">//函数说明：计算s与目标状态的差距值</span><br><span class="line">int hx(int s[3][3])；</span><br><span class="line"></span><br><span class="line">//函数说明：扩展ex指向的结点，并将扩展所得结点组成一条单链表，head指向该链表首结点，并且作为返回值</span><br><span class="line">struct node *extend(node *ex)； </span><br><span class="line">	</span><br><span class="line">//函数说明：将head链表的结点依次插入到open链表相应的位置，使open表中的结点按从小到大排序。函数返回open指针</span><br><span class="line">node* insert(node *open, node * head)；</span><br><span class="line">	</span><br><span class="line">//状态的输入和状态的选择</span><br><span class="line">int main()</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>完成时间 2015年11月24日</p>
-
           
+学号：   19130216姓名：    陈实完成时间：2015年11月24日
+
+#1.八数码游戏简介123八数码问题也称为九宫问题。在3×3的棋盘，摆有八个棋子，每个棋子上标有1至8的某一数字，不同棋子上标的数字不相同。棋盘上还有一个空格，与空格相邻的棋子可以移到空格中。要求解决的问题是：给出一
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/南师大人工智能论文/利用状态空间法解决八数码游戏问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1270,103 +1100,20 @@
       
         
           
-            <hr>
-<p>##一、创建hadoop用户并赋予权限</p>
-<p>###①创建hadoop用户组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo addgroup hadoop</span><br></pre></td></tr></table></figure></p>
-<p>###②创建hadoop用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser -ingroup hadoop hadoop</span><br></pre></td></tr></table></figure></p>
-<p>###③密码设为admin</p>
-<p>###④增加权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /etc/sudoers</span><br></pre></td></tr></table></figure></p>
-<p>在文件内上述修改以下代码并保存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># User privilege specification</span><br><span class="line">root	ALL=(ALL:ALL) ALL</span><br><span class="line">hadoop  ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>##二、安装jdk</p>
-<p>###①创建目录  usr/lib/jvm<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd usr/lib    </span><br><span class="line">sudo mkdir jvm</span><br></pre></td></tr></table></figure></p>
-<p>###②下载安装包并解压，移动<br>假设安装文件在下载目录<br>回到主目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd 下载</span><br></pre></td></tr></table></figure></p>
-<p>执行下述代码（注意修改对应版本号）</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar zxvf ./jdk-<span class="number">8</span>u45-linux-x64.tar.gz  -C ../../../usr/lib/jvm</span><br></pre></td></tr></table></figure>
-<p>进入到该目录下，并进行移动操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd usr/lib/jvm</span><br><span class="line"></span><br><span class="line">sudo mv jdk1.8.0_45/    java-8u45-sun</span><br><span class="line">//注意版本号</span><br></pre></td></tr></table></figure></p>
-<p>###③配置环境变量<br><strong>注意！！：这种方式是为当前用户配置的所以，切换到hadoop之后，还需要在配置一遍</strong><br>使用vim ~/.bashrc命令编辑<br>在底部加入命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#######java-8u45-sun</span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/java-8u45-sun</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br><span class="line">//更新文件</span><br></pre></td></tr></table></figure>
-<p>使用java -version检查是否成功</p>
-<hr>
-<p>##三、修改机器名（不必要）</p>
-<p>sudo gedit /etc/hostname</p>
-<p>编辑名字即可（随意，只是为了方便区分）</p>
-<hr>
-<p>##四、安装ssh服务</p>
-<p>###①安装openssh-server<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure></p>
-<p>###②若报错为：“Ubuntu无法锁定管理目录（/var/lib/dpkg/），是否有其他进程占用它？“<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /var/lib/dpkg/lock</span><br><span class="line">sudo rm /var/cache/apt/archives/lock</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>##五、 建立ssh无密码登录本机</p>
-<p>###①按照rsa方式生成密钥<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;751440280@qq.com&quot;</span><br><span class="line">//邮箱输入自己的，仅作为标识</span><br></pre></td></tr></table></figure></p>
-<p>###②输入存储目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/home/hadoop/.ssh/id_rsa</span><br></pre></td></tr></table></figure></p>
-<p>成功后如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The key fingerprint is:</span><br><span class="line">2f:bb:13:23:66:09:34:29:be:57:db:93:69:f0:71:2a 751440280@qq.com</span><br><span class="line">The key&apos;s randomart image is:</span><br></pre></td></tr></table></figure></p>
-<p>###③将id_rsa.pub追加到authorized_keys授权文件中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /home/hadoop/.ssh/</span><br><span class="line">//默认文件夹</span><br><span class="line"></span><br><span class="line">cat id_rsa.pub  &gt;&gt; authorized_keys</span><br></pre></td></tr></table></figure></p>
-<p>###④测试是否能够登陆<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh localhost</span><br><span class="line">//输入yes 测试能否登陆。</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>##六、安装hadoop</p>
-<p>###①下载hadoop<br><a href="http://hadoop.apache.org/releases.html" target="_blank" rel="noopener">hadoop下载地址</a></p>
-<p>###②安装过程</p>
-<p>####2.1、复制文件到/usr/local/下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp hadoop-2.5.2.tar.gz  /usr/local/</span><br></pre></td></tr></table></figure></p>
-<p>####2.2、解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxf hadoop-2.5.2.tar.gz</span><br></pre></td></tr></table></figure></p>
-<p>####2.3、改名字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv hadoop-2.5.2 hadoop</span><br></pre></td></tr></table></figure></p>
-<p>####2.4、将该hadoop文件夹的属主用户设为hadoop<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod -R 775 /usr/local/hadoop  </span><br><span class="line">sudo chown -R hadoop:hadoop /usr/local/hadoop</span><br></pre></td></tr></table></figure></p>
-<p>####2.5、修改bashrc的配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit ~/.bashrc</span><br></pre></td></tr></table></figure></p>
-<p>在最后增加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#HADOOP VARIABLES START  </span><br><span class="line">  </span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/？？？？</span><br><span class="line">#（看jdk配置//上一行需要保留并设置成本机的路径）</span><br><span class="line">  </span><br><span class="line">export HADOOP_INSTALL=/usr/local/hadoop  </span><br><span class="line">  </span><br><span class="line">export PATH=$PATH:$HADOOP_INSTALL/bin  </span><br><span class="line">  </span><br><span class="line">export PATH=$PATH:$HADOOP_INSTALL/sbin  </span><br><span class="line">  </span><br><span class="line">export HADOOP_MAPRED_HOME=$HADOOP_INSTALL  </span><br><span class="line">  </span><br><span class="line">export HADOOP_COMMON_HOME=$HADOOP_INSTALL  </span><br><span class="line">  </span><br><span class="line">export HADOOP_HDFS_HOME=$HADOOP_INSTALL  </span><br><span class="line">  </span><br><span class="line">export YARN_HOME=$HADOOP_INSTALL  </span><br><span class="line">  </span><br><span class="line">export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_INSTALL/lib/native  </span><br><span class="line">  </span><br><span class="line">export HADOOP_OPTS=&quot;-Djava.library.path=$HADOOP_INSTALL/lib&quot;  </span><br><span class="line">  </span><br><span class="line">#HADOOP VARIABLES END</span><br></pre></td></tr></table></figure></p>
-<p>然后更新生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure></p>
-<p>####2.6、修改hadoop-env.sh的配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /usr/local/hadoop/etc/hadoop/hadoop-env.sh</span><br></pre></td></tr></table></figure></p>
-<p>找到JAVA_HOME改为上面的值,如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#export JAVA_HOME=$&#123;JAVA_HOME&#125;</span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/java-8u45-sun</span><br></pre></td></tr></table></figure></p>
-<p>####2.7、修改core-site.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /usr/local/hadoop/etc/hadoop/core-site.xml</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;  </span><br><span class="line">    &lt;property&gt;  </span><br><span class="line">        &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;  </span><br><span class="line">        &lt;value&gt;/usr/local/hadoop/tmp&lt;/value&gt;  </span><br><span class="line">        &lt;description&gt;Abase for other temporary directories.&lt;/description&gt;  </span><br><span class="line">    &lt;/property&gt;  </span><br><span class="line">    &lt;property&gt;  </span><br><span class="line">        &lt;name&gt;fs.defaultFS&lt;/name&gt;  </span><br><span class="line">        &lt;value&gt;hdfs://localhost:9000&lt;/value&gt;  </span><br><span class="line">    &lt;/property&gt;  </span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
-<p>####2.8、修改mapred-site.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /usr/local/hadoop/etc/hadoop/mapred-site.xml //此项不必要</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;  </span><br><span class="line"> &lt;property&gt;     </span><br><span class="line">      &lt;name&gt;mapred.job.tracker&lt;/name&gt;    </span><br><span class="line">      &lt;value&gt;localhost:9001&lt;/value&gt;     </span><br><span class="line">     &lt;/property&gt;     </span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
-<p>####2.9、修改yarn-site.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /usr/local/hadoop/etc/hadoop/yarn-site.xml</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;  </span><br><span class="line">&lt;property&gt;  </span><br><span class="line">&lt;name&gt;mapreduce.framework.name&lt;/name&gt;  </span><br><span class="line">&lt;value&gt;yarn&lt;/value&gt;  </span><br><span class="line">&lt;/property&gt;  </span><br><span class="line">  </span><br><span class="line">&lt;property&gt;  </span><br><span class="line">&lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;  </span><br><span class="line">&lt;value&gt;mapreduce_shuffle&lt;/value&gt;  </span><br><span class="line">&lt;/property&gt;  </span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
-<p>####2.10、修改hdfs-site.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /usr/local/hadoop/etc/hadoop/hdfs-site.xml</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;  </span><br><span class="line">&lt;property&gt;  </span><br><span class="line">        &lt;name&gt;dfs.replication&lt;/name&gt;  </span><br><span class="line">        &lt;value&gt;1&lt;/value&gt;  </span><br><span class="line">    &lt;/property&gt;  </span><br><span class="line">    &lt;property&gt;  </span><br><span class="line">        &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;  </span><br><span class="line">        &lt;value&gt;file:/usr/local/hadoop/dfs/name&lt;/value&gt;  </span><br><span class="line">    &lt;/property&gt;  </span><br><span class="line">    &lt;property&gt;  </span><br><span class="line">        &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;  </span><br><span class="line">        &lt;value&gt;file:/usr/local/hadoop/dfs/data&lt;/value&gt;  </span><br><span class="line">    &lt;/property&gt;  </span><br><span class="line">    &lt;property&gt;                 </span><br><span class="line">            &lt;name&gt;dfs.permissions&lt;/name&gt;  </span><br><span class="line">            &lt;value&gt;false&lt;/value&gt;  </span><br><span class="line">     &lt;/property&gt;  </span><br><span class="line"> &lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
-<p>####2.11、修改master与slaves<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /usr/local/hadoop/etc/hadoop/masters </span><br><span class="line"></span><br><span class="line">sudo gedit /usr/local/hadoop/etc/hadoop/slaves</span><br><span class="line"></span><br><span class="line">添加：localhost</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>##七、运行hadoop</p>
-<p>###①首先在 Hadoop 目录下创建所需的临时目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop  </span><br><span class="line">mkdir tmp dfs dfs/name dfs/data</span><br></pre></td></tr></table></figure></p>
-<p>###②格式化hdfs文件系统，初次运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop/</span><br><span class="line">bin/hdfs namenode -format</span><br></pre></td></tr></table></figure></p>
-<p>###③最后开启服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sbin/start-dfs.sh  </span><br><span class="line">sbin/start-yarn.sh</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>##八、状态查看<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Namenode information:</span><br><span class="line">http://localhost:50070</span><br><span class="line">来查看Hadoop的信息。</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">All Applications：</span><br><span class="line">http://localhost:8088/，</span><br></pre></td></tr></table></figure>
-<hr>
-<p>##九、安装Eclipse</p>
-<p>###①下载地址<br><a href="http://www.eclipse.org/downloads/?osType=linux&amp;release=undefinedrelease=undefined" target="_blank" rel="noopener">eclipse官方下载</a></p>
-<p>###②解压到/opt<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/ &amp;&amp; sudo tar -zxvf ~/下载/eclipse（根据下载的版本号填写）</span><br></pre></td></tr></table></figure></p>
-<p>###③创建快捷方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gksudo gedit /usr/share/applications/eclipse.desktop</span><br></pre></td></tr></table></figure></p>
-<p>录入下述内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Name=Eclipse 4</span><br><span class="line">Type=Application</span><br><span class="line">Exec=/opt/eclipse/eclipse</span><br><span class="line">Terminal=false</span><br><span class="line">Icon=/opt/eclipse/icon.xpm</span><br><span class="line">Comment=Integrated Development Environment</span><br><span class="line">NoDisplay=false</span><br><span class="line">Categories=Development;IDE;</span><br><span class="line">Name[en]=Eclipse</span><br></pre></td></tr></table></figure></p>
-<p>###④作jre的软链接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/eclipse</span><br><span class="line">ln -sf /usr/lib/jvm/java-8u45-sun/jre</span><br></pre></td></tr></table></figure></p>
-<p>###⑤、使用方式<br>用搜索栏搜索到eclipse，打开即可，可以选择拖拽到左侧快速启动栏</p>
-<hr>
-<p>##十、安装Eclipse hadoop插件</p>
-<p>###①下载hadoop-eclipse-plugin-2.4.0.jar<br>版本号无所谓，把这个文件拷贝到opt/eclipse/plugins中，这里介绍<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nautilus</span><br></pre></td></tr></table></figure></p>
-<p>这个命令会给你一个最高权限的资源管理器，可以进行复制<br>拷贝完之后，打开eclipse</p>
-<p>###②添加Hadoop的安装目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在Window-&gt;Preferences-&gt;Hadoop Map/Reduce中添加Hadoop的安装目录</span><br></pre></td></tr></table></figure></p>
-<p>###③配置Map/Reduce Locations<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在Window--&gt;Show View-&gt;other，</span><br><span class="line">在MapReduce Tools中选择Map/Reduce Locations</span><br></pre></td></tr></table></figure></p>
-<p>配置如下:<br><img src="http://images.cnitblog.com/blog/386955/201303/01121915-7c8f4be1052949cb9dd4425d3daa0793.gif" alt="此处输入图片的描述"></p>
-<hr>
-<h1 id="scala配置-spark安装"><a href="#scala配置-spark安装" class="headerlink" title="scala配置+spark安装"></a>scala配置+spark安装</h1><p>##一.安装 Scala<br>Scala 官网地址为 <a href="http://www.scala-lang.org/。" target="_blank" rel="noopener">http://www.scala-lang.org/。</a></p>
-<p>####1)下载 <a href="http://www.scala-lang.org/download/" target="_blank" rel="noopener">scala-2.11.7.tgz</a>。</p>
-<p>####2)进入目录下解压,并移动到合适的位置(比如opt目录下):<br>    tar -xzvf scala-2.11.7.tgz</p>
-<p>####3)配置环境变量,编辑~/.bashrc,添加下面的内容。<br> <code>sudo gedit  ~/.bashrc</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#scala envir</span><br><span class="line">export SCALA_HOME=/xxxxxxxx  //写上你的目录比如/opt/scala-2.11.7</span><br><span class="line">export PATH=$&#123;SCALA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure></p>
-<p>####4)使 bashrc 文件更新生效。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure></p>
-<p>####5)在终端输入scala测试是否安装成功</p>
-<p>###注:<br>不能使用apt-get install scala 这样安装是基于openjdk,问题很多. </p>
-<hr>
-<p>##二.安装 Spark<br>进入官网下载对应 Hadoop 版本的 Spark 程序包<br>官网地址为 <a href="http://spark.apache.org/downloads.html。" target="_blank" rel="noopener">http://spark.apache.org/downloads.html。</a><br>这边下载最新版本1.41,2015年08月15日</p>
-<p>####1)下载 <a href="http://spark.apache.org/downloads.html" target="_blank" rel="noopener">spark-1.4.1-bin-hadoop2.6.tgz</a>。</p>
-<p>####2)解压并移动到合适的位置(比如opt目录下):。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -xzvf spark-1.4.1-bin-hadoop2.6.tgz</span><br><span class="line">//为了方便,移动后改名为spark</span><br></pre></td></tr></table></figure></p>
-<p>####3)配置环境变量,编辑~/.bashrc,添加下面的内容。<br> <code>sudo gedit  ~/.bashrc</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#spark</span><br><span class="line">export SPARK_HOME=$HOME/opt/spark</span><br><span class="line">export PATH=$PATH:$SPARK_HOME/bin</span><br></pre></td></tr></table></figure></p>
-<p>####4)使 bashrc 文件更新生效。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure></p>
-<p>####5)配置 conf/spark-env.sh 文件\<br>加上   <code>export JAVA_HOME=/usr/lib/jvm/java-8u45-sun</code></p>
-<p>####6)若出现权限问题,修改组权限为读写</p>
-<p>####7)在sbin目录下,调用脚本start-all.sh开启服务</p>
-
           
+##一、创建hadoop用户并赋予权限
+###①创建hadoop用户组1sudo addgroup hadoop
+###②创建hadoop用户1sudo adduser -ingroup hadoop hadoop
+###③密码设为admin
+###④增加权限1sudo gedit /etc/su
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/南师大大创中期读书笔记/hadoop及spark平台搭建笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1506,146 +1253,19 @@
       
         
           
-            <hr>
-<p>课题：排序算法、演示及飞机订票系统<br>姓名：陈实<br>学号：19130216<br>班级：191302<br>指导教师：陈波</p>
-<hr>
-<p>#一、排序算法<br>任务描述：利用c++生成100W个随机数，并实现归并，快排，希尔以及堆排序，记录排序结果及时间等。</p>
-<p>##1.1、生成随机数<br>利用c#中的种子生成器，通过文件流保存至相应文件夹。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">private void range()</span><br><span class="line">      &#123;</span><br><span class="line">          string path = Directory.GetCurrentDirectory();//获取当前目录</span><br><span class="line">          path += &quot;/RawData.txt&quot;;//文件名</span><br><span class="line"></span><br><span class="line">          Random example = new Random();//种子生成器</span><br><span class="line"></span><br><span class="line">          //MessageBox.Show(path);//测试路径是否正确</span><br><span class="line"></span><br><span class="line">          using (StreamWriter sw = File.CreateText(path))</span><br><span class="line">          &#123;</span><br><span class="line">              for (int i = 0; i &lt; number; i++)</span><br><span class="line">              &#123;</span><br><span class="line">                  int tmp = example.Next(1, 65536);</span><br><span class="line">                  sw.WriteLine(tmp);</span><br><span class="line">              &#125;</span><br><span class="line">              MessageBox.Show(&quot;已生成&quot; + number/10000 + &quot;万个随机数&quot;);</span><br><span class="line">          &#125;</span><br><span class="line">          ReadFile(filedata, path);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></p>
-<p>##1.2、文件读取与存储<br>文件流读取文件与存储文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">private void ReadFile(int[] f, String path)</span><br><span class="line">&#123;</span><br><span class="line">    using (StreamReader sr = File.OpenText(path))</span><br><span class="line">    &#123;</span><br><span class="line">        string s = &quot;&quot;;</span><br><span class="line">        int i = 0;</span><br><span class="line">        while ((s = sr.ReadLine()) != null)</span><br><span class="line">        &#123;</span><br><span class="line">            int tmp = int.Parse(s);</span><br><span class="line">            f[i++] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void SaveFile(int[] f, String path)</span><br><span class="line">&#123;</span><br><span class="line">    using (StreamWriter sw = File.CreateText(path))</span><br><span class="line">    &#123;</span><br><span class="line">        for (int i = 0; i &lt; f.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            sw.WriteLine(f[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>##1.3、排序gui界面控件的代码设置<br>四个算法类似</p>
-<blockquote>
-<ul>
-<li>若未检测到生成随机数，则生成随机数</li>
-<li>利用跑表来测程序时间</li>
-<li>通过文件流拷贝文件数据</li>
-<li>排序程序</li>
-<li>显示结果</li>
-<li>其他几个类似<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">private void ShellSort_Click(object sender, EventArgs e)</span><br><span class="line">      &#123;</span><br><span class="line">          if (filedata[1] == 0)</span><br><span class="line">          &#123;</span><br><span class="line">              range();</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          Stopwatch stopWatch = new Stopwatch();//跑表</span><br><span class="line"></span><br><span class="line">          int[] shell_copy = new int[filedata.Length];//拷贝原始数据</span><br><span class="line">          filedata.CopyTo(shell_copy, 0);</span><br><span class="line"></span><br><span class="line">          stopWatch.Start();</span><br><span class="line">          Shell(shell_copy);</span><br><span class="line">          stopWatch.Stop();</span><br><span class="line"></span><br><span class="line">          string path = Directory.GetCurrentDirectory();//获取当前目录</span><br><span class="line">          path += &quot;/&quot; + DateTime.Now.ToString(&quot;yyyyMMdd&quot;); ;</span><br><span class="line">          Directory.CreateDirectory(path);</span><br><span class="line"></span><br><span class="line">          String name = &quot;ShellRes_runtime_&quot;;</span><br><span class="line">          name += stopWatch.Elapsed.Milliseconds + &quot;ms_&quot;;</span><br><span class="line">          name += DateTime.Now.ToString(&quot;yyyyMMdd&quot;);</span><br><span class="line">          name += DateTime.Now.ToString(&quot;HHmmss&quot;);//获取当前时间，用于创建文件夹</span><br><span class="line">          name += &quot;.txt&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">          path += &quot;/&quot; + name;//获取写入目录</span><br><span class="line"></span><br><span class="line">          SaveFile(shell_copy, path);//写入文件</span><br><span class="line"></span><br><span class="line">          String res = &quot;希尔排序执行完毕，执行时间：&quot; + stopWatch.Elapsed.Milliseconds + &quot;ms,&quot; + &quot;结果保存至当前目录&quot;;</span><br><span class="line">          hint h = new hint();</span><br><span class="line">          h.setstr(res);</span><br><span class="line">          h.Show();</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</blockquote>
-<p>##1.4、排序过程</p>
-<p>###1.4.1、希尔排序<br>间隔递减的插入排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">private void Shell(int[] r)</span><br><span class="line">    &#123;</span><br><span class="line">        int n = r.Length;</span><br><span class="line">        for (int d = n; d &gt;= 1; d = d / 2)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int i = d; i &lt; n; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                int j;</span><br><span class="line">                int temp = r[i];				//暂存被插入记录</span><br><span class="line">                for (j = i - d; j &gt;= 0 &amp;&amp; temp &lt; r[j]; j = j - d)</span><br><span class="line">                    r[j + d] = r[j];			//记录后移d个位置</span><br><span class="line">                r[j + d] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>###1.4.2、快速排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">private int Partition(int[] r, int i, int j)</span><br><span class="line">&#123;</span><br><span class="line">    int temp = r[i];</span><br><span class="line">    while (i &lt; j)</span><br><span class="line">    &#123;</span><br><span class="line">        while (i &lt; j &amp;&amp; r[j] &gt;= temp)</span><br><span class="line">            j--;</span><br><span class="line">        if (i &lt; j)</span><br><span class="line">            r[i++] = r[j];</span><br><span class="line">        while (i &lt; j &amp;&amp; r[i] &lt;= temp)</span><br><span class="line">            i++;</span><br><span class="line">        if (i &lt; j)</span><br><span class="line">            r[j--] = r[i];</span><br><span class="line">    &#125;</span><br><span class="line">    r[i] = temp;</span><br><span class="line">    return i;</span><br><span class="line">&#125;</span><br><span class="line">void Quick(int[] r, int i, int j)//快速排序算法QuickSort</span><br><span class="line">&#123;</span><br><span class="line">    if (i &lt; j)</span><br><span class="line">    &#123;</span><br><span class="line">        int pivot = Partition(r, i, j);</span><br><span class="line">        Quick(r, i, pivot - 1);</span><br><span class="line">        Quick(r, pivot + 1, j);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>###1.4.3、堆排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">private void sift(int[] array, int target, int tail)</span><br><span class="line">&#123;</span><br><span class="line">    int tmp;</span><br><span class="line">    int child = target * 2;</span><br><span class="line">    while (child &lt;= tail)</span><br><span class="line">    &#123;</span><br><span class="line">        if (child + 1 &lt;= tail &amp;&amp; array[child] &lt; array[child + 1])</span><br><span class="line">        &#123;</span><br><span class="line">            child++;</span><br><span class="line">        &#125;</span><br><span class="line">        if (array[child] &lt;= array[target])</span><br><span class="line">        &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        if (array[child] &gt; array[target])</span><br><span class="line">        &#123;</span><br><span class="line">            tmp = array[child];</span><br><span class="line">            array[child] = array[target];</span><br><span class="line">            array[target] = tmp;</span><br><span class="line">            target = child;</span><br><span class="line">            child = child * 2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Heap(int[] r)//堆排序Heap</span><br><span class="line">&#123;</span><br><span class="line">    int len = r.Length;</span><br><span class="line">    for (int i = len / 2; i &gt;= 0; i--)</span><br><span class="line">    &#123;</span><br><span class="line">        sift(r, i, len - 1);</span><br><span class="line">    &#125;</span><br><span class="line">    //sorted and adjust</span><br><span class="line">    int tmp, tail;</span><br><span class="line">    for (int i = 0; i &lt; len - 1; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        tail = len - 1 - i;</span><br><span class="line">        tmp = r[tail];</span><br><span class="line">        r[tail] = r[0];</span><br><span class="line">        r[0] = tmp;</span><br><span class="line">        sift(r, 0, tail - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>###1.4.4、归并排序<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] <span class="built_in">array</span>, <span class="keyword">int</span> start, <span class="keyword">int</span> mid, <span class="keyword">int</span> end)</span></span></span><br><span class="line"><span class="function">      </span>&#123;</span><br><span class="line">          <span class="keyword">int</span>[] tmpArray = <span class="keyword">new</span> <span class="keyword">int</span>[end - start + <span class="number">1</span>];</span><br><span class="line">          <span class="keyword">int</span> i = start;</span><br><span class="line">          <span class="keyword">int</span> j = mid + <span class="number">1</span>;</span><br><span class="line">          <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">          <span class="keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;= end)</span><br><span class="line">          &#123;</span><br><span class="line">              <span class="keyword">if</span> (<span class="built_in">array</span>[i] &lt;= <span class="built_in">array</span>[j])</span><br><span class="line">              &#123;</span><br><span class="line">                  tmpArray[k++] = <span class="built_in">array</span>[i++];</span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">else</span></span><br><span class="line">              &#123;</span><br><span class="line">                  tmpArray[k++] = <span class="built_in">array</span>[j++];</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">while</span> (i &lt;= mid)</span><br><span class="line">          &#123;</span><br><span class="line">              tmpArray[k++] = <span class="built_in">array</span>[i++];</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">while</span> (j &lt;= end)</span><br><span class="line">          &#123;</span><br><span class="line">              tmpArray[k++] = <span class="built_in">array</span>[j++];</span><br><span class="line">          &#125;</span><br><span class="line">          i = <span class="number">0</span>;</span><br><span class="line">          <span class="keyword">while</span> (start &lt;= end)</span><br><span class="line">          &#123;</span><br><span class="line">              <span class="built_in">array</span>[start++] = tmpArray[i++];</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="keyword">void</span> <span class="title">Merge</span><span class="params">(<span class="keyword">int</span>[] <span class="built_in">array</span>, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span></span></span><br><span class="line"><span class="function">      </span>&#123;</span><br><span class="line">          <span class="keyword">if</span> (start &lt; end)</span><br><span class="line">          &#123;</span><br><span class="line">              <span class="keyword">int</span> mid = (start + end) / <span class="number">2</span>;</span><br><span class="line">              Merge(<span class="built_in">array</span>, start, mid);</span><br><span class="line">              Merge(<span class="built_in">array</span>, mid + <span class="number">1</span>, end);</span><br><span class="line">              merge(<span class="built_in">array</span>, start, mid, end);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></p>
-<p>##1.5、程序测试</p>
-<p>###1.5.1、主界面展示<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E6%8E%92%E5%BA%8F%E4%B8%BB%E7%95%8C%E9%9D%A2.png" alt="主界面展示"></p>
-<p>###1.5.2、生成随机数界面<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0.png" alt="生成随机数界面"></p>
-<p>###1.5.3、一万测试数据<br>（1）<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E4%B8%80%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%951.png" alt="一万测试数据1"><br>（2）<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E4%B8%80%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%952.png" alt="一万测试数据2"></p>
-<p>###1.5.4、十万测试数据<br>（1）<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%8D%81%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%951.png" alt="十万测试数据1"><br>（2）<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%8D%81%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%952.png" alt="十万测试数据2"></p>
-<p>###1.5.5、百万测试数据<br>（1）<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%99%BE%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%951.png" alt="百万测试数据1"><br>（2）<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%99%BE%E4%B8%87%E6%95%B0%E6%8D%AE%E6%B5%8B%E8%AF%952.png" alt="百万测试数据2"></p>
-<p>##1.6、结果目录展示<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E6%8E%92%E5%BA%8F%E7%BB%93%E6%9E%9C%E7%9B%AE%E5%BD%95.png" alt="此处输入图片的描述"></p>
-<p>###1.7、数据结果分析<br>万级别上，各排序速度相仿，均在几毫秒之内完成内存排序，<br>十万级别及百万级别上，随机数生成的测试文件，快速排序表现尤其好。<br>测试数据范围：1~65535</p>
-<p>#二、飞机管理系统</p>
-<p>##2.1、问题描述<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">任务：通过此系统可以实现如下功能：</span><br><span class="line">录入：可以录入航班情况（数据可以存储在一个数据文件中，数据结构、具体数据自定）</span><br><span class="line">查询：可以查询某个航线的情况（如，输入航班号，查询起降时间，起飞抵达城市，航班票价，票价折扣，确定航班是否满仓）；</span><br><span class="line">可以输入起飞抵达城市，查询飞机航班情况；</span><br><span class="line">订票：（订票情况可以存在一个数据文件中，结构自己设定）</span><br><span class="line">可以订票，如果该航班已经无票，可以提供相关可选择航班；</span><br><span class="line">退票： 可退票，退票后修改相关数据文件；</span><br><span class="line">客户资料有姓名，证件号，订票数量及航班情况，订单要有编号。</span><br><span class="line">修改航班信息：当航班信息改变可以修改航班数据文件</span><br></pre></td></tr></table></figure></p>
-<p>##2.2、问题解析</p>
-<blockquote>
-<ul>
-<li>问题不难，即一个管理系统，本文采用c#做gui界面，数据结构是可变数组。</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>文件操作，仿照数据库操作，即用即读，不再在加载界面时读入内存。</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>本文主界面共提供了8个按钮,分三组为：航班管理，票务管理以及系统。</li>
-</ul>
-</blockquote>
-<p>##2.3、航班管理</p>
-<p>###2.3.1、录入航班</p>
-<blockquote>
-<ul>
-<li>通过人工键入值，追加保存到文件末尾</li>
-</ul>
-</blockquote>
-<p>###2.3.2、删除航班</p>
-<blockquote>
-<ul>
-<li>从文件读取，并绑定到下拉列表框，提供显示与删除功能。并做了一定的安全测试。</li>
-</ul>
-</blockquote>
-<p>###2.3.3、修改航班</p>
-<blockquote>
-<ul>
-<li>从文件读取，并绑定到下拉列表框，提供显示与修改功能。并做了一定的安全测试。</li>
-</ul>
-</blockquote>
-<p>##2.3、票务管理</p>
-<p>###2.3.1、航班号订票</p>
-<blockquote>
-<ul>
-<li>已知航班号，从文件读取数据，输入相关信息，订票并写回文件，并做了一定的安全测试。</li>
-</ul>
-</blockquote>
-<p>###2.3.2、选择订票</p>
-<blockquote>
-<ul>
-<li>文件读取信息，绑定到控件，选择起始地与目的地订票，写回文件，并做了一定的安全测试。</li>
-</ul>
-</blockquote>
-<p>###2.3.3、退票</p>
-<blockquote>
-<ul>
-<li>文件读取信息，绑定到控件，选择客户ID，退票。</li>
-</ul>
-</blockquote>
-<p>##2.4、系统</p>
-<p>###2.4.1、退出系统</p>
-<blockquote>
-<ul>
-<li>提供退出程序的功能。</li>
-</ul>
-</blockquote>
-<p>###2.4.2、关于</p>
-<blockquote>
-<ul>
-<li>关于本软件的信息。</li>
-</ul>
-</blockquote>
-<p>##2.5、数据格式设计</p>
-<p>###2.5.1、航班数据<br>共9个字段，均为string型，方便操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">class Flight</span><br><span class="line">   &#123;</span><br><span class="line">       public string FlightNumber;</span><br><span class="line">       public string StartTime;</span><br><span class="line">       public string EndTime;</span><br><span class="line">       public string StartCity;</span><br><span class="line">       public string EndCity;</span><br><span class="line">       public string FlightTicket;</span><br><span class="line">       public string TicketDisconut;</span><br><span class="line">       public string MaxNumber;</span><br><span class="line">       public string RestTicketNum;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       public Flight(string[] str)</span><br><span class="line">       &#123;</span><br><span class="line">           if (str.Length != 9)</span><br><span class="line">           &#123;</span><br><span class="line">               throw new Exception();</span><br><span class="line">           &#125;</span><br><span class="line">           else</span><br><span class="line">           &#123;</span><br><span class="line">               FlightNumber = str[0];</span><br><span class="line">               StartTime = str[1];</span><br><span class="line">               EndTime = str[2];</span><br><span class="line">               StartCity = str[3];</span><br><span class="line">               EndCity = str[4];</span><br><span class="line">               FlightTicket = str[5];</span><br><span class="line">               TicketDisconut = str[6];</span><br><span class="line">               MaxNumber = str[7];</span><br><span class="line">               RestTicketNum = str[8];</span><br><span class="line"></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       public override string ToString()</span><br><span class="line">       &#123;</span><br><span class="line">           string res = &quot;&quot;;</span><br><span class="line">           res +=</span><br><span class="line">           FlightNumber +&quot;,&quot;+</span><br><span class="line">           StartTime + &quot;,&quot; +</span><br><span class="line">           EndTime + &quot;,&quot; +</span><br><span class="line">           StartCity + &quot;,&quot; +</span><br><span class="line">           EndCity + &quot;,&quot; +</span><br><span class="line">           FlightTicket + &quot;,&quot; +</span><br><span class="line">           TicketDisconut + &quot;,&quot; +</span><br><span class="line">           MaxNumber + &quot;,&quot; +</span><br><span class="line">           RestTicketNum;</span><br><span class="line">           return res;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<p>###2.5.1、订单数据<br>共4个字段，均为string型，方便操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">class Order</span><br><span class="line">&#123;</span><br><span class="line">    public string FlightNumber;</span><br><span class="line">    public string Ordernum;</span><br><span class="line">    public string name;</span><br><span class="line">    public string Id;</span><br><span class="line"></span><br><span class="line">    public Order(string[] str)</span><br><span class="line">    &#123;</span><br><span class="line">        if (str.Length != 4)</span><br><span class="line">        &#123;</span><br><span class="line">            throw new Exception();</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            Ordernum = str[0];</span><br><span class="line">            FlightNumber = str[1];</span><br><span class="line">            name = str[2];</span><br><span class="line">            Id = str[3];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public override string ToString()</span><br><span class="line">    &#123;</span><br><span class="line">        string res = &quot;&quot;;</span><br><span class="line">        res +=</span><br><span class="line">        Ordernum + &quot;,&quot; +</span><br><span class="line">        FlightNumber + &quot;,&quot; +</span><br><span class="line">        name + &quot;,&quot; +</span><br><span class="line">        Id;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>##2.6、软件测试<br>测试繁多，不宜展示，在测试的时候修复许多bug，一定程度上增强了软件的安全性。</p>
-<p>###2.6.1、软件主界面<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%A8%8B%E5%BA%8F%E4%B8%BB%E7%95%8C%E9%9D%A2.png" alt="软件主界面"></p>
-<p>###2.6.2、录入航班<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%BD%95%E5%85%A5%E8%88%AA%E7%8F%AD.png" alt="录入航班"></p>
-<p>###2.6.3、删除航班<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%88%A0%E9%99%A4%E8%88%AA%E7%8F%AD.png" alt="删除航班"></p>
-<p>###2.6.4、修改航班<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E4%BF%AE%E6%94%B9%E8%88%AA%E7%8F%AD.png" alt="修改航班"></p>
-<p>###2.6.5、航班号订票<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E8%88%AA%E7%8F%AD%E5%8F%B7%E8%AE%A2%E7%A5%A8.png" alt="航班号订票"></p>
-<p>###2.6.6、目的地订票<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E8%AE%A2%E7%A5%A8.png" alt="目的地订票"></p>
-<p>###2.6.7、退票<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E9%80%80%E7%A5%A8.png" alt="退票"></p>
-<p>#三、排序演示</p>
-<blockquote>
-<ul>
-<li>本程序是基于MFC编写的，原框架是来源于VC课程，再次做了重构，提取出了方法，便于加类以实现不同的排序演示，在这里，介绍一个demo。</li>
-<li>程序采用绘制view和时钟中断，实现了模拟排序的效果。</li>
-</ul>
-</blockquote>
-<p>##3.1、csArray类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是所有排序类的基类，其他排序类由此扩展，负责绘制一些基本的试图。</span><br></pre></td></tr></table></figure></p>
-<p>##3.2、CTestView<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">视图类，控制时钟中段，建立排序类实例，绘制排序类等功能。</span><br></pre></td></tr></table></figure></p>
-<p>##3.3、扩展排序类</p>
-<pre><code>目前实现了冒泡，插入，选择，希尔的演示
-</code></pre><p>##3.4、程序测试</p>
-<p>###3.4.1、程序主界面<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E7%A8%8B%E5%BA%8F%E4%B8%BB%E7%95%8C%E9%9D%A2.jpg" alt="程序主界面"></p>
-<p>###3.4.2、冒泡排序<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%86%92%E6%B3%A1.png" alt="冒泡排序"></p>
-<p>###3.4.3、插入排序<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.png" alt="插入排序"></p>
-<p>###3.4.4、选择排序<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.png" alt="选择排序"></p>
-<p>###3.4.5、希尔排序<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E8%AF%BE%E8%AE%BE%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F.png" alt="希尔排序"></p>
-<p>#四、课设心得</p>
-<blockquote>
-<ul>
-<li>更好的掌握数据结构</li>
-<li>更严谨的测试程序</li>
-<li>通过实际编译系统的分析设计、编程调试，掌握应用软件的分析方法和工程设计方法</li>
-<li>培养了我选用参考书，查阅手册及文献资料的能力。培养独立思考，深入研究，分析问题、解决问题的能力</li>
-<li>严肃认真的心态</li>
-</ul>
-</blockquote>
-
           
+课题：排序算法、演示及飞机订票系统姓名：陈实学号：19130216班级：191302指导教师：陈波
+
+#一、排序算法任务描述：利用c++生成100W个随机数，并实现归并，快排，希尔以及堆排序，记录排序结果及时间等。
+##1.1、生成随机数利用c#中的种子生成器，通过文件流保存至相应文件夹。1234
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/课程设计/数据结构课程设计报告/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1785,18 +1405,16 @@
       
         
           
-            <hr>
-<p>①获取文件路径,写文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">string path = Directory.GetCurrentDirectory();//获取当前目录</span><br><span class="line">path += &quot;/01.txt&quot;;//文件名</span><br><span class="line">using (StreamWriter sw = File.CreateText(path))</span><br><span class="line">  &#123;</span><br><span class="line">       sw.WriteLine(&quot;&quot;);//按照行写</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
-<p>②随机数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Random example = new Random();//种子生成器</span><br><span class="line">int number = example.Next(1, 65536);//生成1~65536的随机数</span><br></pre></td></tr></table></figure></p>
-<p>③文件读取<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">string path = Directory.GetCurrentDirectory();//获取当前目录</span><br><span class="line">path += &quot;/01.txt&quot;;//文件名</span><br><span class="line">using (StreamReader sr = File.OpenText(path))</span><br><span class="line">&#123;</span><br><span class="line">       string s = &quot;&quot;;</span><br><span class="line">       while ((s = sr.ReadLine()) != null)</span><br><span class="line">       &#123;</span><br><span class="line">          Console.WriteLine(s);</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>④字符串转int<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int tmp = int.Parse(s);</span><br></pre></td></tr></table></figure></p>
-<p>⑤获取当前日期和时间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> String dirpath = DateTime.Now.ToString(&quot;yyyyMMdd&quot;);</span><br><span class="line">x += &quot;/&quot; + DateTime.Now.ToString(&quot;HHmmssfff&quot;);</span><br></pre></td></tr></table></figure></p>
-<p>⑥计算程序运行时间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Stopwatch stopWatch = new Stopwatch();</span><br><span class="line">stopWatch.Start();</span><br><span class="line">//测试部分</span><br><span class="line">stopWatch.Stop();</span><br><span class="line">String X = &quot;&quot;+stopWatch.Elapsed.Milliseconds;按照毫秒数出</span><br></pre></td></tr></table></figure></p>
-<p>0</p>
-<p>①带提示的退出程序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">private void button6_Click(object sender, EventArgs e)</span><br><span class="line">&#123;</span><br><span class="line">    DialogResult result = MessageBox.Show(&quot;请是否确认是否要退出系统！&quot;, &quot;提示&quot;, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);</span><br><span class="line">    if (result == DialogResult.OK)</span><br><span class="line">    &#123;</span><br><span class="line">        Application.Exit();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>②追加文件写<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StreamWriter sw = File.AppendText(path)</span><br></pre></td></tr></table></figure></p>
-
           
+①获取文件路径,写文件123456string path = Directory.GetCurrentDirectory();//获取当前目录path += &quot;/01.txt&quot;;//文件名using (StreamWriter sw = File.CreateText(path
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/课程设计/c#一些操作记录/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1958,27 +1576,24 @@
       
         
           
-            <hr>
-<p>#引言</p>
-<blockquote>
-<ul>
-<li>在过去的十年里,互联网技术有了突飞猛进的发展,逐渐参透到人们生活的各个角落,使人们的生活方式产生了巨大的改变。在互联网的各个领域中,<strong>发展和变化最快的就是Web应用的发展</strong>,已经成为当今网络技术的研究重点。</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>随着人们对网页体验的要求不断提高,网页正在逐渐地从传统的二维平面网页向<strong>交互式三维网页</strong>发展。但是,早期的技术并不成熟,比如JavaApplet所实现的非常简单的Web交互三维图形程序,不仅需要下载一个巨大的支持环境,而且画面非常粗糙,性能也很差,其主要原因就在于JavaApplet在进行图形渲染时,并没有直接利用到图形硬件本身的加速功能。</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>后来，Adobe的FlashPlayer浏览器插件和微软Silverlight技术相继出现,逐渐成为了Web交互式三维图形的主流技术。与JavaApplet技术不同,这两种技术直接利用操作系统提供的图形程序接口,来调用图形硬件的加速功能,从而实现了高性能的图形渲染。</li>
-</ul>
-</blockquote>
-<p>但是,这两种解决方案都存在一些问题。首先,它们是都是通过浏览器插件形式实现的，这就意味着对于不同的操作系统和浏览器需要下载不同版本的插件;其次，对于不同的操作系统，这两项技术需要调用不同图形程序接口。这两点不足在很大程度上限制了Web交互式三维图形程序的使用范围。普通的Web浏览器正日益成为能应用丰富3D交互式程序的一个平台。</p>
-<p>2014年10月，万维网联盟完成了HTML5的标准制定，而作为HTML5标准之一的WebGL很好地解决了上述两个问题：首先，它通过JavaScript脚本实现Web交互式三维图形制作程序的设计与实现，无需任何浏览器插件支持;其次，它利用底层图形硬件的加速功能进行的图形渲染，是通过统一的、标准的、跨平台的OpenGLES2.0实现的。利用WebGL技术构建三维交互平台并加载三维模型，实现鼠标与键盘和网页三维场景中的模型进行互动。</p>
-
           
+#引言
+
+
+在过去的十年里,互联网技术有了突飞猛进的发展,逐渐参透到人们生活的各个角落,使人们的生活方式产生了巨大的改变。在互联网的各个领域中,发展和变化最快的就是Web应用的发展,已经成为当今网络技术的研究重点。
+
+
+
+
+随着人们对网页体验的要求不断提高,网页正在逐渐地从传统的二维平面网页向交互
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/计算机图形学/论文/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2118,38 +1733,17 @@
       
         
           
-            <hr>
-<p>##历史<br><img src="https://morvanzhou.github.io/static/results/ML-intro/ann1.png" alt="1"></p>
-<p>2-30年前, 一想到神经网络, 我们就会想到生物神经系统中数以万计的细胞联结, 将感官和反射器联系在一起的系统. 但是今天, 你可能的第一反应却是.. 电脑 和电脑程序当中的人工神经网络. 昔日复杂的动神经网络系统居然神奇地放入了计算机? 而且人类正在将这种人工神经网络系统推向更高的境界. 今天的世界早已布满了人工神经网络的身影.</p>
-<p>比如 Google 的收索引擎. 股票价格预测, 机器人学习, 围棋, 家庭助手, 等等等等,<br>从金融到仿生样样都能运用. 看起来人工神经网络的确很强大. 但, 是不是有这么一个问题一直在你脑海中环绕, 没有答案. “计算机领域的神经网络和我们自己身体里的神经网络究竟是一样的吗?”</p>
-<p>科学家们通过长久的探索, 想让计算机像人一样思考, 所以研发了人工神经网络, 究竟和我们的神经网络有多像? 那我们就先来看看人的神经网络到底是什么.</p>
-<p>##你的神经网络系统 </p>
-<p>9百亿神经细胞组成了我们复杂的神经网络系统, 这个数量甚至可以和宇宙中的星球数相比较.<br>如果仅仅靠单个的神经元, 是永远没有办法让我们像今天一样, 完成各种任务, 处理各种复杂的问题. 那我们是如何靠这些神经元来解决问题的呢?</p>
-<p>首先需要知道的是我们的记忆是如何产生的. 想象我们还是婴儿,那时候我们什么都不知道, 神经元并没有形成系统和网络.</p>
-<p>可能只是一些分散的细胞而已, 一端连着嘴巴的味觉感受器, 一端连着手部的肌肉.<br>小时候, 当我们第一次品尝糖果的时候, 美妙的感觉, 让我们发现这个是多么的好吃. 这时候神经元开始产生联结, 记忆形成, 但是形成的新联结怎么样变成记忆, 仍然是科学界的一个迷.</p>
-<p>不过现在, 我们的手和嘴产生了某种特定的搭配. 每次发现有糖果的时候, 某种生物信号就会从我们的嘴,通过之前形成的神经联结, 传递到手上, 让手的动作变得有意义, 比如这样, 然后爸妈就会再给我们一颗糖果啦~ 哈哈, 吃糖的目的达成. 现在我们来看看人工神经网络要怎样达到这个目的.</p>
-<p>首先, 替代掉生物神经网络的, 就是已经成体系的人工神经网络. 所有神经元之间的连接都是固定不可更换的, 这也就是说, 在人工神经网络里, 没有凭空产生新联结这回事. </p>
-<p>人工神经网络典型的一种学习方式就是, 我已经知道吃到糖果时, 手会如何动, 但是我想让神经网络学着帮我做这件动动手的事情.</p>
-<p>所以我预先准备好非常多吃糖的学习数据, 然后将这些数据一次次放入这套人工神经网络系统中, 糖的信号会通过这套系统传递到手.</p>
-<p>然后通过对比这次信号传递后, 手的动作是不是”讨糖”动作, 来修改人工神经网络当中的神经元强度.</p>
-<p>这种修改在专业术语中叫做”误差反向传递”, 也可以看作是再一次将传过来的信号传回去, 看看这个负责传递信号神经元对于”讨糖”的动作到底有没有贡献, 让它好好反思与改正, 争取下次做出更好的贡献. 这样看来, 人工神经网络和生物神经网络的确不是一回事.</p>
-<p>##两者区别总结 </p>
-<p>人工神经网络靠的是正向和反向传播来更新神经元, 从而形成一个好的神经系统, 本质上, 这是一个能让计算机处理和优化的数学模型. 而生物神经网络是通过刺激, 产生新的联结, 让信号能够通过新的联结传递而形成反馈.</p>
-<p>虽然现在的计算机技术越来越高超, 不过我们身体里的神经系统经过了数千万年的进化, 还是独一无二的, 迄今为止, 再复杂, 再庞大的人工神经网络系统也不能替代我们的小脑袋. 我们应该感到自豪, 也应该珍惜上天的这份礼物.<br><img src="http://static.zybuluo.com/rg070836rg/zrqqf71fl9715a904zuilpn2/image.png" alt="image.png-291.4kB"></p>
-<h2 id="什么是神经网络"><a href="#什么是神经网络" class="headerlink" title="什么是神经网络"></a>什么是神经网络</h2><p><strong>神经网络</strong>是一种数学模型，是存在于计算机的神经系统，由大量的神经元相连接并进行计算，在外界信息的基础上，改变内部的结构，常用来对输入和输出间复杂的关系进行建模。</p>
-<p>神经网络由大量的节点和之间的联系构成，负责传递信息和加工信息，神经元也可以通过训练而被强化。</p>
-<p>这个图就是一个神经网络系统，它由很多层构成。输入层就是负责接收信息，比如说一只猫的图片。输出层就是计算机对这个输入信息的认知，它是不是猫。隐藏层就是对输入信息的加工处理。</p>
-<p>##神经网络是如何被训练的<br>首先它需要很多数据。比如他要判断一张图片是不是猫。就要输入上千万张的带有标签的猫猫狗狗的图片，然后再训练上千万次。</p>
-<p>神经网络训练的结果有对的也有错的，如果是错误的结果，将被当做非常宝贵的经验，那么是如何从经验中学习的呢？就是对比正确答案和错误答案之间的区别，然后把这个区别反向的传递回去，对每个相应的神经元进行一点点的改变。那么下一次在训练的时候就可以用已经改进一点点的神经元去得到稍微准确一点的结果。</p>
-<p>##神经网络是如何训练的呢<br>每个神经元都有属于它的激活函数，用这些函数给计算机一个刺激行为。</p>
-<p>  <img src="http://static.zybuluo.com/rg070836rg/jpkingo5pr4ciretc0jxug93/image.png" alt="image.png-237kB"></p>
-<p>在第一次给计算机看猫的图片的时候，只有部分的神经元被激活，被激活的神经元所传递的信息是对输出结果最有价值的信息。如果输出的结果被判定为是狗，也就是说是错误的了，那么就会修改神经元，一些容易被激活的神经元会变得迟钝，另外一些神经元会变得敏感。这样一次次的训练下去，所有神经元的参数都在被改变，它们变得对真正重要的信息更为敏感。</p>
-<p>##神经网络 梯度下降<br>神经网络是当今为止最流行的一种深度学习框架, 他的基本原理也很简单, 就是一种梯度下降机制. 我们今天就来看看这神奇的优化模式吧.</p>
-<p>学习机器学习的同学们常会遇到这样的图像, 我了个天, 看上去好复杂, 哈哈, 不过还挺好看的. 这些和我们说的梯度下降又有什么关系呢? 原来这些图片展示出来了一个家族的历史, 这个家族的名字就是-”optimization” (优化问题). 优化能力是人类历史上的重大突破, 他解决了很多实际生活中的问题. 从而渐渐演化成了一个庞大的家族.</p>
-<p>比如说牛顿法 (Newton’s method), 最小二乘法(Least Squares method), 梯度下降法 (Gradient Descent) 等等. 而我们的神经网络就是属于梯度下降法这个分支中的一个. 提到梯度下降, 我们不得不说说大学里面学习过的求导求微分. 因为这就是传说中”梯度下降”里面的”梯度” (gradient)啦. 听到求导微分可别后怕, 因为这个短视频只是让你有一个直观上的理解, 并不会涉及太过复杂的东西.</p>
-<p>初学神经网络的时候, 我们通常会遇到这样一个方程, 叫做误差方程 (Cost Function). 用来计算预测出来的和我们实际中的值有多大差别. 在预测数值的问题中, 我们常用平方差 (Mean Squared Error) 来代替. 我们简化一下这个方程, W是我们神经网络中的参数, x, y 都是我们的数据, 因为 xy 都是实实在在的数据点, 在这个假设情况中, 是多少都无所谓, 然后我们再厚颜无耻地像这样继续简化一下, (注意, 这个过程在在数学中并不正确, 不过我们只是为了看效果), 所以现在误差值曲线就成了这样. 假设我们初始化的 W 在这个位置. 而这个位置的斜率是这条线, 这也就是梯度下降中的梯度啦. 我们从图中可以看出, Cost 误差最小的时候正是这条 cost 曲线最低的地方, 不过在蓝点的 W 却不知道这件事情, 他目前所知道的就是梯度线为自己在这个位置指出的一个下降方向, 我们就要朝着这个蓝色梯度的方向下降一点点. 在做一条切线, 发现我还能下降, 那我就朝着梯度的方向继续下降, 这时, 再展示出现在的梯度, 因为梯度线已经躺平了, 我们已经指不出哪边是下降的方向了, 所以这时我们就找到了 W 参数的最理想值. 简而言之, 就是找到梯度线躺平的点. 可是神经网络的梯度下降可没这么简单.</p>
-
           
+##历史
+2-30年前, 一想到神经网络, 我们就会想到生物神经系统中数以万计的细胞联结, 将感官和反射器联系在一起的系统. 但是今天, 你可能的第一反应却是.. 电脑 和电脑程序当中的人工神经网络. 昔日复杂的动神经网络系统居然神奇地放入了计算机? 而且人类正在将这种人工神经网络系统推向更高的境
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/机器学习/机器学习/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

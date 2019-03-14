@@ -353,152 +353,22 @@
       
         
           
-            <hr>
-<h2 id="一、简答题"><a href="#一、简答题" class="headerlink" title="一、简答题"></a>一、简答题</h2><blockquote>
-<p>记号O、Ω、Θ 的意义？</p>
-</blockquote>
-<ul>
-<li>O：表示若存在f(n)=O(g(n))时，则f(n)当n充分大时有上界，且g(n)为它的一个上界</li>
-<li>Ω：表示若存在f(n)=Ω(g(n))时，则f(n)当n充分大时有下界，且g(n)为它的一个下界</li>
-<li>Θ：表示当且仅当f(n)=O(g(n))且f(n)=Ω(g(n))时，称f(n)与g(n)同阶</li>
-</ul>
-<blockquote>
-<p>分治法的基本步骤？</p>
-</blockquote>
-<ol>
-<li>分解(Divide)：将要解决的问题分解成若干规模较小的同类子问题 </li>
-<li>解决(Conquer)：递归求解子问题</li>
-<li>合并(Combine)：将子问题的求解结果恰当合并，得到原问题的解</li>
-</ol>
-<blockquote>
-<p>动态规划算法的两个基本要素？</p>
-</blockquote>
-<ol>
-<li>最优子结构性质  </li>
-<li>重叠子问题性质</li>
-</ol>
-<blockquote>
-<p>设计动态规划算法的步骤？</p>
-</blockquote>
-<ol>
-<li>找出最优解的性质，并刻画其结构特征； </li>
-<li>递归地定义最优值； </li>
-<li>以自底向上的方式计算出最优值；</li>
-<li>根据计算最优值时得到的信息，得到最优解。</li>
-</ol>
-<blockquote>
-<p>分治法与动态规划两种算法策略的异同点？</p>
-</blockquote>
-<p>同：将待求解的问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解；<br>异：适用于动态规划法求解的问题，经分解得到的子问题往往不是互相独立的而用分治法求解的问题，经分解得到的子问题往往是互相独立的。</p>
-<blockquote>
-<p>贪心法的两个基本要素？</p>
-</blockquote>
-<ol>
-<li>贪心选择性质 </li>
-<li>最优子结构性质</li>
-</ol>
-<blockquote>
-<p>贪心法的算法正确性证明的基本策略？</p>
-</blockquote>
-<p>贪心算法的正确性证明虽然不容易，但一些常见的方法还是值得总结的。  </p>
-<ul>
-<li>构造法<br>根据描述的算法，用贪心的策略，依次构造出一个解，可证明一定是合法的解，即用贪心法找可行解。 如有N个士兵(1≤N≤26)，编号依次为A，B，C，…。队列训练时，指挥官要把一些士兵从高到矮依次排成一行，但现在指挥官不能直接获得每个人的身高信息，只能获得“P1比P2高”这样的比较结果(P1，P2∈A，B，C，…，Z，记为P1&gt;P2)，如“A&gt;B”表示A比B高。 请编一程序，根据所得到的比较结果求出一种符合条件的排队方案。 注：比较结果中没有涉及到的士兵不参加排队。 </li>
-</ul>
-<ul>
-<li><p>反证法<br>用贪心的策略，依次构造出一个解S1。假设最优解S2不同与S1，可以证明是矛盾的。从而S1就是最优解。如在一个超市，有N个人排队到一个柜台付款，已知每个人需要处理的时间为Ti（0&lt;i≤N），请你找一种排列次序，使每个人排队的时间总和最小。  </p>
-</li>
-<li><p>调整法<br>用贪心的策略，依次构造出一个解S1。假设最优解S2不同与S1，找出不同之处，在不破坏最优性的前提下，逐步调整S2，最终使其变为S1。从而S1也是最优解。</p>
-</li>
-</ul>
-<blockquote>
-<p>贪心法与动态规划两种算法策略的异同点？</p>
-</blockquote>
-<p>同：都要求问题具有最优子结构性质<br>异：动态规划算法为自底向上的方式解各子问题，贪心法为自顶向下的方式进行，以迭代的方式作出相继的贪心选择，每一次贪心选择问题就转换为规模更小的子问题。</p>
-<blockquote>
-<p>最大流的概念、流通（circulation）的概念？</p>
-</blockquote>
-<p>最大流：最大流量的问题涉及发现通过单一来源，单汇流网络，它是一个最大可行流。<br>流通（circulation）：<br><img src="http://i.imgur.com/0qvfgi5.png" alt></p>
-<blockquote>
-<p>最大流最小割定理的内容及其证明方法？</p>
-</blockquote>
-<p>最大流最小割定理(Maximum Flow, Minimum Cut Theorem):网络的最大流等于最小割<br><strong>具体的证明分三部分：</strong></p>
-<ol>
-<li>任意一个流都小于等于任意一个割<br>这个很好理解 自来水公司随便给你家通点水 构成一个流<br>恐怖分子随便砍几刀 砍出一个割<br>由于容量限制 每一根的被砍的水管子流出的水流量都小于管子的容量<br>每一根被砍的水管的水本来都要到你家的 现在流到外面 加起来得到的流量还是等于原来的流<br>管子的容量加起来就是割 所以流小于等于割<br>由于上面的流和割都是任意构造的 所以任意一个流小于任意一个割</li>
-<li>构造出一个流等于一个割<br>当达到最大流时 根据增广路定理<br>残留网络中s到t已经没有通路了 否则还能继续增广<br>我们把s能到的的点集设为S 不能到的点集为T<br>构造出一个割集C[S,T] S到T的边必然满流 否则就能继续增广<br>这些满流边的流量和就是当前的流即最大流<br>把这些满流边作为割 就构造出了一个和最大流相等的割</li>
-<li>最大流等于最小割<br>设相等的流和割分别为Fm和Cm<br>则因为任意一个流小于等于任意一个割<br>任意F≤Fm=Cm≤任意C<br>定理说明完成</li>
-</ol>
-<p><a href="http://blog.csdn.net/xzz_hust/article/details/22041173" target="_blank" rel="noopener">网络流：最大流，最小割 基本概念及算法</a></p>
-<blockquote>
-<p>多项式归约（reduction）的概念与用途？</p>
-</blockquote>
-<p>可归约意指对每个问题L，总有一个多项式时间多对一变换，即一个决定性的算法可以将实例l ∈ L 转化成实例c ∈ C，并让c回答Yes当且仅当此答案对l也是Yes。为了证明某个NP问题A实际上是NPC问题，证明者必须找出一个已知的NPC问题可以变换成A。</p>
-<blockquote>
-<p>P 问题、NP问题、NP完全问题、NP困难问题（NP-hardproblem）的概念？</p>
-</blockquote>
-<p><strong>P问题</strong>：如果一个问题可以找到一个能在多项式的时间里解决它的算法，那么这个问题就属于P问题。<br><strong>NP问题</strong>：NP问题不是非P类问题。NP问题是指可以在多项式的时间里验证一个解的问题。NP问题的另一个定义是，可以在多项式的时间里猜出一个解的问题。<br><strong>NP完全问题</strong>：同时满足下面两个条件的问题就是NPC问题。首先，它得是一个NP问题；然后，所有的NP问题都可以约化到它。(即只要解决这个问题，所有的NP问题都可以得到解决)<br><strong>NP困难问题</strong>：它满足NPC问题定义的第二条但不一定要满足第一条（就是说，NP-Hard问题要比NPC问题的范围广）。</p>
-<p><a href="http://blog.csdn.net/dongwq/article/details/4305435" target="_blank" rel="noopener">概念详述</a></p>
-<blockquote>
-<p>NP完全问题的实际证明方法？</p>
-</blockquote>
-<p>目前为止，所有已知解NPC问题的算法需要依照数据数量而定的<strong>超多项式</strong>（superpolynomial）时间，目前也不知道是否有任何更快的算法存在。因此要在输入数据量大的时候解决一个NPC问题，通常我们使用下列的手段来解：</p>
-<ul>
-<li>近似算法：这类算法可以快速发现离最佳解在一定差距内的次佳解。</li>
-<li>乱数算法：此类算法可提供一乱数产生的输入数据，让本质上解答分布均匀的受测程序可以有良好的求解效率。对于解答分布不均匀的程序，则可以降低乱数程度以改变输入数据。</li>
-<li>特例：此算法可以在题目呈献某些特殊情况时快速得解。参数化复杂度（Parameterized complexity）可视为广义的此类算法。</li>
-<li>启发式算法：这种算法在许多时候可以产生理性解答（即运用评比或线索找出解），但无法保证它效率的良莠与解答的好坏程度。一个启发式算法的例子是用在图着色问题以O（n log n）的贪婪算法找次佳解，用在某些编译器的寄存器配置阶段上，此技术又叫图着色全域寄存器配置（graph-coloring global register allocation）。每顶点视为一变数，每边代表两变数同时使用的情况，颜色则代表配置给每一变数的寄存器编号。由于大多数的RISC机器拥有大量通用寄存器，因此启发式算法很适合用来解这类题目。</li>
-</ul>
-<p><a href="https://zh.wikipedia.org/wiki/NP%E5%AE%8C%E5%85%A8" title="NP完全-wiki" target="_blank" rel="noopener">NP完全-wiki百科</a></p>
-<blockquote>
-<p>常见的NP完全问题？</p>
-</blockquote>
-<ul>
-<li>图着色问题 </li>
-<li>哈密顿回路问题 </li>
-<li>TSP问题</li>
-</ul>
-<p><a href="http://wenku.baidu.com/link？url=QqgJf4s7sFW0TlIDTqKp9p5oX5gTXED2WpYF-lBfAxA__9xIXkRaUTOfhMNLy4TEFakEMRWhotL-Yi7yWQnZYwtoRiXruuzTSaWm8IRCqIC" target="_blank" rel="noopener">NP问题例子详述</a></p>
-<blockquote>
-<p>递归方程的求解方法？</p>
-</blockquote>
-<ol>
-<li>递推法</li>
-<li>公式法</li>
-<li>生成函数法</li>
-</ol>
-<p><a href="http://wenku.baidu.com/view/835ed26ab84ae45c3b358c4b.html" title="递归方程求解方法综述-百度文库" target="_blank" rel="noopener">递归方程求解方法综述-百度文库</a></p>
-<h2 id="二、应用题"><a href="#二、应用题" class="headerlink" title="二、应用题"></a>二、应用题</h2><blockquote>
-<p>多段图上的最短路径动态规划推导</p>
-</blockquote>
-<p>阶段：将图中的顶点划分5个阶段，k<br>状态：每个阶段有几种供选择的点s<br>决策：当前状态应在前一个状态的基础上获得。决策需要满足规划方程<br>规划方程：f(k)表示状态k到终点状态的最短距离。<br>初始条件：f(k)=0;<br>方程：f(k-1)=min{f(k)+W(k-1,k)}其中W(k-1,k)表示状态k-1到状态k的距离</p>
-<blockquote>
-<p>最大流最小割问题的求解算法Ford-Fulkerson及应用</p>
-</blockquote>
-<p>Ford-Fulkerson方法依赖于三种重要思想：残留网络，增广路径和割。Ford-Fulkerson是一种迭代的方法。开始时，对所有的u,v属于V，f(u,v)=0(这里f(u,v)代表u到v的边当前流量)，即初始状态时流的值为0。在每次迭代中，可以通过寻找一个“增广路径”来增加流值。增广路径可以看做是从源点s到汇点t之间的一条路径，沿该路径可以压入更多的流，从而增加流的值。反复进行这一过程，直到增广路径都被找出为止。<br><a href="http://blog.csdn.net/smartxxyx/article/details/9293665" title="最大流问题Ford-Fulkerson方法" target="_blank" rel="noopener">最大流问题Ford-Fulkerson方法</a><br><a href="https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm" title="Ford–Fulkerson algorithm-wiki" target="_blank" rel="noopener">Ford–Fulkerson algorithm-wiki</a></p>
-<blockquote>
-<p>强连通分量的划分算法</p>
-</blockquote>
-<p>Kosaraju算法、Tarjan算法、Gabow算法皆为寻找有向图强连通分量的有效算法。但是在Tarjan 算法和 Gabow 算法的过程中，只需要进行一次的深度优先搜索，而Kosaraju算法需要两次DFS，因而相对 Kosaraju 算法较有效率。这些算法可简称为SSC(strongly connected components)算法。<br>Kosaraju 算法即为算法导论一书给出的算法，比较直观和易懂。这个算法可以说是最容易理解，最通用的算法，其比较关键的部分是同时应用了原图G和反图GT。 它利用了有向图的这样一个性质，一个图和他的transpose graph(边全部反向)具有相同的强连通分量！<br><strong>算法思路：</strong></p>
-<ol>
-<li>DFS遍历原图，对每个访问到的节点标记时间戳（访问完成时间）。</li>
-<li>按照时间戳的降序DFS遍历反向图，得到的每个连通块就是一个强连通分量。<br><strong>算法步骤如下：</strong></li>
-<li>创建一个空的栈 ‘S’ ，然后对图做DFS遍历. 在顶点访问完成后加入栈中。访问完成是说回溯返回时，而不是第一次发现该节点时。fillOrder()函数</li>
-<li>得到图转置，即将所有边反向。</li>
-<li>从S中依次弹出每个顶点，设为 ‘v’. 将v看做遍历的源点 (调用 DFSUtil(v)). 做第二次DFS遍历，可以找到以v为起点的强连通分量，打印出即可。<br><strong>时间复杂度</strong><br>DFS遍历的时间复杂度为O(V+E) ，图的转置也为O(V+E) 。因此总的时间复杂度为O(V+E)。<br>从渐进分析来说，这个复杂度是最好的，但是用到了两次DFS遍历，还有一个常见的更高效的算法 Tarjan’s algorithm ，后面再做讨论。<br><strong>应用</strong><br>在社交网络上，有些群体可能是强连通的(例如一个班级的学生)，这些群体中的人一般会有一些共同感兴趣的页面或游戏，可以使用SSC算法来找到这样的群体，然后推荐相关的页面或游戏。<br><a href="http://www.acmerblog.com/strongly-connected-components-6099.html" title="求强连通分量-Kosaraju算法" target="_blank" rel="noopener">求强连通分量-Kosaraju算法</a><blockquote>
-<p>图的深度优先搜索算法的扩展及应用</p>
-</blockquote>
-</li>
-</ol>
-<p><a href="http://baike.baidu.com/view/288277.htm" title="深度优先搜索-百度百科" target="_blank" rel="noopener">深度优先搜索-百度百科</a></p>
-<blockquote>
-<p>Bellman-Ford算法的基本思想及应用</p>
-</blockquote>
-<p><img src="http://i.imgur.com/GwGWhHy.png" alt><br><img src="http://i.imgur.com/azL6cnh.png" alt></p>
-<blockquote>
-<p>递归方程的求解方法</p>
-</blockquote>
-<p><a href="http://wenku.baidu.com/view/835ed26ab84ae45c3b358c4b.html" title="递归方程求解方法综述-百度文库" target="_blank" rel="noopener">递归方程求解方法综述-百度文库</a></p>
-
           
+一、简答题
+记号O、Ω、Θ 的意义？
+
+
+O：表示若存在f(n)=O(g(n))时，则f(n)当n充分大时有上界，且g(n)为它的一个上界
+Ω：表示若存在f(n)=Ω(g(n))时，则f(n)当n充分大时有下界，且g(n)为它的一个下界
+Θ：表示当且仅当f(n)=O(g(n))且f(n)=Ω(g(
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/算法概论/算法概论复习提纲/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -638,12 +508,17 @@
       
         
           
-            <hr>
-<p>#一 简答<br>1.记号O、omga、theta 的意义<br>2.NPC 以及 实际证明方法<br>3.分治法与动态规划两种算法策略的异同点<br>4.有向图（TREE,BACK,FOREARD,CROSS）求无向图中的边的说明<br>5.贪心法的两个基本要素<br>6.为什么dijkstra在含有负边的图中不起作用</p>
-<p>#二 应用<br>1.多段图的推导<br>2.最大流最小割（1.画出最大流路径2.求最大流3.画残量图4.求最小割5.证明流是最大流）<br>3.强连通分量（1.生成的顺序2.sink source scc3.metagraph）<br>4.求算法复杂度（要区分 O theta omga）</p>
-<p>#三 编程<br>1.分治法 找数组中第K小 Select(S,K)<br>2.贪心法 类似OS的SJF<br>3.动规法 bellman ford 循环K次</p>
-
           
+#一 简答1.记号O、omga、theta 的意义2.NPC 以及 实际证明方法3.分治法与动态规划两种算法策略的异同点4.有向图（TREE,BACK,FOREARD,CROSS）求无向图中的边的说明5.贪心法的两个基本要素6.为什么dijkstra在含有负边的图中不起作用
+#二 应用1.多段图的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/算法2015/算法2015/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -783,24 +658,25 @@
       
         
           
-            <hr>
-<p>[TOC]</p>
-<p>##1.记号O、omga、theta 的意义<br><img src="http://static.zybuluo.com/rg070836rg/e90ulo2s5uc8if9rs5lhpmzc/01.png" alt="01.png-447.9kB"></p>
-<p>##2.分治法的基本步骤<br><img src="http://static.zybuluo.com/rg070836rg/0jo146f9or7frav4iy6bbzth/02.png" alt="02.png-475.4kB"></p>
-<p>##3.动态规划算法的两个基本要素<br><img src="http://static.zybuluo.com/rg070836rg/nrehdtderejlpv2c8jxxllzp/03.png" alt="03.png-261kB"></p>
-<p>##4.设计动态规划算法的步骤<br><img src="http://static.zybuluo.com/rg070836rg/3yo0a4pdj0k1kt19zochztss/04.png" alt="04.png-408.8kB"></p>
-<p>##5.分治和动规的异同点<br><img src="http://static.zybuluo.com/rg070836rg/eu0wpu9mgplzzaud32febdkw/05.png" alt="05.png-845.1kB"></p>
-<p>##6.贪心法的两个基本要素<br><img src="http://static.zybuluo.com/rg070836rg/deza9yckyiiw2slwyonm5awg/06.png" alt="06.png-628.5kB"></p>
-<p>##7.贪心法的算法正确性证明的基本策略<br><img src="http://static.zybuluo.com/rg070836rg/goncc4hlszon5nkzjllinnye/07.png" alt="07.png-813kB"></p>
-<p>##8.贪心法与动态规划两种算法策略的异同点<br><img src="http://static.zybuluo.com/rg070836rg/dxtx32y8617r0w98uoc7t9ll/08.png" alt="08.png-989.8kB"></p>
-<p>##9.最大流的概念、流通（circulation）的概念<br><img src="http://static.zybuluo.com/rg070836rg/16txw9llqru1t1q4wwch44pl/09.png" alt="09.png-1016.9kB"></p>
-<p>##10.最大流最小割定理的内容及其证明方法<br><img src="http://static.zybuluo.com/rg070836rg/3r1sqmrl62i4f2zlz89hen3g/10_1.png" alt="10_1.png-554.6kB"><br><img src="http://static.zybuluo.com/rg070836rg/1luiqmyg9e0ez544u1atlyfg/10_2.png" alt="10_2.png-781.4kB"><br><img src="http://static.zybuluo.com/rg070836rg/pwn4dlu28rimcl07gb27hgwe/10_3.png" alt="10_3.png-358.2kB"></p>
-<p>##11.“多项式归约（reduction）”的概念与用途；<br><img src="http://static.zybuluo.com/rg070836rg/rnvyf5zxngmzn4qyrjrhiui7/11.png" alt="11.png-663.9kB"></p>
-<p>##12.P 问题、NP问题、NP完全问题、NP困难问题（NP-hard problem）的概念<br><img src="http://static.zybuluo.com/rg070836rg/24fzgr52oc1bhjh1j3xcfduh/12.png" alt="12.png-461.8kB"></p>
-<p>##13.NP完全问题的实际证明方法<br><img src="http://static.zybuluo.com/rg070836rg/fwlg4b0o2tvaotnwtfa9lug4/13.png" alt="13.png-1223.6kB"></p>
-<p>##14.常见的NP完全问题<br><img src="http://static.zybuluo.com/rg070836rg/8fwi0c2u82w1zdltd3u9rkzf/14.png" alt="14.png-911.2kB"></p>
-
           
+[TOC]
+##1.记号O、omga、theta 的意义
+##2.分治法的基本步骤
+##3.动态规划算法的两个基本要素
+##4.设计动态规划算法的步骤
+##5.分治和动规的异同点
+##6.贪心法的两个基本要素
+##7.贪心法的算法正确性证明的基本策略
+##8.贪心法与动态规划两种算法策略的异同点
+
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/算法2015/算法2015 提纲整理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -951,152 +827,22 @@
       
         
           
-            <hr>
-<h2 id="一、简答题"><a href="#一、简答题" class="headerlink" title="一、简答题"></a>一、简答题</h2><blockquote>
-<p>记号O、Ω、Θ 的意义？</p>
-</blockquote>
-<ul>
-<li>O：表示若存在f(n)=O(g(n))时，则f(n)当n充分大时有上界，且g(n)为它的一个上界</li>
-<li>Ω：表示若存在f(n)=Ω(g(n))时，则f(n)当n充分大时有下界，且g(n)为它的一个下界</li>
-<li>Θ：表示当且仅当f(n)=O(g(n))且f(n)=Ω(g(n))时，称f(n)与g(n)同阶</li>
-</ul>
-<blockquote>
-<p>分治法的基本步骤？</p>
-</blockquote>
-<ol>
-<li>分解(Divide)：将要解决的问题分解成若干规模较小的同类子问题 </li>
-<li>解决(Conquer)：递归求解子问题</li>
-<li>合并(Combine)：将子问题的求解结果恰当合并，得到原问题的解</li>
-</ol>
-<blockquote>
-<p>动态规划算法的两个基本要素？</p>
-</blockquote>
-<ol>
-<li>最优子结构性质  </li>
-<li>重叠子问题性质</li>
-</ol>
-<blockquote>
-<p>设计动态规划算法的步骤？</p>
-</blockquote>
-<ol>
-<li>找出最优解的性质，并刻画其结构特征； </li>
-<li>递归地定义最优值； </li>
-<li>以自底向上的方式计算出最优值；</li>
-<li>根据计算最优值时得到的信息，得到最优解。</li>
-</ol>
-<blockquote>
-<p>分治法与动态规划两种算法策略的异同点？</p>
-</blockquote>
-<p>同：将待求解的问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解；<br>异：适用于动态规划法求解的问题，经分解得到的子问题往往不是互相独立的而用分治法求解的问题，经分解得到的子问题往往是互相独立的。</p>
-<blockquote>
-<p>贪心法的两个基本要素？</p>
-</blockquote>
-<ol>
-<li>贪心选择性质 </li>
-<li>最优子结构性质</li>
-</ol>
-<blockquote>
-<p>贪心法的算法正确性证明的基本策略？</p>
-</blockquote>
-<p>贪心算法的正确性证明虽然不容易，但一些常见的方法还是值得总结的。  </p>
-<ul>
-<li>构造法<br>根据描述的算法，用贪心的策略，依次构造出一个解，可证明一定是合法的解，即用贪心法找可行解。 如有N个士兵(1≤N≤26)，编号依次为A，B，C，…。队列训练时，指挥官要把一些士兵从高到矮依次排成一行，但现在指挥官不能直接获得每个人的身高信息，只能获得“P1比P2高”这样的比较结果(P1，P2∈A，B，C，…，Z，记为P1&gt;P2)，如“A&gt;B”表示A比B高。 请编一程序，根据所得到的比较结果求出一种符合条件的排队方案。 注：比较结果中没有涉及到的士兵不参加排队。 </li>
-</ul>
-<ul>
-<li><p>反证法<br>用贪心的策略，依次构造出一个解S1。假设最优解S2不同与S1，可以证明是矛盾的。从而S1就是最优解。如在一个超市，有N个人排队到一个柜台付款，已知每个人需要处理的时间为Ti（0&lt;i≤N），请你找一种排列次序，使每个人排队的时间总和最小。  </p>
-</li>
-<li><p>调整法<br>用贪心的策略，依次构造出一个解S1。假设最优解S2不同与S1，找出不同之处，在不破坏最优性的前提下，逐步调整S2，最终使其变为S1。从而S1也是最优解。</p>
-</li>
-</ul>
-<blockquote>
-<p>贪心法与动态规划两种算法策略的异同点？</p>
-</blockquote>
-<p>同：都要求问题具有最优子结构性质<br>异：动态规划算法为自底向上的方式解各子问题，贪心法为自顶向下的方式进行，以迭代的方式作出相继的贪心选择，每一次贪心选择问题就转换为规模更小的子问题。</p>
-<blockquote>
-<p>最大流的概念、流通（circulation）的概念？</p>
-</blockquote>
-<p>最大流：最大流量的问题涉及发现通过单一来源，单汇流网络，它是一个最大可行流。<br>流通（circulation）：<br><img src="http://i.imgur.com/0qvfgi5.png" alt></p>
-<blockquote>
-<p>最大流最小割定理的内容及其证明方法？</p>
-</blockquote>
-<p>最大流最小割定理(Maximum Flow, Minimum Cut Theorem):网络的最大流等于最小割<br><strong>具体的证明分三部分：</strong></p>
-<ol>
-<li>任意一个流都小于等于任意一个割<br>这个很好理解 自来水公司随便给你家通点水 构成一个流<br>恐怖分子随便砍几刀 砍出一个割<br>由于容量限制 每一根的被砍的水管子流出的水流量都小于管子的容量<br>每一根被砍的水管的水本来都要到你家的 现在流到外面 加起来得到的流量还是等于原来的流<br>管子的容量加起来就是割 所以流小于等于割<br>由于上面的流和割都是任意构造的 所以任意一个流小于任意一个割</li>
-<li>构造出一个流等于一个割<br>当达到最大流时 根据增广路定理<br>残留网络中s到t已经没有通路了 否则还能继续增广<br>我们把s能到的的点集设为S 不能到的点集为T<br>构造出一个割集C[S,T] S到T的边必然满流 否则就能继续增广<br>这些满流边的流量和就是当前的流即最大流<br>把这些满流边作为割 就构造出了一个和最大流相等的割</li>
-<li>最大流等于最小割<br>设相等的流和割分别为Fm和Cm<br>则因为任意一个流小于等于任意一个割<br>任意F≤Fm=Cm≤任意C<br>定理说明完成</li>
-</ol>
-<p><a href="http://blog.csdn.net/xzz_hust/article/details/22041173" target="_blank" rel="noopener">网络流：最大流，最小割 基本概念及算法</a></p>
-<blockquote>
-<p>多项式归约（reduction）的概念与用途？</p>
-</blockquote>
-<p>可归约意指对每个问题L，总有一个多项式时间多对一变换，即一个决定性的算法可以将实例l ∈ L 转化成实例c ∈ C，并让c回答Yes当且仅当此答案对l也是Yes。为了证明某个NP问题A实际上是NPC问题，证明者必须找出一个已知的NPC问题可以变换成A。</p>
-<blockquote>
-<p>P 问题、NP问题、NP完全问题、NP困难问题（NP-hardproblem）的概念？</p>
-</blockquote>
-<p><strong>P问题</strong>：如果一个问题可以找到一个能在多项式的时间里解决它的算法，那么这个问题就属于P问题。<br><strong>NP问题</strong>：NP问题不是非P类问题。NP问题是指可以在多项式的时间里验证一个解的问题。NP问题的另一个定义是，可以在多项式的时间里猜出一个解的问题。<br><strong>NP完全问题</strong>：同时满足下面两个条件的问题就是NPC问题。首先，它得是一个NP问题；然后，所有的NP问题都可以约化到它。(即只要解决这个问题，所有的NP问题都可以得到解决)<br><strong>NP困难问题</strong>：它满足NPC问题定义的第二条但不一定要满足第一条（就是说，NP-Hard问题要比NPC问题的范围广）。</p>
-<p><a href="http://blog.csdn.net/dongwq/article/details/4305435" target="_blank" rel="noopener">概念详述</a></p>
-<blockquote>
-<p>NP完全问题的实际证明方法？</p>
-</blockquote>
-<p>目前为止，所有已知解NPC问题的算法需要依照数据数量而定的<strong>超多项式</strong>（superpolynomial）时间，目前也不知道是否有任何更快的算法存在。因此要在输入数据量大的时候解决一个NPC问题，通常我们使用下列的手段来解：</p>
-<ul>
-<li>近似算法：这类算法可以快速发现离最佳解在一定差距内的次佳解。</li>
-<li>乱数算法：此类算法可提供一乱数产生的输入数据，让本质上解答分布均匀的受测程序可以有良好的求解效率。对于解答分布不均匀的程序，则可以降低乱数程度以改变输入数据。</li>
-<li>特例：此算法可以在题目呈献某些特殊情况时快速得解。参数化复杂度（Parameterized complexity）可视为广义的此类算法。</li>
-<li>启发式算法：这种算法在许多时候可以产生理性解答（即运用评比或线索找出解），但无法保证它效率的良莠与解答的好坏程度。一个启发式算法的例子是用在图着色问题以O（n log n）的贪婪算法找次佳解，用在某些编译器的寄存器配置阶段上，此技术又叫图着色全域寄存器配置（graph-coloring global register allocation）。每顶点视为一变数，每边代表两变数同时使用的情况，颜色则代表配置给每一变数的寄存器编号。由于大多数的RISC机器拥有大量通用寄存器，因此启发式算法很适合用来解这类题目。</li>
-</ul>
-<p><a href="https://zh.wikipedia.org/wiki/NP%E5%AE%8C%E5%85%A8" title="NP完全-wiki" target="_blank" rel="noopener">NP完全-wiki百科</a></p>
-<blockquote>
-<p>常见的NP完全问题？</p>
-</blockquote>
-<ul>
-<li>图着色问题 </li>
-<li>哈密顿回路问题 </li>
-<li>TSP问题</li>
-</ul>
-<p><a href="http://wenku.baidu.com/link？url=QqgJf4s7sFW0TlIDTqKp9p5oX5gTXED2WpYF-lBfAxA__9xIXkRaUTOfhMNLy4TEFakEMRWhotL-Yi7yWQnZYwtoRiXruuzTSaWm8IRCqIC" target="_blank" rel="noopener">NP问题例子详述</a></p>
-<blockquote>
-<p>递归方程的求解方法？</p>
-</blockquote>
-<ol>
-<li>递推法</li>
-<li>公式法</li>
-<li>生成函数法</li>
-</ol>
-<p><a href="http://wenku.baidu.com/view/835ed26ab84ae45c3b358c4b.html" title="递归方程求解方法综述-百度文库" target="_blank" rel="noopener">递归方程求解方法综述-百度文库</a></p>
-<h2 id="二、应用题"><a href="#二、应用题" class="headerlink" title="二、应用题"></a>二、应用题</h2><blockquote>
-<p>多段图上的最短路径动态规划推导</p>
-</blockquote>
-<p>阶段：将图中的顶点划分5个阶段，k<br>状态：每个阶段有几种供选择的点s<br>决策：当前状态应在前一个状态的基础上获得。决策需要满足规划方程<br>规划方程：f(k)表示状态k到终点状态的最短距离。<br>初始条件：f(k)=0;<br>方程：f(k-1)=min{f(k)+W(k-1,k)}其中W(k-1,k)表示状态k-1到状态k的距离</p>
-<blockquote>
-<p>最大流最小割问题的求解算法Ford-Fulkerson及应用</p>
-</blockquote>
-<p>Ford-Fulkerson方法依赖于三种重要思想：残留网络，增广路径和割。Ford-Fulkerson是一种迭代的方法。开始时，对所有的u,v属于V，f(u,v)=0(这里f(u,v)代表u到v的边当前流量)，即初始状态时流的值为0。在每次迭代中，可以通过寻找一个“增广路径”来增加流值。增广路径可以看做是从源点s到汇点t之间的一条路径，沿该路径可以压入更多的流，从而增加流的值。反复进行这一过程，直到增广路径都被找出为止。<br><a href="http://blog.csdn.net/smartxxyx/article/details/9293665" title="最大流问题Ford-Fulkerson方法" target="_blank" rel="noopener">最大流问题Ford-Fulkerson方法</a><br><a href="https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm" title="Ford–Fulkerson algorithm-wiki" target="_blank" rel="noopener">Ford–Fulkerson algorithm-wiki</a></p>
-<blockquote>
-<p>强连通分量的划分算法</p>
-</blockquote>
-<p>Kosaraju算法、Tarjan算法、Gabow算法皆为寻找有向图强连通分量的有效算法。但是在Tarjan 算法和 Gabow 算法的过程中，只需要进行一次的深度优先搜索，而Kosaraju算法需要两次DFS，因而相对 Kosaraju 算法较有效率。这些算法可简称为SSC(strongly connected components)算法。<br>Kosaraju 算法即为算法导论一书给出的算法，比较直观和易懂。这个算法可以说是最容易理解，最通用的算法，其比较关键的部分是同时应用了原图G和反图GT。 它利用了有向图的这样一个性质，一个图和他的transpose graph(边全部反向)具有相同的强连通分量！<br><strong>算法思路：</strong></p>
-<ol>
-<li>DFS遍历原图，对每个访问到的节点标记时间戳（访问完成时间）。</li>
-<li>按照时间戳的降序DFS遍历反向图，得到的每个连通块就是一个强连通分量。<br><strong>算法步骤如下：</strong></li>
-<li>创建一个空的栈 ‘S’ ，然后对图做DFS遍历. 在顶点访问完成后加入栈中。访问完成是说回溯返回时，而不是第一次发现该节点时。fillOrder()函数</li>
-<li>得到图转置，即将所有边反向。</li>
-<li>从S中依次弹出每个顶点，设为 ‘v’. 将v看做遍历的源点 (调用 DFSUtil(v)). 做第二次DFS遍历，可以找到以v为起点的强连通分量，打印出即可。<br><strong>时间复杂度</strong><br>DFS遍历的时间复杂度为O(V+E) ，图的转置也为O(V+E) 。因此总的时间复杂度为O(V+E)。<br>从渐进分析来说，这个复杂度是最好的，但是用到了两次DFS遍历，还有一个常见的更高效的算法 Tarjan’s algorithm ，后面再做讨论。<br><strong>应用</strong><br>在社交网络上，有些群体可能是强连通的(例如一个班级的学生)，这些群体中的人一般会有一些共同感兴趣的页面或游戏，可以使用SSC算法来找到这样的群体，然后推荐相关的页面或游戏。<br><a href="http://www.acmerblog.com/strongly-connected-components-6099.html" title="求强连通分量-Kosaraju算法" target="_blank" rel="noopener">求强连通分量-Kosaraju算法</a><blockquote>
-<p>图的深度优先搜索算法的扩展及应用</p>
-</blockquote>
-</li>
-</ol>
-<p><a href="http://baike.baidu.com/view/288277.htm" title="深度优先搜索-百度百科" target="_blank" rel="noopener">深度优先搜索-百度百科</a></p>
-<blockquote>
-<p>Bellman-Ford算法的基本思想及应用</p>
-</blockquote>
-<p><img src="http://i.imgur.com/GwGWhHy.png" alt><br><img src="http://i.imgur.com/azL6cnh.png" alt></p>
-<blockquote>
-<p>递归方程的求解方法</p>
-</blockquote>
-<p><a href="http://wenku.baidu.com/view/835ed26ab84ae45c3b358c4b.html" title="递归方程求解方法综述-百度文库" target="_blank" rel="noopener">递归方程求解方法综述-百度文库</a></p>
-
           
+一、简答题
+记号O、Ω、Θ 的意义？
+
+
+O：表示若存在f(n)=O(g(n))时，则f(n)当n充分大时有上界，且g(n)为它的一个上界
+Ω：表示若存在f(n)=Ω(g(n))时，则f(n)当n充分大时有下界，且g(n)为它的一个下界
+Θ：表示当且仅当f(n)=O(g(n))且f(n)=Ω(g(
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/算法/算法概论复习提纲/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1236,49 +982,16 @@
       
         
           
-            <hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">       搜索与回溯是计算机解题中常用的算法，很多问题无法根据某种确定的计算法则来求解，可以利用搜索与回溯的技术求解。回溯是搜索算法中的一种控制策略。它的基本思想是：为了求得问题的解，先选择某一种可能情况向前探索，在探索过程中，一旦发现原来的选择是错误的，就退回一步重新选择，继续向前探索，如此反复进行，直至得到解或证明无解。</span><br><span class="line">       如迷宫问题：进入迷宫后，先随意选择一个前进方向，一步步向前试探前进,如果碰到死胡同，说明前进方向已无路可走，这时，首先看其它方向是否还有路可走，如果有路可走，则沿该方向再向前试探；如果已无路可走，则返回一步，再看其它方向是否还有路可走；如果有路可走，则沿该方向再向前试探。按此原则不断搜索回溯再搜索，直到找到新的出路或从原路返回入口处无解为止。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">递归回溯法算法框架[一]</span><br><span class="line">int Search(int k)</span><br><span class="line">　&#123;</span><br><span class="line">　for (i=1;i&lt;=算符种数;i++)</span><br><span class="line">　　if (满足条件)</span><br><span class="line">　　   &#123;</span><br><span class="line">　　　　保存结果</span><br><span class="line">　　　　if (到目的地) 输出解;</span><br><span class="line">　　　           else Search(k+1);</span><br><span class="line">　　　　恢复：保存结果之前的状态&#123;回溯一步&#125;</span><br><span class="line">　 　  &#125;</span><br><span class="line">　&#125;</span><br><span class="line">递归回溯法算法框架[二]</span><br><span class="line">int Search(int k)</span><br><span class="line">　&#123;</span><br><span class="line">　  if  (到目的地) 输出解;</span><br><span class="line">　　　else</span><br><span class="line">　　　　for (i=1;i&lt;=算符种数;i++)</span><br><span class="line">　　　　　if  (满足条件) </span><br><span class="line">　　　　　　　&#123;</span><br><span class="line">　　　　　　　　保存结果;</span><br><span class="line">　　　                  Search(k+1);</span><br><span class="line">　　　　　　　　恢复：保存结果之前的状态&#123;回溯一步&#125;</span><br><span class="line">　　　　　　　&#125;</span><br><span class="line">　&#125;</span><br></pre></td></tr></table></figure>
-<p>问题：</p>
-<p>##1 全排列<br>编写一个输出1，2，3…n，n个数字所组成的所有排列</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define N 3</span><br><span class="line">//回溯写全排列</span><br><span class="line"> </span><br><span class="line">bool b[N+1]=&#123;0&#125;;</span><br><span class="line">int a[N+1]=&#123;0&#125;; </span><br><span class="line"></span><br><span class="line">void print_elems()  </span><br><span class="line">&#123;  </span><br><span class="line">    for (int i=1;i&lt;=N;i++)  </span><br><span class="line">    &#123;  </span><br><span class="line">        cout&lt;&lt;a[i]&lt;&lt;&quot; &quot;;  </span><br><span class="line">    &#125; </span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line">	if (t==N+1)  </span><br><span class="line">    &#123;  </span><br><span class="line">    	//到达目的地，输出解 </span><br><span class="line">        print_elems();  </span><br><span class="line">        return ;  </span><br><span class="line">    &#125;          </span><br><span class="line">    </span><br><span class="line">    for(int i=1;i&lt;=N;i++) </span><br><span class="line">    &#123;</span><br><span class="line">    	if(b[i]==false)//条件即数字还没被用过 </span><br><span class="line">    	&#123;                </span><br><span class="line">    		b[i]=true;</span><br><span class="line">    		a[t]=i;//</span><br><span class="line">			dfs(t+1);               </span><br><span class="line">			b[i]=false;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void dfs2(int t)</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">    </span><br><span class="line">    for(int i=1;i&lt;=N;i++) </span><br><span class="line">    &#123;</span><br><span class="line">    	if(b[i]==false)//条件即数字还没被用过 </span><br><span class="line">    	&#123;                </span><br><span class="line">    		b[i]=true;</span><br><span class="line">    		a[t]=i;//</span><br><span class="line">    		if(t&lt;N) </span><br><span class="line">				dfs2(t+1);</span><br><span class="line">    		else </span><br><span class="line">				print_elems(); </span><br><span class="line">			b[i]=false;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	//dfs(1);</span><br><span class="line">	dfs2(1);</span><br><span class="line">    return 0;//结束 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>##2 字母全排列<br>输出字母a、b、c、d，4个元素全排列的每一种排列。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define N 3</span><br><span class="line">//回溯写全排列</span><br><span class="line"> </span><br><span class="line">bool b[N+1]=&#123;0&#125;;</span><br><span class="line">char a[N+1]; </span><br><span class="line">char c[N+1]; </span><br><span class="line">void print_elems()  </span><br><span class="line">&#123;  </span><br><span class="line">    for (int i=1;i&lt;=N;i++)  </span><br><span class="line">    &#123;  </span><br><span class="line">        cout&lt;&lt;a[i]&lt;&lt;&quot; &quot;;  </span><br><span class="line">    &#125; </span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line">	if (t==N+1)  </span><br><span class="line">    &#123;  </span><br><span class="line">    	//到达目的地，输出解 </span><br><span class="line">        print_elems();  </span><br><span class="line">        return ;  </span><br><span class="line">    &#125;          </span><br><span class="line">    </span><br><span class="line">    for(int i=1;i&lt;=N;i++) </span><br><span class="line">    &#123;</span><br><span class="line">    	if(b[i]==false)//条件即数字还没被用过 </span><br><span class="line">    	&#123;                </span><br><span class="line">    		b[i]=true;</span><br><span class="line">    		a[t]=c[i];//</span><br><span class="line">			dfs(t+1);               </span><br><span class="line">			b[i]=false;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	for(int i=1;i&lt;=N;i++) </span><br><span class="line">		c[i]=&apos;a&apos;+i-1;</span><br><span class="line">	dfs(1);</span><br><span class="line">    return 0;//结束 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>##3 素数环<br>输入<br>有多组测试数据，每组输入一个n(0&lt;n&lt;20)，n=0表示输入结束。<br>输出<br>每组第一行输出对应的Case序号，从1开始。<br>如果存在满足题意叙述的素数环，从小到大输出。<br>否则输出No Answer。<br>样例输入<br>6<br>8<br>3<br>0<br>样例输出<br>Case 1:<br>1 4 3 2 5 6<br>1 6 5 2 3 4<br>Case 2:<br>1 2 3 8 5 6 7 4<br>1 2 5 8 3 4 7 6<br>1 4 7 6 5 8 3 2<br>1 6 7 4 3 8 5 2<br>Case 3:<br>No Answer</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">/* </span><br><span class="line">   素数环:给定n，1~n组成一个素数环，相邻两个数的和为素数。</span><br><span class="line">    首先偶数(2例外，但是本题不会出现两个数的和为2)不是素数，</span><br><span class="line">    所以素数环里奇偶间隔。如果n是奇数，必定有两个奇数相邻的情况。</span><br><span class="line">    所以当n为奇数时，输出“No Answer”。</span><br><span class="line">    当n == 1时只1个数，算作自环，输出1</span><br><span class="line">    所有n为偶数的情况都能变成奇偶间隔的环-----所以都有结果。</span><br><span class="line">*/</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int prime[40]=&#123;1,1,0,0,1,0,1,0,1,1,1,0,1,0,1,1,1,0,1,0,1,1,1,0,1,1,1,1,1,0,1,0,1,1,01,1,1,0,1,1&#125;;</span><br><span class="line">int b[21]=&#123;0&#125;;</span><br><span class="line">int a[21];</span><br><span class="line">int n;</span><br><span class="line"></span><br><span class="line">bool Is_prime(int x)</span><br><span class="line">&#123;</span><br><span class="line">    for (int i = 2; i &lt; x; i++)//也可用n/2，不过计算量要比sqrt大一些  </span><br><span class="line">    &#123;  </span><br><span class="line">        if (n%i == 0)  </span><br><span class="line">            return false;  </span><br><span class="line">    &#125;  </span><br><span class="line">    return true;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void DFS(int k)</span><br><span class="line">&#123;</span><br><span class="line">    //if(k==n+1 &amp;&amp; prime[a[n]+a[1]]==0)</span><br><span class="line">    if(k==n+1 &amp;&amp; Is_prime(a[n]+a[1])==0)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        for(int i=1;i&lt;=n;i++)</span><br><span class="line">            cout&lt;&lt;a[i];</span><br><span class="line">        cout&lt;&lt;endl;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i=2;i&lt;=n;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        if(!b[i]&amp;&amp;!prime[i+a[k-1]])</span><br><span class="line">        &#123;</span><br><span class="line">            b[i]=1;</span><br><span class="line">            a[k]=i;</span><br><span class="line">            DFS(k+1);</span><br><span class="line">            b[i]=0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    b[1]=a[1]=1;</span><br><span class="line">    DFS(2);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>##4 r排列<br>设有n个整数的集合｛1,2,…,n｝，从中取出任意r个数进行排列（r&lt;n），试列出所有的排列!</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n,r;</span><br><span class="line">int a[1001]=&#123;0&#125;;</span><br><span class="line">int b[1001]=&#123;0&#125;;</span><br><span class="line">int cnt=0; </span><br><span class="line">void pr()</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=1;i&lt;=r;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[i]&lt;&lt;&quot; &quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void dfs(int t) </span><br><span class="line">&#123;</span><br><span class="line">	if(t==r+1)</span><br><span class="line">	&#123;</span><br><span class="line">		pr();</span><br><span class="line">		cnt++;</span><br><span class="line">		return ;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(b[i]==0)</span><br><span class="line">		&#123;</span><br><span class="line">			b[i]=1;</span><br><span class="line">			a[t]=i;</span><br><span class="line">			dfs(t+1);</span><br><span class="line">			b[i]=0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;r;</span><br><span class="line">	dfs(1);</span><br><span class="line">	cout&lt;&lt;cnt; </span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>##5 分拆数<br>任何一个大于1的自然数n，总可以拆分成若干个小于n的自然数之和。<br>当n=7共14种拆分方法：<br>7=1+1+1+1+1+1+1<br>7=1+1+1+1+1+2<br>7=1+1+1+1+3<br>7=1+1+1+2+2<br>7=1+1+1+4<br>7=1+1+2+3<br>7=1+1+5<br>7=1+2+2+2<br>7=1+2+4<br>7=1+3+3<br>7=1+6<br>7=2+2+3<br>7=2+5<br>7=3+4<br>total=14</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">// ConsoleApplication1.cpp: 定义控制台应用程序的入口点。</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#include &quot;stdafx.h&quot;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n;</span><br><span class="line">int a[1001] = &#123; 1 &#125;;</span><br><span class="line">int res = 0;</span><br><span class="line">void pr(int x)</span><br><span class="line">&#123;</span><br><span class="line">	res++;</span><br><span class="line">	for (int i = 1; i &lt;= x; i++)</span><br><span class="line">		cout &lt;&lt; a[i] &lt;&lt; &quot; &quot;;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void dfs(int n, int q)</span><br><span class="line">&#123;</span><br><span class="line">	if (n == 0)</span><br><span class="line">	&#123;</span><br><span class="line">		if (q - 1&gt;1)</span><br><span class="line">			pr(q - 1);</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	else</span><br><span class="line">	&#123;</span><br><span class="line">		for (int i = a[q - 1]; i &lt;= n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			if (n &gt;= i)</span><br><span class="line">			&#123;</span><br><span class="line">				a[q] = i;</span><br><span class="line">				n -= i;</span><br><span class="line">				dfs(n, q + 1);</span><br><span class="line">				n += i;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void dfs2(int p, int q)</span><br><span class="line">&#123;</span><br><span class="line">	int i;</span><br><span class="line">	for (i = a[q - 1]; i &lt;= p; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if (i&lt;n)</span><br><span class="line">		&#123;</span><br><span class="line">			a[q] = i;</span><br><span class="line">			p -= i;</span><br><span class="line">			if (p == 0)pr(q);</span><br><span class="line">			else dfs2(p, q + 1);</span><br><span class="line">			p += i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	dfs2(n, 1);</span><br><span class="line">	cout &lt;&lt; res;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>##6 八皇后<br>问题：要在国际象棋棋盘中放八个皇后，使任意两个皇后都不能互相吃。（提示：皇后能吃同一行、同一列、同一对角线的任意棋子。）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n;</span><br><span class="line">int a[1001]=&#123;0&#125;;//a[1]=2 表示第一行皇后在第二列</span><br><span class="line">int b[1001]=&#123;0&#125;; </span><br><span class="line">int c[1001]=&#123;0&#125;; </span><br><span class="line">int d[1001]=&#123;0&#125;; </span><br><span class="line">int res=0;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line">	if(t==n+1)</span><br><span class="line">	&#123;</span><br><span class="line">		res++;</span><br><span class="line">		return ;</span><br><span class="line">		//输出结果 </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(b[i]==0 &amp;&amp; c[t+i]==0 &amp;&amp; d[t-i+n-1]==0)</span><br><span class="line">		&#123;</span><br><span class="line">			a[t]=i;</span><br><span class="line">			b[i]=1;//占领列</span><br><span class="line">			c[t+i]=1; </span><br><span class="line">			d[t-i+n-1]=1;</span><br><span class="line">			</span><br><span class="line">			dfs(t+1);</span><br><span class="line"></span><br><span class="line">			b[i]=0;</span><br><span class="line">			c[t+i]=0; </span><br><span class="line">			d[t-i+n-1]=0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	dfs(1);</span><br><span class="line">	cout&lt;&lt;res;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n;</span><br><span class="line">int a[1001]=&#123;0&#125;;//a[1]=2 表示第一行皇后在第二列</span><br><span class="line">int b[1001]=&#123;0&#125;; </span><br><span class="line">int c[1001]=&#123;0&#125;; </span><br><span class="line">int d[1001]=&#123;0&#125;; </span><br><span class="line">int res=0;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(b[i]==0 &amp;&amp; c[t+i]==0 &amp;&amp; d[t-i+n-1]==0)</span><br><span class="line">		&#123;</span><br><span class="line">			a[t]=i;</span><br><span class="line">			b[i]=1;//占领列</span><br><span class="line">			c[t+i]=1; </span><br><span class="line">			d[t-i+n-1]=1;</span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">			if(t==n)</span><br><span class="line">			&#123;</span><br><span class="line">				res++;</span><br><span class="line">			//输出结果 </span><br><span class="line">			&#125;</span><br><span class="line">			else dfs(t+1);</span><br><span class="line"></span><br><span class="line">			b[i]=0;</span><br><span class="line">			c[t+i]=0; </span><br><span class="line">			d[t-i+n-1]=0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	dfs(1);</span><br><span class="line">	cout&lt;&lt;res;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>##7 马的遍历<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int a[1001][1] = &#123; 0 &#125;;//用来存储每一步对应的xy </span><br><span class="line"></span><br><span class="line">int res = 0;</span><br><span class="line">int x[5] = &#123; 0,2,1,-1,-2 &#125;;</span><br><span class="line">int y[5] = &#123; 0,1,2,2,1 &#125;;</span><br><span class="line">//(0,0)--&gt;(8,4)</span><br><span class="line"></span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	for (int i = 1; i &lt;= 4; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if (a[t - 1][0] + x[i] &gt;= 0 &amp;&amp; a[t - 1][0] + x[i] &lt;= 4 &amp;&amp;</span><br><span class="line">			a[t - 1][2] + y[i] &gt;= 0 &amp;&amp; a[t - 1][3] + y[i] &lt;= 8)//如果不出格子 </span><br><span class="line">		&#123;</span><br><span class="line">			a[t][0] = a[t - 1][0] + x[i];</span><br><span class="line">			a[t][4] = a[t - 1][5] + y[i];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			if (a[t][0] == 4 &amp;&amp; a[t][6] == 8)</span><br><span class="line">			&#123;</span><br><span class="line">				res++;</span><br><span class="line">				return;</span><br><span class="line">			&#125;</span><br><span class="line">			dfs(t + 1);</span><br><span class="line"></span><br><span class="line">			//a[t][0] = 0;</span><br><span class="line">			//a[t][7] = 0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void dfs2(int t)</span><br><span class="line">&#123;</span><br><span class="line">	if (a[t-1][0] == 4 &amp;&amp; a[t-1][8] == 8)</span><br><span class="line">	&#123;</span><br><span class="line">		res++;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i = 1; i &lt;= 4; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if (a[t - 1][0] + x[i] &gt;= 0 &amp;&amp; a[t - 1][0] + x[i] &lt;= 4 &amp;&amp;</span><br><span class="line">			a[t - 1][9] + y[i] &gt;= 0 &amp;&amp; a[t - 1][10] + y[i] &lt;= 8)//如果不出格子 </span><br><span class="line">		&#123;</span><br><span class="line">			a[t][0] = a[t - 1][0] + x[i];</span><br><span class="line">			a[t][11] = a[t - 1][12] + y[i];</span><br><span class="line"></span><br><span class="line">			dfs(t + 1);</span><br><span class="line"></span><br><span class="line">			//a[t][0] = 0;</span><br><span class="line">			//a[t][13] = 0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	dfs(1);</span><br><span class="line">	cout &lt;&lt; res;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>##8 工作安排<br>设有A，B，C，D，E五人从事J1，J2，J3，J4，J5五项工作，每人只能从事一项，他们的效益如下。</p>
-<p><img src="http://static.zybuluo.com/rg070836rg/2sxyifuqo32aajz86sx7bnht/image_1c9lv6vuo1bb41oipkdd3hd1opk9.png" alt="image_1c9lv6vuo1bb41oipkdd3hd1opk9.png-24.8kB"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int a[6]=&#123;0&#125;;</span><br><span class="line">int b[6]=&#123;0&#125;;</span><br><span class="line">int c[6]=&#123;0&#125;;</span><br><span class="line">int job[6][15] =&#123;</span><br><span class="line">&#123;0,0,0,0,0,0&#125;,</span><br><span class="line">&#123;0,13,11,10,4,7&#125;,</span><br><span class="line">&#123;0,13,10,10,8,5&#125;,</span><br><span class="line">&#123;0,5,9,7,7,4&#125;,</span><br><span class="line">&#123;0,15,12,10,11,5&#125;,</span><br><span class="line">&#123;0,10,11,8,8,4&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//job[1][16] </span><br><span class="line">int v=0;</span><br><span class="line">int maxv=-1;</span><br><span class="line"></span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	if(t==6)</span><br><span class="line">	&#123;</span><br><span class="line">		if(maxv&lt;v)</span><br><span class="line">		&#123;</span><br><span class="line">			maxv=v;</span><br><span class="line">			for(int i=1;i&lt;=5;i++)</span><br><span class="line">				c[i]=a[i];</span><br><span class="line">		&#125;</span><br><span class="line">		//比较价值最大 </span><br><span class="line">		return ;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	for(int i=1;i&lt;=5;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(b[i]==0)</span><br><span class="line">		&#123;</span><br><span class="line">			//保存结果</span><br><span class="line">			a[t]=i;</span><br><span class="line">			b[i]=1;</span><br><span class="line">			v+=job[t][i];</span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">			dfs(t+1);</span><br><span class="line">			</span><br><span class="line">			//a[t]=0;</span><br><span class="line">			b[i]=0;</span><br><span class="line">			v-=job[t][i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void dfs2(int t)</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=1;i&lt;=5;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(b[i]==0)</span><br><span class="line">		&#123;</span><br><span class="line">			//保存结果</span><br><span class="line">			a[t]=i;</span><br><span class="line">			b[i]=1;</span><br><span class="line">			v+=job[t][i];</span><br><span class="line">			</span><br><span class="line">			if(t==5)</span><br><span class="line">			&#123;</span><br><span class="line">				if(maxv&lt;v)</span><br><span class="line">				&#123;</span><br><span class="line">					maxv=v;</span><br><span class="line">					for(int i=1;i&lt;=5;i++)</span><br><span class="line">						c[i]=a[i];</span><br><span class="line">				&#125;</span><br><span class="line">				//比较价值最大 </span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				dfs(t+1);</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			//a[t]=0;</span><br><span class="line">			b[i]=0;</span><br><span class="line">			v-=job[t][i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	//cout&lt;&lt;job[1][17];</span><br><span class="line">	dfs(1);</span><br><span class="line">	for(int i=1;i&lt;=5;i++)</span><br><span class="line">		cout&lt;&lt;c[i] &lt;&lt;&quot; &quot;;</span><br><span class="line">	cout&lt;&lt;endl&lt;&lt;maxv&lt;&lt;endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>##9 选书问题<br>学校放寒假时，信息学竞赛辅导老师有A，B，C，D，E五本书，要分给参加培训的张、王、刘、孙、李五位同学，每人只能选一本书。老师事先让每个人将自己喜欢的书填写在如下的表格中。然后根据他们填写的表来分配书本，希望设计一个程序帮助老师求出所有可能的分配方案，使每个学生都满意。</p>
-<p><img src="http://static.zybuluo.com/rg070836rg/qfbvywfrmxgkqtlct5ypokw5/image_1c9m74k2n19i412kc1cm01bj81pu19.png" alt="image_1c9m74k2n19i412kc1cm01bj81pu19.png-34.9kB"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std; </span><br><span class="line"></span><br><span class="line">int like[6][19]=&#123;</span><br><span class="line">	&#123;0,0,0,0,0,0&#125;,</span><br><span class="line">	&#123;0,0,0,1,1,1&#125;,</span><br><span class="line">	&#123;0,1,0,1,1,1&#125;,</span><br><span class="line">	&#123;0,1,1,1,1,1&#125;,</span><br><span class="line">	&#123;0,1,1,0,0,1&#125;,</span><br><span class="line">	&#123;0,1,1,1,0,0&#125;,</span><br><span class="line">&#125;;</span><br><span class="line">int a[6] =&#123;0&#125;;</span><br><span class="line">int b[6] =&#123;0&#125;;</span><br><span class="line">int res=0;</span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=1;i&lt;=5;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(b[i]==0 &amp;&amp; like[t][i]==1)</span><br><span class="line">		&#123;</span><br><span class="line">			//a[t]=i;</span><br><span class="line">			b[i]=1;</span><br><span class="line">			</span><br><span class="line">			if(t==5)</span><br><span class="line">			&#123;</span><br><span class="line">				res++;</span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				dfs(t+1); </span><br><span class="line">			&#125;</span><br><span class="line">			//a[t]=0;</span><br><span class="line">			b[i]=0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	dfs(1);</span><br><span class="line">	cout&lt;&lt;res;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="10-马踏棋盘"><a href="#10-马踏棋盘" class="headerlink" title="10 马踏棋盘"></a>10 马踏棋盘</h2><p><img src="http://static.zybuluo.com/rg070836rg/pxeziap5mwb9djdtxvh7gdxv/1.png" alt="1.png-430.5kB"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int a[6][6] =&#123;0&#125;;</span><br><span class="line">int b[6][6] =&#123;0&#125;;</span><br><span class="line">int x[9]=&#123;0,1,2,2,1,-1,-2,-2,-1&#125;;</span><br><span class="line">int y[9]=&#123;0,-2,-1,1,2,2,1,-1,-2&#125;;</span><br><span class="line">int c[26][2] = &#123;0&#125;; //c[t][0]:x c[t][1]:y</span><br><span class="line"></span><br><span class="line">int res=0;</span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=1;i&lt;=8;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int X=c[t-1][0]+x[i];</span><br><span class="line">		int Y=c[t-1][1]+y[i]; </span><br><span class="line">		if( X&gt;=1 &amp;&amp; X&lt;=5 </span><br><span class="line">		&amp;&amp;  Y&gt;=1 &amp;&amp; Y&lt;=5</span><br><span class="line">		&amp;&amp; b[X][Y]==0)</span><br><span class="line">		&#123;</span><br><span class="line">			</span><br><span class="line">			b[X][Y]=1;//保存状态</span><br><span class="line">			a[X][Y]=t;//记录值 </span><br><span class="line">			c[t][0]=X;</span><br><span class="line">			c[t][1]=Y;</span><br><span class="line">			</span><br><span class="line">			//搜索下一层 </span><br><span class="line">			if(t==25)&#123;</span><br><span class="line">				res++;</span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				dfs(t+1);</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			//恢复状态 </span><br><span class="line">			b[X][Y]=0;</span><br><span class="line">			a[X][Y]=0;</span><br><span class="line">			c[t][0]=0;</span><br><span class="line">			c[t][1]=0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	b[1][1]=1;//初始条件！！</span><br><span class="line">	c[1][0]=1;c[1][1]=1;</span><br><span class="line">	dfs(2);</span><br><span class="line">	cout&lt;&lt;res;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>##11 李白打酒</p>
-<pre><code>话说大诗人李白，一生好饮。幸好他从不开车。
-
-一天，他提着酒壶，从家里出来，酒壶中有酒2斗。他边走边唱：
-
-无事街上走，提壶去打酒。
-逢店加一倍，遇花喝一斗。
-
-这一路上，他一共遇到店5次，遇到花10次，已知最后一次遇到的是花，他正好把酒喝光了。 
-
-请你计算李白遇到店和花的次序，可以把遇店记为a，遇花记为b。则：babaabbabbabbbb 就是合理的次序。像这样的答案一共有多少呢？请你计算出所有可能方案的个数（包含题目给出的）。
-
-注意：通过浏览器提交答案。答案是个整数。不要书写任何多余的内容。
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int res;</span><br><span class="line">void dfs(int dian,int hua,int jiu) </span><br><span class="line">&#123;</span><br><span class="line">	if(dian&gt;0)</span><br><span class="line">	&#123;</span><br><span class="line">		dfs(dian-1,hua,jiu*2);</span><br><span class="line">	&#125;</span><br><span class="line">	if(hua&gt;1)</span><br><span class="line">	&#123;</span><br><span class="line">		dfs(dian,hua-1,jiu-1);</span><br><span class="line">	&#125; </span><br><span class="line">	//结束条件 </span><br><span class="line">	if(dian==0 &amp;&amp; hua==1 &amp;&amp; jiu==1)</span><br><span class="line">		res++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	dfs(5,10,2);</span><br><span class="line">	cout&lt;&lt;res;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>##12 凑数字<br>看这个算式：<br>☆☆☆ + ☆☆☆ = ☆☆☆<br>如果每个五角星代表 1 ~ 9 的不同的数字。<br>这个算式有多少种可能的正确填写方法？<br>173 + 286 = 459<br>295 + 173 = 468<br>173 + 295 = 468<br>183 + 492 = 675<br>以上都是正确的填写法！<br>注意：<br>111 + 222 = 333 是错误的填写法！<br>因为每个数字必须是不同的！<br>也就是说：1~9中的所有数字，每个必须出现且仅出现一次！<br>注意：<br>不包括数字“0”！<br>注意：<br>满足加法交换率的式子算两种不同的答案。<br>所以答案肯定是个偶数！</p>
-<p>注意：<br>只要求计算不同的填法的数目<br>不要求列出所有填写法<br>更不要求填写源代码！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">//思路  全排列，加判断等式</span><br><span class="line"></span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int res[10000];</span><br><span class="line">int b[10000]=&#123;0&#125;;</span><br><span class="line">int n;</span><br><span class="line">int resnum=0;</span><br><span class="line">void dfs(int t)</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(b[i]==0)   //剪枝 </span><br><span class="line">		&#123;</span><br><span class="line">			b[i]=1; </span><br><span class="line">			res[t]=i;</span><br><span class="line">			if(t==n)</span><br><span class="line">			&#123;</span><br><span class="line">				//123456789</span><br><span class="line">				int num1 = res[1]*100+res[2]*10+res[3];</span><br><span class="line">				int num2 = res[4]*100+res[5]*10+res[6];</span><br><span class="line">				int num3 = res[7]*100+res[8]*10+res[9];</span><br><span class="line">				if(num1+num2==num3)</span><br><span class="line">				&#123;</span><br><span class="line">					cout&lt;&lt;num1&lt;&lt;&quot;+&quot;&lt;&lt;num2&lt;&lt;&quot;=&quot;&lt;&lt;num3&lt;&lt;endl;</span><br><span class="line">					resnum++;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">				dfs(t+1);</span><br><span class="line">				</span><br><span class="line">			b[i]=0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	n=9; </span><br><span class="line">	dfs(1);</span><br><span class="line">	cout&lt;&lt;resnum;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
           
+1234567891011121314151617181920212223242526272829       搜索与回溯是计算机解题中常用的算法，很多问题无法根据某种确定的计算法则来求解，可以利用搜索与回溯的技术求解。回溯是搜索算法中的一种控制策略。它的基本思想是：为了求得问题的解，先选择某一种
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/算法/搜索专题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1418,34 +1131,19 @@
       
         
           
-            <hr>
-<h2 id="一、选择题"><a href="#一、选择题" class="headerlink" title="一、选择题"></a>一、选择题</h2><pre><code>1.公司有多个部门和多名职员，每个职员只能属于一个部门，一个部门可以有多名职员，从职员到部门的联系类形是(C) 。 
-</code></pre><p> A.多对多<br> B.一对一<br> C.一对多<br> D.  无法确定</p>
-<pre><code>2.数据流程图是用于数据库设计中(D)阶段的工具。 
-</code></pre><p> A.概要设计<br> B.可行性分析<br> C.程序编码<br> D.需求分析 </p>
-<pre><code>3.在数据库设计中，将ER图转换成关系数据模型的过程属于(B)。 
-</code></pre><p> A.需求分析阶段<br> B.逻辑设计阶段<br> C.概念设计阶段<br> D.物理设计阶段 </p>
-<pre><code>4.数据库设计的概念设计阶段，表示概念结构的常用方法和描述工具(C)。 
-</code></pre><p> A. 层次分析法和层次结构图<br> B. 数据流程分析法和数据流程图<br> C. 实体联系方法 (ER图)<br> D.结构分析法和模块结构图 </p>
-<pre><code>5.在关系数据库设计中，设计关系模式是数据库设计中(A)阶段的任务 。 
-</code></pre><p> A.逻辑设计阶段<br> B.概念设计阶段<br> C.物理设计阶段<br> D.需求分析阶段  </p>
-<pre><code>6.关系数据库的规范化理论主要解决的问题是(A)。 
-</code></pre><p> A. 如何构造合适的数据逻辑结构<br> B. 如何构造合适的数据物理结构<br> C. 如何构造合适的应用程序界面<br> D. 如何控制不同用户的数据操作权限  </p>
-<pre><code>7.从ER图导出关系模型时，如果实体间的联系是M：N的，下列说法中正确的是(C)。 
-</code></pre><p> A.将N方码和联系的属性纳入M方的属性中<br> B.将M方码和联系的属性纳入N方的属性中<br> C.增加一个关系表示联系，其中纳入M方和N方的码<br> D.在M方属性和N方属性中均增加一个表示级别的属性  </p>
-<pre><code>8.在ER模型中，如果有3个不同的实体型，3个M：N联系，根据ER模型转换为关系模型的规则，转换为关系的数目是(C)。 
-</code></pre><p> A.4<br> B.5<br> C.6<br> D.7 </p>
-<p>##二、填空题或简答题<br>1.唯一标识实体的属性集称为<code>码</code> 。</p>
-<p>2.实体之间的联系有<code>1对1</code>、<code>1对多</code>、<code>多对多</code>三种。</p>
-<p>3.什么是数据库的逻辑结构设计？试述其设计步骤。</p>
-<pre><code>数据库的逻辑结构设计就是把概念结构设计阶段设计好的基本E-R图转换为与选用的DBMS产品所支持的数据模型相符合的逻辑结构。设计步骤为： (1)将概念结构
-转换为一般的关系、网状、层次模型；(2)将转换来的关系、网状、层次模型向特定DBMS支持下的数据模型转换；(3)对数据模型进行优化。 
-</code></pre><p>4.如果两个实体之间具有M：N联系，则将它们转换为关系模型的结果是<code>3</code>个关系。</p>
-<p>5.ER模型是对现实世界的一种抽象，它的主要成分是<code>实体型</code> 、联系和 <code>属性</code>。 </p>
-<p>6.各分E-R图之间的冲突主要有三类：<code>属性突出</code> 、<code>命名冲突</code>和<code>约束冲突</code>。</p>
-<p>7.在E-R模型向关系模型转换时，M：N的联系转换为关系模式时，其码包括<code>m方和n方各自的码</code> 。</p>
-
           
+一、选择题1.公司有多个部门和多名职员，每个职员只能属于一个部门，一个部门可以有多名职员，从职员到部门的联系类形是(C) 。 
+ A.多对多 B.一对一 C.一对多 D.  无法确定
+2.数据流程图是用于数据库设计中(D)阶段的工具。 
+ A.概要设计 B.可行性分析 C.程序编码 D.需求分析 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/数据库作业/数据库作业12.24/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1585,26 +1283,17 @@
       
         
           
-            <hr>
-<p>一、选择题<br>1.概念结构设计是整个数据库设计的关键，它通过对用户需求进行综合、归纳与抽象，形成一个独立于具体DBMS的（<strong>B</strong>）。<br> A. 数据模型<br> B.概念模型<br> C.层次模型<br> D.关系模型 </p>
-<p>2.数据库设计中，确定数据库存储结构，即确定关系、索引、聚簇、日志、备份等数据的存储安排和存储结构，这是数据库设计的（<strong>D</strong>）。<br> A. 需求分析阶段<br> B. 逻辑设计阶段<br> C. 概念设计阶段<br> D. 物理设计阶段 </p>
-<p>3.数据库物理设计完成后，进入数据库实施阶段，下述工作中，（<strong>D</strong>）一般不属于实施阶段的工作。<br> A.建立库结构<br> B.系统调试<br> C.加载数据<br> D.扩充功能</p>
-<p>4..数据库设计可划分为六个阶段，每个阶段都有自己的设计内容，“为哪些关系，在哪些属性上建什么样的索引”这一设计内容应该属于（<strong>C</strong>）设计阶段。<br> A.概念设计<br> B.逻辑设计<br> C.物理设计<br> D.全局设计</p>
-<p>5.在关系数据库设计中，设计关系模式是数据库设计中（<strong>A</strong>）阶段的任务。<br> A.逻辑设计阶段<br> B.概念设计阶段<br> C.物理设计阶段<br> D.需求分析阶段  </p>
-<p>6.在关系数据库设计中，对关系进行规范化处理，使关系达到一定的范式，例如达到3NF，这是（<strong>D</strong>）阶段的任务。<br> A.需求分析阶段<br> B.概念设计阶段<br> C.物理设计阶段<br> D.逻辑设计阶段  </p>
-<p> 7.概念模型是现实世界的第一层抽象，这一类最著名的模型是（<strong>D</strong>） 。<br> A.层次模型<br> B.关系模型<br> C.网状模型<br> D.实体-关系模型 </p>
-<p>8.在概念模型中的客观存在并可相互区别的事物称（<strong>A</strong>） 。<br> A.实体<br> B.元组<br> C.属性<br> D.节点</p>
-<p>9.区分不同实体的依据是（<strong>B</strong>） 。<br> A.名称<br> B.属性<br> C.对象<br> D.概念 </p>
-<p>二、填空题或简答题</p>
-<p>1 .“三分技术，七分管理，十二分<strong>基础数据</strong>”是数据库建设的基本规律。 </p>
-<p>2.数据库设计分为以下六个阶段<strong>需求分析</strong>、<strong>概念结构设计</strong>、<strong>逻辑结构设计</strong>、<strong>数据库物理设计</strong>、<strong>数据库实施</strong>和<strong>数据库运行和维护</strong>。 </p>
-<p>3.数据字典的内容和作用是什么？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">答：</span><br><span class="line">数据字典是系统中各类数据描述的集合。</span><br><span class="line">数据字典的内容通常包括：(1)数据项(2)数据结构(3)数据流(4)数据存储(5)处理过程五个部分。</span><br><span class="line">其中数据项是数据的最小组成单位,若干个数据项可以组成一个数据结构。数据字典通过对数据项和数据结构的定义来描述数据流和数据存储的逻辑内容。</span><br></pre></td></tr></table></figure></p>
-<p>作用：数据字典是关于数据库中数据的描述,在需求分析阶段建立，是下一步进行概念设计的基础，并在数据库设计过程中不断修改、充实、完善。</p>
-<p>4.用<strong>实体-联系方法（E-R）</strong> 方法来设计数据库的概念模型是数据库概念设计阶段广泛采用的方法。</p>
-<p>5.客观存在并可相互区别的事物称为<strong>_实体_</strong> ，它可以是具体的人、事、物，也可以是抽象的概念或联系。 </p>
-<p>6.什么是E-R图？构成E-R图的基本要素是什么？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">答：</span><br><span class="line">E-R图为实体-联系图，提供了表示实体型、属性和联系的方法，用来描述现实世界的概念模型。构成E-R图的基本要素是实体型、属性和联系，其表示方法为：</span><br><span class="line">	实体型：用矩形表示，矩形框内写明实体名</span><br><span class="line">	属性：用椭圆形表示，并用无向边将其与相应的实体连接起来</span><br><span class="line">	联系：用菱形表示，菱形框内写明联系名，并用无向边分别与有关实体连接起来，同时在无向边旁标上联系的类型（1:1，1:n或m:n）</span><br></pre></td></tr></table></figure></p>
-
           
+一、选择题1.概念结构设计是整个数据库设计的关键，它通过对用户需求进行综合、归纳与抽象，形成一个独立于具体DBMS的（B）。 A. 数据模型 B.概念模型 C.层次模型 D.关系模型 
+2.数据库设计中，确定数据库存储结构，即确定关系、索引、聚簇、日志、备份等数据的存储安排和存储结构，这是数据库设
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/数据库作业/数据库作业12.17/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1744,35 +1433,18 @@
       
         
           
-            <hr>
-<pre><code>1.规范化理论是关系数据库进行逻辑设计的理论依据，根据这个理论，关系数据库中的关系必须满足：一个属性都是(B)。 
-</code></pre><p> A.长度不变的<br> B.不可分解的<br> C.互相关联的<br> D.互不相关的  </p>
-<pre><code>2.已知关系模式R(A，B，C，D，E)及其上的函数依赖集合F＝{A→D，B→C ，E→A }，该关系模式的候选码是(B)。 
-</code></pre><p> A.AB<br> B.BE<br> C.CD<br> D.DE  </p>
-<pre><code>3.关系模式中，满足2NF的模式(B)。 
-</code></pre><p> A.可能是1NF<br> B.必定是1NF<br> C.必定是3NF<br> D.必定是BCNF  </p>
-<pre><code>4.关系模式R中的属性全是主属性，则R的最高范式必定是(C)。 
-</code></pre><p> A.1NF<br> B.2NF<br> C.3NF<br> D.BCNF  </p>
-<pre><code>5.消除了部分函数依赖的1NF的关系模式，必定是(B)。 
-</code></pre><p> A.1NF<br> B.2NF<br> C.3NF<br> D.BCNF  </p>
-<pre><code>6.关系模式的候选码可以有1个或多个，而主码有(C)。 
-</code></pre><p> A.多个<br> B.0个<br> C.1个<br> D.1个或多个  </p>
-<pre><code>7.候选码的属性可以有(D)。 
-</code></pre><p> A.多个<br> B.0个<br> C.1个<br> D.1个或多个  </p>
-<pre><code>8.关系数据库规范化是为了解决关系数据库中(B)的问题而引入的。 
-</code></pre><p> A.提高查询速度<br> B.插入、删除异常和数据冗余<br> C.保证数据的安全性和完整性<br> D.  </p>
-<pre><code>9.学生表(id，name，sex，age，depart_id，depart_name)，存在的函数依赖是id→{name，sex，age，depart_id};dept_id→dept_name，其满足(B)。
-</code></pre><p> A.1NF<br> B.2NF<br> C.3NF<br> D.BCNF  </p>
-<pre><code>10.设有关系模式R(S，D，M)，其函数依赖集：F＝{S→D，D→M}，则关系模式R的规范化程度最高达(B)。 
-</code></pre><p> A.1NF<br> B.2NF<br> C.3NF<br> D.BCNF  </p>
-<pre><code>11.设有关系模式R(A，B，C，D)，其数据依赖集：F＝{(A，B)→C，C→D}，则关系模式R的规范化程度最高达到(B)。 
-</code></pre><p> A.1NF<br> B.2NF<br> C.3NF<br> D.BCNF  </p>
-<p>12.已知关系模式R&lt;U,F&gt;，U={A,B,C,D,E,G}，F={AB→C,D→EG,C→A,BE→C,BC→D,CG→BD,ACD→B,CE→AG}<br>(1).求F的最小函数依赖集。<br>(2).求出关系模式的候选码。<br>(3).此关系模型最高属于哪级范式。</p>
-<p><strong>答：<br>(1).Fm={AB→C,D→E,D→G,C→A,BE→C,BC→D,CG→D,CD→B,CE→G}<br>(2).AB,BC,BD,BE,CD,CE,CG<br>(3).3NF</strong></p>
-<p>13.关系模型R(U，F)，U={ABCDEG}，F ={AD→E，AC→E，CB→G，BCD→AG，BD→A，AB→G,A→C}<br>(1).求此模型的最小函数依赖集。<br>(2).求出关系模式的候选码。<br>(3).此关系模型最高属于哪级范式。</p>
-<p><strong>答：(1).Fm={A→E，BC→G，BD→A，A→C}<br>(2).BD<br>(3).R中每一个非主属性完全函数依赖于R的候选键BD；但C,G都传递依赖于R的候选键BD，也就是说，R满足2NF的要求，而不满足3NF的要求。此关系模型最高属于2NF。</strong></p>
-
           
+1.规范化理论是关系数据库进行逻辑设计的理论依据，根据这个理论，关系数据库中的关系必须满足：一个属性都是(B)。 
+ A.长度不变的 B.不可分解的 C.互相关联的 D.互不相关的  
+2.已知关系模式R(A，B，C，D，E)及其上的函数依赖集合F＝{A→D，B→C ，E→A }，该关系模式的候选
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/数据库作业/数据库作业12.03/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1912,20 +1584,20 @@
       
         
           
-            <hr>
-<p>1 . 数据库的完整性是指数据的<strong>正确性</strong>和<strong>相容性</strong>。</p>
-<hr>
-<p>2.SQL标准使用了一系列概念来描述完整性，包括关系模型的<strong>实体完整性</strong> 、<strong>参照完整性</strong>和<strong>用户自定义的完整性</strong>。</p>
-<hr>
-<p>3.已知关系模式$R$的全部属性集$U=\begin{Bmatrix}<br>A,B,C,D,E,G<br>\end{Bmatrix}$及函数依赖集：$F=\begin{Bmatrix}<br>ABC,CA,BCD,ACDB,D EG,BE C，CG BD,CE AG<br>\end{Bmatrix}$<br>求属性集闭包$(BD)+$</p>
-<hr>
-<p>4．有关系模式$A（C，T，H，R，S）$，其中各属性的含义是：<br>C：课程 T：教员 H：上课时间 R：教室 S：学生。根据语义有如下函数依赖集：$F=\begin{Bmatrix}<br>C→T，（H，R）→C，（H，T）RC，（H，S）→R<br>\end{Bmatrix}$<br>求关系模式A的候选码</p>
-<p><strong>答：（H，S）</strong></p>
-<hr>
-<p>5.已知关系模式$R&lt;U,F&gt;$，$U=\begin{Bmatrix}<br>A,B,C,D,E,G<br>\end{Bmatrix}$<br>$F=\begin{Bmatrix}<br>AB→C,D→EG,C→A,BE→C,BC→D,CG→BD,ACD→B,CE→AG<br>\end{Bmatrix}$<br>（1）.求出关系模式的候选码。<br>（2）.此关系模型最高属于哪级范式。</p>
-<p><strong>答：<br>(1).Fm={AB→C,D→E,D→G,C→A,BE→C,BC→D,CG→D,CD→B,CE→G}<br>(2).AB,BC,BD,BE,CD,CE,CG<br>(3).3NF</strong></p>
-
           
+1 . 数据库的完整性是指数据的正确性和相容性。
+
+2.SQL标准使用了一系列概念来描述完整性，包括关系模型的实体完整性 、参照完整性和用户自定义的完整性。
+
+3.已知关系模式$R$的全部属性集$U=\begin{Bmatrix}A,B,C,D,E,G\end{Bmatrix}$及函数依赖集：$F
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/数据库作业/数据库作业11.26/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2065,27 +1737,20 @@
       
         
           
-            <hr>
-<p>1.完整性检查和控制的防范对象是（AC），防止它们进入数据库。安全性控制的防范对象是（BD），防止他们对数据库数据的存取。 </p>
-<p> A.不合语义的数据<br> B.非法用户<br> C.不正确的数据<br> D.非法操作  </p>
-<hr>
-<pre><code>2.找出下面SQL命令中的数据控制命令（A）。 
-</code></pre><p> A.GRANT<br> B.COMMIT<br> C.UPDATE<br> D.SELECT  </p>
-<hr>
-<pre><code>3.下述SQL命令中，允许用户定义新关系时，引用其他关系的主码作为外码的是（C）。 
-</code></pre><p> A.INSERT<br> B.DELETE<br> C.REFERENCES<br> D. SELECT  </p>
-<hr>
-<pre><code>4.下述SQL命令的短语中，定义属性上约束条件的是（ABC）。 
-</code></pre><p> A.NOT NULL短语<br> B.UNIQUE短语<br> C.CHECK短语<br> D.HAVING短语  </p>
-<hr>
-<p>5.数据库的安全性是指保护数据库以防止不合法的使用所造成的<strong>数据泄漏</strong>、<strong>更改</strong>或<strong>破坏</strong>。</p>
-<p>6.计算机系统有三类安全性问题，即<strong>技术安全类</strong> 、<strong>管理安全类</strong>和 <strong>政策法律类</strong>。</p>
-<p>7.用户标识和鉴别的方法有很多种，而且在一个系统中往往是多种方法并举，以获得更强的安全性。常用的方法有通过输入<strong>用户名</strong>和 <strong>口令</strong>来鉴别用户。</p>
-<p>8.<strong>用户权限定义</strong> 和<strong>合法权检查机制</strong>一起组成了DBMS的安全子系统。</p>
-<p>9.用户权限是由两个要素组成的：<strong>数据对象</strong> 和<strong>操作类型</strong> 。</p>
-<p>10.在数据库系统中，定义存取权限称为<strong>授权</strong> 。SQL语言用<strong>GRANT</strong>语句向用户授予对数据的操作权限，用<strong>REVOKE</strong>语句收回授予的权限。</p>
-
           
+1.完整性检查和控制的防范对象是（AC），防止它们进入数据库。安全性控制的防范对象是（BD），防止他们对数据库数据的存取。 
+ A.不合语义的数据 B.非法用户 C.不正确的数据 D.非法操作  
+
+2.找出下面SQL命令中的数据控制命令（A）。 
+ A.GRANT B.COMMIT C.UPDA
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/数据库作业/数据库作业11.19/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
