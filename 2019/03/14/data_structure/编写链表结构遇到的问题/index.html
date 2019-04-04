@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="返回目录  ##描述1：LinkList(T a[], int n);//构造函数定义了链表构造函数，值和数目。 在test.cpp中，如下引用该函数：LinkList&amp;lt;CStudent&amp;gt; pStu(LoadFile(&amp;quot;data.csv&amp;quot;),length); length是定义在main函数之外的全局变量，值修改在LoadFile函数中 经调试观察，在执行这句话的">
+<meta name="description" content="返回目录  描述1：LinkList(T a[], int n);//构造函数定义了链表构造函数，值和数目。 在test.cpp中，如下引用该函数：LinkList&amp;lt;CStudent&amp;gt; pStu(LoadFile(&amp;quot;data.csv&amp;quot;),length); length是定义在main函数之外的全局变量，值修改在LoadFile函数中 经调试观察，在执行这句话的时候">
 <meta property="og:type" content="article">
 <meta property="og:title" content="编写链表结构遇到的问题">
 <meta property="og:url" content="http://yoursite.com/2019/03/14/data_structure/编写链表结构遇到的问题/index.html">
 <meta property="og:site_name" content="Chens">
-<meta property="og:description" content="返回目录  ##描述1：LinkList(T a[], int n);//构造函数定义了链表构造函数，值和数目。 在test.cpp中，如下引用该函数：LinkList&amp;lt;CStudent&amp;gt; pStu(LoadFile(&amp;quot;data.csv&amp;quot;),length); length是定义在main函数之外的全局变量，值修改在LoadFile函数中 经调试观察，在执行这句话的">
+<meta property="og:description" content="返回目录  描述1：LinkList(T a[], int n);//构造函数定义了链表构造函数，值和数目。 在test.cpp中，如下引用该函数：LinkList&amp;lt;CStudent&amp;gt; pStu(LoadFile(&amp;quot;data.csv&amp;quot;),length); length是定义在main函数之外的全局变量，值修改在LoadFile函数中 经调试观察，在执行这句话的时候">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%9C%89%E6%95%88length.png">
 <meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%97%A0%E6%95%88length.png">
 <meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/03.png">
-<meta property="og:updated_time" content="2019-03-14T08:30:29.493Z">
+<meta property="og:updated_time" content="2019-04-04T08:14:30.105Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编写链表结构遇到的问题">
-<meta name="twitter:description" content="返回目录  ##描述1：LinkList(T a[], int n);//构造函数定义了链表构造函数，值和数目。 在test.cpp中，如下引用该函数：LinkList&amp;lt;CStudent&amp;gt; pStu(LoadFile(&amp;quot;data.csv&amp;quot;),length); length是定义在main函数之外的全局变量，值修改在LoadFile函数中 经调试观察，在执行这句话的">
+<meta name="twitter:description" content="返回目录  描述1：LinkList(T a[], int n);//构造函数定义了链表构造函数，值和数目。 在test.cpp中，如下引用该函数：LinkList&amp;lt;CStudent&amp;gt; pStu(LoadFile(&amp;quot;data.csv&amp;quot;),length); length是定义在main函数之外的全局变量，值修改在LoadFile函数中 经调试观察，在执行这句话的时候">
 <meta name="twitter:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%9C%89%E6%95%88length.png">
 
 
@@ -348,7 +348,7 @@
         <hr>
 <p><a href="https://www.zybuluo.com/rg070836rg/note/83692" target="_blank" rel="noopener">返回目录</a></p>
 <hr>
-<p>##<strong>描述1</strong>：<br><code>LinkList(T a[], int n);//构造函数</code><br>定义了链表构造函数，值和数目。</p>
+<h2 id="描述1："><a href="#描述1：" class="headerlink" title="描述1："></a><strong>描述1</strong>：</h2><p><code>LinkList(T a[], int n);//构造函数</code><br>定义了链表构造函数，值和数目。</p>
 <p>在test.cpp中，如下引用该函数：<br><code>LinkList&lt;CStudent&gt; pStu(LoadFile(&quot;data.csv&quot;),length);</code><br> length是定义在main函数之外的全局变量，值修改在LoadFile函数中</p>
 <p>经调试观察，在执行这句话的时候，在运行完LoadFile函数之后观察length值为有效数据值， 如图：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%9C%89%E6%95%88length.png" alt="有效length值"></p>
 <p>但是继续单步执行，到函数内部观察时<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%97%A0%E6%95%88length.png" alt="此处输入图片的描述"></p>
@@ -359,11 +359,11 @@
 <p>c/c++参数压栈顺序是从右到左</p>
 </blockquote>
 <p>于是，很快明白原因，仅在此作为记录。</p>
-<p>##<strong>描述2：</strong><br>第二个问题，就是修改值失败<br>原因是没有返回值的引用，这样，仅仅是值传递，不能对内存进行修改<br>修改块代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">   <span class="built_in">string</span> tmp;</span><br><span class="line">pStu.Get(key).SetStu_Num(tmp);</span><br></pre></td></tr></table></figure></p>
+<h2 id="描述2："><a href="#描述2：" class="headerlink" title="描述2："></a><strong>描述2：</strong></h2><p>第二个问题，就是修改值失败<br>原因是没有返回值的引用，这样，仅仅是值传递，不能对内存进行修改<br>修改块代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">   <span class="built_in">string</span> tmp;</span><br><span class="line">pStu.Get(key).SetStu_Num(tmp);</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">    T&amp; LinkList&lt;T&gt;::Get(<span class="keyword">int</span> pos)</span><br><span class="line">&#123;</span><br><span class="line">	Node&lt;T&gt; *p = pHead-&gt;next;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (p!=<span class="literal">NULL</span> &amp;&amp; i!=pos)</span><br><span class="line">	&#123;</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">		i++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (p == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cerr</span> &lt;&lt; <span class="string">"超出链表长度，数据非法，异常退出。"</span>;</span><br><span class="line">		system(<span class="string">"pause"</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> p-&gt;data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span>    CStudent::SetStu_Num(<span class="built_in">string</span> Index)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">this</span>-&gt;Stu_Num = Index;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>按照老师的讲法,Get返回值为p-&gt;data的引用，并对其进行操作即可。</p>
-<p>##总结：<br>1、常用引用，减少值传递，对于不想被修改的引用可以使用常引用。<br>2、在流运算符以及赋值运算符中，会使用到引用。<br>3、注意不要对局部变量返回引用！</p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>1、常用引用，减少值传递，对于不想被修改的引用可以使用常引用。<br>2、在流运算符以及赋值运算符中，会使用到引用。<br>3、注意不要对局部变量返回引用！</p>
 
       
     </div>
@@ -452,8 +452,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -515,6 +524,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#描述1："><span class="nav-number">1.</span> <span class="nav-text">描述1：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#描述2："><span class="nav-number">2.</span> <span class="nav-text">描述2：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结："><span class="nav-number">3.</span> <span class="nav-text">总结：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

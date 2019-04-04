@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="##一、kmp算法的核心思想KMP算法的想法是，设法利用某些已知信息，不要把”搜索位置”移回已经比较过的位置，继续把它向后移，这样就提高了效率。 ##二、具体实现具体的算法实现不说了，书上都有，很详细。下面贴上做了对于长连续串next数组的优化的代码 1234567891011121314151617181920212223242526272829303132333435363738394041">
+<meta name="description" content="一、kmp算法的核心思想KMP算法的想法是，设法利用某些已知信息，不要把”搜索位置”移回已经比较过的位置，继续把它向后移，这样就提高了效率。 二、具体实现具体的算法实现不说了，书上都有，很详细。下面贴上做了对于长连续串next数组的优化的代码 1234567891011121314151617181920212223242526272829303132333435363738394041int">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kmp算法">
 <meta property="og:url" content="http://yoursite.com/2019/03/14/data_structure/kmp算法/index.html">
 <meta property="og:site_name" content="Chens">
-<meta property="og:description" content="##一、kmp算法的核心思想KMP算法的想法是，设法利用某些已知信息，不要把”搜索位置”移回已经比较过的位置，继续把它向后移，这样就提高了效率。 ##二、具体实现具体的算法实现不说了，书上都有，很详细。下面贴上做了对于长连续串next数组的优化的代码 1234567891011121314151617181920212223242526272829303132333435363738394041">
+<meta property="og:description" content="一、kmp算法的核心思想KMP算法的想法是，设法利用某些已知信息，不要把”搜索位置”移回已经比较过的位置，继续把它向后移，这样就提高了效率。 二、具体实现具体的算法实现不说了，书上都有，很详细。下面贴上做了对于长连续串next数组的优化的代码 1234567891011121314151617181920212223242526272829303132333435363738394041int">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/kmp01.png">
-<meta property="og:updated_time" content="2019-03-14T08:30:29.413Z">
+<meta property="og:updated_time" content="2019-04-04T08:14:48.143Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kmp算法">
-<meta name="twitter:description" content="##一、kmp算法的核心思想KMP算法的想法是，设法利用某些已知信息，不要把”搜索位置”移回已经比较过的位置，继续把它向后移，这样就提高了效率。 ##二、具体实现具体的算法实现不说了，书上都有，很详细。下面贴上做了对于长连续串next数组的优化的代码 1234567891011121314151617181920212223242526272829303132333435363738394041">
+<meta name="twitter:description" content="一、kmp算法的核心思想KMP算法的想法是，设法利用某些已知信息，不要把”搜索位置”移回已经比较过的位置，继续把它向后移，这样就提高了效率。 二、具体实现具体的算法实现不说了，书上都有，很详细。下面贴上做了对于长连续串next数组的优化的代码 1234567891011121314151617181920212223242526272829303132333435363738394041int">
 <meta name="twitter:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/kmp01.png">
 
 
@@ -344,10 +344,10 @@
 
       
         <hr>
-<p>##一、kmp算法的核心思想<br>KMP算法的想法是，设法利用某些已知信息，不要把”搜索位置”移回已经比较过的位置，继续把它向后移，这样就提高了效率。</p>
-<p>##二、具体实现<br>具体的算法实现不说了，书上都有，很详细。<br>下面贴上做了对于长连续串next数组的优化的代码</p>
+<h2 id="一、kmp算法的核心思想"><a href="#一、kmp算法的核心思想" class="headerlink" title="一、kmp算法的核心思想"></a>一、kmp算法的核心思想</h2><p>KMP算法的想法是，设法利用某些已知信息，不要把”搜索位置”移回已经比较过的位置，继续把它向后移，这样就提高了效率。</p>
+<h2 id="二、具体实现"><a href="#二、具体实现" class="headerlink" title="二、具体实现"></a>二、具体实现</h2><p>具体的算法实现不说了，书上都有，很详细。<br>下面贴上做了对于长连续串next数组的优化的代码</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">kmp</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *src,<span class="keyword">const</span> <span class="keyword">char</span> *dst)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>;<span class="comment">//记录源串信息</span></span><br><span class="line">	<span class="keyword">int</span> j=<span class="number">0</span>;<span class="comment">//记录子串信息</span></span><br><span class="line">	<span class="keyword">int</span> n=<span class="built_in">strlen</span>(src);</span><br><span class="line">	<span class="keyword">int</span> m=<span class="built_in">strlen</span>(dst);</span><br><span class="line">	<span class="comment">//next数组存的是，如果匹配失败，j回到next[j]，i不变，继续比较、</span></span><br><span class="line">	<span class="keyword">while</span>(i&lt;n &amp;&amp; j&lt;m)<span class="comment">//当字符没有到底，进行比较</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (j==<span class="number">-1</span> || src[i]==dst[j])<span class="comment">//如果当前字符相等，后移继续比较，若不等，取next数组中值，开始比较</span></span><br><span class="line">		&#123;</span><br><span class="line">			i++; j++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			j=next[j];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (j&gt;=m)</span><br><span class="line">		<span class="keyword">return</span> i-m;	<span class="comment">//返回</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">//没有找到</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GetNext</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> m=<span class="built_in">strlen</span>(str);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> j=<span class="number">0</span>;<span class="keyword">int</span> k=<span class="number">-1</span>;</span><br><span class="line">	next[<span class="number">0</span>]=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">while</span> (j&lt;m<span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//以前一种符合的状态为基准，判断现在的状态，如果继续符合，值加1，否则回到之前从比</span></span><br><span class="line">		<span class="keyword">if</span>(k==<span class="number">-1</span>||str[j]==str[k])<span class="comment">//如果刚进来，则k++，并把值存入next数组。</span></span><br><span class="line">		&#123;</span><br><span class="line">			j++;  k++;</span><br><span class="line">			next[j] = k;</span><br><span class="line">			<span class="keyword">if</span> (str[j]==str[k])</span><br><span class="line">				next[j] = next[k];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			k=next[k];	<span class="comment">//回到之前。</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>##三、测试<br>测试一下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> str[<span class="number">20</span>]=<span class="string">"aaaabcdabcda"</span>;</span><br><span class="line">	<span class="keyword">char</span> a[<span class="number">10</span>]=<span class="string">"abc"</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;str&lt;&lt;<span class="built_in">endl</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	GetNext(a);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;kmp(str,a)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> str1[<span class="number">20</span>]=<span class="string">"abcdabcda"</span>;</span><br><span class="line">	<span class="keyword">char</span> a1[<span class="number">10</span>]=<span class="string">"aaaabc"</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;str1&lt;&lt;<span class="built_in">endl</span>&lt;&lt;a1&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	GetNext(a1);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;kmp(str,a1)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="三、测试"><a href="#三、测试" class="headerlink" title="三、测试"></a>三、测试</h2><p>测试一下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> str[<span class="number">20</span>]=<span class="string">"aaaabcdabcda"</span>;</span><br><span class="line">	<span class="keyword">char</span> a[<span class="number">10</span>]=<span class="string">"abc"</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;str&lt;&lt;<span class="built_in">endl</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	GetNext(a);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;kmp(str,a)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> str1[<span class="number">20</span>]=<span class="string">"abcdabcda"</span>;</span><br><span class="line">	<span class="keyword">char</span> a1[<span class="number">10</span>]=<span class="string">"aaaabc"</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;str1&lt;&lt;<span class="built_in">endl</span>&lt;&lt;a1&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	GetNext(a1);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;kmp(str,a1)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>结果：<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/kmp01.png" alt="此处输入图片的描述"></p>
 
       
@@ -437,8 +437,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -500,6 +509,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、kmp算法的核心思想"><span class="nav-number">1.</span> <span class="nav-text">一、kmp算法的核心思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、具体实现"><span class="nav-number">2.</span> <span class="nav-text">二、具体实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、测试"><span class="nav-number">3.</span> <span class="nav-text">三、测试</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="返回目录  栈是一种只允许在一端进行插入与移除的数据结构。  ##一、课本分析书本上的栈，主要分为两种实现   顺序栈 链栈   顺序栈需要事先指定元素，空间固定。链栈随用随申请，一般不会出现空间问题。 栈实现比较简便，功能明确，  top()        获取栈顶元素 push(T x)    向栈中压入元素    pop()        弹出栈顶元素 size()       返回元素个">
+<meta name="description" content="返回目录  栈是一种只允许在一端进行插入与移除的数据结构。  一、课本分析书本上的栈，主要分为两种实现   顺序栈 链栈   顺序栈需要事先指定元素，空间固定。链栈随用随申请，一般不会出现空间问题。 栈实现比较简便，功能明确，  top()        获取栈顶元素 push(T x)    向栈中压入元素    pop()        弹出栈顶元素 size()       返回元素个数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STL栈实现及书本对比">
 <meta property="og:url" content="http://yoursite.com/2019/03/14/data_structure/STL栈实现及书本对比/index.html">
 <meta property="og:site_name" content="Chens">
-<meta property="og:description" content="返回目录  栈是一种只允许在一端进行插入与移除的数据结构。  ##一、课本分析书本上的栈，主要分为两种实现   顺序栈 链栈   顺序栈需要事先指定元素，空间固定。链栈随用随申请，一般不会出现空间问题。 栈实现比较简便，功能明确，  top()        获取栈顶元素 push(T x)    向栈中压入元素    pop()        弹出栈顶元素 size()       返回元素个">
+<meta property="og:description" content="返回目录  栈是一种只允许在一端进行插入与移除的数据结构。  一、课本分析书本上的栈，主要分为两种实现   顺序栈 链栈   顺序栈需要事先指定元素，空间固定。链栈随用随申请，一般不会出现空间问题。 栈实现比较简便，功能明确，  top()        获取栈顶元素 push(T x)    向栈中压入元素    pop()        弹出栈顶元素 size()       返回元素个数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-14T08:30:29.418Z">
+<meta property="og:updated_time" content="2019-04-04T08:14:39.064Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="STL栈实现及书本对比">
-<meta name="twitter:description" content="返回目录  栈是一种只允许在一端进行插入与移除的数据结构。  ##一、课本分析书本上的栈，主要分为两种实现   顺序栈 链栈   顺序栈需要事先指定元素，空间固定。链栈随用随申请，一般不会出现空间问题。 栈实现比较简便，功能明确，  top()        获取栈顶元素 push(T x)    向栈中压入元素    pop()        弹出栈顶元素 size()       返回元素个">
+<meta name="twitter:description" content="返回目录  栈是一种只允许在一端进行插入与移除的数据结构。  一、课本分析书本上的栈，主要分为两种实现   顺序栈 链栈   顺序栈需要事先指定元素，空间固定。链栈随用随申请，一般不会出现空间问题。 栈实现比较简便，功能明确，  top()        获取栈顶元素 push(T x)    向栈中压入元素    pop()        弹出栈顶元素 size()       返回元素个数">
 
 
 
@@ -346,7 +346,7 @@
 <hr>
 <p><strong>栈</strong>是一种只允许在一端进行插入与移除的数据结构。</p>
 <hr>
-<p>##一、课本分析<br>书本上的栈，主要分为两种实现</p>
+<h2 id="一、课本分析"><a href="#一、课本分析" class="headerlink" title="一、课本分析"></a>一、课本分析</h2><p>书本上的栈，主要分为两种实现</p>
 <blockquote>
 <ul>
 <li>顺序栈</li>
@@ -364,7 +364,7 @@
 </ul>
 <p>具体实现可以参见：<a href="https://www.zybuluo.com/rg070836rg/note/83233" target="_blank" rel="noopener">顺序栈以及双栈的设计与测试</a></p>
 <hr>
-<p>##二、STL栈<br>文章内容参考：<a href="http://blog.csdn.net/MoreWindows" target="_blank" rel="noopener">STL系列之二 stack栈</a></p>
+<h2 id="二、STL栈"><a href="#二、STL栈" class="headerlink" title="二、STL栈"></a>二、STL栈</h2><p>文章内容参考：<a href="http://blog.csdn.net/MoreWindows" target="_blank" rel="noopener">STL系列之二 stack栈</a></p>
 <p>下面，贴出在VS中，stack的定义<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> _<span class="title">Ty</span>, <span class="title">class</span> _<span class="title">Container</span> = <span class="title">deque</span>&lt;_Ty&gt; &gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">stack</span></span></span><br><span class="line"><span class="class">&#123;</span>	<span class="comment">// LIFO queue implemented with a container</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">typedef</span> _Container container_type;</span><br><span class="line">	<span class="keyword">typedef</span> <span class="keyword">typename</span> _Container::value_type value_type;</span><br><span class="line">	<span class="keyword">typedef</span> <span class="keyword">typename</span> _Container::size_type size_type;</span><br><span class="line">	<span class="keyword">typedef</span> <span class="keyword">typename</span> _Container::reference reference;</span><br><span class="line">	<span class="keyword">typedef</span> <span class="keyword">typename</span> _Container::const_reference const_reference;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">stack</span>() : c()</span><br><span class="line">	&#123;	<span class="comment">// construct with empty container</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	explicit stack(const _Container&amp; _Cont) : c(_Cont)</span><br><span class="line">	&#123;	<span class="comment">// construct by copying specified container</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">	</span>&#123;	<span class="comment">// test if stack is empty</span></span><br><span class="line">		<span class="keyword">return</span> (c.empty());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">size_type <span class="title">size</span><span class="params">()</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">	</span>&#123;	<span class="comment">// test length of stack</span></span><br><span class="line">		<span class="keyword">return</span> (c.size());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">reference <span class="title">top</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;	<span class="comment">// return last element of mutable stack</span></span><br><span class="line">		<span class="keyword">return</span> (c.back());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">const_reference <span class="title">top</span><span class="params">()</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">	</span>&#123;	<span class="comment">// return last element of nonmutable stack</span></span><br><span class="line">		<span class="keyword">return</span> (c.back());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">const</span> value_type&amp; _Val)</span></span></span><br><span class="line"><span class="function">	</span>&#123;	<span class="comment">// insert element at end</span></span><br><span class="line">		c.push_back(_Val);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;	<span class="comment">// erase last element</span></span><br><span class="line">		c.pop_back();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> _Container&amp; _Get_container() <span class="keyword">const</span></span><br><span class="line">	&#123;	<span class="comment">// get reference to container</span></span><br><span class="line">		<span class="keyword">return</span> (c);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	_Container c;	<span class="comment">// the underlying container</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>不难发现，栈并没有提供自身的函数，而是封装了其他的数据结构，提供了对外的接口函数。</p>
 <blockquote>
@@ -464,8 +464,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -527,6 +536,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、课本分析"><span class="nav-number">1.</span> <span class="nav-text">一、课本分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、STL栈"><span class="nav-number">2.</span> <span class="nav-text">二、STL栈</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

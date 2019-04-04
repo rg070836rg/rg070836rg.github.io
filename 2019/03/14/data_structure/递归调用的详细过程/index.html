@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="返回目录  这篇文章不是原创，是从文库的一个文档摘来，因为没有网络链接，所以整理成笔记。  ##一、栈  在说函数递归的时候，顺便说一下栈的概念。 栈是一个后进先出的压入(push)和弹出(pop)式数据结构。在程序运行时，系统每次向栈中压入一个对象，然后栈指针向下移动一个位置。当系统从栈中弹出一个对象时，最近进栈的对象将被弹出。然后栈指针向上移动一个位置。程序员经常利用栈这种数据结构来处理那些">
+<meta name="description" content="返回目录  这篇文章不是原创，是从文库的一个文档摘来，因为没有网络链接，所以整理成笔记。  一、栈 在说函数递归的时候，顺便说一下栈的概念。 栈是一个后进先出的压入(push)和弹出(pop)式数据结构。在程序运行时，系统每次向栈中压入一个对象，然后栈指针向下移动一个位置。当系统从栈中弹出一个对象时，最近进栈的对象将被弹出。然后栈指针向上移动一个位置。程序员经常利用栈这种数据结构来处理那些最适合">
 <meta property="og:type" content="article">
 <meta property="og:title" content="递归调用的详细过程">
 <meta property="og:url" content="http://yoursite.com/2019/03/14/data_structure/递归调用的详细过程/index.html">
 <meta property="og:site_name" content="Chens">
-<meta property="og:description" content="返回目录  这篇文章不是原创，是从文库的一个文档摘来，因为没有网络链接，所以整理成笔记。  ##一、栈  在说函数递归的时候，顺便说一下栈的概念。 栈是一个后进先出的压入(push)和弹出(pop)式数据结构。在程序运行时，系统每次向栈中压入一个对象，然后栈指针向下移动一个位置。当系统从栈中弹出一个对象时，最近进栈的对象将被弹出。然后栈指针向上移动一个位置。程序员经常利用栈这种数据结构来处理那些">
+<meta property="og:description" content="返回目录  这篇文章不是原创，是从文库的一个文档摘来，因为没有网络链接，所以整理成笔记。  一、栈 在说函数递归的时候，顺便说一下栈的概念。 栈是一个后进先出的压入(push)和弹出(pop)式数据结构。在程序运行时，系统每次向栈中压入一个对象，然后栈指针向下移动一个位置。当系统从栈中弹出一个对象时，最近进栈的对象将被弹出。然后栈指针向上移动一个位置。程序员经常利用栈这种数据结构来处理那些最适合">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-14T08:30:29.509Z">
+<meta property="og:updated_time" content="2019-04-04T08:13:13.257Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="递归调用的详细过程">
-<meta name="twitter:description" content="返回目录  这篇文章不是原创，是从文库的一个文档摘来，因为没有网络链接，所以整理成笔记。  ##一、栈  在说函数递归的时候，顺便说一下栈的概念。 栈是一个后进先出的压入(push)和弹出(pop)式数据结构。在程序运行时，系统每次向栈中压入一个对象，然后栈指针向下移动一个位置。当系统从栈中弹出一个对象时，最近进栈的对象将被弹出。然后栈指针向上移动一个位置。程序员经常利用栈这种数据结构来处理那些">
+<meta name="twitter:description" content="返回目录  这篇文章不是原创，是从文库的一个文档摘来，因为没有网络链接，所以整理成笔记。  一、栈 在说函数递归的时候，顺便说一下栈的概念。 栈是一个后进先出的压入(push)和弹出(pop)式数据结构。在程序运行时，系统每次向栈中压入一个对象，然后栈指针向下移动一个位置。当系统从栈中弹出一个对象时，最近进栈的对象将被弹出。然后栈指针向上移动一个位置。程序员经常利用栈这种数据结构来处理那些最适合">
 
 
 
@@ -346,8 +346,7 @@
 <hr>
 <p>这篇文章不是原创，是从文库的一个文档摘来，因为没有网络链接，所以整理成笔记。</p>
 <hr>
-<p>##一、栈</p>
-<blockquote>
+<h2 id="一、栈"><a href="#一、栈" class="headerlink" title="一、栈"></a>一、栈</h2><blockquote>
 <p>在说函数递归的时候，顺便说一下栈的概念。</p>
 <pre><code>栈是一个后进先出的压入(push)和弹出(pop)式数据结构。在程序运行时，系统每次向栈中压入一个对象，然后栈指针向下移动一个位置。当系统从栈中弹出一个对象时，最近进栈的对象将被弹出。然后栈指针向上移动一个位置。程序员经常利用栈这种数据结构来处理那些最适合用后进先出逻辑来描述的编程问题。
 </code></pre><hr>
@@ -359,8 +358,7 @@
 </code></pre><hr>
 <pre><code>可能刚开始学的人看不太懂上面的讲解，栈涉及到指针问题，具体可以看看一些数据结构的书。要想学好编程语言，数据结构是一定要学的。
 </code></pre></blockquote>
-<p>##二、递归</p>
-<blockquote>
+<h2 id="二、递归"><a href="#二、递归" class="headerlink" title="二、递归"></a>二、递归</h2><blockquote>
 <p> 下面介绍下递归过程</p>
 </blockquote>
 <blockquote>
@@ -464,8 +462,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -527,6 +534,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、栈"><span class="nav-number">1.</span> <span class="nav-text">一、栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、递归"><span class="nav-number">2.</span> <span class="nav-text">二、递归</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

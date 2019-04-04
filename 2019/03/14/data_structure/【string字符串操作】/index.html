@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="##一、比较字符串允许的比较对象    1）compare(s2) 其他同类型字符串  2）compare(p) C 风格字符串  3）compare(off, cnt, s2) [off, off + cnt) 同 s2 执行比较  4）compare(off, cnt, s2, off2, cnt2) [off, off + cnt) 同 s2 [off2, cnt2) 执行比较  5）co">
+<meta name="description" content="一、比较字符串允许的比较对象    1）compare(s2) 其他同类型字符串  2）compare(p) C 风格字符串  3）compare(off, cnt, s2) [off, off + cnt) 同 s2 执行比较  4）compare(off, cnt, s2, off2, cnt2) [off, off + cnt) 同 s2 [off2, cnt2) 执行比较  5）comp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【string字符串操作】">
 <meta property="og:url" content="http://yoursite.com/2019/03/14/data_structure/【string字符串操作】/index.html">
 <meta property="og:site_name" content="Chens">
-<meta property="og:description" content="##一、比较字符串允许的比较对象    1）compare(s2) 其他同类型字符串  2）compare(p) C 风格字符串  3）compare(off, cnt, s2) [off, off + cnt) 同 s2 执行比较  4）compare(off, cnt, s2, off2, cnt2) [off, off + cnt) 同 s2 [off2, cnt2) 执行比较  5）co">
+<meta property="og:description" content="一、比较字符串允许的比较对象    1）compare(s2) 其他同类型字符串  2）compare(p) C 风格字符串  3）compare(off, cnt, s2) [off, off + cnt) 同 s2 执行比较  4）compare(off, cnt, s2, off2, cnt2) [off, off + cnt) 同 s2 [off2, cnt2) 执行比较  5）comp">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-14T08:30:29.424Z">
+<meta property="og:updated_time" content="2019-04-04T08:15:45.608Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【string字符串操作】">
-<meta name="twitter:description" content="##一、比较字符串允许的比较对象    1）compare(s2) 其他同类型字符串  2）compare(p) C 风格字符串  3）compare(off, cnt, s2) [off, off + cnt) 同 s2 执行比较  4）compare(off, cnt, s2, off2, cnt2) [off, off + cnt) 同 s2 [off2, cnt2) 执行比较  5）co">
+<meta name="twitter:description" content="一、比较字符串允许的比较对象    1）compare(s2) 其他同类型字符串  2）compare(p) C 风格字符串  3）compare(off, cnt, s2) [off, off + cnt) 同 s2 执行比较  4）compare(off, cnt, s2, off2, cnt2) [off, off + cnt) 同 s2 [off2, cnt2) 执行比较  5）comp">
 
 
 
@@ -342,7 +342,7 @@
 
       
         <hr>
-<p>##一、比较字符串<br>允许的比较对象 </p>
+<h2 id="一、比较字符串"><a href="#一、比较字符串" class="headerlink" title="一、比较字符串"></a>一、比较字符串</h2><p>允许的比较对象 </p>
 <blockquote>
 <ul>
 <li>1）compare(s2) 其他同类型字符串 </li>
@@ -354,11 +354,7 @@
 </ul>
 </blockquote>
 <hr>
-<p>##二、附加数据 </p>
-<p>###1）使用 operator += 接受其他字符串，C 风格字符串和字符 </p>
-<p>###2）使用 push_back() 在尾部附加字符，并使得通过字符串构造的 back_iterator 可以访问 </p>
-<p>###3）append() 附加 </p>
-<blockquote>
+<h2 id="二、附加数据"><a href="#二、附加数据" class="headerlink" title="二、附加数据"></a>二、附加数据</h2><h3 id="1）使用-operator-接受其他字符串，C-风格字符串和字符"><a href="#1）使用-operator-接受其他字符串，C-风格字符串和字符" class="headerlink" title="1）使用 operator += 接受其他字符串，C 风格字符串和字符"></a>1）使用 operator += 接受其他字符串，C 风格字符串和字符</h3><h3 id="2）使用-push-back-在尾部附加字符，并使得通过字符串构造的-back-iterator-可以访问"><a href="#2）使用-push-back-在尾部附加字符，并使得通过字符串构造的-back-iterator-可以访问" class="headerlink" title="2）使用 push_back() 在尾部附加字符，并使得通过字符串构造的 back_iterator 可以访问"></a>2）使用 push_back() 在尾部附加字符，并使得通过字符串构造的 back_iterator 可以访问</h3><h3 id="3）append-附加"><a href="#3）append-附加" class="headerlink" title="3）append() 附加"></a>3）append() 附加</h3><blockquote>
 <ul>
 <li>1、append(s) 追加字符串 </li>
 <li>2、append(s, off, cnt) 追加字符串 s [off, off + cnt)</li>
@@ -368,8 +364,7 @@
 <li>6、append(InF, InL) 追加输入流 [InF, InL) </li>
 </ul>
 </blockquote>
-<p>###4）insert() 插入 </p>
-<blockquote>
+<h3 id="4）insert-插入"><a href="#4）insert-插入" class="headerlink" title="4）insert() 插入"></a>4）insert() 插入</h3><blockquote>
 <ul>
 <li>1、insert(off, s2) 插入字符串 </li>
 <li>2、insert(off, s2, off2, cnt2) 插入字符串 s [off2, off2 + cnt2) </li>
@@ -382,7 +377,7 @@
 <li>9、insert(iter, InF, InL) 插入 [InF, InL) </li>
 </ul>
 </blockquote>
-<p>###5）operator +(a, b)<br>字符串关联运算符重载中支持 operator + 的形式 </p>
+<h3 id="5）operator-a-b"><a href="#5）operator-a-b" class="headerlink" title="5）operator +(a, b)"></a>5）operator +(a, b)</h3><p>字符串关联运算符重载中支持 operator + 的形式 </p>
 <blockquote>
 <ul>
 <li>1、s + s </li>
@@ -393,9 +388,7 @@
 </ul>
 </blockquote>
 <hr>
-<p>##三、查找、替换和清除 </p>
-<p>###1）find() 查找 </p>
-<blockquote>
+<h2 id="三、查找、替换和清除"><a href="#三、查找、替换和清除" class="headerlink" title="三、查找、替换和清除"></a>三、查找、替换和清除</h2><h3 id="1）find-查找"><a href="#1）find-查找" class="headerlink" title="1）find() 查找"></a>1）find() 查找</h3><blockquote>
 <ul>
 <li>1、find(c, off) 在 s [off, npos) 中查找 c </li>
 <li>2、find(p, off, n) 在 s [off, npos) 中查找 [p, p + n) </li>
@@ -403,8 +396,7 @@
 <li>4、find(s2, off) 在 s [off, npos) 中查找 s2 </li>
 </ul>
 </blockquote>
-<p>###2）find() 的变种 </p>
-<blockquote>
+<h3 id="2）find-的变种"><a href="#2）find-的变种" class="headerlink" title="2）find() 的变种"></a>2）find() 的变种</h3><blockquote>
 <ul>
 <li>1、rfind() 具有 find() 的输入形式，反序查找 </li>
 <li>2、find_first_of() 具有 find() 的输入形式，返回第一个匹配的索引 </li>
@@ -413,8 +405,7 @@
 <li>5、find_last_not_of() 具有 find() 的输入形式，返回倒数第一个不匹配的索引 </li>
 </ul>
 </blockquote>
-<p>###3）replace() 替换 </p>
-<blockquote>
+<h3 id="3）replace-替换"><a href="#3）replace-替换" class="headerlink" title="3）replace() 替换"></a>3）replace() 替换</h3><blockquote>
 <ul>
 <li>1、replace(off, cnt, s2) 将 s [off, off + cnt) 替换成 s2 </li>
 <li>2、replace(off, cnt, s2, off2, cnt2) 将 s [off, off + cnt) 替换成 s2 [off2, off2 + cnt2)</li>
@@ -439,12 +430,11 @@
 </ul>
 </blockquote>
 <hr>
-<p>##四、取出字符串 </p>
-<p>###1）取得 C 风格字符串<br>c_str() 返回常量类型的 C 风格字符串指针，copy(ptr, cnt, off = 0) 则将指定大小的字符串复制到特定指针。data() 在 Visual C++ 7.1 中仅仅调用了 c_str() 实现。 </p>
-<p>###2）取得子字符串<br>substr(off, cnt) 取得 s [off, off + cnt) 的副本。  </p>
-<p>###3）复制子字符串<br>copy(p, off, cnt) 将 s [off, off + cnt) 复制到 p。 </p>
+<h2 id="四、取出字符串"><a href="#四、取出字符串" class="headerlink" title="四、取出字符串"></a>四、取出字符串</h2><h3 id="1）取得-C-风格字符串"><a href="#1）取得-C-风格字符串" class="headerlink" title="1）取得 C 风格字符串"></a>1）取得 C 风格字符串</h3><p>c_str() 返回常量类型的 C 风格字符串指针，copy(ptr, cnt, off = 0) 则将指定大小的字符串复制到特定指针。data() 在 Visual C++ 7.1 中仅仅调用了 c_str() 实现。 </p>
+<h3 id="2）取得子字符串"><a href="#2）取得子字符串" class="headerlink" title="2）取得子字符串"></a>2）取得子字符串</h3><p>substr(off, cnt) 取得 s [off, off + cnt) 的副本。  </p>
+<h3 id="3）复制子字符串"><a href="#3）复制子字符串" class="headerlink" title="3）复制子字符串"></a>3）复制子字符串</h3><p>copy(p, off, cnt) 将 s [off, off + cnt) 复制到 p。 </p>
 <hr>
-<p>##五、字符串的缓冲区管理<br>字符串具有类似 std::vector 的缓冲区管理界面。  </p>
+<h2 id="五、字符串的缓冲区管理"><a href="#五、字符串的缓冲区管理" class="headerlink" title="五、字符串的缓冲区管理"></a>五、字符串的缓冲区管理</h2><p>字符串具有类似 std::vector 的缓冲区管理界面。  </p>
 <blockquote>
 <ul>
 <li>size() 取得有效元素长度 </li>
@@ -542,8 +532,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -605,6 +604,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、比较字符串"><span class="nav-number">1.</span> <span class="nav-text">一、比较字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、附加数据"><span class="nav-number">2.</span> <span class="nav-text">二、附加数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1）使用-operator-接受其他字符串，C-风格字符串和字符"><span class="nav-number">2.1.</span> <span class="nav-text">1）使用 operator += 接受其他字符串，C 风格字符串和字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2）使用-push-back-在尾部附加字符，并使得通过字符串构造的-back-iterator-可以访问"><span class="nav-number">2.2.</span> <span class="nav-text">2）使用 push_back() 在尾部附加字符，并使得通过字符串构造的 back_iterator 可以访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3）append-附加"><span class="nav-number">2.3.</span> <span class="nav-text">3）append() 附加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4）insert-插入"><span class="nav-number">2.4.</span> <span class="nav-text">4）insert() 插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5）operator-a-b"><span class="nav-number">2.5.</span> <span class="nav-text">5）operator +(a, b)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、查找、替换和清除"><span class="nav-number">3.</span> <span class="nav-text">三、查找、替换和清除</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1）find-查找"><span class="nav-number">3.1.</span> <span class="nav-text">1）find() 查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2）find-的变种"><span class="nav-number">3.2.</span> <span class="nav-text">2）find() 的变种</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3）replace-替换"><span class="nav-number">3.3.</span> <span class="nav-text">3）replace() 替换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、取出字符串"><span class="nav-number">4.</span> <span class="nav-text">四、取出字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1）取得-C-风格字符串"><span class="nav-number">4.1.</span> <span class="nav-text">1）取得 C 风格字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2）取得子字符串"><span class="nav-number">4.2.</span> <span class="nav-text">2）取得子字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3）复制子字符串"><span class="nav-number">4.3.</span> <span class="nav-text">3）复制子字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、字符串的缓冲区管理"><span class="nav-number">5.</span> <span class="nav-text">五、字符串的缓冲区管理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

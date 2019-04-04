@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="##一、顺序查找顺序查找的基本思路如下：   顺序扫描序列表 若匹配，返回下标 若不匹配，返回-1   123456789101112131415161718192021//无监视哨的顺序查找int SeqSearch(Record *r, int n, int k)&amp;#123;	int i = 0;	while (i &amp;lt; n&amp;amp;&amp;amp;r[i].key != k)		i++;	i">
+<meta name="description" content="一、顺序查找顺序查找的基本思路如下：   顺序扫描序列表 若匹配，返回下标 若不匹配，返回-1   123456789101112131415161718192021//无监视哨的顺序查找int SeqSearch(Record *r, int n, int k)&amp;#123;	int i = 0;	while (i &amp;lt; n&amp;amp;&amp;amp;r[i].key != k)		i++;	if">
 <meta property="og:type" content="article">
 <meta property="og:title" content="顺序查找以及折半查找">
 <meta property="og:url" content="http://yoursite.com/2019/03/14/data_structure/顺序查找以及折半查找/index.html">
 <meta property="og:site_name" content="Chens">
-<meta property="og:description" content="##一、顺序查找顺序查找的基本思路如下：   顺序扫描序列表 若匹配，返回下标 若不匹配，返回-1   123456789101112131415161718192021//无监视哨的顺序查找int SeqSearch(Record *r, int n, int k)&amp;#123;	int i = 0;	while (i &amp;lt; n&amp;amp;&amp;amp;r[i].key != k)		i++;	i">
+<meta property="og:description" content="一、顺序查找顺序查找的基本思路如下：   顺序扫描序列表 若匹配，返回下标 若不匹配，返回-1   123456789101112131415161718192021//无监视哨的顺序查找int SeqSearch(Record *r, int n, int k)&amp;#123;	int i = 0;	while (i &amp;lt; n&amp;amp;&amp;amp;r[i].key != k)		i++;	if">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%9F%A5%E6%89%BE01.png">
 <meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%9F%A5%E6%89%BE02%20%282%29.png">
 <meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%9F%A5%E6%89%BE03.png">
 <meta property="og:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%9F%A5%E6%89%BE04.png">
-<meta property="og:updated_time" content="2019-03-14T08:30:29.526Z">
+<meta property="og:updated_time" content="2019-04-04T08:09:01.352Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="顺序查找以及折半查找">
-<meta name="twitter:description" content="##一、顺序查找顺序查找的基本思路如下：   顺序扫描序列表 若匹配，返回下标 若不匹配，返回-1   123456789101112131415161718192021//无监视哨的顺序查找int SeqSearch(Record *r, int n, int k)&amp;#123;	int i = 0;	while (i &amp;lt; n&amp;amp;&amp;amp;r[i].key != k)		i++;	i">
+<meta name="twitter:description" content="一、顺序查找顺序查找的基本思路如下：   顺序扫描序列表 若匹配，返回下标 若不匹配，返回-1   123456789101112131415161718192021//无监视哨的顺序查找int SeqSearch(Record *r, int n, int k)&amp;#123;	int i = 0;	while (i &amp;lt; n&amp;amp;&amp;amp;r[i].key != k)		i++;	if">
 <meta name="twitter:image" content="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%9F%A5%E6%89%BE01.png">
 
 
@@ -347,7 +347,7 @@
 
       
         <hr>
-<p>##一、顺序查找<br>顺序查找的基本思路如下：</p>
+<h2 id="一、顺序查找"><a href="#一、顺序查找" class="headerlink" title="一、顺序查找"></a>一、顺序查找</h2><p>顺序查找的基本思路如下：</p>
 <blockquote>
 <ul>
 <li>顺序扫描序列表</li>
@@ -358,7 +358,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//无监视哨的顺序查找</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SeqSearch</span><span class="params">(Record *r, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; n&amp;&amp;r[i].key != k)</span><br><span class="line">		i++;</span><br><span class="line">	<span class="keyword">if</span> (i &lt; n)</span><br><span class="line">		<span class="keyword">return</span> i;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//有监视哨的顺序查找</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SeqSearch2</span><span class="params">(Record *r, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	r[n].key = k;</span><br><span class="line">	<span class="keyword">while</span> (r[i].key != k)</span><br><span class="line">		i++;</span><br><span class="line">	<span class="keyword">if</span> (i &lt; n)</span><br><span class="line">		<span class="keyword">return</span> i;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>测试结果:<br><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%9F%A5%E6%89%BE01.png" alt="此处输入图片的描述"></p>
 <p><img src="http://7xi4ge.com1.z0.glb.clouddn.com/%E6%9F%A5%E6%89%BE02%20%282%29.png" alt="此处输入图片的描述"></p>
-<p>##二、折半查找<br>折半查找的基本思想是在有序表中，取中间元素作为比较对象。</p>
+<h2 id="二、折半查找"><a href="#二、折半查找" class="headerlink" title="二、折半查找"></a>二、折半查找</h2><p>折半查找的基本思想是在有序表中，取中间元素作为比较对象。</p>
 <blockquote>
 <ul>
 <li>k==mid  ， 成功</li>
@@ -458,8 +458,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -521,6 +530,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、顺序查找"><span class="nav-number">1.</span> <span class="nav-text">一、顺序查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、折半查找"><span class="nav-number">2.</span> <span class="nav-text">二、折半查找</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
